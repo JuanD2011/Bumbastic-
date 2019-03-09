@@ -230,7 +230,12 @@ ModelImporter:
     13700000: Cactus_Low.001
     13700002: Ojos y Catapulta
     13700004: Pinchos.021
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus
+    second: {fileID: 2100000, guid: 168cc7db99ed6af49be5d381df311f6e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
