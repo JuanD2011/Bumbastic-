@@ -25,7 +25,7 @@ public class AudioMute : MonoBehaviour
 
     private void Start()
     {
-        Memento.instance.OnLoadedData += Init;
+        Init();
     }
 
     private void Init()

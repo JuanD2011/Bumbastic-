@@ -699,22 +699,16 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1102089517803430082}
     m_Position: {x: 408, y: -24, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1102781712351318778}
-    m_Position: {x: 408, y: -168, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1102909955199378984}
-    m_Position: {x: 168, y: -168, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1102193273958635164}
-    m_Position: {x: 408, y: -312, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 1107724606167826824}
     m_Position: {x: 684, y: -24, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 1107116049753296286}
-    m_Position: {x: 408, y: 192, z: 0}
+    m_Position: {x: 408, y: 108, z: 0}
+  - serializedVersion: 1
+    m_StateMachine: {fileID: 1107770109070927572}
+    m_Position: {x: 408, y: -144, z: 0}
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
@@ -783,3 +777,31 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102025130473130592}
+--- !u!1107 &1107770109070927572
+AnimatorStateMachine:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Matchmaking
+  m_ChildStates:
+  - serializedVersion: 1
+    m_State: {fileID: 1102781712351318778}
+    m_Position: {x: 492, y: -84, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102909955199378984}
+    m_Position: {x: 492, y: 84, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102193273958635164}
+    m_Position: {x: 492, y: -204, z: 0}
+  m_ChildStateMachines: []
+  m_AnyStateTransitions: []
+  m_EntryTransitions: []
+  m_StateMachineTransitions: {}
+  m_StateMachineBehaviours: []
+  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_EntryPosition: {x: 252, y: -72, z: 0}
+  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+  m_DefaultState: {fileID: 1102781712351318778}
