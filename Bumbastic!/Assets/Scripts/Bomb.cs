@@ -57,9 +57,6 @@ public class Bomb : MonoBehaviour
         CameraShake.instance.OnShake(0.4f, 6f, 1.2f);
         RigidBody.constraints = RigidbodyConstraints.None;
         transform.SetParent(null);
-        GameManager.instance.bombHolder.gameObject.SetActive(false);
-        GameManager.instance.PlayersInGame.Remove(GameManager.instance.bombHolder);
-        GameManager.instance.bombHolder = null;
         gameObject.SetActive(false);
     }
 
@@ -67,9 +64,6 @@ public class Bomb : MonoBehaviour
     {
         if (collision.transform.tag == "Floor")
         {
-            GameManager.instance.bombHolder.HasBomb = true;
-            transform.SetParent(GameManager.instance.bombHolder.transform);
-            gameObject.transform.position = GameManager.instance.bombHolder.transform.GetChild(1).transform.position;
             RigidBody.constraints = RigidbodyConstraints.FreezeAll;
         }
     }

@@ -27,7 +27,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
                     _player.gameObject.AddComponent<Shield>();
                     break;
                 case 3:
-                    GameManager.instance.bombHolder.gameObject.AddComponent<Velocity>();
+                    //GameManager.instance.bombHolder.gameObject.AddComponent<Velocity>();
                     break;
                 default:
                     break;

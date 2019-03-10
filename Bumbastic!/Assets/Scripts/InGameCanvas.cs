@@ -7,7 +7,6 @@ public class InGameCanvas : MonoBehaviour
     void Start()
     {
         m_Animator = GetComponent<Animator>();
-        GameManager.instance.OnCanvasEnd += SetEndAnimation;
     }
 
     private void SetEndAnimation()

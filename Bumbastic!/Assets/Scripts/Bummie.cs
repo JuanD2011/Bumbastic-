@@ -48,7 +48,7 @@ public class Bummie : MonoBehaviour
 
         m_Animator = GetComponentInChildren<Animator>();
 
-        GameManager.instance.Director.stopped += Director_stopped;
+        //GameManager.instance.Director.stopped += Director_stopped;
 
         m_AimPath = transform.GetChild(2).GetComponent<LineRenderer>();
         m_AimPath.SetPosition(1, new Vector3(0, 0, throwForce/1.8f));
@@ -100,40 +100,29 @@ public class Bummie : MonoBehaviour
 
     private void Move()
     {
-        //inputDirection = input.normalized;
+        inputDirection = input.normalized;
 
-        //if (inputAim != Vector2.zero)
-        //{
-        //    if (joystickAiming.Direction.magnitude >= 0.2f)
-        //    {
-        //        m_AimPath.gameObject.SetActive(true);
-        //        targetRotation = Mathf.Atan2(inputAiming.x, inputAiming.y) * Mathf.Rad2Deg;
-        //        transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, turnSmooth);
-        //    }
-        //    else m_AimPath.gameObject.SetActive(false);
-        //}
-        //else if (inputDirection != Vector2.zero)
-        //{
-        //    targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
-        //    transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, turnSmooth);
-        //}
-        //targetSpeed = ((SpeedPU) ? powerUpSpeed : moveSpeed) * inputDirection.magnitude;
+        if (inputDirection != Vector2.zero)
+        {
+            targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
+            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, turnSmooth);
+        }
 
-        //movement = new Vector3(inputDirection.x, 0, inputDirection.y);
-        //currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVel, speedSmooothTime);
-        //transform.Translate(movement * currentSpeed * Time.deltaTime, Space.World);
-        //animationSpeedPercent = ((SpeedPU) ? 1 : 0.5f) * inputDirection.magnitude;
+        targetSpeed = ((SpeedPU) ? powerUpSpeed : moveSpeed) * inputDirection.magnitude;
+        currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVel, speedSmooothTime);
 
-        //m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
+        transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+        animationSpeedPercent = ((SpeedPU) ? 1 : 0.5f) * inputDirection.magnitude;
+        m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
     }
 
     void RPC_ThrowBomb()
     {
-        GameManager.instance.bomb.transform.parent = null;
-        GameManager.instance.bomb.RigidBody.constraints = RigidbodyConstraints.None;
-        GameManager.instance.bomb.RigidBody.velocity = GameManager.instance.bombHolder.transform.forward * throwForce;
-        GameManager.instance.bomb.RigidBody.position += GameManager.instance.bomb.RigidBody.velocity;
-        hasBomb = false;
+        //GameManager.instance.bomb.transform.parent = null;
+        //GameManager.instance.bomb.RigidBody.constraints = RigidbodyConstraints.None;
+        //GameManager.instance.bomb.RigidBody.velocity = GameManager.instance.bombHolder.transform.forward * throwForce;
+        //GameManager.instance.bomb.RigidBody.position += GameManager.instance.bomb.RigidBody.velocity;
+        //hasBomb = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -164,7 +153,7 @@ public class Bummie : MonoBehaviour
     private void PassBomb()
     {
         m_Animator.SetTrigger("Reception");
-        GameManager.instance.bombHolder = this;
+        //GameManager.instance.bombHolder = this;
     }
 
     public IEnumerator CantMove(float _time)
@@ -177,15 +166,15 @@ public class Bummie : MonoBehaviour
 
     void RPC_SyncBomb()
     {
-        foreach (Bummie bummie in GameManager.instance.PlayersInGame)
-        {
-            bummie.HasBomb = false;
-        }
-        GameManager.instance.bombHolder.HasBomb = true;
-        GameManager.instance.bomb.transform.parent = null;
-        GameManager.instance.bomb.transform.SetParent(GameManager.instance.bombHolder.transform);
-        GameManager.instance.bomb.transform.position = GameManager.instance.bombHolder.transform.GetChild(1).transform.position;
-        GameManager.instance.bomb.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        //foreach (Bummie bummie in GameManager.instance.PlayersInGame)
+        //{
+        //    bummie.HasBomb = false;
+        //}
+        //GameManager.instance.bombHolder.HasBomb = true;
+        //GameManager.instance.bomb.transform.parent = null;
+        //GameManager.instance.bomb.transform.SetParent(GameManager.instance.bombHolder.transform);
+        //GameManager.instance.bomb.transform.position = GameManager.instance.bombHolder.transform.GetChild(1).transform.position;
+        //GameManager.instance.bomb.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
 
     private void NewRound()
