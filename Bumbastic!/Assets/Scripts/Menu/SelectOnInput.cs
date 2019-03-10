@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Experimental.Input;
 
 public class SelectOnInput : MonoBehaviour
 {
@@ -9,12 +8,27 @@ public class SelectOnInput : MonoBehaviour
 
     private bool buttonSelected;
 
-    void Update()
+    [SerializeField] InputManager inputManager;
+
+    private void Start()
     {
-        if (Input.GetAxisRaw("Vertical") != 0 && buttonSelected == false)
+        inputManager.UI.Move.performed += context => Move();
+    }
+
+    private void Move()
+    {
+        if (buttonSelected == false)
         {
             eventSystem.SetSelectedGameObject(selectedObject);
             buttonSelected = true;
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetAxisRaw("Vertical") != 0)
+        {
+            Move();
         }
     }
 
