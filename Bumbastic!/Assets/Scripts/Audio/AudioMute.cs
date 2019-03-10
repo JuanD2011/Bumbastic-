@@ -2,18 +2,26 @@
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class AudioMute : MonoBehaviour {
+public enum AudioType
+{
+    music,
+    sFx
+};
+
+public class AudioMute : MonoBehaviour
+{
+    public AudioType mType;
 
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Settings settings;
 
-    float musicVolValue;
-    float sFxVolValue;
+    float volume;
     float mutedVolume = -80f; //Volume for the group that is going to be muted
 
-    Color disabledColor = new Color(1f, 0.3f, 0.3f);
+    [SerializeField] Color disabledColor = new Color(1f, 0.3f, 0.3f);
     [SerializeField] Color enableColor = new Color();
-    [SerializeField] Image musicImage, sFxImage;
+    [SerializeField] Image image;
+    [SerializeField] Slider mVolumeSlider;
 
     private void Start()
     {
@@ -22,53 +30,91 @@ public class AudioMute : MonoBehaviour {
 
     private void Init()
     {
-        if (!settings.isMusicActive)
+        switch (mType)
         {
-            musicImage.color = disabledColor;
-            audioMixer.SetFloat("MusicVol", mutedVolume);
+            case AudioType.music:
+                if (!settings.isMusicActive)
+                {
+                    image.color = disabledColor;
+                    audioMixer.SetFloat("MusicVol", mutedVolume);
+                }
+                mVolumeSlider.value = settings.musicSlider;
+                break;
+            case AudioType.sFx:
+                if (!settings.isSfxActive)
+                {
+                    image.color = disabledColor;
+                    audioMixer.SetFloat("SFxVol", mutedVolume);
+                }
+                mVolumeSlider.value = settings.sFxSlider;
+                break;
+            default:
+                break;
         }
-        if (!settings.isSfxActive) {
-            sFxImage.color = disabledColor;
-            audioMixer.SetFloat("SFxVol", mutedVolume);
+    }
+
+    /// <summary>
+    /// Slider to control the volume, only works if the audio is active.
+    /// </summary>
+    /// <param name="_vol"></param>
+    public void Slider(float _vol)
+    {
+        switch (mType)  
+        {
+            case AudioType.music:
+                if (settings.isMusicActive)
+                {
+                    audioMixer.SetFloat("MusicVol", _vol);
+                }
+                settings.musicSlider = _vol;
+                break;
+            case AudioType.sFx:
+                if (settings.isSfxActive)
+                {
+                    audioMixer.SetFloat("SFxVol", _vol);
+                }
+                settings.sFxSlider = _vol;
+                break;
+            default:
+                break;
         }
     }
 
     /// <summary>
     /// Function to mute audio
     /// </summary>
-    /// <param name="_AudioType">0 is for Music, 1 is for SFx</param>
-    public void MuteAudios(int _AudioType)
+    public void MuteAudios()
     {
         float value = 0f;
-        switch (_AudioType) 
+        switch (mType)   
         {
-            case 0:
+            case AudioType.music:
                 audioMixer.GetFloat("MusicVol", out value);
                 if (value > mutedVolume)
                 {
                     audioMixer.SetFloat("MusicVol", mutedVolume);
-                    musicImage.color = disabledColor;
+                    image.color = disabledColor;
                     settings.isMusicActive = false;
                 }
                 else if (value <= mutedVolume)
                 {
-                    audioMixer.ClearFloat("MusicVol");
-                    musicImage.color = enableColor;
+                    audioMixer.SetFloat("MusicVol", settings.musicSlider);
+                    image.color = enableColor;
                     settings.isMusicActive = true;
                 }
                 break;
-            case 1:
+            case AudioType.sFx:
                 audioMixer.GetFloat("SFxVol", out value);
                 if (value > mutedVolume)
                 {
                     audioMixer.SetFloat("SFxVol", mutedVolume);
-                    sFxImage.color = disabledColor;
+                    image.color = disabledColor;
                     settings.isSfxActive = false;
                 }
                 else if (value <= mutedVolume)
                 {
-                    audioMixer.ClearFloat("SFxVol");
-                    sFxImage.color = enableColor;
+                    audioMixer.SetFloat("SFxVol",settings.sFxSlider);
+                    image.color = enableColor;
                     settings.isSfxActive = true;
                 }
                 break;

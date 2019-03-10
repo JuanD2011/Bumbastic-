@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038aa5787ff6cce49b08cc2ddcfb809d, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  isMusicActive: 1
-  isSfxActive: 1
+  isMusicActive: 0
+  isSfxActive: 0

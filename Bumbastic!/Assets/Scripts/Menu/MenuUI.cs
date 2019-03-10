@@ -8,12 +8,14 @@ public class MenuUI : MonoBehaviour
     public delegate void DelMenu();
     public static DelMenu OnLoadData;
 
+    [SerializeField] string[] stateName;
+
     public void CanLoadData()
     {
         OnLoadData?.Invoke();//Memento hears it.
     }
 
-    public void IsSearchingGame(bool _bool)
+    public void PlayPanel(bool _bool)
     {
         canvasAnimator.SetBool("Play",_bool);
     }
@@ -37,7 +39,7 @@ public class MenuUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (canvasAnimator.GetCurrentAnimatorStateInfo(0).IsName("Menu_Principal"))
+            if (canvasAnimator.GetCurrentAnimatorStateInfo(0).IsName(stateName[0]))
             {
                 QuitPanel(true);
             }
