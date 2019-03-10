@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Input;
+using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,10 +11,6 @@ public class GameManager : MonoBehaviour
 
     public List<Player> Players { get => players; set => players = value; }
 
-    private void OnEnable()
-    {
-
-    }
 
     private void Awake()
     {
@@ -26,5 +23,8 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
 
+    }
 }

@@ -6,11 +6,6 @@ using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 
 public class Player : MonoBehaviour
 {
-    private byte id;
-
-    [SerializeField]
-    private InputManager controls;
-
     #region Movement
     private float targetRotation;
     protected float speedSmooothTime = 0.075f, animationSpeedPercent;
@@ -23,21 +18,21 @@ public class Player : MonoBehaviour
     private bool speedPU;
 
     public bool SpeedPU { get => speedPU; set => speedPU = value; }
-    public byte Id { get => id; set => id = value; }
-    public InputDevice Device { get => device; set => device = value; }
 
-    private Animator m_Animator;
+    private PlayerInput playerInput;
+    private byte id;
 
-    InputDevice device;
+    //private Animator m_Animator;
 
     void Start()
     {
-        m_Animator = GetComponentInChildren<Animator>();
+        //m_Animator = GetComponentInChildren<Animator>();
+        playerInput = gameObject.GetComponent<PlayerInput>();
+        id = (byte)playerInput.playerIndex;
     }
 
     void Update()
     {
-        Debug.Log(inputDirection);
         Move();
     }
 
@@ -59,7 +54,7 @@ public class Player : MonoBehaviour
 
         transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
         animationSpeedPercent = ((SpeedPU) ? 1 : 0.5f) * inputDirection.magnitude;
-        m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
+        //m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
     }
 
     public void OnThrowing(InputAction.CallbackContext context)
