@@ -70,8 +70,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
-
     public void OnMovement(InputAction.CallbackContext context)
     {
         if (context.performed)
