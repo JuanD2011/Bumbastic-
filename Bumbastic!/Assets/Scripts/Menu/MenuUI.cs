@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 public class MenuUI : MonoBehaviour
 {
@@ -8,11 +10,27 @@ public class MenuUI : MonoBehaviour
     public delegate void DelMenu();
     public static DelMenu OnLoadData;
 
+    public delegate IEnumerator DelLoadString(string _scene);
+    public static DelLoadString OnCanLoadScene;
+
     [SerializeField] string[] stateName;
+
+    #region AnimationEvents
+    public void OnLoadScreenComplete()
+    {
+        StartCoroutine(OnCanLoadScene?.Invoke("Menu"));//Lvl Manager hears it.
+    }
 
     public void CanLoadData()
     {
         OnLoadData?.Invoke();//Memento hears it.
+    }
+    #endregion
+
+    #region AnimatorStates
+    public void LoadingScreen()
+    {
+        canvasAnimator.SetTrigger("StartGame");
     }
 
     public void PlayPanel(bool _bool)
@@ -34,6 +52,7 @@ public class MenuUI : MonoBehaviour
     {
         canvasAnimator.SetBool("QuitPanel", _bool);
     }
+    #endregion
 
     private void Update()
     {

@@ -3,8 +3,7 @@
 [CreateAssetMenu(fileName = "InGame",menuName = "InGame")]
 public class InGame : ScriptableObject
 {
-    //public PowerUp powerUp;
-
+    public int playersJoined = 1;
     public Transform posDropPU;
 
     Vector3 crowPos;
