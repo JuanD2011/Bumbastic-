@@ -3,15 +3,18 @@ guid: ad35af67fded82745a82d155e1db8f87
 ScriptedImporter:
   fileIDToRecycleName:
     11400000: <root>
-    11400002: Player/Movement
     11400004: Player/Aiming
     11400006: Player/Throwing
+    11400008: Player/Movement
+    11400012: UI/Accept
+    11400014: UI/Back
+    11400016: UI/Move
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: e2fdc6edf8744b38b702a2a5ee3541b2, type: 3}
-  generateWrapperCode: 0
+  generateWrapperCode: 1
   wrapperCodePath: 
   wrapperClassName: 
   wrapperCodeNamespace: 
