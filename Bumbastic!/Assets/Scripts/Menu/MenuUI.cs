@@ -72,7 +72,7 @@ public class MenuUI : MonoBehaviour
         {
             CreditsPanel(false);
         }
-        else if (stateInfo.IsName(stateName[3]))//Quit panel
+        else if (stateInfo.IsName(stateName[4]))//Quit panel
         {
             QuitPanel(false);
         }
