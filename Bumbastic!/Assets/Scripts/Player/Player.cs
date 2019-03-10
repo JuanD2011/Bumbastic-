@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Input;
+using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 
 public class Player : MonoBehaviour
 {
@@ -61,8 +62,25 @@ public class Player : MonoBehaviour
         m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
     }
 
-    public void OnThrowing()
+    public void OnThrowing(InputAction.CallbackContext context)
     {
-        Throw();
+        if (context.performed)
+        {
+            Throw();
+        }
+    }
+
+
+
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            inputDirection = context.ReadValue<Vector2>().normalized;
+        }
+        else if (context.cancelled)
+        {
+            inputDirection = Vector2.zero;
+        }
     }
 }

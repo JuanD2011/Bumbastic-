@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MaxPlayerCount: 4
   m_AllowJoining: 1
   m_JoinPlayersWithMissingDevices: 0
-  m_JoinBehavior: 1
+  m_JoinBehavior: 0
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -173,7 +173,14 @@ MonoBehaviour:
         m_Groups: 
         m_Action: Action
         m_Flags: 0
-    m_Reference: {fileID: 0}
+      - m_Name: 
+        m_Path: <XInputController>/start
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+    m_Reference: {fileID: 11400012, guid: ad35af67fded82745a82d155e1db8f87, type: 3}
   m_PlayerPrefab: {fileID: 63817899032751289, guid: f83502d98471cb04da5a707e5cc13688,
     type: 3}
   m_SplitScreen: 0
