@@ -7,6 +7,8 @@ using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
+    public static MenuManager menu;
+
     private List<PlayerInput> players = new List<PlayerInput>();
 
     [SerializeField]
@@ -26,12 +28,16 @@ public class MenuManager : MonoBehaviour
 
     private byte playersReady = 0;
 
+    private void Awake()
+    {
+        if (menu == null) menu = this;
+        else Destroy(this);
+    }
+
     void Start()
     {
         timer = startTimer;
         InputSystem.onDeviceChange += (device, change) => DeviceChange(device, change);
-        FindObjectOfType<PlayerMenu>().OnReady += PlayersReady;
-        FindObjectOfType<PlayerMenu>().OnNotReady += PlayerNotReady;
         InitializeControls();
     }
 
@@ -112,7 +118,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void PlayersReady(byte id)
+    public void PlayersReady(byte id)
     {
         playersReady++;
         texts[id].text = "Ready";
@@ -126,7 +132,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void PlayerNotReady(byte id)
+    public void PlayerNotReady(byte id)
     {
         playersReady--;
         texts[id].text = "Press Start";

@@ -28,7 +28,7 @@ public class PlayerMenu : MonoBehaviour
             if (!ready)
             {
                 ready = true;
-                OnReady?.Invoke(Id);
+                MenuManager.menu.PlayersReady(id);
             }
         }
     }
@@ -40,7 +40,7 @@ public class PlayerMenu : MonoBehaviour
             if (ready)
             {
                 ready = false;
-                OnNotReady?.Invoke(Id);
+                MenuManager.menu.PlayerNotReady(id);
             }
         }
     }
