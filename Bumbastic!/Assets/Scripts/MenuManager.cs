@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Input;
 using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 using TMPro;
+using System;
 
 public class MenuManager : MonoBehaviour
 {
@@ -22,12 +23,20 @@ public class MenuManager : MonoBehaviour
     private TextMeshProUGUI[] texts;
 
     [SerializeField]
+    private TextMeshProUGUI countdownText;
+
+    [SerializeField]
     private GameObject player;
 
     private bool countdown = false;
 
     private byte playersReady = 0;
 
+    public delegate void DelMenuManager(string _sceneName);
+    public DelMenuManager OnStartGame;
+
+    public Action OnSetCountdown;
+  
     private void Awake()
     {
         if (menu == null) menu = this;
@@ -46,8 +55,15 @@ public class MenuManager : MonoBehaviour
         if (countdown)
         {
             timer -= Time.deltaTime;
+
+            countdownText.text = string.Format("{0}", Mathf.RoundToInt(timer));
+
             if (timer <= 0f)
             {
+                if (countdownText.text != "")
+                {
+                    countdownText.text = "";
+                }
                 StartGame();
             }
         }
@@ -70,6 +86,7 @@ public class MenuManager : MonoBehaviour
 
     private void StartGame()
     {
+        OnStartGame?.Invoke("Game");//MenuUI hears it.
         Debug.Log("The game has started");
     }
 
@@ -125,6 +142,7 @@ public class MenuManager : MonoBehaviour
         if (playersReady == settings.maxPlayers)
         {
             countdown = true;
+            OnSetCountdown?.Invoke();//MenuUI hears it.
         }
         else
         {

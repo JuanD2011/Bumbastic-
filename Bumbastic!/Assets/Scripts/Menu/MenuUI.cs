@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class MenuUI : MonoBehaviour
@@ -13,21 +14,35 @@ public class MenuUI : MonoBehaviour
 
     [SerializeField] InputManager inputManager;
 
+    private string levelToLoad;
+
     private void Start()
     {
         inputManager.UI.Back.performed += context => BackButton();
+        MenuManager.menu.OnStartGame += LoadingScreen;
+        MenuManager.menu.OnSetCountdown += Countdown;
     }
 
     #region AnimationEvents
     public void OnLoadScreenComplete()
     {
-        StartCoroutine(OnCanLoadScene?.Invoke("Menu"));//Lvl Manager hears it.
+        StartCoroutine(OnCanLoadScene?.Invoke(levelToLoad));//Lvl Manager hears it.
     }
     #endregion
 
     #region AnimatorStates
-    public void LoadingScreen()
+    private void Countdown()
     {
+        canvasAnimator.SetTrigger("Countdown");
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="_SceneName">name of the scene to be loaded by LvlMgr</param>
+    public void LoadingScreen(string _SceneName)
+    {
+        levelToLoad = _SceneName;
         canvasAnimator.SetTrigger("StartGame");
     }
 
