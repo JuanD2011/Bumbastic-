@@ -28,6 +28,7 @@ public class InputManager : InputActionAssetReference
         m_UI_Accept = m_UI.GetAction("Accept");
         m_UI_Back = m_UI.GetAction("Back");
         m_UI_Move = m_UI.GetAction("Move");
+        m_UI_Start = m_UI.GetAction("Start");
         m_Initialized = true;
     }
     private void Uninitialize()
@@ -40,6 +41,7 @@ public class InputManager : InputActionAssetReference
         m_UI_Accept = null;
         m_UI_Back = null;
         m_UI_Move = null;
+        m_UI_Start = null;
         m_Initialized = false;
     }
     public void SetAsset(InputActionAsset newAsset)
@@ -84,6 +86,7 @@ public class InputManager : InputActionAssetReference
     private InputAction m_UI_Accept;
     private InputAction m_UI_Back;
     private InputAction m_UI_Move;
+    private InputAction m_UI_Start;
     public struct UIActions
     {
         private InputManager m_Wrapper;
@@ -91,6 +94,7 @@ public class InputManager : InputActionAssetReference
         public InputAction @Accept { get { return m_Wrapper.m_UI_Accept; } }
         public InputAction @Back { get { return m_Wrapper.m_UI_Back; } }
         public InputAction @Move { get { return m_Wrapper.m_UI_Move; } }
+        public InputAction @Start { get { return m_Wrapper.m_UI_Start; } }
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }

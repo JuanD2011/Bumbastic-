@@ -24,6 +24,11 @@ public class Player : MonoBehaviour
 
     //private Animator m_Animator;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
         //m_Animator = GetComponentInChildren<Animator>();
@@ -75,5 +80,10 @@ public class Player : MonoBehaviour
         {
             inputDirection = Vector2.zero;
         }
+    }
+
+    public void OnDeviceLost()
+    {
+        Destroy(this.gameObject);
     }
 }

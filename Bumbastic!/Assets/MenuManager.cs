@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField]
     private float startTimer = 5f;
+    private float timer;
 
     [SerializeField]
     private TextMeshProUGUI[] texts;
@@ -23,9 +24,14 @@ public class MenuManager : MonoBehaviour
 
     private bool countdown = false;
 
+    private byte playersReady = 0;
+
     void Start()
     {
+        timer = startTimer;
         InputSystem.onDeviceChange += (device, change) => DeviceChange(device, change);
+        FindObjectOfType<PlayerMenu>().OnReady += PlayersReady;
+        FindObjectOfType<PlayerMenu>().OnNotReady += PlayerNotReady;
         InitializeControls();
     }
 
@@ -33,8 +39,8 @@ public class MenuManager : MonoBehaviour
     {
         if (countdown)
         {
-            startTimer -= Time.deltaTime;
-            if (startTimer <= 0f)
+            timer -= Time.deltaTime;
+            if (timer <= 0f)
             {
                 StartGame();
             }
@@ -49,10 +55,11 @@ public class MenuManager : MonoBehaviour
         {
             texts[player.playerIndex].enabled = true; 
         }
-        if (players.Count == settings.maxPlayers)
-        {
-            countdown = true;
-        }
+    }
+
+    public void OnPlayerLeft(PlayerInput player)
+    {
+        Debug.Log("Player Left");
     }
 
     private void StartGame()
@@ -68,13 +75,14 @@ public class MenuManager : MonoBehaviour
                 Instantiate(player);
                 break;
             case InputDeviceChange.Removed:
-                Disconnect(device);
-                break;
-            case InputDeviceChange.Disconnected:
+                Debug.Log("Removed");
                 Disconnect(device);
                 break;
             case InputDeviceChange.Reconnected:
                 Instantiate(player);
+                break;
+            case InputDeviceChange.Disabled:
+                Debug.Log("Disabled");
                 break;
             default:
                 break;
@@ -91,12 +99,38 @@ public class MenuManager : MonoBehaviour
 
     private void Disconnect(InputDevice device)
     {
-        foreach (PlayerInput player in players)
+        for (int i = 0; i < players.Count; i++)
         {
-            if (player.devices[0] == device)
+            if (players[i].devices[0] == device)
             {
-                Destroy(player.gameObject);
+                texts[i].enabled = false;
+                if (players[i].gameObject != null)
+                {
+                    Destroy(players[i].gameObject); 
+                }
             }
         }
+    }
+
+    private void PlayersReady(byte id)
+    {
+        playersReady++;
+        texts[id].text = "Ready";
+        if (playersReady == settings.maxPlayers)
+        {
+            countdown = true;
+        }
+        else
+        {
+            countdown = false;
+        }
+    }
+
+    private void PlayerNotReady(byte id)
+    {
+        playersReady--;
+        texts[id].text = "Press Start";
+        countdown = false;
+        timer = startTimer;
     }
 }
