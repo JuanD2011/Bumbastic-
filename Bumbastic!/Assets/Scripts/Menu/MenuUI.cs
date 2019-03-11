@@ -63,6 +63,7 @@ public class MenuUI : MonoBehaviour
         else if (stateInfo.IsName(stateName[1]))//Options Panel
         {
             ConfigurationPanel(false);
+            Memento.instance.SaveData(0);
         }
         else if (stateInfo.IsName(stateName[2]))//Matchmaking
         {
