@@ -20,7 +20,7 @@ public class MenuUI : MonoBehaviour
     {
         inputManager.UI.Back.performed += context => BackButton();
         MenuManager.menu.OnStartGame += LoadingScreen;
-        MenuManager.menu.OnSetCountdown += Countdown;
+        MenuManager.menu.OnCountdown += Countdown;
     }
 
     #region AnimationEvents
@@ -31,9 +31,9 @@ public class MenuUI : MonoBehaviour
     #endregion
 
     #region AnimatorStates
-    private void Countdown()
+    private void Countdown(bool _bool)
     {
-        canvasAnimator.SetTrigger("Countdown");
+        canvasAnimator.SetBool("Countdown",_bool);
     }
 
     /// <summary>
@@ -91,6 +91,10 @@ public class MenuUI : MonoBehaviour
         else if (stateInfo.IsName(stateName[4]))//Quit panel
         {
             QuitPanel(false);
+        }
+        else if (stateInfo.IsName(stateName[5]))
+        {
+            Countdown(false);
         }
     }
 
