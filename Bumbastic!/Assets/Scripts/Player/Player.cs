@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed, turnSmooth, powerUpSpeed;
     float turnSmoothVel, currentSpeed, speedSmoothVel, targetSpeed;
 
-    private Vector2 inputDirection, inputAiming, inputAim;
+    private Vector2 inputDirection;
+    private Vector2 inputAiming;
     #endregion
 
     private bool speedPU;
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
     public GameObject Avatar { get => avatar; set => avatar = value; }
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
     public bool HasBomb { get => hasBomb; set => hasBomb = value; }
+    public Vector2 InputAiming { get => inputAiming; set => inputAiming = value; }
 
     private void Awake()
     {
@@ -75,7 +77,10 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            Throw();
+            if (HasBomb)
+            {
+                Throw();
+            }
         }
     }
 
@@ -88,6 +93,18 @@ public class Player : MonoBehaviour
         else if (context.cancelled)
         {
             inputDirection = Vector2.zero;
+        }
+    }
+
+    public void OnAiming(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            InputAiming = context.ReadValue<Vector2>().normalized;
+        }
+        else if (context.cancelled)
+        {
+            InputAiming = Vector2.zero;
         }
     }
 
@@ -110,22 +127,23 @@ public class Player : MonoBehaviour
         if (collision.gameObject.GetComponent<PowerUp>() != null && !HasBomb && GetComponent<PowerUp>() == null)
         {
             IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
-            powerUp.PickPowerUp(GetComponent<Bummie>());
+            powerUp.PickPowerUp(GetComponent<Player>());
             collision.gameObject.SetActive(false);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Bomb bomb = other.gameObject.GetComponent<Bomb>();
         //This is when they throw the bomb
-        if (other.gameObject.GetComponent<Bomb>() != null && !HasBomb)
+        if (bomb != null && !HasBomb)
         {
             PassBomb();
         }
         //When a player touches another player
-        else if (other.gameObject.GetComponentInChildren<Bomb>() != null && !HasBomb)
+        else if (bomb != null && !HasBomb)
         {
-            other.gameObject.GetComponent<Bummie>().HasBomb = false;
+            other.gameObject.GetComponent<Player>().HasBomb = false;
             PassBomb();
         }
     }
