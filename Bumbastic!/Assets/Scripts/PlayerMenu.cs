@@ -19,6 +19,7 @@ public class PlayerMenu : MonoBehaviour
     private void Start()
     {
         id = (byte)gameObject.GetComponent<PlayerInput>().playerIndex;
+        Debug.Log(gameObject.GetComponent<PlayerInput>().defaultActionMap);
     }
 
     public void OnStart(InputAction.CallbackContext context)

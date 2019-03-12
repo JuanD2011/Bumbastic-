@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     private List<PlayerInput> players = new List<PlayerInput>();
 
     [SerializeField]
-    private InGame settings;
+    private InGame inGame;
 
     [SerializeField]
     private float startTimer = 5f;
@@ -87,6 +87,7 @@ public class MenuManager : MonoBehaviour
     private void StartGame()
     {
         OnStartGame?.Invoke("Game");//MenuUI hears it.
+        inGame.players = players;
         Debug.Log("The game has started");
     }
 
@@ -139,7 +140,7 @@ public class MenuManager : MonoBehaviour
     {
         playersReady++;
         texts[id].text = "Ready";
-        if (playersReady == settings.maxPlayers)
+        if (playersReady == inGame.maxPlayers)
         {
             countdown = true;
             OnSetCountdown?.Invoke();//MenuUI hears it.

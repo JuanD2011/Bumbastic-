@@ -120,26 +120,6 @@ public class InputManager : InputActionAssetReference
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
-    private int m_XInputControllerSchemeIndex = -1;
-    public InputControlScheme XInputControllerScheme
-    {
-        get
-
-        {
-            if (m_XInputControllerSchemeIndex == -1) m_XInputControllerSchemeIndex = asset.GetControlSchemeIndex("XInputController");
-            return asset.controlSchemes[m_XInputControllerSchemeIndex];
-        }
-    }
-    private int m_XInputControllerWindowsSchemeIndex = -1;
-    public InputControlScheme XInputControllerWindowsScheme
-    {
-        get
-
-        {
-            if (m_XInputControllerWindowsSchemeIndex == -1) m_XInputControllerWindowsSchemeIndex = asset.GetControlSchemeIndex("XInputControllerWindows");
-            return asset.controlSchemes[m_XInputControllerWindowsSchemeIndex];
-        }
-    }
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -148,6 +128,16 @@ public class InputManager : InputActionAssetReference
         {
             if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.GetControlSchemeIndex("Keyboard");
             return asset.controlSchemes[m_KeyboardSchemeIndex];
+        }
+    }
+    private int m_XInputControllerSchemeIndex = -1;
+    public InputControlScheme XInputControllerScheme
+    {
+        get
+
+        {
+            if (m_XInputControllerSchemeIndex == -1) m_XInputControllerSchemeIndex = asset.GetControlSchemeIndex("XInputController");
+            return asset.controlSchemes[m_XInputControllerSchemeIndex];
         }
     }
 }

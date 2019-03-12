@@ -9,7 +9,7 @@
                     "name": "Aiming",
                     "id": "d91577f7-31f6-4c41-829b-c8c5e3478e95",
                     "expectedControlLayout": "Stick",
-                    "continuous": false,
+                    "continuous": true,
                     "passThrough": false,
                     "processors": "",
                     "interactions": "",
@@ -29,7 +29,7 @@
                     "name": "Movement",
                     "id": "3b9259b6-41f5-41ff-8394-7d5c33cda6af",
                     "expectedControlLayout": "Stick",
-                    "continuous": false,
+                    "continuous": true,
                     "passThrough": false,
                     "processors": "",
                     "interactions": "",
@@ -774,36 +774,24 @@
             ]
         },
         {
-            "name": "XInputController",
-            "basedOn": "",
-            "bindingGroup": "XInputController",
-            "devices": [
-                {
-                    "devicePath": "<XInputController>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "XInputControllerWindows",
-            "basedOn": "",
-            "bindingGroup": "XInputControllerWindows",
-            "devices": [
-                {
-                    "devicePath": "<XInputControllerWindows>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        },
-        {
             "name": "Keyboard",
             "basedOn": "",
             "bindingGroup": "Keyboard",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "XInputController",
+            "basedOn": "",
+            "bindingGroup": "XInputController",
+            "devices": [
+                {
+                    "devicePath": "<XInputController>",
                     "isOptional": false,
                     "isOR": false
                 }

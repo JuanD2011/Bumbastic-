@@ -16,29 +16,35 @@ public class Player : MonoBehaviour
     #endregion
 
     private bool speedPU;
-
-    public bool SpeedPU { get => speedPU; set => speedPU = value; }
+    private bool canMove;
 
     private PlayerInput playerInput;
     private byte id;
 
-    //private Animator m_Animator;
+    [SerializeField]
+    private InputManager controls;
+
+    [SerializeField]
+    private GameObject avatar;
+    private Animator m_Animator;
+    private Vector3 spawnPoint;
+
+    public bool SpeedPU { get => speedPU; set => speedPU = value; }
+    public bool CanMove { get => canMove; set => canMove = value; }
+    public GameObject Avatar { get => avatar; set => avatar = value; }
+    public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
 
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
     }
 
-    void Start()
-    {
-        //m_Animator = GetComponentInChildren<Animator>();
-        playerInput = gameObject.GetComponent<PlayerInput>();
-        id = (byte)playerInput.playerIndex;
-    }
-
     void Update()
     {
-        Move();
+        if (canMove)
+        {
+            Move(); 
+        }
     }
 
     public void Throw()
@@ -85,5 +91,14 @@ public class Player : MonoBehaviour
     public void OnDeviceLost()
     {
         Destroy(this.gameObject);
+    }
+
+    public void Initialize()
+    {
+        playerInput = gameObject.GetComponent<PlayerInput>();
+        id = (byte)playerInput.playerIndex;
+        playerInput.SwitchActions("Player");
+        m_Animator = GetComponentInChildren<Animator>();
+        canMove = false;
     }
 }
