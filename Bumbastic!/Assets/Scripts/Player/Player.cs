@@ -29,10 +29,13 @@ public class Player : MonoBehaviour
     private Animator m_Animator;
     private Vector3 spawnPoint;
 
+    private bool hasBomb;
+
     public bool SpeedPU { get => speedPU; set => speedPU = value; }
     public bool CanMove { get => canMove; set => canMove = value; }
     public GameObject Avatar { get => avatar; set => avatar = value; }
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
+    public bool HasBomb { get => hasBomb; set => hasBomb = value; }
 
     private void Awake()
     {
@@ -65,7 +68,7 @@ public class Player : MonoBehaviour
 
         transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
         animationSpeedPercent = ((SpeedPU) ? 1 : 0.5f) * inputDirection.magnitude;
-        //m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
+        m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
     }
 
     public void OnThrowing(InputAction.CallbackContext context)
@@ -100,5 +103,41 @@ public class Player : MonoBehaviour
         playerInput.SwitchActions("Player");
         m_Animator = GetComponentInChildren<Animator>();
         canMove = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<PowerUp>() != null && !HasBomb && GetComponent<PowerUp>() == null)
+        {
+            IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
+            powerUp.PickPowerUp(GetComponent<Bummie>());
+            collision.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //This is when they throw the bomb
+        if (other.gameObject.GetComponent<Bomb>() != null && !HasBomb)
+        {
+            PassBomb();
+        }
+        //When a player touches another player
+        else if (other.gameObject.GetComponentInChildren<Bomb>() != null && !HasBomb)
+        {
+            other.gameObject.GetComponent<Bummie>().HasBomb = false;
+            PassBomb();
+        }
+    }
+
+    private void PassBomb()
+    {
+        m_Animator.SetTrigger("Reception");
+        GameManager.manager.BombHolder = this;
+        GameManager.manager.BombHolder.HasBomb = true;
+        GameManager.manager.Bomb.transform.parent = null;
+        GameManager.manager.Bomb.transform.SetParent(GameManager.manager.BombHolder.transform);
+        GameManager.manager.Bomb.transform.position = GameManager.manager.BombHolder.transform.GetChild(1).transform.position;
+        GameManager.manager.Bomb.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
 }

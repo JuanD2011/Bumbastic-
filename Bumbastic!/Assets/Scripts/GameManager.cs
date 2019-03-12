@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Experimental.Input;
 using UnityEngine.Experimental.Input.Plugins.PlayerInput;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,14 +10,30 @@ public class GameManager : MonoBehaviour
 
     private List<PlayerInput> playersInput = new List<PlayerInput>();
     private List<Player> players = new List<Player>();
+    private List<Player> bummies = new List<Player>();
 
     public List<PlayerInput> Players { get => playersInput; set => playersInput = value; }
+    public Player BombHolder { get => bombHolder; set => bombHolder = value; }
+    public Bomb Bomb { get => bomb; }
+    public PlayableDirector Director { get => director; set => director = value; }
 
     [SerializeField]
     private InGame inGame;
 
     [SerializeField]
     private List<Transform> spawnPoints = new List<Transform>();
+
+    PlayableDirector director;
+
+    [SerializeField]
+    private float minTime, maxTime;
+
+    [SerializeField]
+    private GameObject confettiBomb;
+
+    private Player bombHolder;
+    [SerializeField]
+    private Bomb bomb;
 
     private void Awake()
     {
@@ -32,6 +49,8 @@ public class GameManager : MonoBehaviour
             item.ActivateInput();
             players.Add(item.gameObject.GetComponent<Player>());
         }
+        Director = GetComponent<PlayableDirector>();
+
         SpawnPlayers();
     }
 
@@ -55,5 +74,51 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPos = spawnPoints[random].position;
         spawnPoints.RemoveAt(random);
         return spawnPos;
+    }
+
+    public void GiveBombs()
+    {
+        if (players.Count > 1)
+        {
+            bummies = RandomizeBummieList();
+
+            int[] _bummies = new int[bummies.Count];
+
+            Director.Play();
+
+            for (int i = 0; i < bummies.Count; i++)
+            {
+                Debug.Log("Toma bomba");
+                Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 4, 0), Quaternion.identity);
+                bummies.RemoveAt(i);
+            }
+            bomb.transform.position = bummies[0].transform.position + new Vector3(0, 4, 0);
+            bomb.Timer = Random.Range(minTime, maxTime);
+            bomb.gameObject.SetActive(true);
+        }
+        else if (players.Count == 1)
+        {
+            GameOver();
+        }
+    }
+
+    private List<Player> RandomizeBummieList()
+    {
+        List<Player> bummies = players;
+        List<Player> randomBummies = new List<Player>();
+
+        while (bummies.Count > 0)
+        {
+            int rand = Random.Range(0, bummies.Count);
+            randomBummies.Add(bummies[rand]);
+            bummies.RemoveAt(rand);
+        }
+
+        return randomBummies;
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("Game Over");
     }
 }

@@ -3,8 +3,6 @@
 [RequireComponent(typeof(Rigidbody))]
 public class Bomb : MonoBehaviour
 {
-    public readonly byte onBombExploded = 2;
-
     private float t = 0f;
     private bool exploded = false;
 
