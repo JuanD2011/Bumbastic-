@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DropPU : StateMachineBehaviour
+public class CrowDropPU : StateMachineBehaviour
 {
     [SerializeField] float timeToDrop;
     [SerializeField] InGame inGame;

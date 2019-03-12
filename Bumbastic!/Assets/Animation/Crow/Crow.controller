@@ -74,6 +74,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToDrop: 1
   inGame: {fileID: 11400000, guid: 8dbda846fd8462c43812bcc38aca06ee, type: 2}
+--- !u!114 &114264229923129556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9aac4b2fb1c384a8f6f6be21fb7731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDrop: 1
+  inGame: {fileID: 11400000, guid: 3bc68cae35300d841b678d14df40174c, type: 2}
 --- !u!114 &114336246805904846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,6 +100,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca1f3ce8dd156b419039a51e17be743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114475084317892734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c005d88b1ee9c874ca6cf2ce64159d3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToUp: 1
+  inGame: {fileID: 11400000, guid: 3bc68cae35300d841b678d14df40174c, type: 2}
+--- !u!114 &114715066454219674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc85cd5000803a64d99c204738915ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flyingVel: 25
+  inGame: {fileID: 11400000, guid: 3bc68cae35300d841b678d14df40174c, type: 2}
 --- !u!114 &114930639870511148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,13 +224,13 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle
+  m_Name: Crow_Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101358201202553286}
   m_StateMachineBehaviours:
-  - {fileID: 114031384658393200}
+  - {fileID: 114715066454219674}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -210,13 +252,13 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DropPU
+  m_Name: Crow_DropPU
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101938995536958368}
   m_StateMachineBehaviours:
-  - {fileID: 114078827127106522}
+  - {fileID: 114264229923129556}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -238,13 +280,13 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FlyUp
+  m_Name: Crow_FlyUp
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101237768728081062}
   m_StateMachineBehaviours:
-  - {fileID: 114930639870511148}
+  - {fileID: 114475084317892734}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

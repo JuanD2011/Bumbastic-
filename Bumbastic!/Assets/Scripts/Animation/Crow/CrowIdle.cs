@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Crow : StateMachineBehaviour
+public class CrowIdle : StateMachineBehaviour
 {
     float t = 0f;
     [SerializeField] float flyingVel;

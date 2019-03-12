@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FlyUp : StateMachineBehaviour
+public class CrowFlyUp : StateMachineBehaviour
 {
     [SerializeField] float timeToUp;
     float distance;
