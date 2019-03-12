@@ -35,7 +35,8 @@ public class MenuManager : MonoBehaviour
     public delegate void DelMenuManager(string _sceneName);
     public DelMenuManager OnStartGame;
 
-    public Action OnSetCountdown;
+    public delegate void SetCountdown(bool _bool);
+    public SetCountdown OnCountdown;
   
     private void Awake()
     {
@@ -142,7 +143,7 @@ public class MenuManager : MonoBehaviour
         if (playersReady == settings.maxPlayers)
         {
             countdown = true;
-            OnSetCountdown?.Invoke();//MenuUI hears it.
+            OnCountdown?.Invoke(true);//MenuUI hears it.
         }
         else
         {
