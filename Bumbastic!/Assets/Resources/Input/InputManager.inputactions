@@ -190,7 +190,7 @@
                 {
                     "name": "Accept",
                     "id": "ea3f8aa5-1851-44bc-b7cd-275eae0e3d6c",
-                    "expectedControlLayout": "",
+                    "expectedControlLayout": "Button",
                     "continuous": false,
                     "passThrough": false,
                     "processors": "",
