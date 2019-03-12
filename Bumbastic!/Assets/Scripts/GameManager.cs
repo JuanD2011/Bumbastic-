@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Bomb bomb;
 
+    public PowerUp powerUp;
+
     private void Awake()
     {
         if (manager == null) manager = this;

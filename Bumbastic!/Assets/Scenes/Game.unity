@@ -249,6 +249,7 @@ MonoBehaviour:
   confettiBomb: {fileID: 377225964217183777, guid: 2c7fdaf6443d0b04997420f96c9aa4af,
     type: 3}
   bomb: {fileID: 1429717419}
+  powerUp: {fileID: 1455909190}
 --- !u!4 &490962512
 Transform:
   m_ObjectHideFlags: 0
@@ -976,6 +977,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fe113f31bdbe841a192a86d23111a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1455909190 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2077235624929507412, guid: c4030b046145e6e45b6f51cc48026bb7,
+    type: 3}
+  m_PrefabInstance: {fileID: 499431116}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5ec0d7f778d8e448af80d868bf85d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1566880042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,8 +1176,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 21464315619692120, guid: 9baba66d38b911e4982418f54ac0d106,
+      objectReference: {fileID: 21464315619692120, guid: e7d293bfa0cefce40862d5a43993fada,
         type: 2}
+    - target: {fileID: 7531901722099129863, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7531901722148324507, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
       propertyPath: m_havePropertiesChanged

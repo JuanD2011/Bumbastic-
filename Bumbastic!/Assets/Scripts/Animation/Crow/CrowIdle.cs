@@ -24,12 +24,12 @@ public class CrowIdle : StateMachineBehaviour
         {
             animator.SetBool("DropPU", true);
         }
-        //else if (Mathf.Round(dir.x) == 0 && Mathf.Round(dir.z) == 1 && !GameManager.instance.powerUp.gameObject.activeInHierarchy)
-        //{
-        //    GameManager.instance.powerUp.transform.parent = animator.gameObject.transform;
-        //    GameManager.instance.powerUp.transform.position = animator.transform.GetChild(0).position;
-        //    GameManager.instance.powerUp.gameObject.SetActive(true);
-        //}
+        else if (Mathf.Round(dir.x) == 0 && Mathf.Round(dir.z) == 1 && !GameManager.manager.powerUp.gameObject.activeInHierarchy)
+        {
+            GameManager.manager.powerUp.transform.parent = animator.transform;
+            GameManager.manager.powerUp.transform.position = animator.transform.GetChild(0).position;
+            GameManager.manager.powerUp.gameObject.SetActive(true);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
