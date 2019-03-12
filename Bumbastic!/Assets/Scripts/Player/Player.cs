@@ -134,13 +134,14 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Bomb bomb = other.gameObject.GetComponent<Bomb>();
         //This is when they throw the bomb
-        if (other.gameObject.GetComponent<Bomb>() != null && !HasBomb)
+        if (bomb != null && !HasBomb)
         {
             PassBomb();
         }
         //When a player touches another player
-        else if (other.gameObject.GetComponentInChildren<Bomb>() != null && !HasBomb)
+        else if (bomb != null && !HasBomb)
         {
             other.gameObject.GetComponent<Player>().HasBomb = false;
             PassBomb();
