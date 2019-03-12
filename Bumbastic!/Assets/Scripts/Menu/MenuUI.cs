@@ -92,7 +92,7 @@ public class MenuUI : MonoBehaviour
         {
             QuitPanel(false);
         }
-        else if (stateInfo.IsName(stateName[5]))
+        else if (stateInfo.IsName(stateName[5]))//Countdown
         {
             Countdown(false);
         }
