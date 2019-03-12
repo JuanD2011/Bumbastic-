@@ -75,6 +75,18 @@
                 },
                 {
                     "name": "",
+                    "path": "<DualShockGamepadHID>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DualShock",
+                    "action": "Aiming",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
                     "path": "<XInputController>/rightTrigger",
                     "interactions": "",
                     "processors": "",
@@ -111,6 +123,18 @@
                 },
                 {
                     "name": "",
+                    "path": "<DualShockGamepadHID>/rightTriggerButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DualShock",
+                    "action": "Throwing",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
                     "path": "<XInputController>/leftStick",
                     "interactions": "",
                     "processors": "",
@@ -139,6 +163,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XInputControllerWindows",
+                    "action": "Movement",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "path": "<DualShockGamepadHID>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DualShock",
                     "action": "Movement",
                     "chainWithPrevious": false,
                     "isComposite": false,
@@ -243,6 +279,18 @@
                 },
                 {
                     "name": "",
+                    "path": "<DualShockGamepadHID>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DualShock",
+                    "action": "Accept",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
                     "path": "<XInputController>/buttonEast",
                     "interactions": "",
                     "processors": "",
@@ -283,6 +331,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Back",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "path": "<DualShockGamepadHID>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DualShock",
                     "action": "Back",
                     "chainWithPrevious": false,
                     "isComposite": false,
@@ -710,6 +770,66 @@
                     "modifiers": ""
                 },
                 {
+                    "name": "2D Vector",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "chainWithPrevious": false,
+                    "isComposite": true,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "Up",
+                    "path": "<DualShockGamepadHID>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DualShock",
+                    "action": "Move",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "Down",
+                    "path": "<DualShockGamepadHID>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DualShock",
+                    "action": "Move",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "Left",
+                    "path": "<DualShockGamepadHID>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DualShock",
+                    "action": "Move",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "Right",
+                    "path": "<DualShockGamepadHID>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DualShock",
+                    "action": "Move",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
                     "name": "",
                     "path": "<XInputController>/start",
                     "interactions": "",
@@ -756,6 +876,18 @@
                     "isComposite": false,
                     "isPartOfComposite": false,
                     "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "path": "<DualShockGamepadHID>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DualShock",
+                    "action": "Start",
+                    "chainWithPrevious": false,
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
                 }
             ]
         }
@@ -792,6 +924,18 @@
             "devices": [
                 {
                     "devicePath": "<XInputController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "DualShock",
+            "basedOn": "",
+            "bindingGroup": "DualShock",
+            "devices": [
+                {
+                    "devicePath": "<DualShockGamepadHID>",
                     "isOptional": false,
                     "isOR": false
                 }

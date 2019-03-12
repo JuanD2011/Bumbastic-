@@ -140,4 +140,14 @@ public class InputManager : InputActionAssetReference
             return asset.controlSchemes[m_XInputControllerSchemeIndex];
         }
     }
+    private int m_DualShockSchemeIndex = -1;
+    public InputControlScheme DualShockScheme
+    {
+        get
+
+        {
+            if (m_DualShockSchemeIndex == -1) m_DualShockSchemeIndex = asset.GetControlSchemeIndex("DualShock");
+            return asset.controlSchemes[m_DualShockSchemeIndex];
+        }
+    }
 }
