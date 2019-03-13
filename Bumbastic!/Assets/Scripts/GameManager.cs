@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
         Director = GetComponent<PlayableDirector>();
 
         SpawnPlayers();
+
+        Invoke("GiveBombs", 1);
     }
 
     private void SpawnPlayers()

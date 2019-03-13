@@ -94,23 +94,26 @@ public class MenuManager : MonoBehaviour
 
     private void DeviceChange(InputDevice device, InputDeviceChange change)
     {
-        switch (change)
+        if (Application.isPlaying)
         {
-            case InputDeviceChange.Added:
-                Instantiate(player);
-                break;
-            case InputDeviceChange.Removed:
-                Debug.Log("Removed");
-                Disconnect(device);
-                break;
-            case InputDeviceChange.Reconnected:
-                Instantiate(player);
-                break;
-            case InputDeviceChange.Disabled:
-                Debug.Log("Disabled");
-                break;
-            default:
-                break;
+            switch (change)
+            {
+                case InputDeviceChange.Added:
+                    Instantiate(player);
+                    break;
+                case InputDeviceChange.Removed:
+                    Debug.Log("Removed");
+                    Disconnect(device);
+                    break;
+                case InputDeviceChange.Reconnected:
+                    Instantiate(player);
+                    break;
+                case InputDeviceChange.Disabled:
+                    Debug.Log("Disabled");
+                    break;
+                default:
+                    break;
+            } 
         }
     }
 
