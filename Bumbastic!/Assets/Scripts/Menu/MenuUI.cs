@@ -16,6 +16,9 @@ public class MenuUI : MonoBehaviour
 
     private string levelToLoad;
 
+    public delegate void DelMenuUI(bool _canActive);
+    public static DelMenuUI OnSetMatchmakingCamera;
+
     private void Start()
     {
         inputManager.UI.Back.performed += context => BackButton();
@@ -49,6 +52,7 @@ public class MenuUI : MonoBehaviour
     public void PlayPanel(bool _bool)
     {
         canvasAnimator.SetBool("Play",_bool);
+        OnSetMatchmakingCamera(_bool);
     }
 
     public void ConfigurationPanel(bool _bool)
@@ -83,6 +87,7 @@ public class MenuUI : MonoBehaviour
         else if (stateInfo.IsName(stateName[2]))//Matchmaking
         {
             PlayPanel(false);
+            OnSetMatchmakingCamera?.Invoke(false);//MenuCamManager hears it.
         }
         else if (stateInfo.IsName(stateName[3]))//Credits
         {
