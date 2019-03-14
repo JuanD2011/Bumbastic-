@@ -408,7 +408,7 @@ ModelImporter:
       name: Armature|RunV2
       takeName: Armature|Run
       firstFrame: 0
-      lastFrame: 45
+      lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -436,7 +436,7 @@ ModelImporter:
       name: Armature|RunWithBomb
       takeName: Armature|RunWithBomb
       firstFrame: 0
-      lastFrame: 45
+      lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
