@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            InputAiming = context.ReadValue<Vector2>().normalized;
+            InputAiming = context.ReadValue<Vector2>();
         }
         else if (context.cancelled)
         {

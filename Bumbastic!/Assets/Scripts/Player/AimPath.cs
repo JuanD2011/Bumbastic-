@@ -4,6 +4,7 @@ public class AimPath : MonoBehaviour
 {
     Player m_Player;
     LineRenderer m_LineRenderer;
+    private float targetRotation;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class AimPath : MonoBehaviour
         {
             if (m_Player.InputAiming != Vector2.zero)
             {
+                transform.LookAt(m_Player.InputAiming); 
                 m_LineRenderer.enabled = true;
             }
             else
