@@ -26,7 +26,6 @@ public class MenuCamManager : MonoBehaviour
         if (principalCamera.activeInHierarchy && !matchmakingCamera.activeInHierarchy)
         {
             elapsedTime += Time.deltaTime;
-            Debug.Log(elapsedTime);
             axis.eulerAngles = new Vector3(0, elapsedTime * vel, 0);
         }
     }
