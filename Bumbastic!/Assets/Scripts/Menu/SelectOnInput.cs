@@ -8,11 +8,9 @@ public class SelectOnInput : MonoBehaviour
 
     private bool buttonSelected;
 
-    [SerializeField] InputManager inputManager;
-
     private void Start()
     {
-        inputManager.UI.Move.performed += context => Move();
+        
     }
 
     private void Move()

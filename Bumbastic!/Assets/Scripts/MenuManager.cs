@@ -1,16 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Input;
-using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 using TMPro;
 using System;
 
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager menu;
-
-    private List<PlayerInput> players = new List<PlayerInput>();
 
     [SerializeField]
     private InGame inGame;
@@ -26,7 +22,7 @@ public class MenuManager : MonoBehaviour
     private TextMeshProUGUI countdownText;
 
     [SerializeField]
-    private GameObject player;
+    private GameObject playerMenuPrefab;
 
     private bool countdown = false;
 
@@ -37,6 +33,9 @@ public class MenuManager : MonoBehaviour
 
     public delegate void SetCountdown(bool _bool);
     public SetCountdown OnCountdown;
+
+    public delegate void InputsDelegate(List<PlayerMenu> _players);
+    public InputsDelegate OnFirstPlayers;
   
     private void Awake()
     {
@@ -47,8 +46,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         timer = startTimer;
-        InputSystem.onDeviceChange += (device, change) => DeviceChange(device, change);
-        InitializeControls();
+        InputManager.StartInputs += InitializeFirstPlayers;
     }
 
     void Update()
@@ -70,74 +68,23 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void OnPlayerJoined(PlayerInput player)
-    {
-        Debug.Log("Player Joined");
-        players.Add(player);
-        if (player.playerIndex != 0)
-        {
-            texts[player.playerIndex].enabled = true; 
-        }
-    }
-
-    public void OnPlayerLeft(PlayerInput player)
-    {
-        Debug.Log("Player Left");
-    }
-
     private void StartGame()
     {
         OnStartGame?.Invoke("Game");//MenuUI hears it.
-        inGame.players = players;
         Debug.Log("The game has started");
     }
 
-    private void DeviceChange(InputDevice device, InputDeviceChange change)
+    private void InitializeFirstPlayers(byte _number)
     {
-        if (Application.isPlaying)
-        {
-            switch (change)
-            {
-                case InputDeviceChange.Added:
-                    Instantiate(player);
-                    break;
-                case InputDeviceChange.Removed:
-                    Debug.Log("Removed");
-                    Disconnect(device);
-                    break;
-                case InputDeviceChange.Reconnected:
-                    Instantiate(player);
-                    break;
-                case InputDeviceChange.Disabled:
-                    Debug.Log("Disabled");
-                    break;
-                default:
-                    break;
-            } 
-        }
-    }
+        List<PlayerMenu> players = new List<PlayerMenu>();
 
-    private void InitializeControls()
-    {
-        foreach (Gamepad gamePad in Gamepad.all)
+        for (int i = 0; i < _number; i++)
         {
-            Instantiate(player);
+            PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
+            players.Add(player);
         }
-    }
 
-    private void Disconnect(InputDevice device)
-    {
-        for (int i = 0; i < players.Count; i++)
-        {
-            if (players[i].devices[0] == device)
-            {
-                texts[i].enabled = false;
-                if (players[i].gameObject != null)
-                {
-                    Destroy(players[i].gameObject); 
-                }
-            }
-        }
+        OnFirstPlayers?.Invoke(players);
     }
 
     public void PlayersReady(byte id)

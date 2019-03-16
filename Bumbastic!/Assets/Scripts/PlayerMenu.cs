@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Experimental.Input;
-using UnityEngine.Experimental.Input.Plugins.PlayerInput;
+﻿using UnityEngine;
 
 public class PlayerMenu : MonoBehaviour
 {
@@ -11,38 +7,29 @@ public class PlayerMenu : MonoBehaviour
 
     public bool Ready { get => ready; }
     public byte Id { get => id; }
+    public Controls Controls { get => controls; set => controls = value; }
 
     public delegate void ReadyDelegate(byte id);
     public ReadyDelegate OnReady;
     public ReadyDelegate OnNotReady;
 
+    private Controls controls;
+
     private void Start()
     {
-        id = (byte)gameObject.GetComponent<PlayerInput>().playerIndex;
-        Debug.Log(gameObject.GetComponent<PlayerInput>().defaultActionMap);
+
     }
 
-    public void OnStart(InputAction.CallbackContext context)
+    private void Update()
     {
-        if (context.performed)
+        if (Input.GetButtonDown(controls.startButton))
         {
-            if (!ready)
-            {
-                ready = true;
-                MenuManager.menu.PlayersReady(id);
-            }
+
         }
-    }
 
-    public void OnBack(InputAction.CallbackContext context)
-    {
-        if (context.performed)
+        if (Input.GetButtonDown(controls.aButton))
         {
-            if (ready)
-            {
-                ready = false;
-                MenuManager.menu.PlayerNotReady(id);
-            }
+
         }
     }
 }

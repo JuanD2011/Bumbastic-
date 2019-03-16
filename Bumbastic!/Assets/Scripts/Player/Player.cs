@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Input;
-using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 
 public class Player : MonoBehaviour
 {
@@ -19,11 +17,7 @@ public class Player : MonoBehaviour
     private bool speedPU;
     private bool canMove;
 
-    private PlayerInput playerInput;
     private byte id;
-
-    [SerializeField]
-    private InputManager controls;
 
     [SerializeField]
     private GameObject avatar;
@@ -73,41 +67,6 @@ public class Player : MonoBehaviour
         m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
     }
 
-    public void OnThrowing(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            if (HasBomb)
-            {
-                Throw();
-            }
-        }
-    }
-
-    public void OnMovement(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            inputDirection = context.ReadValue<Vector2>().normalized;
-        }
-        else if (context.cancelled)
-        {
-            inputDirection = Vector2.zero;
-        }
-    }
-
-    public void OnAiming(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            InputAiming = context.ReadValue<Vector2>();
-        }
-        else if (context.cancelled)
-        {
-            InputAiming = Vector2.zero;
-        }
-    }
-
     public void OnDeviceLost()
     {
         Destroy(this.gameObject);
@@ -115,9 +74,6 @@ public class Player : MonoBehaviour
 
     public void Initialize()
     {
-        playerInput = gameObject.GetComponent<PlayerInput>();
-        id = (byte)playerInput.playerIndex;
-        playerInput.SwitchActions("Game");
         m_Animator = GetComponentInChildren<Animator>();
         canMove = false;
     }
@@ -155,7 +111,7 @@ public class Player : MonoBehaviour
         GameManager.manager.BombHolder.HasBomb = true;
         GameManager.manager.Bomb.transform.parent = null;
         GameManager.manager.Bomb.transform.SetParent(GameManager.manager.BombHolder.transform);
-        GameManager.manager.Bomb.transform.position = GameManager.manager.BombHolder.transform.GetChild(2).transform.localPosition;
+        GameManager.manager.Bomb.transform.position = GameManager.manager.BombHolder.transform.GetChild(2).transform.position;
         GameManager.manager.Bomb.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
 }

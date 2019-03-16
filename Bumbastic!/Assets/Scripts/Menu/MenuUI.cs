@@ -12,8 +12,6 @@ public class MenuUI : MonoBehaviour
 
     [SerializeField] string[] stateName;
 
-    [SerializeField] InputManager inputManager;
-
     private string levelToLoad;
 
     public delegate void DelMenuUI(bool _canActive);
@@ -21,7 +19,7 @@ public class MenuUI : MonoBehaviour
 
     private void Start()
     {
-        inputManager.UI.Back.performed += context => BackButton();
+        
         MenuManager.menu.OnStartGame += LoadingScreen;
         MenuManager.menu.OnCountdown += Countdown;
     }
