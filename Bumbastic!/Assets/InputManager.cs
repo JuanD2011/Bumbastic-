@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class InputManager : MonoBehaviour
 {
-    public delegate void InputDelegate(byte _number);
+    public delegate void InputDelegate(List<string> _joysticks);
     public static InputDelegate StartInputs;
 
     private string[] joysticks;
@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        StartInputs?.Invoke((byte)activeJoysticks.Count);
+        StartInputs?.Invoke(activeJoysticks);
 
         MenuManager.menu.OnFirstPlayers += AssignController;
     }
@@ -84,6 +84,7 @@ public class InputManager : MonoBehaviour
 
 public struct Controls
 {
+    public string controllerName;
     public string aButton;
     public string bButton;
     public string startButton;
