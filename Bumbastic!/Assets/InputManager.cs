@@ -7,8 +7,9 @@ public class InputManager : MonoBehaviour
     public static InputDelegate StartInputs;
 
     private string[] joysticks;
-    private List<string> activeJoysticks;
+    private List<string> activeJoysticks = new List<string>();
     private byte joystickNumber;
+    private List<PlayerMenu> playerMenus = new List<PlayerMenu>();
 
     private void Start()
     {
@@ -57,6 +58,7 @@ public class InputManager : MonoBehaviour
                         {
                             activeJoysticks.Add(joysticks[i]); 
                             joystickNumber = (byte)joysticks.Length;
+                            UpdateControllers();
                         }
                     }
                     else
@@ -66,6 +68,7 @@ public class InputManager : MonoBehaviour
                         {
                             activeJoysticks.Remove(joysticks[i]); 
                             joystickNumber = (byte)joysticks.Length;
+                            UpdateControllers();
                         }
                     }
                 }
@@ -73,12 +76,17 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void AssignController(List<PlayerMenu> _players)
+    private void AssignController(List<string> _joysticks)
     {
-        for (int i = 0; i < _players.Count; i++)
+        for (int i = 0; i < _joysticks.Count; i++)
         {
-            _players[i].Controls = new Controls((byte)i);
+            MenuManager.menu.Players[i].Controls = new Controls((byte)_joysticks.Count, joysticks[i]);
         }
+    }
+
+    private void UpdateControllers()
+    {
+
     }
 }
 
@@ -94,11 +102,12 @@ public struct Controls
     public string rjoystickVertical;
     public string rightTrigger;
 
-    public Controls(byte _joystickNumber) : this()
+    public Controls(byte _joystickNumber, string _controllerName) : this()
     {
         switch (_joystickNumber)
         {
             case 0:
+                controllerName = _controllerName;
                 aButton = "0AButton";
                 bButton = "0BButton";
                 startButton = "0StartButton";
@@ -109,6 +118,7 @@ public struct Controls
                 rightTrigger = "0RightTrigger";
                 break;
             case 1:
+                controllerName = _controllerName;
                 aButton = "1AButton";
                 bButton = "1BButton";
                 startButton = "1StartButton";
@@ -119,6 +129,7 @@ public struct Controls
                 rightTrigger = "1RightTrigger";
                 break;
             case 2:
+                controllerName = _controllerName;
                 aButton = "2AButton";
                 bButton = "2BButton";
                 startButton = "2StartButton";
@@ -129,6 +140,7 @@ public struct Controls
                 rightTrigger = "2RightTrigger";
                 break;
             case 3:
+                controllerName = _controllerName;
                 aButton = "3AButton";
                 bButton = "3BButton";
                 startButton = "3StartButton";

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 63817899032751287}
   - component: {fileID: 63817899032751288}
-  - component: {fileID: 271182727038490249}
   - component: {fileID: 1557881922871475068}
   - component: {fileID: 4272087379788513667}
   m_Layer: 0
@@ -43,7 +42,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63817899032751289}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceba96052aec3994e86fba0a91a25ddf, type: 3}
   m_Name: 
@@ -51,21 +50,7 @@ MonoBehaviour:
   moveSpeed: 3
   turnSmooth: 0.25
   powerUpSpeed: 5
-  controls:
-    m_Asset: {fileID: 11400000, guid: ad35af67fded82745a82d155e1db8f87, type: 3}
   avatar: {fileID: 6652167441946210589, guid: 4091fa549d9f78348a4b000f77346b83, type: 3}
---- !u!114 &271182727038490249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63817899032751289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4b61dada0bfa8d4db060518fe69b430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &1557881922871475068
 SphereCollider:
   m_ObjectHideFlags: 0

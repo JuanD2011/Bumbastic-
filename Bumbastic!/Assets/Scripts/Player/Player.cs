@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -15,40 +13,50 @@ public class Player : MonoBehaviour
     #endregion
 
     private bool speedPU;
-    private bool canMove;
+    private bool canMove = true;
 
     private byte id;
 
     [SerializeField]
     private GameObject avatar;
+
+    [SerializeField]
+    private float throwForce;
+
+    private GameObject player;
     private Animator m_Animator;
     private Vector3 spawnPoint;
+    private Controls controls;
 
     private bool hasBomb;
 
     public bool SpeedPU { get => speedPU; set => speedPU = value; }
     public bool CanMove { get => canMove; set => canMove = value; }
-    public GameObject Avatar { get => avatar; set => avatar = value; }
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
     public bool HasBomb { get => hasBomb; set => hasBomb = value; }
     public Vector2 InputAiming { get => inputAiming; set => inputAiming = value; }
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    public Controls Controls { get => controls; set => controls = value; }
+    public GameObject Avatar { set => avatar = value; }
 
     void Update()
     {
         if (canMove)
         {
+            inputDirection = new Vector2(Input.GetAxis(controls.ljoystickHorizontal), Input.GetAxis(controls.ljoystickVertical));
             Move(); 
+        }
+        if (Input.GetAxis(controls.rightTrigger) == 1f && hasBomb)
+        {
+            Throw();
         }
     }
 
     public void Throw()
     {
-        Debug.Log("Throw");
+        if (GameManager.manager.Bomb.transform.parent == transform)
+        {
+            GameManager.manager.Bomb.RigidBody.AddForce(transform.forward * throwForce); 
+        }
     }
 
     private void Move()
@@ -67,13 +75,10 @@ public class Player : MonoBehaviour
         m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
     }
 
-    public void OnDeviceLost()
-    {
-        Destroy(this.gameObject);
-    }
-
     public void Initialize()
     {
+        player = Instantiate(avatar, transform.position, transform.rotation);
+        player.transform.SetParent(transform);
         m_Animator = GetComponentInChildren<Animator>();
         canMove = false;
     }

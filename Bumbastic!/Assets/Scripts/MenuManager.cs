@@ -37,9 +37,11 @@ public class MenuManager : MonoBehaviour
     public delegate void SetCountdown(bool _bool);
     public SetCountdown OnCountdown;
 
-    public delegate void InputsDelegate(List<PlayerMenu> _players);
+    public delegate void InputsDelegate(List<string> _players);
     public InputsDelegate OnFirstPlayers;
-  
+
+    public List<PlayerMenu> Players { get => players; }
+
     private void Awake()
     {
         if (menu == null) menu = this;
@@ -73,11 +75,10 @@ public class MenuManager : MonoBehaviour
 
     private void StartGame()
     {
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < Players.Count; i++)
         {
-            playerControls.Add(players[i].Controls);
+            inGame.playerSettings.Add(new PlayerSettings("Danson", Players[i].Avatar, Players[i].Controls));
         }
-        inGame.controls = playerControls;
         OnStartGame?.Invoke("Game");//MenuUI hears it.
         Debug.Log("The game has started");
     }
@@ -87,10 +88,10 @@ public class MenuManager : MonoBehaviour
         for (int i = 0; i < _joysticks.Count; i++)
         {
             PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
-            players.Add(player);
+            Players.Add(player);
         }
 
-        OnFirstPlayers?.Invoke(players);
+        OnFirstPlayers?.Invoke(_joysticks);
     }
 
     public void PlayersReady(byte id)

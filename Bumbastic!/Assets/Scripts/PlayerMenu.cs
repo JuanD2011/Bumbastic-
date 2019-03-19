@@ -8,6 +8,7 @@ public class PlayerMenu : MonoBehaviour
     public bool Ready { get => ready; }
     public byte Id { get => id; }
     public Controls Controls { get => controls; set => controls = value; }
+    public GameObject Avatar { get => avatar; }
 
     public delegate void ReadyDelegate(byte id);
     public ReadyDelegate OnReady;
@@ -15,10 +16,8 @@ public class PlayerMenu : MonoBehaviour
 
     private Controls controls;
 
-    private void Start()
-    {
-
-    }
+    [SerializeField]
+    private GameObject avatar;
 
     private void Update()
     {
@@ -28,6 +27,11 @@ public class PlayerMenu : MonoBehaviour
         }
 
         if (Input.GetButtonDown(controls.aButton))
+        {
+
+        }
+
+        if (Input.GetButtonDown(controls.bButton))
         {
 
         }
