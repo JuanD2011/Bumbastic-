@@ -48,7 +48,7 @@ public class PlayerMenu : MonoBehaviour
             if (Input.GetKeyDown(controls.aButton))
             {
                 Debug.Log("A");
-                //OnAcceptButton?.Invoke();
+                OnAcceptButton?.Invoke();
             }
 
             if (Input.GetKeyDown(controls.bButton))
