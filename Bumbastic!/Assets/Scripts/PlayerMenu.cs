@@ -28,7 +28,7 @@ public class PlayerMenu : MonoBehaviour
     {
         if (controls.aButton != null)
         {
-            if (Input.GetButtonDown(controls.startButton))
+            if (Input.GetKeyDown(controls.startButton))
             {
                 Debug.Log("Start");
                 Debug.Log(controls.startButton);
@@ -45,13 +45,13 @@ public class PlayerMenu : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown(controls.aButton))
+            if (Input.GetKeyDown(controls.aButton))
             {
                 Debug.Log("A");
                 //OnAcceptButton?.Invoke();
             }
 
-            if (Input.GetButtonDown(controls.bButton))
+            if (Input.GetKeyDown(controls.bButton))
             {
                 Debug.Log("Back");
                 Debug.Log(controls.bButton);

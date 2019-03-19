@@ -100,9 +100,9 @@ public class InputManager : MonoBehaviour
 public struct Controls
 {
     public string controllerName;
-    public string aButton;
-    public string bButton;
-    public string startButton;
+    public KeyCode aButton;
+    public KeyCode bButton;
+    public KeyCode startButton;
     public string ljoystickHorizontal;
     public string ljoystickVertical;
     public string rjoystickHorizontal;
@@ -117,17 +117,17 @@ public struct Controls
                 controllerName = _controllerName;
                 if (controllerName.Length > 31)
                 {
-                    aButton = "joystick 0 button 0";
-                    bButton = "joystick 0 button 1";
-                    startButton = "0StartButton";
+                    aButton = KeyCode.Joystick1Button0;
+                    bButton = KeyCode.Joystick1Button1;
+                    startButton = KeyCode.Joystick1Button7;
                     rightTrigger = "0RightTrigger";
                     rjoystickHorizontal = "0RHorizontal";
                 }
                 else if (controllerName.Length > 18)
                 {
-                    aButton = "P0AButton";
-                    bButton = "P0BButton";
-                    startButton = "P0StartButton";
+                    aButton = KeyCode.Joystick1Button1;
+                    bButton = KeyCode.Joystick1Button2;
+                    startButton = KeyCode.Joystick1Button9;
                     rightTrigger = "P0RightTrigger";
                     rjoystickHorizontal = "P0RHorizontal";
                 }
@@ -140,17 +140,17 @@ public struct Controls
                 controllerName = _controllerName;
                 if (controllerName.Length > 31)
                 {
-                    aButton = "1AButton";
-                    bButton = "1BButton";
-                    startButton = "1StartButton";
+                    aButton = KeyCode.Joystick2Button0;
+                    bButton = KeyCode.Joystick2Button1;
+                    startButton = KeyCode.Joystick2Button7;
                     rightTrigger = "1RightTrigger";
                     rjoystickHorizontal = "1RHorizontal";
                 }
                 else if (controllerName.Length > 18)
                 {
-                    aButton = "P1AButton";
-                    bButton = "P1BButton";
-                    startButton = "P1StartButton";
+                    aButton = KeyCode.Joystick2Button1;
+                    bButton = KeyCode.Joystick2Button2;
+                    startButton = KeyCode.Joystick2Button9;
                     rightTrigger = "P1RightTrigger";
                     rjoystickHorizontal = "P1RHorizontal";
                 }
@@ -162,17 +162,17 @@ public struct Controls
                 controllerName = _controllerName;
                 if (controllerName.Length > 31)
                 {
-                    aButton = "2AButton";
-                    bButton = "2BButton";
-                    startButton = "2StartButton";
+                    aButton = KeyCode.Joystick3Button0;
+                    bButton = KeyCode.Joystick3Button1;
+                    startButton = KeyCode.Joystick3Button7;
                     rightTrigger = "2RightTrigger";
                     rjoystickHorizontal = "2RHorizontal";
                 }
                 else if (controllerName.Length > 18)
                 {
-                    aButton = "P2AButton";
-                    bButton = "P2BButton";
-                    startButton = "P2StartButton";
+                    aButton = KeyCode.Joystick3Button1;
+                    bButton = KeyCode.Joystick3Button2;
+                    startButton = KeyCode.Joystick3Button9;
                     rightTrigger = "P2RightTrigger";
                     rjoystickHorizontal = "P2RHorizontal";
                 }
@@ -184,17 +184,17 @@ public struct Controls
                 controllerName = _controllerName;
                 if (controllerName.Length > 31)
                 {
-                    aButton = "3AButton";
-                    bButton = "3BButton";
-                    startButton = "3StartButton";
+                    aButton = KeyCode.Joystick4Button0;
+                    bButton = KeyCode.Joystick4Button1;
+                    startButton = KeyCode.Joystick4Button7;
                     rightTrigger = "3RightTrigger";
                     rjoystickHorizontal = "3RHorizontal";
                 }
                 else if (controllerName.Length > 18)
                 {
-                    aButton = "P3AButton";
-                    bButton = "P3BButton";
-                    startButton = "P3StartButton";
+                    aButton = KeyCode.Joystick4Button1;
+                    bButton = KeyCode.Joystick4Button2;
+                    startButton = KeyCode.Joystick4Button9;
                     rightTrigger = "P3RightTrigger";
                     rjoystickHorizontal = "P3RHorizontal";
                 }
