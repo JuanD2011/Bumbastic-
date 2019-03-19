@@ -50,6 +50,9 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         timer = startTimer;
+
+        PlayerMenu.OnReady += PlayersReady;
+        PlayerMenu.OnNotReady += PlayerNotReady;
     }
 
     void Update()
@@ -73,6 +76,7 @@ public class MenuManager : MonoBehaviour
 
     private void StartGame()
     {
+        inGame.playerSettings.Clear();
         for (int i = 0; i < Players.Count; i++)
         {
             inGame.playerSettings.Add(new PlayerSettings("Danson", Players[i].Avatar, Players[i].Controls));
@@ -87,6 +91,7 @@ public class MenuManager : MonoBehaviour
         for (int i = 0; i < _joysticks.Count; i++)
         {
             PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
+            player.Id = (byte)i;
             Players.Add(player);
         }
 

@@ -6,13 +6,13 @@ public class PlayerMenu : MonoBehaviour
     private bool ready = false;
 
     public bool Ready { get => ready; }
-    public byte Id { get => id; }
     public Controls Controls { get => controls; set => controls = value; }
     public GameObject Avatar { get => avatar; }
+    public byte Id { get => id; set => id = value; }
 
     public delegate void ReadyDelegate(byte id);
-    public ReadyDelegate OnReady;
-    public ReadyDelegate OnNotReady;
+    public static ReadyDelegate OnReady;
+    public static ReadyDelegate OnNotReady;
 
     public delegate void ButtonsDelegate();
     public static ButtonsDelegate OnBackButton;
@@ -31,18 +31,30 @@ public class PlayerMenu : MonoBehaviour
             if (Input.GetButtonDown(controls.startButton))
             {
                 Debug.Log("Start");
+                Debug.Log(controls.startButton);
                 OnStartButton?.Invoke();
+                if (!ready)
+                {
+                    ready = true;
+                    OnReady?.Invoke(id);
+                }
+                else if (ready)
+                {
+                    ready = false;
+                    OnNotReady?.Invoke(id);
+                }
             }
 
             if (Input.GetButtonDown(controls.aButton))
             {
                 Debug.Log("A");
-                OnAcceptButton?.Invoke();
+                //OnAcceptButton?.Invoke();
             }
 
             if (Input.GetButtonDown(controls.bButton))
             {
                 Debug.Log("Back");
+                Debug.Log(controls.bButton);
                 OnBackButton?.Invoke();
             } 
         }

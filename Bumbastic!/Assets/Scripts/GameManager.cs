@@ -46,7 +46,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void SpawnPlayers()
-    { 
+    {
+        Debug.Log(inGame.playerSettings.Count + " Players in game");
         foreach (PlayerSettings playerSetting in inGame.playerSettings)
         {
             Player player = Instantiate(playerPrefab).GetComponent<Player>();
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
             player.SpawnPoint = GetSpawnPoint();
             player.transform.position = player.SpawnPoint;
             player.Initialize();
+            Debug.Log("Hol");
         }
 
         GiveBombs();

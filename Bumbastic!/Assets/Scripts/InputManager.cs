@@ -35,21 +35,13 @@ public class InputManager : MonoBehaviour
             if (!string.IsNullOrEmpty(joysticks[i]))
             {
                 Debug.Log("Controller " + i + " is connected using: " + joysticks[i]);
-                if (!activeJoysticks.Contains(joysticks[i]))
-                {
-                    activeJoysticks.Add(joysticks[i]);
-                }
+                activeJoysticks.Add(joysticks[i]);
             }
             else
             {
                 Debug.Log("Controller: " + i + " is disconnected.");
-                if (activeJoysticks.Contains(joysticks[i]))
-                {
-                    activeJoysticks.Remove(joysticks[i]);
-                }
+                activeJoysticks.Remove(joysticks[i]);
             }
-
-            Debug.Log(activeJoysticks[i]);
         }
 
         MenuManager.menu.InitializeFirstPlayers(activeJoysticks);
@@ -95,7 +87,7 @@ public class InputManager : MonoBehaviour
         Debug.Log("Assign Controller");
         for (int i = 0; i < _joysticks.Count; i++)
         {
-            MenuManager.menu.Players[i].Controls = new Controls((byte)_joysticks.Count, joysticks[i]);
+            MenuManager.menu.Players[i].Controls = new Controls((byte)i, joysticks[i]);
         }
     }
 
@@ -125,8 +117,8 @@ public struct Controls
                 controllerName = _controllerName;
                 if (controllerName.Length > 31)
                 {
-                    aButton = "0AButton";
-                    bButton = "0BButton";
+                    aButton = "joystick 0 button 0";
+                    bButton = "joystick 0 button 1";
                     startButton = "0StartButton";
                     rightTrigger = "0RightTrigger";
                     rjoystickHorizontal = "0RHorizontal";
