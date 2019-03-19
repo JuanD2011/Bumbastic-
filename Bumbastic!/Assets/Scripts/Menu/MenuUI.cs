@@ -19,7 +19,7 @@ public class MenuUI : MonoBehaviour
 
     private void Start()
     {
-        
+        PlayerMenu.OnBackButton += BackButton;
         MenuManager.menu.OnStartGame += LoadingScreen;
         MenuManager.menu.OnCountdown += Countdown;
     }

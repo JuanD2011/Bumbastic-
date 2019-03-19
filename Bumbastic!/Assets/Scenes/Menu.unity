@@ -3304,7 +3304,8 @@ MonoBehaviour:
   - {fileID: 1981430499}
   - {fileID: 135899083}
   countdownText: {fileID: 1066795180}
-  player: {fileID: 63817899032751289, guid: f83502d98471cb04da5a707e5cc13688, type: 3}
+  playerMenuPrefab: {fileID: 6489573870341292119, guid: f36bde14ecd43834b99a7a979b3d2db1,
+    type: 3}
 --- !u!1001 &433386985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3834,7 +3835,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.1362192, y: 0.3872899, z: -0.057974316, w: 0.9099944}
+  m_LocalRotation: {x: 0.1362192, y: 0.38728994, z: -0.057974324, w: 0.9099944}
   m_LocalPosition: {x: -5.53, y: 4.03, z: -12.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -11274,7 +11275,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965420920}
-  m_LocalRotation: {x: 0.1362192, y: 0.3872899, z: -0.057974316, w: 0.9099944}
+  m_LocalRotation: {x: 0.1362192, y: 0.38728994, z: -0.057974324, w: 0.9099944}
   m_LocalPosition: {x: -5.53, y: 4.03, z: -12.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

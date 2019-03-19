@@ -28,7 +28,6 @@ public class MenuManager : MonoBehaviour
 
     private byte playersReady = 0;
 
-    private List<Controls> playerControls = new List<Controls>();
     List<PlayerMenu> players = new List<PlayerMenu>();
 
     public delegate void DelMenuManager(string _sceneName);
@@ -51,7 +50,6 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         timer = startTimer;
-        InputManager.StartInputs += InitializeFirstPlayers;
     }
 
     void Update()
@@ -83,15 +81,16 @@ public class MenuManager : MonoBehaviour
         Debug.Log("The game has started");
     }
 
-    private void InitializeFirstPlayers(List<string> _joysticks)
+    public void InitializeFirstPlayers(List<string> _joysticks)
     {
+        Debug.Log("InitializeFirstPlayers");
         for (int i = 0; i < _joysticks.Count; i++)
         {
             PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
             Players.Add(player);
         }
 
-        OnFirstPlayers?.Invoke(_joysticks);
+        InputManager.inputManager.AssignController(_joysticks);
     }
 
     public void PlayersReady(byte id)

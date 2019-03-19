@@ -14,6 +14,11 @@ public class PlayerMenu : MonoBehaviour
     public ReadyDelegate OnReady;
     public ReadyDelegate OnNotReady;
 
+    public delegate void ButtonsDelegate();
+    public static ButtonsDelegate OnBackButton;
+    public static ButtonsDelegate OnAcceptButton;
+    public static ButtonsDelegate OnStartButton;
+
     private Controls controls;
 
     [SerializeField]
@@ -21,19 +26,25 @@ public class PlayerMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown(controls.startButton))
+        if (controls.aButton != null)
         {
+            if (Input.GetButtonDown(controls.startButton))
+            {
+                Debug.Log("Start");
+                OnStartButton?.Invoke();
+            }
 
-        }
+            if (Input.GetButtonDown(controls.aButton))
+            {
+                Debug.Log("A");
+                OnAcceptButton?.Invoke();
+            }
 
-        if (Input.GetButtonDown(controls.aButton))
-        {
-
-        }
-
-        if (Input.GetButtonDown(controls.bButton))
-        {
-
+            if (Input.GetButtonDown(controls.bButton))
+            {
+                Debug.Log("Back");
+                OnBackButton?.Invoke();
+            } 
         }
     }
 }

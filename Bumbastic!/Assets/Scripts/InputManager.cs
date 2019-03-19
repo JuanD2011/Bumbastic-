@@ -3,15 +3,29 @@ using System.Collections.Generic;
 
 public class InputManager : MonoBehaviour
 {
-    public delegate void InputDelegate(List<string> _joysticks);
-    public static InputDelegate StartInputs;
+    public static InputManager inputManager;
 
     private string[] joysticks;
     private List<string> activeJoysticks = new List<string>();
     private byte joystickNumber;
     private List<PlayerMenu> playerMenus = new List<PlayerMenu>();
 
+    private void Awake()
+    {
+        if (inputManager == null)
+        {
+            inputManager = this;
+        }
+    }
+
     private void Start()
+    {
+        GetJoysticks();
+
+        MenuManager.menu.OnFirstPlayers += AssignController;
+    }
+
+    private void GetJoysticks()
     {
         joysticks = Input.GetJoystickNames();
         joystickNumber = (byte)joysticks.Length;
@@ -34,11 +48,11 @@ public class InputManager : MonoBehaviour
                     activeJoysticks.Remove(joysticks[i]);
                 }
             }
+
+            Debug.Log(activeJoysticks[i]);
         }
 
-        StartInputs?.Invoke(activeJoysticks);
-
-        MenuManager.menu.OnFirstPlayers += AssignController;
+        MenuManager.menu.InitializeFirstPlayers(activeJoysticks);
     }
 
     private void Update()
@@ -76,8 +90,9 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void AssignController(List<string> _joysticks)
+    public void AssignController(List<string> _joysticks)
     {
+        Debug.Log("Assign Controller");
         for (int i = 0; i < _joysticks.Count; i++)
         {
             MenuManager.menu.Players[i].Controls = new Controls((byte)_joysticks.Count, joysticks[i]);
