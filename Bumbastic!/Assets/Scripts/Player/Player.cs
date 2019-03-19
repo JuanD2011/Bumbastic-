@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
         if (canMove)
         {
             inputDirection = new Vector2(Input.GetAxis(controls.ljoystickHorizontal), Input.GetAxis(controls.ljoystickVertical));
+            inputAiming = new Vector2(Input.GetAxis(controls.rjoystickHorizontal), Input.GetAxis(controls.rjoystickVertical));
             Move(); 
         }
         if (controls.rightTrigger != null)
