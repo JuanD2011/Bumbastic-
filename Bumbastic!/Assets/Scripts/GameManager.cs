@@ -1,18 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Input;
-using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager manager;
 
-    private List<PlayerInput> playersInput = new List<PlayerInput>();
     private List<Player> players = new List<Player>();
     private List<Player> bummies = new List<Player>();
 
-    public List<PlayerInput> Players { get => playersInput; set => playersInput = value; }
     public Player BombHolder { get => bombHolder; set => bombHolder = value; }
     public Bomb Bomb { get => bomb; }
     public PlayableDirector Director { get => director; set => director = value; }
@@ -28,8 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float minTime, maxTime;
 
-    [SerializeField]
-    private GameObject confettiBomb;
+    [SerializeField] private GameObject confettiBomb, playerPrefab;
 
     private Player bombHolder;
     [SerializeField]
@@ -45,31 +40,25 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        playersInput = inGame.players;
-        foreach (PlayerInput item in playersInput)
-        {
-            item.ActivateInput();
-            players.Add(item.gameObject.GetComponent<Player>());
-        }
         Director = GetComponent<PlayableDirector>();
 
         SpawnPlayers();
-
-        Invoke("GiveBombs", 1);
     }
 
     private void SpawnPlayers()
-    {
-        foreach (Player player in players)
+    { 
+        foreach (PlayerSettings playerSetting in inGame.playerSettings)
         {
-            player.enabled = true;
+            Player player = Instantiate(playerPrefab).GetComponent<Player>();
+            players.Add(player);
+            player.Controls = playerSetting.controls;
+            player.Avatar = playerSetting.avatar;
             player.SpawnPoint = GetSpawnPoint();
             player.transform.position = player.SpawnPoint;
-            GameObject avatar = Instantiate(player.Avatar, player.transform.localPosition, player.transform.rotation);
-            avatar.transform.SetParent(player.gameObject.transform);
             player.Initialize();
-            player.CanMove = true;
         }
+
+        GiveBombs();
     }
 
     public Vector3 GetSpawnPoint()

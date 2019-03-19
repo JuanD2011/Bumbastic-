@@ -1,16 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Input;
-using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 using TMPro;
 using System;
 
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager menu;
-
-    private List<PlayerInput> players = new List<PlayerInput>();
 
     [SerializeField]
     private InGame inGame;
@@ -26,18 +22,26 @@ public class MenuManager : MonoBehaviour
     private TextMeshProUGUI countdownText;
 
     [SerializeField]
-    private GameObject player;
+    private GameObject playerMenuPrefab;
 
     private bool countdown = false;
 
     private byte playersReady = 0;
+
+    private List<Controls> playerControls = new List<Controls>();
+    List<PlayerMenu> players = new List<PlayerMenu>();
 
     public delegate void DelMenuManager(string _sceneName);
     public DelMenuManager OnStartGame;
 
     public delegate void SetCountdown(bool _bool);
     public SetCountdown OnCountdown;
-  
+
+    public delegate void InputsDelegate(List<string> _players);
+    public InputsDelegate OnFirstPlayers;
+
+    public List<PlayerMenu> Players { get => players; }
+
     private void Awake()
     {
         if (menu == null) menu = this;
@@ -47,8 +51,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         timer = startTimer;
-        InputSystem.onDeviceChange += (device, change) => DeviceChange(device, change);
-        InitializeControls();
+        InputManager.StartInputs += InitializeFirstPlayers;
     }
 
     void Update()
@@ -70,74 +73,25 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void OnPlayerJoined(PlayerInput player)
-    {
-        Debug.Log("Player Joined");
-        players.Add(player);
-        if (player.playerIndex != 0)
-        {
-            texts[player.playerIndex].enabled = true; 
-        }
-    }
-
-    public void OnPlayerLeft(PlayerInput player)
-    {
-        Debug.Log("Player Left");
-    }
-
     private void StartGame()
     {
+        for (int i = 0; i < Players.Count; i++)
+        {
+            inGame.playerSettings.Add(new PlayerSettings("Danson", Players[i].Avatar, Players[i].Controls));
+        }
         OnStartGame?.Invoke("Game");//MenuUI hears it.
-        inGame.players = players;
         Debug.Log("The game has started");
     }
 
-    private void DeviceChange(InputDevice device, InputDeviceChange change)
+    private void InitializeFirstPlayers(List<string> _joysticks)
     {
-        if (Application.isPlaying)
+        for (int i = 0; i < _joysticks.Count; i++)
         {
-            switch (change)
-            {
-                case InputDeviceChange.Added:
-                    Instantiate(player);
-                    break;
-                case InputDeviceChange.Removed:
-                    Debug.Log("Removed");
-                    Disconnect(device);
-                    break;
-                case InputDeviceChange.Reconnected:
-                    Instantiate(player);
-                    break;
-                case InputDeviceChange.Disabled:
-                    Debug.Log("Disabled");
-                    break;
-                default:
-                    break;
-            } 
+            PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
+            Players.Add(player);
         }
-    }
 
-    private void InitializeControls()
-    {
-        foreach (Gamepad gamePad in Gamepad.all)
-        {
-            Instantiate(player);
-        }
-    }
-
-    private void Disconnect(InputDevice device)
-    {
-        for (int i = 0; i < players.Count; i++)
-        {
-            if (players[i].devices[0] == device)
-            {
-                texts[i].enabled = false;
-                if (players[i].gameObject != null)
-                {
-                    Destroy(players[i].gameObject); 
-                }
-            }
-        }
+        OnFirstPlayers?.Invoke(_joysticks);
     }
 
     public void PlayersReady(byte id)

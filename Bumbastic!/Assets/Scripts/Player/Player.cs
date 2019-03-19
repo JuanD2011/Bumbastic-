@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Experimental.Input;
-using UnityEngine.Experimental.Input.Plugins.PlayerInput;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -17,44 +13,50 @@ public class Player : MonoBehaviour
     #endregion
 
     private bool speedPU;
-    private bool canMove;
+    private bool canMove = true;
 
-    private PlayerInput playerInput;
     private byte id;
 
     [SerializeField]
-    private InputManager controls;
+    private GameObject avatar;
 
     [SerializeField]
-    private GameObject avatar;
+    private float throwForce;
+
+    private GameObject player;
     private Animator m_Animator;
     private Vector3 spawnPoint;
+    private Controls controls;
 
     private bool hasBomb;
 
     public bool SpeedPU { get => speedPU; set => speedPU = value; }
     public bool CanMove { get => canMove; set => canMove = value; }
-    public GameObject Avatar { get => avatar; set => avatar = value; }
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
     public bool HasBomb { get => hasBomb; set => hasBomb = value; }
     public Vector2 InputAiming { get => inputAiming; set => inputAiming = value; }
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    public Controls Controls { get => controls; set => controls = value; }
+    public GameObject Avatar { set => avatar = value; }
 
     void Update()
     {
         if (canMove)
         {
+            inputDirection = new Vector2(Input.GetAxis(controls.ljoystickHorizontal), Input.GetAxis(controls.ljoystickVertical));
             Move(); 
+        }
+        if (Input.GetAxis(controls.rightTrigger) == 1f && hasBomb)
+        {
+            Throw();
         }
     }
 
     public void Throw()
     {
-        Debug.Log("Throw");
+        if (GameManager.manager.Bomb.transform.parent == transform)
+        {
+            GameManager.manager.Bomb.RigidBody.AddForce(transform.forward * throwForce); 
+        }
     }
 
     private void Move()
@@ -73,51 +75,10 @@ public class Player : MonoBehaviour
         m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
     }
 
-    public void OnThrowing(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            if (HasBomb)
-            {
-                Throw();
-            }
-        }
-    }
-
-    public void OnMovement(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            inputDirection = context.ReadValue<Vector2>().normalized;
-        }
-        else if (context.cancelled)
-        {
-            inputDirection = Vector2.zero;
-        }
-    }
-
-    public void OnAiming(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            InputAiming = context.ReadValue<Vector2>();
-        }
-        else if (context.cancelled)
-        {
-            InputAiming = Vector2.zero;
-        }
-    }
-
-    public void OnDeviceLost()
-    {
-        Destroy(this.gameObject);
-    }
-
     public void Initialize()
     {
-        playerInput = gameObject.GetComponent<PlayerInput>();
-        id = (byte)playerInput.playerIndex;
-        playerInput.SwitchActions("Game");
+        player = Instantiate(avatar, transform.position, transform.rotation);
+        player.transform.SetParent(transform);
         m_Animator = GetComponentInChildren<Animator>();
         canMove = false;
     }
@@ -155,7 +116,7 @@ public class Player : MonoBehaviour
         GameManager.manager.BombHolder.HasBomb = true;
         GameManager.manager.Bomb.transform.parent = null;
         GameManager.manager.Bomb.transform.SetParent(GameManager.manager.BombHolder.transform);
-        GameManager.manager.Bomb.transform.position = GameManager.manager.BombHolder.transform.GetChild(2).transform.localPosition;
+        GameManager.manager.Bomb.transform.position = GameManager.manager.BombHolder.transform.GetChild(2).transform.position;
         GameManager.manager.Bomb.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
 }
