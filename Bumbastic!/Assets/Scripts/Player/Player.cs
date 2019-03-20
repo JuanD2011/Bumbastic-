@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public Vector2 InputAiming { get => inputAiming; set => inputAiming = value; }
     public Controls Controls { get => controls; set => controls = value; }
     public GameObject Avatar { set => avatar = value; }
+    public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
 
     void Update()
     {
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
         if (inputDirection != Vector2.zero)
         {
             targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
-            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, turnSmooth);
+            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
         }
 
         targetSpeed = ((SpeedPU) ? powerUpSpeed : moveSpeed) * inputDirection.magnitude;
