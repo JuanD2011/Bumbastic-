@@ -5,8 +5,6 @@ public class AimPath : MonoBehaviour
     Player m_Player;
     LineRenderer m_LineRenderer;
     private float targetRotation;
-
-    [SerializeField] Transform axis;
     private float turnSmoothVel;
 
     void Start()
@@ -26,7 +24,8 @@ public class AimPath : MonoBehaviour
                     m_LineRenderer.enabled = true;
                 }
                 targetRotation = Mathf.Atan2(m_Player.InputAiming.x, m_Player.InputAiming.y) * Mathf.Rad2Deg;
-                axis.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(axis.eulerAngles.y, targetRotation, ref turnSmoothVel, m_Player.TurnSmooth);
+                Debug.Log(targetRotation);
+                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, m_Player.TurnSmooth);
             }
             else
             {
