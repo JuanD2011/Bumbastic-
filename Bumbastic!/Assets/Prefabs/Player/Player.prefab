@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  turnSmooth: 0.25
+  turnSmooth: 0.15
   powerUpSpeed: 5
   avatar: {fileID: 6652167441946210589, guid: 4091fa549d9f78348a4b000f77346b83, type: 3}
   throwForce: 100
