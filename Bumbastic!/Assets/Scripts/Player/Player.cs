@@ -76,14 +76,14 @@ public class Player : MonoBehaviour
 
         transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
         animationSpeedPercent = ((SpeedPU) ? 1 : 0.5f) * inputDirection.magnitude;
-        //m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
+        m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
     }
 
     public void Initialize()
     {
         player = Instantiate(avatar, transform.position, transform.rotation);
         player.transform.SetParent(transform);
-        //m_Animator = GetComponentInChildren<Animator>();
+        m_Animator = GetComponentInChildren<Animator>();
         canMove = true;
     }
 

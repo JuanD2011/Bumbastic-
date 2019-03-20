@@ -14,17 +14,14 @@ public class AimPath : MonoBehaviour
 
     private void Update()
     {
-        if (m_Player.HasBomb)
+        if (m_Player.InputAiming != Vector2.zero)
         {
-            if (m_Player.InputAiming != Vector2.zero)
-            {
-                transform.LookAt(m_Player.InputAiming); 
-                m_LineRenderer.enabled = true;
-            }
-            else
-            {
-                m_LineRenderer.enabled = false;
-            }
+            transform.LookAt(m_Player.InputAiming);
+            m_LineRenderer.enabled = true;
+        }
+        else
+        {
+            m_LineRenderer.enabled = false;
         }
     }
 }

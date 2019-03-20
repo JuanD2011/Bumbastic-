@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd17da267bc47b479c344034d6e701c, type: 3}
   m_Name: InGame
   m_EditorClassIdentifier: 
-  playersJoined: 1
+  playersJoined: 0
   posDropPU: {fileID: 930839126329981298, guid: 9fbd70ba3d88cb74b993e040034e155d,
     type: 3}
-  maxPlayers: 2
-  players:
-  - {fileID: 0}
-  - {fileID: 0}
+  maxPlayers: 1
