@@ -37,12 +37,12 @@ public class PlayerMenu : MonoBehaviour
                 if (!ready)
                 {
                     ready = true;
-                    OnReady?.Invoke(id);//PlayerMenu hears it
+                    OnReady?.Invoke(id);//MenuManager hears it
                 }
                 else if (ready)
                 {
                     ready = false;
-                    OnNotReady?.Invoke(id);//PlayerMenu hears it
+                    OnNotReady?.Invoke(id);//MenuManager hears it
                     OnBackButton?.Invoke();//MenuUI hears it
                 }
             }
@@ -62,7 +62,7 @@ public class PlayerMenu : MonoBehaviour
                 if (ready)
                 {
                     ready = false;
-                    OnNotReady?.Invoke(id);//PlayerMenu hears it
+                    OnNotReady?.Invoke(id);//MenuManager hears it
                 }
             } 
         }
