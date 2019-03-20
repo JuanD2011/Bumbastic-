@@ -3606,8 +3606,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.1362192, y: 0.38728994, z: -0.057974324, w: 0.9099944}
-  m_LocalPosition: {x: -5.53, y: 4.03, z: -12.24}
+  m_LocalRotation: {x: 0.1061158, y: 0, z: 0, w: 0.99435383}
+  m_LocalPosition: {x: 0, y: 9.72, z: -29.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5616,6 +5616,7 @@ MonoBehaviour:
   - Menu_Credits_Open
   - Menu_Quit_Open
   - Menu_Matchmaking_Countdown
+  - Menu_Matchmaking_Countdown_Cancel
 --- !u!1 &949985401
 GameObject:
   m_ObjectHideFlags: 0
@@ -10895,7 +10896,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965420920}
-  m_LocalRotation: {x: 0.1362192, y: 0.38728994, z: -0.057974324, w: 0.9099944}
+  m_LocalRotation: {x: 0.1362192, y: 0.3872899, z: -0.057974316, w: 0.9099944}
   m_LocalPosition: {x: -5.53, y: 4.03, z: -12.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

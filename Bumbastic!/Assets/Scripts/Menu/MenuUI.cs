@@ -82,7 +82,7 @@ public class MenuUI : MonoBehaviour
             ConfigurationPanel(false);
             Memento.instance.SaveData(0);
         }
-        else if (stateInfo.IsName(stateName[2]))//Matchmaking
+        else if (stateInfo.IsName(stateName[2]) || stateInfo.IsName(stateName[6]))//Matchmaking
         {
             PlayPanel(false);
             OnSetMatchmakingCamera?.Invoke(false);//MenuCamManager hears it.

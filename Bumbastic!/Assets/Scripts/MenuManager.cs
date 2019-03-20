@@ -115,6 +115,7 @@ public class MenuManager : MonoBehaviour
 
     public void PlayerNotReady(byte id)
     {
+        Debug.Log("holds");
         playersReady--;
         texts[id].text = "Press Start";
         countdown = false;

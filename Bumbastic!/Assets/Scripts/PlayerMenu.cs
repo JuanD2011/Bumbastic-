@@ -33,15 +33,17 @@ public class PlayerMenu : MonoBehaviour
                 Debug.Log("Start");
                 Debug.Log(controls.startButton);
                 OnStartButton?.Invoke();
+
                 if (!ready)
                 {
                     ready = true;
-                    OnReady?.Invoke(id);
+                    OnReady?.Invoke(id);//PlayerMenu hears it
                 }
                 else if (ready)
                 {
                     ready = false;
-                    OnNotReady?.Invoke(id);
+                    OnNotReady?.Invoke(id);//PlayerMenu hears it
+                    OnBackButton?.Invoke();//MenuUI hears it
                 }
             }
 
@@ -55,7 +57,13 @@ public class PlayerMenu : MonoBehaviour
             {
                 Debug.Log("Back");
                 Debug.Log(controls.bButton);
-                OnBackButton?.Invoke();
+                OnBackButton?.Invoke();//MenuUI hears it
+
+                if (ready)
+                {
+                    ready = false;
+                    OnNotReady?.Invoke(id);//PlayerMenu hears it
+                }
             } 
         }
     }
