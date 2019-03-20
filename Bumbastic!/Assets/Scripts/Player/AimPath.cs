@@ -15,24 +15,21 @@ public class AimPath : MonoBehaviour
 
     private void Update()
     {
-        if (m_Player.HasBomb)
+        if (m_Player.InputAiming != Vector2.zero)
         {
-            if (m_Player.InputAiming != Vector2.zero)
+            if (!m_LineRenderer.enabled)
             {
-                if (!m_LineRenderer.enabled)
-                {
-                    m_LineRenderer.enabled = true;
-                }
-                targetRotation = Mathf.Atan2(m_Player.InputAiming.x, m_Player.InputAiming.y) * Mathf.Rad2Deg;
-                Debug.Log(targetRotation);
-                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, m_Player.TurnSmooth);
+                m_LineRenderer.enabled = true;
             }
-            else
+            targetRotation = Mathf.Atan2(m_Player.InputAiming.x, m_Player.InputAiming.y) * Mathf.Rad2Deg;
+            Debug.Log(targetRotation);
+            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, m_Player.TurnSmooth);
+        }
+        else
+        {
+            if (m_LineRenderer.enabled)
             {
-                if (m_LineRenderer.enabled)
-                {
-                    m_LineRenderer.enabled = false;
-                }
+                m_LineRenderer.enabled = false;
             }
         }
     }

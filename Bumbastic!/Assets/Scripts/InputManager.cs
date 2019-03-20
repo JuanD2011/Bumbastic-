@@ -122,6 +122,7 @@ public struct Controls
                     startButton = KeyCode.Joystick1Button7;
                     rightTrigger = "0RightTrigger";
                     rjoystickHorizontal = "0RHorizontal";
+                    rjoystickVertical = "0RVertical";
                 }
                 else if (controllerName.Length > 18)
                 {
@@ -130,8 +131,8 @@ public struct Controls
                     startButton = KeyCode.Joystick1Button9;
                     rightTrigger = "P0RightTrigger";
                     rjoystickHorizontal = "P0RHorizontal";
-                }
-                rjoystickVertical = "0RVertical";
+                    rjoystickVertical = "P0RVertical";
+                }              
                 ljoystickHorizontal = "0Horizontal";
                 ljoystickVertical = "0Vertical";  
                 break;
@@ -145,6 +146,7 @@ public struct Controls
                     startButton = KeyCode.Joystick2Button7;
                     rightTrigger = "1RightTrigger";
                     rjoystickHorizontal = "1RHorizontal";
+                    rjoystickVertical = "1RVertical";
                 }
                 else if (controllerName.Length > 18)
                 {
@@ -153,8 +155,8 @@ public struct Controls
                     startButton = KeyCode.Joystick2Button9;
                     rightTrigger = "P1RightTrigger";
                     rjoystickHorizontal = "P1RHorizontal";
+                    rjoystickVertical = "P1RVertical";
                 }
-                rjoystickVertical = "1RVertical";
                 ljoystickHorizontal = "1Horizontal";
                 ljoystickVertical = "1Vertical";
                 break;
@@ -167,6 +169,7 @@ public struct Controls
                     startButton = KeyCode.Joystick3Button7;
                     rightTrigger = "2RightTrigger";
                     rjoystickHorizontal = "2RHorizontal";
+                    rjoystickVertical = "2RVertical";
                 }
                 else if (controllerName.Length > 18)
                 {
@@ -175,8 +178,8 @@ public struct Controls
                     startButton = KeyCode.Joystick3Button9;
                     rightTrigger = "P2RightTrigger";
                     rjoystickHorizontal = "P2RHorizontal";
+                    rjoystickVertical = "P2RVertical";
                 }
-                rjoystickVertical = "2RVertical";
                 ljoystickHorizontal = "2Horizontal";
                 ljoystickVertical = "2Vertical";
                 break;
@@ -189,6 +192,7 @@ public struct Controls
                     startButton = KeyCode.Joystick4Button7;
                     rightTrigger = "3RightTrigger";
                     rjoystickHorizontal = "3RHorizontal";
+                    rjoystickVertical = "3RVertical";
                 }
                 else if (controllerName.Length > 18)
                 {
@@ -197,8 +201,8 @@ public struct Controls
                     startButton = KeyCode.Joystick4Button9;
                     rightTrigger = "P3RightTrigger";
                     rjoystickHorizontal = "P3RHorizontal";
+                    rjoystickVertical = "P3RVertical";
                 }
-                rjoystickVertical = "3RVertical";
                 ljoystickHorizontal = "3Horizontal";
                 ljoystickVertical = "3Vertical";
                 break;
