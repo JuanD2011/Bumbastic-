@@ -7,6 +7,8 @@ public class AimPath : MonoBehaviour
     private float targetRotation;
     private float turnSmoothVel;
 
+    Vector2 aimNormalized;
+
     void Start()
     {
         m_Player = GetComponentInParent<Player>();
@@ -15,14 +17,14 @@ public class AimPath : MonoBehaviour
 
     private void Update()
     {
-        if (m_Player.InputAiming != Vector2.zero)
+        aimNormalized = m_Player.InputAiming.normalized;
+        if (aimNormalized != Vector2.zero)
         {
             if (!m_LineRenderer.enabled)
             {
                 m_LineRenderer.enabled = true;
             }
-            targetRotation = Mathf.Atan2(m_Player.InputAiming.x, m_Player.InputAiming.y) * Mathf.Rad2Deg;
-            Debug.Log(targetRotation);
+            targetRotation = Mathf.Atan2(aimNormalized.x, aimNormalized.y) * Mathf.Rad2Deg;
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, m_Player.TurnSmooth);
         }
         else
