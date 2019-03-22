@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager manager;
 
-    private List<Player> players = new List<Player>();
+    private List<Player> players;
     private List<Player> bummies = new List<Player>();
 
     public Player BombHolder { get => bombHolder; set => bombHolder = value; }
@@ -34,12 +34,14 @@ public class GameManager : MonoBehaviour
     public PowerUp powerUp;
 
     public delegate void GameStateDelegate();
-    public static event GameStateDelegate OnGameOver;
+    public event GameStateDelegate OnGameOver;
 
     private void Awake()
     {
         if (manager == null) manager = this;
         else Destroy(this);
+
+        players = new List<Player>();
     }
 
     private void Start()
@@ -51,8 +53,11 @@ public class GameManager : MonoBehaviour
         Bomb.OnExplode += StartNewRound;
     }
 
-    private void StartNewRound()
+    private void StartNewRound(Player _player)
     {
+        Players.Remove(_player);
+        _player.gameObject.SetActive(false);
+
         foreach (Player player in Players)
         {
             player.transform.position = player.SpawnPoint;
@@ -64,7 +69,6 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayers()
     {
-        Debug.Log(inGame.playerSettings.Count + " Players in game");
         foreach (PlayerSettings playerSetting in inGame.playerSettings)
         {
             Player player = Instantiate(playerPrefab).GetComponent<Player>();
@@ -75,7 +79,6 @@ public class GameManager : MonoBehaviour
             player.transform.position = player.SpawnPoint;
             player.Initialize();
         }
-
         GiveBombs();
     }
 
@@ -99,12 +102,12 @@ public class GameManager : MonoBehaviour
 
             for (int i = 0; i < bummies.Count; i++)
             {
-                Debug.Log("Toma bomba");
                 Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 4, 0), Quaternion.identity);
                 bummies.RemoveAt(i);
             }
             bomb.transform.position = bummies[0].transform.position + new Vector3(0, 4, 0);
             bomb.Timer = Random.Range(minTime, maxTime);
+            bomb.Exploded = false;
             bomb.gameObject.SetActive(true);
         }
         else if (Players.Count == 1)
@@ -115,7 +118,7 @@ public class GameManager : MonoBehaviour
 
     private List<Player> RandomizeBummieList()
     {
-        List<Player> bummies = Players;
+        List<Player> bummies = new List<Player>(Players);
         List<Player> randomBummies = new List<Player>();
 
         while (bummies.Count > 0)

@@ -12,13 +12,14 @@ public class Bomb : MonoBehaviour
 
     public float Timer { get => timer; set => timer = value; }
     public Rigidbody RigidBody { get => m_rigidBody; set => m_rigidBody = value; }
+    public bool Exploded { get => exploded; set => exploded = value; }
 
     private Animator m_Animator;
 
     private AnimationCurve animationCurve = new AnimationCurve();
     private float speed = 4f;
 
-    public delegate void BombDelegate();
+    public delegate void BombDelegate(Player _player);
     public static BombDelegate OnExplode;
 
     private void Start()
@@ -42,12 +43,12 @@ public class Bomb : MonoBehaviour
     {
         m_Animator.speed = animationCurve.Evaluate(t) * speed;
 
-        if (!exploded && transform.parent != null)
+        if (!Exploded && transform.parent != null)
         {
             t += Time.deltaTime;
         }
 
-        if (t > Timer && !exploded)
+        if (t > Timer && !Exploded)
         {
             Explode();
         }
@@ -55,14 +56,13 @@ public class Bomb : MonoBehaviour
 
     void Explode()
     {
-        exploded = true;
+        Exploded = true;
         CameraShake.instance.OnShake(0.4f, 6f, 1.2f);
         RigidBody.constraints = RigidbodyConstraints.None;
         GameObject parent = transform.parent.gameObject;
         transform.SetParent(null);
-        parent.SetActive(false);
+        OnExplode?.Invoke(parent.GetComponent<Player>());
         gameObject.SetActive(false);
-        OnExplode?.Invoke();
     }
 
     private void OnCollisionEnter(Collision collision)

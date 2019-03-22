@@ -11,9 +11,4 @@ public class InGame : ScriptableObject
 
     Vector3 crowPos;
     public Vector3 CrowPos { get => crowPos; set => crowPos = value; }
-
-    public void ReturnMenu()
-    {
-
-    }
 }

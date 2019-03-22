@@ -16,14 +16,14 @@ public class InGameCanvas : MonoBehaviour
     {
         m_Animator = GetComponent<Animator>();
         GameManager.manager.OnGameOver += SetEndAnimation;
-        PlayerMenu.OnStartButton += CanLoadScene;
+        Player.OnStartInGame += CanLoadScene;
     }
 
     private void CanLoadScene()
     {
         if (isEndPanelActive)
         {
-            m_Animator.SetTrigger("LoadingScreen");
+            m_Animator.SetTrigger("loadingScreen");
         }
     }
 

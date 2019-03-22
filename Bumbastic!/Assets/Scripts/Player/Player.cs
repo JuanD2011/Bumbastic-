@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
 
     private void LetMove(PlayableDirector obj) => canMove = true;
 
+    public static PlayerMenu.ButtonsDelegate OnStartInGame;
+
     void Update()
     {
         if (canMove)
@@ -61,6 +63,12 @@ public class Player : MonoBehaviour
                 Throw();
             } 
         }
+
+        if (Input.GetKeyDown(controls.startButton))
+        {
+            OnStartInGame?.Invoke();
+        }
+
     }
 
     public void Throw()
@@ -127,13 +135,7 @@ public class Player : MonoBehaviour
         GameManager.manager.BombHolder.HasBomb = true;
         GameManager.manager.Bomb.transform.parent = null;
         GameManager.manager.Bomb.transform.SetParent(GameManager.manager.BombHolder.transform);
-        Debug.Log(GameManager.manager.BombHolder.transform.GetChild(1).name);
         GameManager.manager.Bomb.transform.position = GameManager.manager.BombHolder.transform.GetChild(1).transform.position;
         GameManager.manager.Bomb.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-    }
-
-    private void OnDisable()
-    {
-        GameManager.manager.Players.Remove(this);
     }
 }

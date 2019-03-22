@@ -8,12 +8,13 @@ public class ConfettiBomb : MonoBehaviour
     {
         m_Particle = GetComponentInChildren<ParticleSystem>();
         m_Renderer = GetComponent<Renderer>();
-        Invoke("Bum", 2.3f);
+        Invoke("Bum", 2.5f);
     }
 
     private void Bum()
     {
         m_Renderer.enabled = false;
+        GetComponent<Collider>().enabled = false;
         m_Particle.Play();
     }
 }
