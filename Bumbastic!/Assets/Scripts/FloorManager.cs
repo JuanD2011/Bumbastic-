@@ -108,7 +108,6 @@ public class FloorManager : MonoBehaviour
 				//corregir cuando se le ponga textura al suelo
 				rings[anticipationRing].module[i].GetComponent<Renderer>().material.shader = Shader.Find("HDRP/Lit");
 				rings[anticipationRing].module[i].GetComponent<Renderer>().material.SetColor("_BaseColor", color * colorAnticipation.Evaluate(time));
-				print(":P");
 			}
 
             if (time >= 1)

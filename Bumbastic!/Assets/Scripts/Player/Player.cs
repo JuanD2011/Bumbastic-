@@ -58,8 +58,9 @@ public class Player : MonoBehaviour
         }
         if (controls.rightTrigger != null)
         {
-            if (Input.GetAxis(controls.rightTrigger) == 1f && hasBomb)
+            if (Input.GetAxis(controls.rightTrigger) == 1f)
             {
+				Debug.Log("Throw");
                 Throw();
             } 
         }

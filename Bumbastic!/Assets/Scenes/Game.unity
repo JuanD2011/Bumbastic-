@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.23151374, g: 0.263888, b: 0.24435423, a: 1}
+  m_IndirectSpecularColor: {r: 0.2314026, g: 0.26370257, b: 0.2441858, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1464,6 +1464,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.69
       objectReference: {fileID: 0}
+    - target: {fileID: 6888780361752231448, guid: feb554825f5ecc54abea9cc9ae097cf1,
+        type: 3}
+      propertyPath: color.r
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888780361752231448, guid: feb554825f5ecc54abea9cc9ae097cf1,
+        type: 3}
+      propertyPath: color.g
+      value: 0.12922749
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888780361752231448, guid: feb554825f5ecc54abea9cc9ae097cf1,
+        type: 3}
+      propertyPath: color.b
+      value: 0.12922749
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feb554825f5ecc54abea9cc9ae097cf1, type: 3}
 --- !u!1 &1566880042
@@ -1648,11 +1663,6 @@ PrefabInstance:
       propertyPath: textWinner
       value: 
       objectReference: {fileID: 1612499589}
-    - target: {fileID: 285322738216486333, guid: bd638fd56519df6428dc3b9aed6c34c4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1907353719581555801, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1671,6 +1681,11 @@ PrefabInstance:
     - target: {fileID: 1907353719581555801, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 285322738216486333, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9098640597934991779, guid: bd638fd56519df6428dc3b9aed6c34c4,
