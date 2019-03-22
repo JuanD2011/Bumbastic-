@@ -35,7 +35,7 @@ public class CameraShake : MonoBehaviour
         StartCoroutine(ShakeCamera(_duration, _shakeAmplitude, _shakeFrequency));
     }
 
-    public IEnumerator ShakeCamera(float _duration, float _shakeAmplitude, float _shakeFrequency)
+    private IEnumerator ShakeCamera(float _duration, float _shakeAmplitude, float _shakeFrequency)
     {
         float shakeElapsedTime = _duration;
         virtualCameraNoise.m_AmplitudeGain = _shakeAmplitude;
