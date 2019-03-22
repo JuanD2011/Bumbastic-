@@ -1,22 +1,16 @@
 ﻿using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
 
 public class CanvasBillboard : MonoBehaviour
 {
     TextMeshProUGUI nicknameText;
-    byte playersSpawned = 0;
-
-    public TextMeshProUGUI NicknameText { private get => nicknameText; set => nicknameText = value; }
+    Player player;
 
     private void Start()
     {
-        NicknameText = GetComponentInChildren<TextMeshProUGUI>();
-    }
-
-    private void SetPlayersNickname()
-    {
-        
+        player = GetComponentInParent<Player>();
+        nicknameText = GetComponentInChildren<TextMeshProUGUI>();
+        nicknameText.text = string.Format("P{0}", player.Id + 1);
     }
 
     private void Update()
