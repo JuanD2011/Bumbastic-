@@ -4,33 +4,32 @@ using UnityEngine;
 
 public class FloorManager : MonoBehaviour
 {
-    Rigidbody[] modules;
+	Rigidbody[] modules;
 
-    Rings[] rings;
-
-
-
-    [SerializeField]
-    Transform[] colliders;
+	Rings[] rings;
 
 
-    int nRings =0;
-    int c = 0;
-    int anticipationRing;
 
-    bool anticipation=false;
+	[SerializeField]
+	Transform[] colliders;
 
-    float time = 0;
 
-    [SerializeField]
-    float dropTime, dropInterval,anticipationTime;
+	int nRings = 0;
+	int c = 0;
+	int anticipationRing;
 
-    [SerializeField]
-    Gradient colorAnticipation;
+	bool anticipation = false;
+
+	float time = 0;
+
+	[SerializeField]
+	float dropTime, dropInterval, anticipationTime;
+
+	[SerializeField]
+	Gradient colorAnticipation;
 
 
     //mientras el suelo no tenga textura
-
     Color color;
 
     //mientras el suelo no tenga textura
@@ -106,9 +105,11 @@ public class FloorManager : MonoBehaviour
 
             for (int i = 0; i < rings[anticipationRing].module.Length; i++)
             {
-                //corregir cuando se le ponga textura al suelo
-                rings[anticipationRing].module[i].gameObject.GetComponent<Renderer>().material.color = color*colorAnticipation.Evaluate(time);
-            }
+				//corregir cuando se le ponga textura al suelo
+				rings[anticipationRing].module[i].GetComponent<Renderer>().material.shader = Shader.Find("HDRP/Lit");
+				rings[anticipationRing].module[i].GetComponent<Renderer>().material.SetColor("_BaseColor", color * colorAnticipation.Evaluate(time));
+				print(":P");
+			}
 
             if (time >= 1)
             {

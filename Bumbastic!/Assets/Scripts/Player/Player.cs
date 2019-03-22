@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     public Controls Controls { get => controls; set => controls = value; }
     public GameObject Avatar { set => avatar = value; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
-    public byte Id { get => id; private set => id = value; }
+    public byte Id { get => id; set => id = value; }
 
     private void Start() => GameManager.manager.Director.stopped += LetMove;
 
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
 
     public void Throw()
     {
-        if (GameManager.manager.Bomb.transform.parent == transform)
+        if (HasBomb)
         {
             GameManager.manager.Bomb.RigidBody.AddForce(transform.forward * throwForce); 
         }
@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
         //This is when they throw the bomb
         if (bomb != null && !HasBomb)
         {
+			HasBomb = false;
             PassBomb();
         }
         //When a player touches another player
