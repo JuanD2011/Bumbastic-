@@ -3,13 +3,14 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class LvlMgr : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     [SerializeField] Slider slider;
 
     private void Start()
     {
-        MenuUI.OnCanLoadScene += LoadAsynchronously; 
+        MenuUI.OnLoadScene += LoadAsynchronously;
+        InGameCanvas.OnLoadScene += LoadAsynchronously;
     }
 
     IEnumerator LoadAsynchronously(string _sceneName)

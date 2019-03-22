@@ -7,8 +7,6 @@ public class MenuUI : MonoBehaviour
     [SerializeField] Animator canvasAnimator;
     [SerializeField] Settings settings;
 
-    public delegate IEnumerator DelLoadString(string _scene);
-    public static DelLoadString OnCanLoadScene;
 
     [SerializeField] string[] stateName;
 
@@ -16,6 +14,9 @@ public class MenuUI : MonoBehaviour
 
     public delegate void DelMenuUI(bool _canActive);
     public static DelMenuUI OnSetMatchmakingCamera;
+
+    public delegate IEnumerator DelLoadScene(string _scene);
+    public static DelLoadScene OnLoadScene;
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class MenuUI : MonoBehaviour
     #region AnimationEvents
     public void OnLoadScreenComplete()
     {
-        StartCoroutine(OnCanLoadScene?.Invoke(levelToLoad));//Lvl Manager hears it.
+        StartCoroutine(OnLoadScene?.Invoke(levelToLoad));//Lvl Manager hears it.
     }
     #endregion
 
