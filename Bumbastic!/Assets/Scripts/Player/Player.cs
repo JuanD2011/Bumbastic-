@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     public Controls Controls { get => controls; set => controls = value; }
     public GameObject Avatar { set => avatar = value; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
+    public byte Id { get => id; private set => id = value; }
 
     void Update()
     {
