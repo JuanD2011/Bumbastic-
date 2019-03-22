@@ -56,16 +56,13 @@ public class Player : MonoBehaviour
             inputAiming = new Vector2(Input.GetAxis(controls.rjoystickHorizontal), Input.GetAxis(controls.rjoystickVertical));
             Move(); 
         }
-        if (controls.rightTrigger != null)
-        {
-            if (Input.GetAxis(controls.rightTrigger) == 1f)
-            {
-				Debug.Log("Throw");
-                Throw();
-            } 
-        }
+		if (Input.GetAxis(controls.rightTrigger) > 0.8f)
+		{
+			Debug.Log("Throw");
+			Throw();
+		}
 
-        if (Input.GetKeyDown(controls.startButton))
+		if (Input.GetKeyDown(controls.startButton))
         {
             OnStartInGame?.Invoke();
         }
@@ -119,13 +116,13 @@ public class Player : MonoBehaviour
         //This is when they throw the bomb
         if (bomb != null && !HasBomb)
         {
-			HasBomb = false;
+			HasBomb = true;
             PassBomb();
         }
         //When a player touches another player
         else if (bomb != null && !HasBomb)
         {
-            other.gameObject.GetComponent<Player>().HasBomb = false;
+            other.gameObject.GetComponent<Player>().HasBomb = true;
             PassBomb();
         }
     }
