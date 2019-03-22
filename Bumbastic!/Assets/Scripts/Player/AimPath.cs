@@ -24,7 +24,7 @@ public class AimPath : MonoBehaviour
             {
                 m_LineRenderer.enabled = true;
             }
-            targetRotation = Mathf.Atan2(aimNormalized.x, aimNormalized.y) * Mathf.Rad2Deg;
+            targetRotation = -1f * Mathf.Atan2(aimNormalized.x, aimNormalized.y) * Mathf.Rad2Deg;
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, m_Player.TurnSmooth);
         }
         else
