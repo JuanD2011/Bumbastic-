@@ -69,18 +69,6 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayers()
     {
-        foreach (PlayerSettings playerSetting in inGame.playerSettings)
-        {
-            Player player = Instantiate(playerPrefab).GetComponent<Player>();
-            Players.Add(player);
-            player.Controls = playerSetting.controls;
-            player.Avatar = playerSetting.avatar;
-            player.SpawnPoint = GetSpawnPoint();
-            player.transform.position = player.SpawnPoint;
-            player.Initialize();
-        }
-        GiveBombs();
-
 		for (int i = 0; i < inGame.playerSettings.Count; i++)
 		{
 			Player player = Instantiate(playerPrefab).GetComponent<Player>();
@@ -92,6 +80,7 @@ public class GameManager : MonoBehaviour
 			player.transform.position = player.SpawnPoint;
 			player.Initialize();
 		}
+        GiveBombs();
     }
 
     public Vector3 GetSpawnPoint()
