@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Player BombHolder { get => bombHolder; set => bombHolder = value; }
     public Bomb Bomb { get => bomb; }
     public PlayableDirector Director { get => director; set => director = value; }
+    public List<Player> Players { get => players; set => players = value; }
 
     [SerializeField]
     private InGame inGame;
@@ -19,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<Transform> spawnPoints = new List<Transform>();
 
-    PlayableDirector director;
+    private PlayableDirector director;
 
     [SerializeField]
     private float minTime, maxTime;
@@ -32,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     public PowerUp powerUp;
 
+    public delegate void GameStateDelegate();
+    public static event GameStateDelegate OnGameOver;
+
     private void Awake()
     {
         if (manager == null) manager = this;
@@ -43,6 +48,19 @@ public class GameManager : MonoBehaviour
         Director = GetComponent<PlayableDirector>();
 
         SpawnPlayers();
+
+        Bomb.OnExplode += StartNewRound;
+    }
+
+    private void StartNewRound()
+    {
+        foreach (Player player in Players)
+        {
+            player.transform.position = player.SpawnPoint;
+            player.CanMove = false;
+        }
+
+        GiveBombs();
     }
 
     private void SpawnPlayers()
@@ -51,7 +69,7 @@ public class GameManager : MonoBehaviour
         foreach (PlayerSettings playerSetting in inGame.playerSettings)
         {
             Player player = Instantiate(playerPrefab).GetComponent<Player>();
-            players.Add(player);
+            Players.Add(player);
             player.Controls = playerSetting.controls;
             player.Avatar = playerSetting.avatar;
             player.SpawnPoint = GetSpawnPoint();
@@ -65,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     public Vector3 GetSpawnPoint()
     {
-        int random = Random.Range(0, spawnPoints.Count);
+        int random = UnityEngine.Random.Range(0, spawnPoints.Count);
         Vector3 spawnPos = spawnPoints[random].position;
         spawnPoints.RemoveAt(random);
         return spawnPos;
@@ -73,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void GiveBombs()
     {
-        if (players.Count > 1)
+        if (Players.Count > 1)
         {
             bummies = RandomizeBummieList();
 
@@ -91,7 +109,7 @@ public class GameManager : MonoBehaviour
             bomb.Timer = Random.Range(minTime, maxTime);
             bomb.gameObject.SetActive(true);
         }
-        else if (players.Count == 1)
+        else if (Players.Count == 1)
         {
             GameOver();
         }
@@ -99,7 +117,7 @@ public class GameManager : MonoBehaviour
 
     private List<Player> RandomizeBummieList()
     {
-        List<Player> bummies = players;
+        List<Player> bummies = Players;
         List<Player> randomBummies = new List<Player>();
 
         while (bummies.Count > 0)
@@ -114,6 +132,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        OnGameOver?.Invoke();
         Debug.Log("Game Over");
     }
 }

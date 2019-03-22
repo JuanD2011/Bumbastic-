@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Playables;
 
 public class Player : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class Player : MonoBehaviour
     #endregion
 
     private bool speedPU;
-    private bool canMove = true;
+    private bool canMove = false;
 
     private byte id;
 
@@ -39,6 +41,10 @@ public class Player : MonoBehaviour
     public GameObject Avatar { set => avatar = value; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
     public byte Id { get => id; private set => id = value; }
+
+    private void Start() => GameManager.manager.Director.stopped += LetMove;
+
+    private void LetMove(PlayableDirector obj) => canMove = true;
 
     void Update()
     {
@@ -86,7 +92,6 @@ public class Player : MonoBehaviour
         player = Instantiate(avatar, transform.position, transform.rotation);
         player.transform.SetParent(transform);
         m_Animator = GetComponentInChildren<Animator>();
-        canMove = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -125,5 +130,10 @@ public class Player : MonoBehaviour
         Debug.Log(GameManager.manager.BombHolder.transform.GetChild(1).name);
         GameManager.manager.Bomb.transform.position = GameManager.manager.BombHolder.transform.GetChild(1).transform.position;
         GameManager.manager.Bomb.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.manager.Players.Remove(this);
     }
 }

@@ -18,6 +18,9 @@ public class Bomb : MonoBehaviour
     private AnimationCurve animationCurve = new AnimationCurve();
     private float speed = 4f;
 
+    public delegate void BombDelegate();
+    public static BombDelegate OnExplode;
+
     private void Start()
     {
         m_rigidBody = GetComponent<Rigidbody>();
@@ -55,8 +58,11 @@ public class Bomb : MonoBehaviour
         exploded = true;
         CameraShake.instance.OnShake(0.4f, 6f, 1.2f);
         RigidBody.constraints = RigidbodyConstraints.None;
+        GameObject parent = transform.parent.gameObject;
         transform.SetParent(null);
+        parent.SetActive(false);
         gameObject.SetActive(false);
+        OnExplode?.Invoke();
     }
 
     private void OnCollisionEnter(Collision collision)
