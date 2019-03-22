@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -75,7 +74,6 @@ public class GameManager : MonoBehaviour
             player.SpawnPoint = GetSpawnPoint();
             player.transform.position = player.SpawnPoint;
             player.Initialize();
-            Debug.Log("Hol");
         }
 
         GiveBombs();
@@ -83,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     public Vector3 GetSpawnPoint()
     {
-        int random = UnityEngine.Random.Range(0, spawnPoints.Count);
+        int random = Random.Range(0, spawnPoints.Count);
         Vector3 spawnPos = spawnPoints[random].position;
         spawnPoints.RemoveAt(random);
         return spawnPos;
