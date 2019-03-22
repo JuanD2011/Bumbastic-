@@ -4,7 +4,6 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "InGame",menuName = "InGame")]
 public class InGame : ScriptableObject
 {
-    public int playersJoined = 1;
     public Transform posDropPU;
     public int maxPlayers;
     public List<PlayerSettings> playerSettings = new List<PlayerSettings>();

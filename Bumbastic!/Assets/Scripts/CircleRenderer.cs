@@ -2,9 +2,10 @@
 
 public class CircleRenderer : MonoBehaviour
 {
-    [SerializeField] int vertexCount = 20;
+    [SerializeField] int vertexCount = 40;
     [SerializeField] float lineWidth = 0.2f;
     [SerializeField] float radius;
+    [SerializeField] bool circleFillScreen;
 
     private LineRenderer mLineRenderer;
     private Player player;
@@ -13,23 +14,26 @@ public class CircleRenderer : MonoBehaviour
     {
         mLineRenderer = GetComponent<LineRenderer>();
         player = GetComponentInParent<Player>();
+        Debug.Log(player.Id);
+
+        mLineRenderer.material.shader = Shader.Find("HDRP/Lit");
 
         switch (player.Id)
         {
             case 0:
-                mLineRenderer.startColor = Color.red;
+                mLineRenderer.material.SetColor("_BaseColor", Color.red);
                 break;
             case 1:
-                mLineRenderer.startColor = Color.green;
+                mLineRenderer.material.SetColor("_BaseColor", Color.green);
                 break;
             case 2:
-                mLineRenderer.startColor = Color.blue;
+                mLineRenderer.material.SetColor("_BaseColor", Color.blue);
                 break;
             case 3:
-                mLineRenderer.startColor = Color.yellow;
+                mLineRenderer.material.SetColor("_BaseColor", Color.yellow);
                 break;
             default:
-                mLineRenderer.startColor = Color.cyan;
+                mLineRenderer.material.SetColor("_BaseColor", Color.cyan);
                 break;
         }
         SetCircle();
@@ -41,8 +45,11 @@ public class CircleRenderer : MonoBehaviour
             mLineRenderer.enabled = true;
         mLineRenderer.widthMultiplier = lineWidth;
 
-        radius = Vector3.Distance(Camera.main.ScreenToWorldPoint(new Vector3(0f, Camera.main.pixelRect.yMax, 0f)),
-            Camera.main.ScreenToWorldPoint(new Vector3(0f, Camera.main.pixelRect.yMin, 0f))) * 0.5f - lineWidth;
+        if (circleFillScreen)
+        {
+            radius = Vector3.Distance(Camera.main.ScreenToWorldPoint(new Vector3(0f, Camera.main.pixelRect.yMax, 0f)),
+                Camera.main.ScreenToWorldPoint(new Vector3(0f, Camera.main.pixelRect.yMin, 0f))) * 0.5f - lineWidth;
+        }
 
         float deltaTheta = (2f * Mathf.PI) / vertexCount;
         float theta = 0f;

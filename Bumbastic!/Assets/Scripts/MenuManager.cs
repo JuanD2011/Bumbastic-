@@ -61,6 +61,14 @@ public class MenuManager : MonoBehaviour
 
             countdownText.text = string.Format("{0}", Mathf.RoundToInt(timer));
 
+            if (Mathf.RoundToInt(timer) == 0)
+            {
+                if (countdownText.text != "Go!")
+                {
+                    countdownText.text = string.Format("Go!");
+                }
+            }
+
             if (timer <= 0f)
             {
                 if (countdownText.text != "")
