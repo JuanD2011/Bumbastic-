@@ -17,7 +17,7 @@ public class Memento : MonoBehaviour
 
     string resourceSettings = "ScriptableObjects/Settings";
 
-    public bool ExistsDirectory()
+    private bool ExistsDirectory()
     {
         return Directory.Exists(Application.persistentDataPath + "/game_save");
     }
