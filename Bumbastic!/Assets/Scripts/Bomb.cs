@@ -69,6 +69,9 @@ public class Bomb : MonoBehaviour
     {
         if (collision.transform.tag == "Floor")
         {
+            GameManager.manager.Bomb.transform.SetParent(GameManager.manager.BombHolder.transform);
+            GameManager.manager.Bomb.transform.position = GameManager.manager.BombHolder.transform.GetChild(1).transform.position;
+            GameManager.manager.BombHolder.HasBomb = true;
             RigidBody.constraints = RigidbodyConstraints.FreezeAll;
         }
     }

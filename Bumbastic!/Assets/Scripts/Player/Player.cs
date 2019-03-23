@@ -66,17 +66,8 @@ public class Player : MonoBehaviour
         {
             OnStartInGame?.Invoke();
         }
-
     }
 
-    public void Throw()
-    {
-        if (HasBomb)
-        {
-            GameManager.manager.Bomb.transform.parent = null;
-            GameManager.manager.Bomb.RigidBody.AddForce(transform.forward * throwForce); 
-        }
-    }
 
     private void Move()
     {
@@ -101,6 +92,16 @@ public class Player : MonoBehaviour
         m_Animator = GetComponentInChildren<Animator>();
     }
 
+    public void Throw()
+    {
+        if (HasBomb)
+        {
+            hasBomb = false;
+            GameManager.manager.Bomb.transform.parent = null;
+            GameManager.manager.Bomb.RigidBody.AddForce(transform.forward * throwForce); 
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<PowerUp>() != null && !HasBomb && GetComponent<PowerUp>() == null)
@@ -113,18 +114,21 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Player player = other.gameObject.GetComponent<Player>();
         Bomb bomb = other.gameObject.GetComponent<Bomb>();
-        //This is when they throw the bomb
-        if (bomb != null && !HasBomb)
+
+        if (!HasBomb)
         {
-			HasBomb = true;
-            PassBomb();
-        }
-        //When a player touches another player
-        else if (bomb != null && !HasBomb)
-        {
-            other.gameObject.GetComponent<Player>().HasBomb = true;
-            PassBomb();
+            if (player.HasBomb && player != null)
+            {
+                player.HasBomb = false;
+                PassBomb();
+            }
+            else if (bomb != null)
+            {
+                GameManager.manager.BombHolder.HasBomb = false;
+                PassBomb();
+            }
         }
     }
 
