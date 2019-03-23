@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class MenuUI : MonoBehaviour
@@ -7,16 +6,17 @@ public class MenuUI : MonoBehaviour
     [SerializeField] Animator canvasAnimator;
     [SerializeField] Settings settings;
 
-
     [SerializeField] string[] stateName;
 
     private string levelToLoad;
 
     public delegate void DelMenuUI(bool _canActive);
-    public static DelMenuUI OnSetMatchmakingCamera;
+    public DelMenuUI OnSetMatchmakingCamera;
 
     public delegate IEnumerator DelLoadScene(string _scene);
     public static DelLoadScene OnLoadScene;
+
+    public static bool isMatchmaking = false;
 
     private void Start()
     {
@@ -50,8 +50,9 @@ public class MenuUI : MonoBehaviour
 
     public void PlayPanel(bool _bool)
     {
+        isMatchmaking = _bool;
         canvasAnimator.SetBool("Play",_bool);
-        OnSetMatchmakingCamera(_bool);
+        OnSetMatchmakingCamera?.Invoke(_bool);//MenuCamManager
     }
 
     public void ConfigurationPanel(bool _bool)

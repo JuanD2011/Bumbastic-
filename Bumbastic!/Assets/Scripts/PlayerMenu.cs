@@ -34,16 +34,19 @@ public class PlayerMenu : MonoBehaviour
                 Debug.Log(controls.startButton);
                 OnStartButton?.Invoke();
 
-                if (!ready)
+                if (MenuUI.isMatchmaking)
                 {
-                    ready = true;
-                    OnReady?.Invoke(id);//MenuManager hears it
-                }
-                else if (ready)
-                {
-                    ready = false;
-                    OnNotReady?.Invoke(id);//MenuManager hears it
-                    OnBackButton?.Invoke();//MenuUI hears it
+                    if (!ready)
+                    {
+                        ready = true;
+                        OnReady?.Invoke(id);//MenuManager hears it
+                    }
+                    else if (ready)
+                    {
+                        ready = false;
+                        OnNotReady?.Invoke(id);//MenuManager hears it
+                        OnBackButton?.Invoke();//MenuUI hears it
+                    } 
                 }
             }
 

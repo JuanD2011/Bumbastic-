@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MenuCamManager : MonoBehaviour
 {
@@ -8,12 +7,13 @@ public class MenuCamManager : MonoBehaviour
     [SerializeField] Transform axis;
     [SerializeField] GameObject principalCamera;
     [SerializeField] GameObject matchmakingCamera;
+    [SerializeField] MenuUI menuUI;
 
     float elapsedTime = 0f;
 
     private void Start()
     {
-        MenuUI.OnSetMatchmakingCamera += SetMatchmakingCamera;
+        menuUI.OnSetMatchmakingCamera += SetMatchmakingCamera;
     }
 
     private void SetMatchmakingCamera(bool _bool)
