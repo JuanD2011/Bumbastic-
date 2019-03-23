@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
     {
         if (HasBomb)
         {
+            GameManager.manager.Bomb.transform.parent = null;
             GameManager.manager.Bomb.RigidBody.AddForce(transform.forward * throwForce); 
         }
     }
