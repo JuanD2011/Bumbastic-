@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Animator))]
@@ -56,15 +57,15 @@ public class Bomb : MonoBehaviour
 
     void Explode()
     {
+        CameraShake.instance.OnShake?.Invoke(0.4f, 6f, 1.2f);
+        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
+
         Exploded = true;
         RigidBody.constraints = RigidbodyConstraints.None;
         GameObject parent = transform.parent.gameObject;
+        OnExplode?.Invoke(parent.GetComponent<Player>());//ParticleModification hears it
         transform.SetParent(null);
-        OnExplode?.Invoke(parent.GetComponent<Player>());
-        gameObject.SetActive(false);
-
-        CameraShake.instance.OnShake(0.4f, 6f, 1.2f);
-        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
+        //gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)

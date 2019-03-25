@@ -6,8 +6,6 @@ public class ParticleModication : MonoBehaviour {
     [SerializeField] Gradient gradient;
     [SerializeField] float duration, radius, velocity, lightIntensity, size;
     [SerializeField] AnimationCurve curve;
-    [SerializeField] AudioClip audioClip;
-    [SerializeField] AudioSource audioSource;
 
     ParticleSystem[] particleSystems;
     ParticleSystem.ShapeModule[] shapeModules;
@@ -41,25 +39,24 @@ public class ParticleModication : MonoBehaviour {
 
         light = GetComponentInChildren<Light>();
         realTime = mainModules[0].duration + mainModules[0].startLifetime.Evaluate(1);
+
+        Bomb.OnExplode += SetParticles;
 	}
 
-    void Update()
+    private void SetParticles(Player _player)
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            StartCoroutine(StartParticle());
-        }
-	}
+        StartCoroutine(ExplosionParticles());
+    }
 
-    IEnumerator StartParticle()
+    IEnumerator ExplosionParticles()
     {
+        AudioSource m_audioSource = AudioManager.instance.CurrentAudioSource;
         float elapsedTime = 0f;
         light.enabled = true;
-        audioSource.PlayOneShot(audioClip);
-        float volume = audioSource.volume;
-        float pitch = audioSource.pitch;
+        float volume = m_audioSource.volume;
+        float pitch = m_audioSource.pitch;
 
-        foreach (var item in particleSystems)
+        foreach (ParticleSystem item in particleSystems)
         {
             item.Play();
             yield return null;
@@ -71,8 +68,8 @@ public class ParticleModication : MonoBehaviour {
 
             light.intensity = realValue * lightIntensity;
             light.color = gradient.Evaluate(elapsedTime / duration);
-            audioSource.pitch = realValue;
-            audioSource.volume = realValue;
+            m_audioSource.pitch = realValue;
+            m_audioSource.volume = realValue;
 
             if (modifySize)
             {
@@ -86,12 +83,12 @@ public class ParticleModication : MonoBehaviour {
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        if (audioSource.isPlaying)
+        if (m_audioSource.isPlaying)
         {
-            audioSource.Stop();
+            m_audioSource.Stop();
         }
-        audioSource.pitch = pitch;
-        audioSource.volume = volume;
+        m_audioSource.pitch = pitch;
+        m_audioSource.volume = volume;
         light.enabled = false;
     }
 }

@@ -11,12 +11,19 @@ public class AudioManager : MonoBehaviour
 
     [Header("Number of AudioSources")]
     [Tooltip("Number of AudioSource to be instantiated")]
-    [Range(2,10)]
+    [Range(2, 10)]
     [SerializeField] int audioSourcesAmount;
 
     [SerializeField] GameObject audioSourceTemplate;
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] List<AudioSource> audioSources;
+
+    AudioSource currentAudioSource;
+
+    public AudioSource CurrentAudioSource
+    {
+        get { return currentAudioSource; }
+    }
 
     private void Awake()
     {
@@ -63,15 +70,8 @@ public class AudioManager : MonoBehaviour
     {
         if (GetAudioSource(_audioType) != null)
         {
-            GetAudioSource(_audioType).PlayOneShot(_clipToPlay);
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayAudio(audioClips.bomb, AudioType.SFx);
+            currentAudioSource = GetAudioSource(_audioType);
+            currentAudioSource.PlayOneShot(_clipToPlay);
         }
     }
 
