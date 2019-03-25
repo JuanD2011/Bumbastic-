@@ -16,7 +16,8 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] GameObject audioSourceTemplate;
     [SerializeField] AudioMixer audioMixer;
-    [SerializeField] List<AudioSource> audioSources;
+
+    List<AudioSource> audioSources;
 
     AudioSource currentAudioSource;
 
