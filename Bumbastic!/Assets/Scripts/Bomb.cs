@@ -57,12 +57,14 @@ public class Bomb : MonoBehaviour
     void Explode()
     {
         Exploded = true;
-        CameraShake.instance.OnShake(0.4f, 6f, 1.2f);
         RigidBody.constraints = RigidbodyConstraints.None;
         GameObject parent = transform.parent.gameObject;
         transform.SetParent(null);
         OnExplode?.Invoke(parent.GetComponent<Player>());
         gameObject.SetActive(false);
+
+        CameraShake.instance.OnShake(0.4f, 6f, 1.2f);
+        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
     }
 
     private void OnCollisionEnter(Collision collision)

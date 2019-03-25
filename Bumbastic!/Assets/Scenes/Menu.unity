@@ -2952,6 +2952,7 @@ GameObject:
   - component: {fileID: 431491409}
   - component: {fileID: 431491412}
   - component: {fileID: 431491411}
+  - component: {fileID: 431491413}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3020,6 +3021,24 @@ MonoBehaviour:
   countdownText: {fileID: 1066795180}
   playerMenuPrefab: {fileID: 6489573870341292119, guid: f36bde14ecd43834b99a7a979b3d2db1,
     type: 3}
+--- !u!114 &431491413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431491408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fb7dd9993f9344fb995b23d3e624a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips: {fileID: 11400000, guid: e3c3d6b5205e625479213ec54526372a, type: 2}
+  audioSourcesAmount: 1
+  audioSourceTemplate: {fileID: 1342834441763172139, guid: 75b276934fd45b54e81d9877cee9e8be,
+    type: 3}
+  audioMixer: {fileID: 24100000, guid: 1d2552f71ff182f43bf6a2aaab3cd88b, type: 2}
+  audioSources: []
 --- !u!1001 &433386985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10525,7 +10544,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965420920}
-  m_LocalRotation: {x: 0.1362192, y: 0.3872899, z: -0.057974316, w: 0.9099944}
+  m_LocalRotation: {x: 0.1362192, y: 0.38728994, z: -0.057974324, w: 0.9099944}
   m_LocalPosition: {x: -5.53, y: 4.03, z: -12.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

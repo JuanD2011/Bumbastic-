@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public enum AudioType
 {
-    music,
-    sFx
+    Music,
+    SFx
 };
 
 public class AudioMute : MonoBehaviour
@@ -32,7 +32,7 @@ public class AudioMute : MonoBehaviour
     {
         switch (mType)
         {
-            case AudioType.music:
+            case AudioType.Music:
                 if (!settings.isMusicActive)
                 {
                     image.color = disabledColor;
@@ -40,7 +40,7 @@ public class AudioMute : MonoBehaviour
                 }
                 mVolumeSlider.value = settings.musicSlider;
                 break;
-            case AudioType.sFx:
+            case AudioType.SFx:
                 if (!settings.isSfxActive)
                 {
                     image.color = disabledColor;
@@ -61,14 +61,14 @@ public class AudioMute : MonoBehaviour
     {
         switch (mType)  
         {
-            case AudioType.music:
+            case AudioType.Music:
                 if (settings.isMusicActive)
                 {
                     audioMixer.SetFloat("MusicVol", _vol);
                 }
                 settings.musicSlider = _vol;
                 break;
-            case AudioType.sFx:
+            case AudioType.SFx:
                 if (settings.isSfxActive)
                 {
                     audioMixer.SetFloat("SFxVol", _vol);
@@ -88,7 +88,7 @@ public class AudioMute : MonoBehaviour
         float value = 0f;
         switch (mType)   
         {
-            case AudioType.music:
+            case AudioType.Music:
                 audioMixer.GetFloat("MusicVol", out value);
                 if (value > mutedVolume)
                 {
@@ -103,7 +103,7 @@ public class AudioMute : MonoBehaviour
                     settings.isMusicActive = true;
                 }
                 break;
-            case AudioType.sFx:
+            case AudioType.SFx:
                 audioMixer.GetFloat("SFxVol", out value);
                 if (value > mutedVolume)
                 {
