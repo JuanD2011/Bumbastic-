@@ -67,11 +67,19 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayAudio(audioClips.bomb, AudioType.SFx);
+        }
+    }
+
     private AudioSource GetAudioSource(AudioType _audioType)
     {
         for (int i = 0; i < audioSources.Count; i++)
         {
-            if (!audioSources[i].isPlaying)
+            if (audioSources[i].volume == 1 && audioSources[i].pitch == 1)
             {
                 if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
                 {
