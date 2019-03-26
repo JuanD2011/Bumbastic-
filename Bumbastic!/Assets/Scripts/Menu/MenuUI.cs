@@ -11,7 +11,7 @@ public class MenuUI : MonoBehaviour
     private string levelToLoad;
 
     public delegate void DelMenuUI(bool _canActive);
-    public DelMenuUI OnSetMatchmakingCamera;
+    public DelMenuUI OnMatchmaking;
 
     public delegate IEnumerator DelLoadScene(string _scene);
     public static DelLoadScene OnLoadScene;
@@ -48,11 +48,11 @@ public class MenuUI : MonoBehaviour
         canvasAnimator.SetTrigger("StartGame");
     }
 
-    public void PlayPanel(bool _bool)
+    public void MatchmakingPanel(bool _bool)
     {
         isMatchmaking = _bool;
         canvasAnimator.SetBool("Play",_bool);
-        OnSetMatchmakingCamera?.Invoke(_bool);//MenuCamManager
+        OnMatchmaking?.Invoke(_bool);//MenuCamManager
     }
 
     public void ConfigurationPanel(bool _bool)
@@ -86,8 +86,8 @@ public class MenuUI : MonoBehaviour
         }
         else if (stateInfo.IsName(stateName[2]) || stateInfo.IsName(stateName[6]))//Matchmaking
         {
-            PlayPanel(false);
-            OnSetMatchmakingCamera?.Invoke(false);//MenuCamManager hears it.
+            MatchmakingPanel(false);
+            OnMatchmaking?.Invoke(false);//MenuCamManager hears it.
         }
         else if (stateInfo.IsName(stateName[3]))//Credits
         {
