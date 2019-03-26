@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
 
     AudioSource currentAudioSource;
 
+    [SerializeField] AudioMute[] audioMutes;
+
     public AudioSource CurrentAudioSource
     {
         get { return currentAudioSource; }
@@ -33,8 +35,19 @@ public class AudioManager : MonoBehaviour
         else Destroy(this);
 
         CreateAudioSources(audioSourcesAmount);
+    }
 
+    private void Start()
+    {
         PlayAudio(audioClips.inGameMusic, AudioType.Music);
+
+        if (audioMutes != null)
+        {
+            foreach (AudioMute item in audioMutes)
+            {
+                item.Init();
+            } 
+        }
     }
 
     private void CreateAudioSources(int audioSourcesAmount)

@@ -23,12 +23,7 @@ public class AudioMute : MonoBehaviour
     [SerializeField] Image image;
     [SerializeField] Slider mVolumeSlider;
 
-    private void Start()
-    {
-        Init();
-    }
-
-    private void Init()
+    public void Init()
     {
         switch (mType)
         {
