@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73b36197232fe184aa1673369ba12236, type: 3}
   m_Name: AudioClips
   m_EditorClassIdentifier: 
+  inGameMusic: {fileID: 8300000, guid: 14d0bcd4158491545a46ab4bae545ea7, type: 3}
   bomb: {fileID: 8300000, guid: 954ba09f760448547a16f4923a278dd8, type: 3}

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class AudioManager : MonoBehaviour
         else Destroy(this);
 
         CreateAudioSources(audioSourcesAmount);
+
+        PlayAudio(audioClips.inGameMusic, AudioType.Music);
     }
 
     private void CreateAudioSources(int audioSourcesAmount)
@@ -46,6 +49,7 @@ public class AudioManager : MonoBehaviour
                 gameObject.name = string.Format("{0} AudioSource_{1}", AudioType.Music.ToString(), i);
                 AudioSource audioSourceCreated = gameObject.GetComponent<AudioSource>();
                 audioSourceCreated.outputAudioMixerGroup = audioMixer.FindMatchingGroups(AudioType.Music.ToString())[0];
+                audioSourceCreated.loop = true;
 
                 if (audioSourceCreated != null)
                 {
@@ -72,21 +76,74 @@ public class AudioManager : MonoBehaviour
         if (GetAudioSource(_audioType) != null)
         {
             currentAudioSource = GetAudioSource(_audioType);
-            currentAudioSource.PlayOneShot(_clipToPlay);
+
+            switch (_audioType) 
+            {
+                case AudioType.Music:
+                    if (!currentAudioSource.isPlaying)
+                    {
+                        currentAudioSource.clip = _clipToPlay;
+                        currentAudioSource.Play();
+                    }
+                    else
+                    {
+                        StartCoroutine(ChangeMusicTracks(currentAudioSource, _clipToPlay));
+                    }
+                    break;
+                case AudioType.SFx:
+                    currentAudioSource.PlayOneShot(_clipToPlay);
+                    break;
+                default:
+                    currentAudioSource.PlayOneShot(_clipToPlay);
+                    break;
+            }
         }
+    }
+
+    private IEnumerator ChangeMusicTracks(AudioSource _currentAudioSource, AudioClip _newMusicTrack)
+    {
+        while (_currentAudioSource.volume > 0.05f)
+        {
+            _currentAudioSource.volume -= Time.deltaTime;
+            yield return null;
+        }
+
+        _currentAudioSource.volume = 0f;
+        _currentAudioSource.clip = _newMusicTrack;
+
+        while (_currentAudioSource.volume < 0.9f)
+        {
+            _currentAudioSource.volume += Time.deltaTime;
+            yield return null;
+        }
+        _currentAudioSource.volume = 1f;
     }
 
     private AudioSource GetAudioSource(AudioType _audioType)
     {
         for (int i = 0; i < audioSources.Count; i++)
         {
-            if (audioSources[i].volume == 1 && audioSources[i].pitch == 1)
+            switch (_audioType) 
             {
-                if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
-                {
-                    return audioSources[i];
+                case AudioType.Music:
+                    if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                    {
+                        return audioSources[i];
+                        break;
+                    }
                     break;
-                }
+                case AudioType.SFx:
+                    if (audioSources[i].volume == 1 && audioSources[i].pitch == 1)
+                    {
+                        if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                        {
+                            return audioSources[i];
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
