@@ -57,8 +57,12 @@ public class Bomb : MonoBehaviour
 
     void Explode()
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
+        }
+
         CameraShake.instance.OnShake?.Invoke(0.4f, 6f, 1.2f);
-        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
 
         Exploded = true;
         RigidBody.constraints = RigidbodyConstraints.None;
