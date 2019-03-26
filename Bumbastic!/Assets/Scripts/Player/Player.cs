@@ -120,10 +120,13 @@ public class Player : MonoBehaviour
 
         if (!HasBomb)
         {
-            if (player.HasBomb && player != null)
+            if (player != null)
             {
-                player.HasBomb = false;
-                PassBomb();
+                if (player.HasBomb)
+                {
+                    player.HasBomb = false;
+                    PassBomb();
+                } 
             }
             else if (bomb != null)
             {
