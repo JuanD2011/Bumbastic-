@@ -130,7 +130,10 @@ public class Player : MonoBehaviour
             }
             else if (bomb != null)
             {
-                GameManager.manager.BombHolder.HasBomb = false;
+                if (GameManager.manager.BombHolder != null)
+                {
+                    GameManager.manager.BombHolder.HasBomb = false; 
+                }
                 PassBomb();
             }
         }
