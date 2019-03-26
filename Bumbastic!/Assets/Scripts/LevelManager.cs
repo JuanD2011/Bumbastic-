@@ -24,4 +24,9 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
 }
