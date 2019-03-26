@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inGameMusic: {fileID: 8300000, guid: 14d0bcd4158491545a46ab4bae545ea7, type: 3}
   bomb: {fileID: 8300000, guid: 954ba09f760448547a16f4923a278dd8, type: 3}
+  buttonDefault: {fileID: 8300000, guid: c42943767823d654fa83a5d3dc1eec07, type: 3}
+  buttonBack: {fileID: 8300000, guid: ff2f54b913b73224a87b8e7b045176c5, type: 3}

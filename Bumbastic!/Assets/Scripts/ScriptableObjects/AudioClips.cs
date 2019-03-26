@@ -8,9 +8,20 @@ public class AudioClips : ScriptableObject
 
     //SFx
     public AudioClip bomb;
+    public AudioClip buttonDefault, buttonBack;
 
-    public void Button(bool _bool)
+
+    /// <summary>
+    /// Method called by buttons
+    /// </summary>
+    /// <param name="_isBack"></param>
+    public void SoundButton(bool _isBack)
     {
-        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
+        if (_isBack)
+        {
+            AudioManager.instance.PlayAudio(buttonBack, AudioType.SFx);
+        }
+        else
+            AudioManager.instance.PlayAudio(buttonDefault, AudioType.SFx);
     }
 }

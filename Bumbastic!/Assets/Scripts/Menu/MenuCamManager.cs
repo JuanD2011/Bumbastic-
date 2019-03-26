@@ -2,14 +2,15 @@
 
 public class MenuCamManager : MonoBehaviour
 {
-    [SerializeField] float vel;
-
     [SerializeField] Transform axis;
     [SerializeField] GameObject principalCamera;
     [SerializeField] GameObject matchmakingCamera;
     [SerializeField] MenuUI menuUI;
 
     float elapsedTime = 0f;
+
+    [SerializeField] float angularVel;
+    [SerializeField] float amplitude;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class MenuCamManager : MonoBehaviour
         if (principalCamera.activeInHierarchy && !matchmakingCamera.activeInHierarchy)
         {
             elapsedTime += Time.deltaTime;
-            axis.eulerAngles = new Vector3(0, elapsedTime * vel, 0);
+            axis.eulerAngles = new Vector3(0, amplitude * Mathf.Sin(angularVel * elapsedTime), 0);
         }
     }
 }

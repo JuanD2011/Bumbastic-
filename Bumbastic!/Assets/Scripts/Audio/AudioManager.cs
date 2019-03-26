@@ -86,7 +86,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAudio(AudioClip _clipToPlay, AudioType _audioType)
     {
-        if (GetAudioSource(_audioType) != null)
+        if (GetAudioSource(_audioType) != null && _clipToPlay != null)
         {
             currentAudioSource = GetAudioSource(_audioType);
 
@@ -97,10 +97,11 @@ public class AudioManager : MonoBehaviour
                     {
                         currentAudioSource.clip = _clipToPlay;
                         currentAudioSource.Play();
+                        StartCoroutine(MusicTrack(currentAudioSource));
                     }
                     else
                     {
-                        StartCoroutine(ChangeMusicTracks(currentAudioSource, _clipToPlay));
+                        StartCoroutine(MusicTrack(currentAudioSource, _clipToPlay));
                     }
                     break;
                 case AudioType.SFx:
@@ -113,7 +114,31 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ChangeMusicTracks(AudioSource _currentAudioSource, AudioClip _newMusicTrack)
+    /// <summary>
+    /// Init the music with fade in
+    /// </summary>
+    /// <param name="_currentAudioSource"></param>
+    /// <returns></returns>
+    private IEnumerator MusicTrack(AudioSource _currentAudioSource)
+    {
+        _currentAudioSource.volume = 0f;
+
+        while (_currentAudioSource.volume < 0.9f)
+        {
+            _currentAudioSource.volume += Time.deltaTime;
+            yield return null;
+        }
+
+        _currentAudioSource.volume = 1f;
+    }
+
+    /// <summary>
+    /// Change the current music to a new one
+    /// </summary>
+    /// <param name="_currentAudioSource"></param>
+    /// <param name="_newMusicTrack"></param>
+    /// <returns></returns>
+    private IEnumerator MusicTrack(AudioSource _currentAudioSource, AudioClip _newMusicTrack)
     {
         while (_currentAudioSource.volume > 0.05f)
         {
