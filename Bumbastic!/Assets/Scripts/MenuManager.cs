@@ -52,14 +52,14 @@ public class MenuManager : MonoBehaviour
 
         PlayerMenu.OnReady += PlayersReady;
         PlayerMenu.OnNotReady += PlayerNotReady;
-        MenuUI.OnMatchmaking += SetUpScene;
+        MenuUI.OnMatchmaking += SetUpMatchMakingTexts;
     }
 
-    private void SetUpScene(bool _canActive)
+    private void SetUpMatchMakingTexts(bool _canActive)
     {
-        foreach (TextMeshProUGUI text in texts)
+        for (int i = 0; i < players.Count; i++)
         {
-            text.enabled = _canActive;
+            texts[i].enabled = _canActive;
         }
     }
 
