@@ -20,6 +20,7 @@ public class MenuUI : MonoBehaviour
     private void Awake()
     {
         OnMatchmaking = null;
+        OnLoadScene = null;
     }
     private void Start()
     {

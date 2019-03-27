@@ -12,6 +12,11 @@ public class InGameCanvas : MonoBehaviour
 
     bool isEndPanelActive = false;
 
+    private void Awake()
+    {
+        OnLoadScene = null;
+    }
+
     void Start()
     {
         m_Animator = GetComponent<Animator>();

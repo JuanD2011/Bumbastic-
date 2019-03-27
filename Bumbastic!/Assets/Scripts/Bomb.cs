@@ -23,6 +23,11 @@ public class Bomb : MonoBehaviour
     public delegate void BombDelegate(Player _player);
     public static BombDelegate OnExplode;
 
+    private void Awake()
+    {
+        OnExplode = null;
+    }
+
     private void Start()
     {
         m_rigidBody = GetComponent<Rigidbody>();

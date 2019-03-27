@@ -10,7 +10,6 @@ public class AudioClips : ScriptableObject
     public AudioClip bomb;
     public AudioClip buttonDefault, buttonBack, buttonSelection;
 
-
     /// <summary>
     /// Method called by buttons
     /// </summary>
