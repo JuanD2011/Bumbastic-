@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     [Header("Number of AudioSources")]
     [Tooltip("Number of AudioSource to be instantiated")]
     [Range(2, 10)]
-    [SerializeField] int audioSourcesAmount;
+    [SerializeField] int audioSourcesAmount = 2;
 
     [SerializeField] GameObject audioSourceTemplate;
     [SerializeField] AudioMixer audioMixer;
