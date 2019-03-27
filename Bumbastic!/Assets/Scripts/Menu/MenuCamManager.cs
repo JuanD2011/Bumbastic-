@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuCamManager : MonoBehaviour
 {
@@ -24,11 +23,6 @@ public class MenuCamManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene(1);
-        }
-
         if (principalCamera.activeInHierarchy && !matchmakingCamera.activeInHierarchy)
         {
             elapsedTime += Time.deltaTime;

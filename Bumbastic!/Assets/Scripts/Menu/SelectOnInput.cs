@@ -8,11 +8,6 @@ public class SelectOnInput : MonoBehaviour
 
     private bool buttonSelected;
 
-    private void Start()
-    {
-        
-    }
-
     private void Move()
     {
         if (buttonSelected == false)

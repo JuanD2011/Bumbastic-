@@ -8,7 +8,7 @@ public class AudioClips : ScriptableObject
 
     //SFx
     public AudioClip bomb;
-    public AudioClip buttonDefault, buttonBack;
+    public AudioClip buttonDefault, buttonBack, buttonSelection;
 
 
     /// <summary>

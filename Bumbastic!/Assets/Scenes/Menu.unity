@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.2314026, g: 0.26370257, b: 0.2441858, a: 1}
+  m_IndirectSpecularColor: {r: 0.23151374, g: 0.263888, b: 0.24435423, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6020,7 +6020,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 465876647}
   m_HandleRect: {fileID: 1871031547}
   m_Direction: 0
-  m_MinValue: -80
+  m_MinValue: -48
   m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
@@ -9839,7 +9839,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 69828117}
   m_HandleRect: {fileID: 2048440900}
   m_Direction: 0
-  m_MinValue: -80
+  m_MinValue: -48
   m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
@@ -10463,7 +10463,7 @@ MonoBehaviour:
   axis: {fileID: 1554308924}
   principalCamera: {fileID: 1965420920}
   matchmakingCamera: {fileID: 856167797}
-  angularVel: 0.2
+  angularVel: 0.05
   amplitude: 45
 --- !u!1001 &1940048925
 PrefabInstance:
