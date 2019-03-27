@@ -24,6 +24,10 @@ public class PlayerMenu : MonoBehaviour
     [SerializeField]
     private GameObject avatar;
 
+    private void Start()
+    {
+        
+    }
     private void Update()
     {
         if (controls.aButton != null)

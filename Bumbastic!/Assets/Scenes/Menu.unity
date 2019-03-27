@@ -1587,7 +1587,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 938795976}
-        m_MethodName: PlayPanel
+        m_MethodName: MatchmakingPanel
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10463,7 +10463,6 @@ MonoBehaviour:
   axis: {fileID: 1554308924}
   principalCamera: {fileID: 1965420920}
   matchmakingCamera: {fileID: 856167797}
-  menuUI: {fileID: 938795976}
   angularVel: 0.2
   amplitude: 45
 --- !u!1001 &1940048925
@@ -11507,7 +11506,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 938795976}
-        m_MethodName: PlayPanel
+        m_MethodName: MatchmakingPanel
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

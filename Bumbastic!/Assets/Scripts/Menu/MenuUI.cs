@@ -11,15 +11,19 @@ public class MenuUI : MonoBehaviour
     private string levelToLoad;
 
     public delegate void DelMenuUI(bool _canActive);
-    public DelMenuUI OnMatchmaking;
+    public static DelMenuUI OnMatchmaking;
 
     public delegate IEnumerator DelLoadScene(string _scene);
     public static DelLoadScene OnLoadScene;
 
     public static bool isMatchmaking = false;
-
+    private void Awake()
+    {
+        OnMatchmaking = null;
+    }
     private void Start()
     {
+
         PlayerMenu.OnBackButton += BackButton;
         MenuManager.menu.OnStartGame += LoadingScreen;
         MenuManager.menu.OnCountdown += Countdown;

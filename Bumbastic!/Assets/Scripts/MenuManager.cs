@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class MenuManager : MonoBehaviour
 {
@@ -51,6 +52,15 @@ public class MenuManager : MonoBehaviour
 
         PlayerMenu.OnReady += PlayersReady;
         PlayerMenu.OnNotReady += PlayerNotReady;
+        MenuUI.OnMatchmaking += SetUpScene;
+    }
+
+    private void SetUpScene(bool _canActive)
+    {
+        foreach (TextMeshProUGUI text in texts)
+        {
+            text.enabled = _canActive;
+        }
     }
 
     void Update()
