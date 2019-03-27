@@ -96,7 +96,6 @@ public class AudioManager : MonoBehaviour
                     if (!currentAudioSource.isPlaying)
                     {
                         currentAudioSource.clip = _clipToPlay;
-                        currentAudioSource.Play();
                         StartCoroutine(MusicTrack(currentAudioSource));
                     }
                     else
@@ -122,6 +121,7 @@ public class AudioManager : MonoBehaviour
     private IEnumerator MusicTrack(AudioSource _currentAudioSource)
     {
         _currentAudioSource.volume = 0f;
+        _currentAudioSource.Play();
 
         while (_currentAudioSource.volume < 0.9f)
         {
