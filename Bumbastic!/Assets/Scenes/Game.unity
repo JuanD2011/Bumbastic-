@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 490962512}
   - component: {fileID: 490962511}
   - component: {fileID: 490962513}
+  - component: {fileID: 490962515}
   - component: {fileID: 490962514}
   m_Layer: 0
   m_Name: GameManager
@@ -301,6 +302,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1612499590}
+--- !u!114 &490962515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490962510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fb7dd9993f9344fb995b23d3e624a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips: {fileID: 11400000, guid: e3c3d6b5205e625479213ec54526372a, type: 2}
+  audioSourcesAmount: 2
+  audioSourceTemplate: {fileID: 1342834441763172139, guid: 75b276934fd45b54e81d9877cee9e8be,
+    type: 3}
+  audioMixer: {fileID: 24100000, guid: 1d2552f71ff182f43bf6a2aaab3cd88b, type: 2}
+  audioMutes: []
 --- !u!1001 &499431116
 PrefabInstance:
   m_ObjectHideFlags: 0
