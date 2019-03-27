@@ -15,6 +15,7 @@ public class ParticleModication : MonoBehaviour {
     [SerializeField] bool modifyRadius;
 
     new Light light;
+    AudioSource m_audioSource;
 
     float realTime = 0f;
 
@@ -45,50 +46,68 @@ public class ParticleModication : MonoBehaviour {
 
     private void SetParticles(Player _player)
     {
-        StartCoroutine(ExplosionParticles());
+        m_audioSource = AudioManager.instance.CurrentAudioSource;
+
+        if (m_audioSource != null)
+        {
+            if (light != null)
+            {
+                StartCoroutine(ExplosionParticles());
+            }
+            else Debug.LogError("There's no light attached");
+        }
+        else Debug.LogError("There's no Audio Source available");
     }
 
     IEnumerator ExplosionParticles()
     {
-        AudioSource m_audioSource = AudioManager.instance.CurrentAudioSource;
         float elapsedTime = 0f;
-        light.enabled = true;
+
         float volume = m_audioSource.volume;
         float pitch = m_audioSource.pitch;
+
+        light.enabled = true;
 
         foreach (ParticleSystem item in particleSystems)
         {
             item.Play();
             yield return null;
         }
+
         while (elapsedTime < realTime)
         {
             float realValue = curve.Evaluate((elapsedTime * velocity) / realTime);
             float value = curve.Evaluate(elapsedTime / duration);
 
             light.intensity = realValue * lightIntensity;
-            light.color = gradient.Evaluate(elapsedTime / duration);
+            light.color = gradient.Evaluate(elapsedTime / duration); 
+
             m_audioSource.pitch = realValue;
-            m_audioSource.volume = realValue;
+            m_audioSource.volume = realValue; 
 
             if (modifySize)
             {
                 mainModules[0].startSize = value * size;
                 mainModules[1].startSize = value * size;
             }
+
             if (modifyRadius)
             {
                 shapeModules[0].radius = curve.Evaluate(elapsedTime / duration) * radius;
             }
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
         if (m_audioSource.isPlaying)
         {
             m_audioSource.Stop();
         }
+
         m_audioSource.pitch = pitch;
-        m_audioSource.volume = volume;
-        light.enabled = false;
+        m_audioSource.volume = volume; 
+
+        light.enabled = false; 
     }
 }
