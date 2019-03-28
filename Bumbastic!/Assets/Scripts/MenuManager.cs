@@ -23,6 +23,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject playerMenuPrefab;
 
+    [SerializeField]
+    private GameObject[] spawnPoints;
+
     private bool countdown = false;
 
     private byte playersReady = 0;
@@ -118,6 +121,8 @@ public class MenuManager : MonoBehaviour
     {
         playersReady++;
         texts[id].text = "Ready";
+        GameObject avatar = Instantiate(players[id].Avatar, spawnPoints[id].transform.position, spawnPoints[id].transform.rotation);
+        avatar.transform.SetParent(players[id].transform);
         if (playersReady == inGame.maxPlayers)
         {
             countdown = true;
@@ -131,8 +136,8 @@ public class MenuManager : MonoBehaviour
 
     public void PlayerNotReady(byte id)
     {
-        Debug.Log("holds");
         playersReady--;
+        Destroy(players[id].transform.GetChild(0).gameObject);
         texts[id].text = "Press Start";
         countdown = false;
         timer = startTimer;
