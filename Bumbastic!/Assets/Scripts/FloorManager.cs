@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class FloorManager : MonoBehaviour
 {
@@ -8,11 +8,8 @@ public class FloorManager : MonoBehaviour
 
 	Rings[] rings;
 
-
-
 	[SerializeField]
 	Transform[] colliders;
-
 
 	int nRings = 0;
 	int c = 0;
@@ -28,13 +25,8 @@ public class FloorManager : MonoBehaviour
 	[SerializeField]
 	Gradient colorAnticipation;
 
+    bool canDrop = false;
 
-    //mientras el suelo no tenga textura
-    Color color;
-
-    //mientras el suelo no tenga textura
-
-    // Start is called before the first frame update
     void Start()
     {
         modules = GetComponentsInChildren<Rigidbody>();
@@ -75,24 +67,24 @@ public class FloorManager : MonoBehaviour
             modules[i].transform.position += new Vector3(0, Random.Range(0f,0.07f), 0);
         }
 
-
-        //mientras el suelo no tenga textura
-
-        color = modules[0].gameObject.GetComponent<Renderer>().material.color;
-
-        //mientras el suelo no tenga textura
-
+        GameManager.manager.Director.stopped += MapDrop;
     }
 
-    // Update is called once per frame
+    private void MapDrop(PlayableDirector obj)
+    {
+        if (!canDrop)
+        {
+            if (nRings > 1)
+            {
+                StartCoroutine(Anticipation(nRings - 1));
+                nRings -= 1;
+            }
+            canDrop = true;
+        }
+    }
+
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && nRings>1)
-        {
-            StartCoroutine(Anticipation(nRings - 1));
-            nRings -= 1;
-        }
-
         if (anticipation)
         {
 
@@ -105,25 +97,35 @@ public class FloorManager : MonoBehaviour
 
             for (int i = 0; i < rings[anticipationRing].module.Length; i++)
             {
-				//corregir cuando se le ponga textura al suelo
 				rings[anticipationRing].module[i].GetComponent<Renderer>().material.shader = Shader.Find("HDRP/Lit");
-				rings[anticipationRing].module[i].GetComponent<Renderer>().material.SetColor("_BaseColor", color * colorAnticipation.Evaluate(time));
+				rings[anticipationRing].module[i].GetComponent<Renderer>().material.SetColor("_BaseColor", colorAnticipation.Evaluate(time));
 			}
 
             if (time >= 1)
             {
                 time = 0;
             }
-
         }
     }
 
     IEnumerator Anticipation(int ring)
     {
+        WaitForSeconds waitForSeconds = new WaitForSeconds(10f);
+
+        yield return waitForSeconds;
+
         anticipationRing = ring;
         anticipation = true;
+
         yield return new WaitForSeconds(anticipationTime);
+
         StartCoroutine(Drop(ring));
+
+        if (nRings > 1)
+        {
+            StartCoroutine(Anticipation(nRings - 1));
+            nRings -= 1;
+        }
     }
 
     IEnumerator Drop(int ring)

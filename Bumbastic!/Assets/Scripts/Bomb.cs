@@ -63,6 +63,7 @@ public class Bomb : MonoBehaviour
     void Explode()
     {
         GameObject parent = transform.parent.gameObject;
+
         if (AudioManager.instance != null)
         {
             AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);

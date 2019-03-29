@@ -42,12 +42,11 @@ public class GameManager : MonoBehaviour
         else Destroy(this);
 
         players = new List<Player>();
+        Director = GetComponent<PlayableDirector>();
     }
 
     private void Start()
     {
-        Director = GetComponent<PlayableDirector>();
-
         SpawnPlayers();
 
         Bomb.OnExplode += StartNewRound;
