@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
     {
         if (HasBomb)
         {
+            m_Animator.SetTrigger("Throw");
             hasBomb = false;
             GameManager.manager.Bomb.transform.parent = null;
             GameManager.manager.Bomb.RigidBody.constraints = RigidbodyConstraints.None;
@@ -141,7 +142,7 @@ public class Player : MonoBehaviour
 
     private void PassBomb()
     {
-        //m_Animator.SetTrigger("Reception");
+        m_Animator.SetTrigger("Reception");
         GameManager.manager.BombHolder = this;
         GameManager.manager.BombHolder.HasBomb = true;
         GameManager.manager.Bomb.transform.parent = null;
