@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
             hasBomb = false;
             GameManager.manager.Bomb.transform.parent = null;
             GameManager.manager.Bomb.RigidBody.constraints = RigidbodyConstraints.None;
-            GameManager.manager.Bomb.RigidBody.AddForce(transform.GetChild(1).transform.forward * throwForce); 
+            GameManager.manager.Bomb.RigidBody.AddForce(new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x) * throwForce); 
         }
     }
 

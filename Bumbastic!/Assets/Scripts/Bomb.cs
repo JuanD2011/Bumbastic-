@@ -62,6 +62,7 @@ public class Bomb : MonoBehaviour
 
     void Explode()
     {
+        GameObject parent = transform.parent.gameObject;
         if (AudioManager.instance != null)
         {
             AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
@@ -71,7 +72,6 @@ public class Bomb : MonoBehaviour
 
         Exploded = true;
         RigidBody.constraints = RigidbodyConstraints.None;
-        GameObject parent = transform.parent.gameObject;
         OnExplode?.Invoke(parent.GetComponent<Player>());//ParticleModification hears it
         transform.SetParent(null);
         //gameObject.SetActive(false);

@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField]
     private GameObject[] spawnPoints;
+
+    [SerializeField]
+    private Image[] playersColors;
 
     private bool countdown = false;
 
@@ -55,14 +59,15 @@ public class MenuManager : MonoBehaviour
 
         PlayerMenu.OnReady += PlayersReady;
         PlayerMenu.OnNotReady += PlayerNotReady;
-        MenuUI.OnMatchmaking += SetUpMatchMakingTexts;
+        MenuUI.OnMatchmaking += SetUpMatchMaking;
     }
 
-    private void SetUpMatchMakingTexts(bool _canActive)
+    private void SetUpMatchMaking(bool _canActive)
     {
         for (int i = 0; i < players.Count; i++)
         {
             texts[i].enabled = _canActive;
+            GameObject avatar = Instantiate(players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation);
         }
     }
 
@@ -121,8 +126,6 @@ public class MenuManager : MonoBehaviour
     {
         playersReady++;
         texts[id].text = "Ready";
-        GameObject avatar = Instantiate(players[id].Avatar, spawnPoints[id].transform.position, spawnPoints[id].transform.rotation);
-        avatar.transform.SetParent(players[id].transform);
         if (playersReady == inGame.maxPlayers)
         {
             countdown = true;
@@ -137,7 +140,6 @@ public class MenuManager : MonoBehaviour
     public void PlayerNotReady(byte id)
     {
         playersReady--;
-        Destroy(players[id].transform.GetChild(0).gameObject);
         texts[id].text = "Press Start";
         countdown = false;
         timer = startTimer;
