@@ -232,6 +232,7 @@ ModelImporter:
     7400008: Armature|IdleWithBomb
     7400010: Armature|RunV2
     7400012: Armature|RunWithBomb
+    7400014: Armature|BombReceptionWhileIdle (1)
     9500000: //RootNode
     13700000: Cactus_Low.001
     13700002: Ojos y Catapulta
@@ -265,10 +266,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|BombLaunch
-      takeName: Armature|BombLaunch
+      name: Armature|BombReceptionWhileIdle (1)
+      takeName: Armature|BombReceptionWhileIdle
       firstFrame: 0
-      lastFrame: 29
+      lastFrame: 38.3
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
