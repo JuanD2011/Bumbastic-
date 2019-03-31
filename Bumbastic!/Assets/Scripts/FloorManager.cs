@@ -4,20 +4,11 @@ using UnityEngine.Playables;
 
 public class FloorManager : MonoBehaviour
 {
-	Rigidbody[] modules;
-
-	Rings[] rings;
+    [SerializeField]
+    GameObject[] propsModule;
 
 	[SerializeField]
 	Transform[] colliders;
-
-	int nRings = 0;
-	int c = 0;
-	int anticipationRing;
-
-	bool anticipation = false;
-
-	float time = 0;
 
 	[SerializeField]
 	float dropTime, dropInterval, anticipationTime;
@@ -25,7 +16,21 @@ public class FloorManager : MonoBehaviour
 	[SerializeField]
 	Gradient colorAnticipation;
 
+    Rigidbody[] modules;
+	Rings[] rings;
+
+	int nRings = 0;
+	int c = 0;
+	int anticipationRing;
+	float time = 0;
+
+	bool anticipation = false;
     bool canDrop = false;
+
+    private void Awake()
+    {
+        SpawnProps(propsModule.Length);
+    }
 
     void Start()
     {
@@ -35,6 +40,7 @@ public class FloorManager : MonoBehaviour
         {
             c += 2;
         }
+
         nRings = (c/ 2);
 
         rings = new Rings[nRings];
@@ -45,21 +51,16 @@ public class FloorManager : MonoBehaviour
 
             for (int j = 0; j < Mathf.Pow(((i*2)+2),2)- Mathf.Pow((i*2),2); j++)
             {
-                if (i>0)
-                {
+                if (i > 0)
                     rings[i].module[j] = modules[j + (int)(Mathf.Pow((((i-1) * 2) + 2), 2))];
-                }
                 else
-                {
                     rings[i].module[j] = modules[j];  
-                }
-
             }
         }
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            colliders[i].localPosition = colliders[i].forward*nRings;
+            colliders[i].localPosition = colliders[i].forward * nRings * 4f;
         }
 
         for (int i = 0; i < modules.Length; i++)
@@ -70,14 +71,18 @@ public class FloorManager : MonoBehaviour
         GameManager.manager.Director.stopped += MapDrop;
     }
 
+    private void SpawnProps(int _length)
+    {
+        Instantiate(propsModule[Random.Range(0, _length)], new Vector3(0, 0.5f, 0), Quaternion.identity);
+    }
+
     private void MapDrop(PlayableDirector obj)
     {
         if (!canDrop)
         {
-            if (nRings > 1)
+            if (nRings > 2)
             {
                 StartCoroutine(Anticipation(nRings - 1));
-                nRings -= 1;
             }
             canDrop = true;
         }
@@ -85,6 +90,8 @@ public class FloorManager : MonoBehaviour
 
     void Update()
     {
+
+
         if (anticipation)
         {
 
@@ -92,7 +99,7 @@ public class FloorManager : MonoBehaviour
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                colliders[i].localPosition = Vector3.MoveTowards(colliders[i].localPosition, colliders[i].forward * nRings, Time.deltaTime/anticipationTime);
+                colliders[i].localPosition = Vector3.MoveTowards(colliders[i].localPosition, colliders[i].forward * nRings * 4f, 1f);
             }
 
             for (int i = 0; i < rings[anticipationRing].module.Length; i++)
@@ -114,6 +121,7 @@ public class FloorManager : MonoBehaviour
 
         yield return waitForSeconds;
 
+        nRings -= 1;
         anticipationRing = ring;
         anticipation = true;
 
@@ -121,10 +129,9 @@ public class FloorManager : MonoBehaviour
 
         StartCoroutine(Drop(ring));
 
-        if (nRings > 1)
+        if (nRings > 2)
         {
             StartCoroutine(Anticipation(nRings - 1));
-            nRings -= 1;
         }
     }
 
@@ -159,6 +166,7 @@ public class FloorManager : MonoBehaviour
         module.gameObject.SetActive(false);
     }
 }
+
 [System.Serializable]
 public struct Rings
 {

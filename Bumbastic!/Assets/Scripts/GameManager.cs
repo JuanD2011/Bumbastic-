@@ -26,8 +26,10 @@ public class GameManager : MonoBehaviour
     private float minTime, maxTime;
 
     [SerializeField] private GameObject confettiBomb, playerPrefab;
+    public GameObject floor;
 
     private Player bombHolder;
+
     [SerializeField]
     private Bomb bomb;
 

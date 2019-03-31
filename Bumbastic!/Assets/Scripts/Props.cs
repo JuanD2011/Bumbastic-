@@ -1,23 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Props : MonoBehaviour
 {
-    [SerializeField]
-    GameObject floor;
-
+    float distance = 10;
     Transform[] modules;
-
 
     GameObject padre;
 
-    float distance = 10;
-
-    // Start is called before the first frame update
     void Start()
     {
-        modules = floor.GetComponentsInChildren<Transform>();
+        modules = GameManager.manager.floor.GetComponentsInChildren<Transform>();
 
         for (int i = 1; i < modules.Length; i++)
         {
@@ -29,13 +21,5 @@ public class Props : MonoBehaviour
         }
 
         transform.parent = padre.transform;
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
