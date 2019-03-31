@@ -99,7 +99,7 @@ public class FloorManager : MonoBehaviour
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                colliders[i].localPosition = Vector3.MoveTowards(colliders[i].localPosition, colliders[i].forward * nRings * 4f, 1f);
+                colliders[i].localPosition = Vector3.MoveTowards(colliders[i].localPosition, colliders[i].forward * nRings * 4f, (anticipationTime/2) * Time.deltaTime);
             }
 
             for (int i = 0; i < rings[anticipationRing].module.Length; i++)
