@@ -106,10 +106,19 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<PowerUp>() != null && !HasBomb && GetComponent<PowerUp>() == null)
+        PowerUp powerUpCollisioned = collision.gameObject.GetComponent<PowerUp>();
+
+        if (powerUpCollisioned != null && GetComponent<PowerUp>() == null)
         {
-            IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
-            powerUp.PickPowerUp(GetComponent<Player>());
+            if (!HasBomb)
+            {
+                IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
+                powerUp.PickPowerUp(GetComponent<Player>());
+            }
+            else
+            {
+                gameObject.AddComponent<Velocity>();
+            }
             collision.gameObject.SetActive(false);
         }
     }
