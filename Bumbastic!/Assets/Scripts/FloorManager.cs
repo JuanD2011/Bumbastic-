@@ -78,6 +78,7 @@ public class FloorManager : MonoBehaviour
 
     private void MapDrop(PlayableDirector obj)
     {
+
         if (!canDrop)
         {
             if (nRings > 2)
