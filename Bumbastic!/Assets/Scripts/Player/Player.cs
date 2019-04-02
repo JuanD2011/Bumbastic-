@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     public bool CanMove { get => canMove; set => canMove = value; }
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
     public bool HasBomb { get => hasBomb; set => hasBomb = value; }
-    public Vector2 InputAiming { get => inputAiming; set => inputAiming = value; }
+    public Vector2 InputAiming { get => inputAiming; private set => inputAiming = value; }
     public Controls Controls { get => controls; set => controls = value; }
     public GameObject Avatar { set => avatar = value; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
     private void Start() => GameManager.manager.Director.stopped += LetMove;
 
-    private void LetMove(PlayableDirector obj) => canMove = true;
+    private void LetMove(PlayableDirector _obj) => canMove = true;
 
     public static PlayerMenu.ButtonsDelegate OnStartInGame;
 
@@ -157,6 +157,6 @@ public class Player : MonoBehaviour
         GameManager.manager.Bomb.transform.parent = null;
         GameManager.manager.Bomb.transform.SetParent(GameManager.manager.BombHolder.transform);
         GameManager.manager.Bomb.transform.position = GameManager.manager.BombHolder.transform.GetChild(1).transform.position;
-        GameManager.manager.Bomb.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        GameManager.manager.Bomb.Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
     }
 }

@@ -111,7 +111,6 @@ public class MenuManager : MonoBehaviour
 
     public void InitializeFirstPlayers(List<string> _joysticks)
     {
-        Debug.Log("InitializeFirstPlayers");
         for (int i = 0; i < _joysticks.Count; i++)
         {
             PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
@@ -122,10 +121,10 @@ public class MenuManager : MonoBehaviour
         InputManager.inputManager.AssignController(_joysticks);
     }
 
-    public void PlayersReady(byte id)
+    public void PlayersReady(byte _id)
     {
         playersReady++;
-        texts[id].text = "Ready";
+        texts[_id].text = "Ready";
         if (playersReady == inGame.maxPlayers)
         {
             countdown = true;
@@ -137,10 +136,10 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void PlayerNotReady(byte id)
+    public void PlayerNotReady(byte _id)
     {
         playersReady--;
-        texts[id].text = "Press Start";
+        texts[_id].text = "Press Start";
         countdown = false;
         timer = startTimer;
     }

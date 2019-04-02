@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
 
     public Player BombHolder { get => bombHolder; set => bombHolder = value; }
     public Bomb Bomb { get => bomb; }
-    public PlayableDirector Director { get => director; set => director = value; }
-    public List<Player> Players { get => players; set => players = value; }
+    public PlayableDirector Director { get => director; private set => director = value; }
+    public List<Player> Players { get => players; private set => players = value; }
 
     [SerializeField]
     private InGame inGame;
