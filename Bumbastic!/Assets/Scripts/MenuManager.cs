@@ -66,7 +66,7 @@ public class MenuManager : MonoBehaviour
     {
         for (int i = 0; i < Players.Count; i++)
         {
-            playersSignifier[i].SetActive(_canActive);
+            playersHUDId[i].SetActive(_canActive);
             GameObject avatar = Instantiate(Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation);
         }
     }
