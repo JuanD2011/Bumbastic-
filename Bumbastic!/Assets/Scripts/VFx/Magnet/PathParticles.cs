@@ -12,7 +12,6 @@ public class PathParticles : MonoBehaviour
     ParticleSystem.ShapeModule shape;
     ParticleSystem.Particle[] mParticles;
 
-
     [HideInInspector]
     public bool activateParticles;
     float t;

@@ -13,6 +13,9 @@ public class CrowFlyUp : StateMachineBehaviour
         target.x = (inGame.CrowPos.x > 0) ? inGame.CrowPos.x * -1 : inGame.CrowPos.x;
         target = new Vector3(target.x, inGame.CrowPos.y, inGame.CrowPos.z);
         distance = Vector3.Distance(animator.transform.position, target);
+        Vector3 dir = (target - animator.transform.position);
+
+        animator.transform.LookAt(dir);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

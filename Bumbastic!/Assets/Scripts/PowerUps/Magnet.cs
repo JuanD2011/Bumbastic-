@@ -4,10 +4,14 @@ public class Magnet : PowerUp
 {
     MagnetManager magnetManager;
 
+    private void Awake()
+    {
+        Execute();
+    }
+
     protected override void Start()
     {
         base.Start();
-        Execute();
         magnetManager = GetComponentInChildren<MagnetManager>();
         magnetManager.OnLerpComplete += OnComplete;
     }

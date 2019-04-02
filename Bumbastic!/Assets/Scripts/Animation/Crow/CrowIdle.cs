@@ -11,6 +11,8 @@ public class CrowIdle : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
     {
         inGame.CrowPos = animator.transform.position;
+
+        animator.transform.localEulerAngles = new Vector3(0, 180, 0);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -18,8 +20,7 @@ public class CrowIdle : StateMachineBehaviour
     {
         t += Time.deltaTime;
         animator.transform.parent.eulerAngles = new Vector3(0, t * flyingVel, 0);
-        dir = animator.transform.parent.position - animator.transform.position;
-        dir.Normalize();
+        dir = (animator.transform.parent.position - animator.transform.position).normalized;
 
         if (GameManager.manager.powerUp.transform.parent == animator.transform && Mathf.Round(dir.x) == -1 && Mathf.Round(dir.z) == 0)
         {

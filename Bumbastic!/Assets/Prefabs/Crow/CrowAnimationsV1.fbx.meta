@@ -231,7 +231,12 @@ ModelImporter:
     13700004: Cube.005
     13700006: Cube.006
     13700008: Plane.001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cuervo
+    second: {fileID: 2100000, guid: aeb0840bd4cf45a41a76089230ea5a5d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -8,7 +8,6 @@ public class MagnetManager : MonoBehaviour
     Vector3[] wavePositions = new Vector3[2];
 
     [SerializeField] PathParticles pathParticles;
-    [SerializeField] Color ringColor;
 
     [SerializeField] ParticleSystem ringParticles;
     ParticleSystem.MainModule ringMain;
@@ -41,7 +40,6 @@ public class MagnetManager : MonoBehaviour
         wavePositions[1] = bomb.transform.position;
         wave.SetPositions(wavePositions);
 
-        ringMain.startColor = ringColor;
         pathParticles.gameObject.SetActive(true);
         float distance = Mathf.Abs(Vector3.Distance(transform.position, bomb.transform.position));
         float t = 0;

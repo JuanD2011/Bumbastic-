@@ -12,7 +12,7 @@ public class Bomb : MonoBehaviour
     private Rigidbody m_rigidBody;
 
     public float Timer { private get => timer; set => timer = value; }
-    public Rigidbody RigidBody { get => m_rigidBody; private set => m_rigidBody = value; }
+    public Rigidbody RigidBody { get => m_rigidBody; set => m_rigidBody = value; }
     public bool Exploded { private get => exploded; set => exploded = value; }
 
     private Animator m_Animator;
