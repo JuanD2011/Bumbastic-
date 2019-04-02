@@ -45,7 +45,7 @@ public class MenuManager : MonoBehaviour
     public delegate void InputsDelegate(List<string> _players);
     public InputsDelegate OnFirstPlayers;
 
-    public List<PlayerMenu> Players { get => players; }
+    public List<PlayerMenu> Players { get => players; private set => players = value; }
 
     private void Awake()
     {
@@ -64,10 +64,10 @@ public class MenuManager : MonoBehaviour
 
     private void SetUpMatchMaking(bool _canActive)
     {
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < Players.Count; i++)
         {
             texts[i].enabled = _canActive;
-            GameObject avatar = Instantiate(players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation);
+            GameObject avatar = Instantiate(Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation);
         }
     }
 

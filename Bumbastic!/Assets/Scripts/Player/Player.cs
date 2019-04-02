@@ -32,13 +32,13 @@ public class Player : MonoBehaviour
 
     private bool hasBomb;
 
-    public bool SpeedPU { get => speedPU; set => speedPU = value; }
-    public bool CanMove { get => canMove; set => canMove = value; }
+    public bool SpeedPU { private get => speedPU; set => speedPU = value; }
+    public bool CanMove { private get => canMove; set => canMove = value; }
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
     public bool HasBomb { get => hasBomb; set => hasBomb = value; }
     public Vector2 InputAiming { get => inputAiming; private set => inputAiming = value; }
-    public Controls Controls { get => controls; set => controls = value; }
-    public GameObject Avatar { set => avatar = value; }
+    public Controls Controls { private get => controls; set => controls = value; }
+    public GameObject Avatar { private get => avatar; set => avatar = value; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
     public byte Id { get => id; set => id = value; }
 
@@ -52,17 +52,17 @@ public class Player : MonoBehaviour
     {
         if (canMove)
         {
-            inputDirection = new Vector2(Input.GetAxis(controls.ljoystickHorizontal), Input.GetAxis(controls.ljoystickVertical));
-            inputAiming = new Vector2(Input.GetAxis(controls.rjoystickHorizontal), Input.GetAxis(controls.rjoystickVertical));
+            inputDirection = new Vector2(Input.GetAxis(Controls.ljoystickHorizontal), Input.GetAxis(Controls.ljoystickVertical));
+            inputAiming = new Vector2(Input.GetAxis(Controls.rjoystickHorizontal), Input.GetAxis(Controls.rjoystickVertical));
             Move(); 
         }
-		if (Input.GetAxis(controls.rightTrigger) > 0.8f)
+		if (Input.GetAxis(Controls.rightTrigger) > 0.8f)
 		{
 			Debug.Log("Throw");
 			Throw();
 		}
 
-		if (Input.GetKeyDown(controls.startButton))
+		if (Input.GetKeyDown(Controls.startButton))
         {
             OnStartInGame?.Invoke();
         }
