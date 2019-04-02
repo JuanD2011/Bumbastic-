@@ -24,10 +24,13 @@ public class PlayerMenu : MonoBehaviour
     [SerializeField]
     private GameObject avatar;
 
-    private void Start()
+    private void Awake()
     {
-        
+        OnBackButton = null;
+        OnAcceptButton = null;
+        OnStartButton = null;
     }
+
     private void Update()
     {
         if (controls.aButton != null)

@@ -17,11 +17,13 @@ public class MenuUI : MonoBehaviour
     public static DelLoadScene OnLoadScene;
 
     public static bool isMatchmaking = false;
+
     private void Awake()
     {
         OnMatchmaking = null;
         OnLoadScene = null;
     }
+
     private void Start()
     {
 
