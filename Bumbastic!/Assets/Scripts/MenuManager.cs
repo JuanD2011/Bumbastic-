@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour
     private TextMeshProUGUI[] texts;
 
     [SerializeField]
-    private GameObject[] playersSignifier;
+    private GameObject[] playersHUDId;
 
     [SerializeField]
     private TextMeshProUGUI countdownText;
@@ -29,9 +29,6 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField]
     private GameObject[] spawnPoints;
-
-    [SerializeField]
-    private Image[] playersColors;
 
     private bool countdown = false;
 
