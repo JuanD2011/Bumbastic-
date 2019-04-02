@@ -12,7 +12,10 @@ public class CrowIdle : StateMachineBehaviour
     {
         inGame.CrowPos = animator.transform.position;
 
-        animator.transform.localEulerAngles = new Vector3(0, 180, 0);
+        //if (animator.transform.localEulerAngles.y != 180)
+        //{
+        //    animator.transform.localEulerAngles = (inGame.CrowPos.x > 0) ? new Vector3(0,34,0) : new Vector3(0, 34, 0) *-1;
+        //}
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
