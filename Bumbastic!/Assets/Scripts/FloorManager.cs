@@ -15,7 +15,13 @@ public class FloorManager : MonoBehaviour
 
 	[SerializeField]
 	Gradient colorAnticipation;
-
+	
+	[SerializeField]
+	float offsetSuelo = 0.07f;
+	
+	[SerializeField]
+	Vector3 propsPos = new Vector3(0, 0.5f, 0);
+	
     Rigidbody[] modules;
 	Rings[] rings;
 
@@ -65,7 +71,7 @@ public class FloorManager : MonoBehaviour
 
         for (int i = 0; i < modules.Length; i++)
         {
-            modules[i].transform.position += new Vector3(0, Random.Range(0f,0.07f), 0);
+            modules[i].transform.position += new Vector3(0, Random.Range(0f,offsetSuelo), 0);
         }
 
         GameManager.manager.Director.stopped += MapDrop;
@@ -73,7 +79,7 @@ public class FloorManager : MonoBehaviour
 
     private void SpawnProps(int _length)
     {
-        Instantiate(propsModule[Random.Range(0, _length)], new Vector3(0, 0.5f, 0), Quaternion.identity);
+        Instantiate(propsModule[Random.Range(0, _length)], propsPos, Quaternion.identity);
     }
 
     private void MapDrop(PlayableDirector obj)
