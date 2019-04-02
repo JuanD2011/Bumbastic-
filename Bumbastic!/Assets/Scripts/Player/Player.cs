@@ -155,8 +155,11 @@ public class Player : MonoBehaviour
         GameManager.manager.BombHolder = this;
         GameManager.manager.BombHolder.HasBomb = true;
         GameManager.manager.Bomb.transform.parent = null;
-        GameManager.manager.Bomb.transform.SetParent(GameManager.manager.BombHolder.transform);
-        GameManager.manager.Bomb.transform.position = GameManager.manager.BombHolder.transform.GetChild(1).transform.position;
+        Transform catapult = GameManager.manager.BombHolder.GetComponent<Animator>().gameObject.transform.GetChild(2).GetChild(0);
+        GameManager.manager.Bomb.transform.SetParent(catapult);
+        GameManager.manager.Bomb.transform.position = catapult.transform.GetChild(0).position;
         GameManager.manager.Bomb.RigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        5180920000984112
+            136
     }
 }
