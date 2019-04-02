@@ -36,10 +36,10 @@ public class Bomb : MonoBehaviour
 
     private void OnEnable()
     {
-        SetKeys();
+        SetAnimationKeys();
     }
 
-    private void SetKeys()
+    private void SetAnimationKeys()
     {
         animationCurve.AddKey(0, 0f);
         animationCurve.AddKey(timer, 1f);
