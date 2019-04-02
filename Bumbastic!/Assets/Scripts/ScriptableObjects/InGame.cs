@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class InGame : ScriptableObject
 {
     public Transform posDropPU;
+
     public int maxPlayers;
     public List<PlayerSettings> playerSettings = new List<PlayerSettings>();
 

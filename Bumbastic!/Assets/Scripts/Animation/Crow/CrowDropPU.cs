@@ -18,8 +18,8 @@ public class CrowDropPU : StateMachineBehaviour
         animator.transform.position = Vector3.MoveTowards(animator.transform.position, inGame.posDropPU.position, (Time.deltaTime * distance)/timeToDrop);
         if (animator.transform.position == inGame.posDropPU.position)
         {
-            if (animator.transform.childCount > 1) {
-                animator.transform.GetChild(1).parent = null;
+            if (GameManager.manager.powerUp.transform.parent != null) {
+                GameManager.manager.powerUp.transform.parent = null;
             }
             animator.SetBool("PUDropped",true);
         }
@@ -27,6 +27,7 @@ public class CrowDropPU : StateMachineBehaviour
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
+        //animator.transform.localEulerAngles = new Vector3(0, 28, 0);
         animator.SetBool("PUDropped", false);
     }
 }

@@ -20,14 +20,15 @@ public class CrowIdle : StateMachineBehaviour
         animator.transform.parent.eulerAngles = new Vector3(0, t * flyingVel, 0);
         dir = animator.transform.parent.position - animator.transform.position;
         dir.Normalize();
-        if (animator.transform.childCount == 2 && Mathf.Round(dir.x) == -1 && Mathf.Round(dir.z) == 0)
+
+        if (GameManager.manager.powerUp.transform.parent == animator.transform && Mathf.Round(dir.x) == -1 && Mathf.Round(dir.z) == 0)
         {
             animator.SetBool("DropPU", true);
         }
         else if (Mathf.Round(dir.x) == 0 && Mathf.Round(dir.z) == 1 && !GameManager.manager.powerUp.gameObject.activeInHierarchy)
         {
             GameManager.manager.powerUp.transform.parent = animator.transform;
-            GameManager.manager.powerUp.transform.position = animator.transform.GetChild(0).position;
+            GameManager.manager.powerUp.transform.position = animator.transform.position + new Vector3(0, -1f, 0);
             GameManager.manager.powerUp.gameObject.SetActive(true);
         }
     }
