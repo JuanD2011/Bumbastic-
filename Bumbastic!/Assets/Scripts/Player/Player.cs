@@ -159,7 +159,5 @@ public class Player : MonoBehaviour
         GameManager.manager.Bomb.transform.SetParent(catapult);
         GameManager.manager.Bomb.transform.position = catapult.transform.GetChild(0).position;
         GameManager.manager.Bomb.RigidBody.constraints = RigidbodyConstraints.FreezeAll;
-        5180920000984112
-            136
     }
 }
