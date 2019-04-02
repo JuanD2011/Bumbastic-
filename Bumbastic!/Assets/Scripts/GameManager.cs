@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private Bomb bomb;
 
     public PowerUp powerUp;
+    public GameObject magnetParticleSystem;
 
     public delegate void GameStateDelegate();
     public event GameStateDelegate OnGameOver;

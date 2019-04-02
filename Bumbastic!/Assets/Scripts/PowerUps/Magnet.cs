@@ -2,19 +2,24 @@
 
 public class Magnet : PowerUp
 {
+    MagnetManager magnetManager;
+
     protected override void Start()
     {
         base.Start();
         Execute();
+        magnetManager = GetComponentInChildren<MagnetManager>();
+        magnetManager.OnLerpComplete += OnComplete;
+    }
+
+    private void OnComplete()
+    {
+        Destroy(magnetManager.gameObject);
+        Destroy(this);
     }
 
     void Execute()
     {
-        //player.HasBomb = true;
-        //GameManager.manager.BombHolder = player;
-        //GameManager.manager.Bomb.transform.SetParent(player.transform);
-        //GameManager.manager.Bomb.gameObject.transform.position = player.transform.GetChild(1).transform.position;
-        //GameManager.manager.bomb.GetComponent<Bomb>().RigidBody.constraints = RigidbodyConstraints.FreezeAll;
-        //Destroy(this);
+        Instantiate(GameManager.manager.magnetParticleSystem, Vector3.zero, Quaternion.identity, gameObject.transform);
     }
 }

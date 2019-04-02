@@ -255,6 +255,8 @@ MonoBehaviour:
   floor: {fileID: 1981395067}
   bomb: {fileID: 1429717419}
   powerUp: {fileID: 1455909190}
+  magnetParticleSystem: {fileID: 6569818202052991651, guid: 0e8e4defdde8c224fa7a7ccd7abe821c,
+    type: 3}
 --- !u!4 &490962512
 Transform:
   m_ObjectHideFlags: 0

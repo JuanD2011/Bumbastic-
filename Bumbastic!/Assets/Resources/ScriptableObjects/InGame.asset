@@ -15,4 +15,3 @@ MonoBehaviour:
   posDropPU: {fileID: 930839126329981298, guid: 9fbd70ba3d88cb74b993e040034e155d,
     type: 3}
   maxPlayers: 2
-  floor: {fileID: 6875983979452976276, guid: 08d2bd453aad04246960e41f45b930b8, type: 3}
