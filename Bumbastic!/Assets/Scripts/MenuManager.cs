@@ -19,6 +19,9 @@ public class MenuManager : MonoBehaviour
     private TextMeshProUGUI[] texts;
 
     [SerializeField]
+    private GameObject[] playersSignifier;
+
+    [SerializeField]
     private TextMeshProUGUI countdownText;
 
     [SerializeField]
@@ -58,7 +61,7 @@ public class MenuManager : MonoBehaviour
         timer = startTimer;
 
         PlayerMenu.OnReady += PlayersReady;
-        PlayerMenu.OnNotReady += PlayerNotReady;
+        //PlayerMenu.OnNotReady += PlayerNotReady;
         MenuUI.OnMatchmaking += SetUpMatchMaking;
     }
 
@@ -66,7 +69,7 @@ public class MenuManager : MonoBehaviour
     {
         for (int i = 0; i < Players.Count; i++)
         {
-            texts[i].enabled = _canActive;
+            playersSignifier[i].SetActive(_canActive);
             GameObject avatar = Instantiate(Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation);
         }
     }

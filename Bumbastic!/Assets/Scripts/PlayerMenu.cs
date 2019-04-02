@@ -51,7 +51,7 @@ public class PlayerMenu : MonoBehaviour
                     else if (ready)
                     {
                         ready = false;
-                        OnNotReady?.Invoke(id);//MenuManager hears it
+                        //OnNotReady?.Invoke(id);//MenuManager hears it
                         OnBackButton?.Invoke();//MenuUI hears it
                     } 
                 }
