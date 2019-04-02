@@ -22,8 +22,10 @@ public class CrowDropPU : StateMachineBehaviour
         animator.transform.position = Vector3.MoveTowards(animator.transform.position, inGame.posDropPU.position, (Time.deltaTime * distance)/timeToDrop);
         if (animator.transform.position == inGame.posDropPU.position)
         {
-            if (GameManager.manager.powerUp.transform.parent != null) {
+            if (GameManager.manager.powerUp.transform.parent != null)
+            {
                 GameManager.manager.powerUp.transform.parent = null;
+                GameManager.manager.powerUp.transform.eulerAngles = Vector3.zero;
             }
             animator.SetBool("PUDropped",true);
         }
