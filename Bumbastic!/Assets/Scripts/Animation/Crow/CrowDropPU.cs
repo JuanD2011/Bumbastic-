@@ -27,7 +27,11 @@ public class CrowDropPU : StateMachineBehaviour
                 GameManager.manager.powerUp.transform.parent = null;
                 GameManager.manager.powerUp.transform.eulerAngles = Vector3.zero;
             }
-            animator.SetBool("PUDropped",true);
+
+            if (!animator.GetBool("PUDropped"))
+            {
+                animator.SetBool("PUDropped", true); 
+            }
         }
     }
 

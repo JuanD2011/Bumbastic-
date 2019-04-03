@@ -24,7 +24,10 @@ public class CrowFlyUp : StateMachineBehaviour
         animator.transform.position = Vector3.MoveTowards(animator.transform.position, target, (Time.deltaTime * distance) / timeToUp);
         if (animator.transform.position == target)
         {
-            animator.SetBool("Flying",true);
+            if (!animator.GetBool("Flying"))
+            {
+                animator.SetBool("Flying", true); 
+            }
         }
     }
 
