@@ -107,19 +107,23 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         PowerUp powerUpCollisioned = collision.gameObject.GetComponent<PowerUp>();
+        Player otherPlayer = collision.gameObject.GetComponent<Player>();
 
-        if (powerUpCollisioned != null && GetComponent<PowerUp>() == null)
+        if (otherPlayer == null)
         {
-            if (!HasBomb)
+            if (powerUpCollisioned != null && GetComponent<PowerUp>() == null)
             {
-                IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
-                powerUp.PickPowerUp(GetComponent<Player>());
-            }
-            else
-            {
-                gameObject.AddComponent<Velocity>();
-            }
-            collision.gameObject.SetActive(false);
+                if (!HasBomb)
+                {
+                    IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
+                    powerUp.PickPowerUp(GetComponent<Player>());
+                }
+                else
+                {
+                    gameObject.AddComponent<Velocity>();
+                }
+                collision.gameObject.SetActive(false);
+            } 
         }
     }
 
@@ -152,12 +156,12 @@ public class Player : MonoBehaviour
     private void PassBomb()
     {
         m_Animator.SetTrigger("Reception");
+        GameManager.manager.Bomb.RigidBody.Sleep();
+        //GameManager.manager.Bomb.RigidBody.isKinematic = true;
         GameManager.manager.BombHolder = this;
         GameManager.manager.BombHolder.HasBomb = true;
-        GameManager.manager.Bomb.transform.parent = null;
-        Transform catapult = GameManager.manager.BombHolder.GetComponentInChildren<Animator>().gameObject.transform.GetChild(2);
-        //GameManager.manager.Bomb.transform.SetParent(catapult);
-        //GameManager.manager.Bomb.transform.position = catapult.transform.GetChild(0).position;
-        GameManager.manager.Bomb.RigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        GameObject bummie = GameManager.manager.BombHolder.GetComponentInChildren<Animator>().gameObject;
+        GameManager.manager.Bomb.transform.SetParent(bummie.transform);
+        GameManager.manager.Bomb.transform.position = bummie.transform.position;
     }
 }
