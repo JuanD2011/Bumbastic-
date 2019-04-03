@@ -13,7 +13,7 @@ public class CrowRotation : MonoBehaviour
 
     void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Crow_Idle"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Crow_Flying"))
         {
             transform.LookAt(-antPos + (2 * transform.position));
             antPos = transform.position; 
