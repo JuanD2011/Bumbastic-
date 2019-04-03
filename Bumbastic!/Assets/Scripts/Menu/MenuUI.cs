@@ -59,7 +59,7 @@ public class MenuUI : MonoBehaviour
     {
         isMatchmaking = _bool;
         canvasAnimator.SetBool("Play",_bool);
-        OnMatchmaking?.Invoke(_bool);//MenuCamManager
+        OnMatchmaking?.Invoke(_bool);//MenuCamManager, MenuManager
     }
 
     public void ConfigurationPanel(bool _bool)
@@ -107,14 +107,6 @@ public class MenuUI : MonoBehaviour
         else if (stateInfo.IsName(stateName[5]))//Countdown
         {
             Countdown(false);
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            BackButton();
         }
     }
 }

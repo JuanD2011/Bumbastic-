@@ -5,8 +5,6 @@ public class CrowDropPU : StateMachineBehaviour
     [SerializeField] float timeToDrop;
     [SerializeField] InGame inGame;
     float distance;
-    Vector3 velocity;
-    float smoothTime = 0.5f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateinfo, int layerindex)

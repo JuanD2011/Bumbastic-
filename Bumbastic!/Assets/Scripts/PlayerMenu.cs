@@ -33,48 +33,42 @@ public class PlayerMenu : MonoBehaviour
 
     private void Update()
     {
-        if (controls.aButton != null)
+        if (Input.GetKeyDown(controls.startButton) || Input.GetKeyDown(controls.aButton))
         {
-            if (Input.GetKeyDown(controls.startButton))
-            {
-                Debug.Log("Start");
-                Debug.Log(controls.startButton);
-                OnStartButton?.Invoke();
+            Debug.Log("Start");
+            Debug.Log(controls.startButton);
+            OnStartButton?.Invoke();
 
-                if (MenuUI.isMatchmaking)
+            if (MenuUI.isMatchmaking)
+            {
+                if (!ready)
                 {
-                    if (!ready)
-                    {
-                        ready = true;
-                        OnReady?.Invoke(id);//MenuManager hears it
-                    }
-                    else if (ready)
-                    {
-                        ready = false;
-                        //OnNotReady?.Invoke(id);//MenuManager hears it
-                        OnBackButton?.Invoke();//MenuUI hears it
-                    } 
+                    ready = true;
+                    OnReady?.Invoke(id);//MenuManager hears it
                 }
             }
+        }
 
-            if (Input.GetKeyDown(controls.aButton))
+        if (Input.GetKeyDown(controls.bButton) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Back");
+            Debug.Log(controls.bButton);
+
+            if (MenuUI.isMatchmaking)
             {
-                Debug.Log("A");
-                OnAcceptButton?.Invoke();
-            }
-
-            if (Input.GetKeyDown(controls.bButton))
-            {
-                Debug.Log("Back");
-                Debug.Log(controls.bButton);
-                OnBackButton?.Invoke();//MenuUI hears it
-
                 if (ready)
                 {
                     ready = false;
                     OnNotReady?.Invoke(id);//MenuManager hears it
                 }
-            } 
+            }
+            OnBackButton?.Invoke();//MenuUI hears it
         }
+            
+        //if (Input.GetKeyDown(controls.aButton))
+        //{
+        //    Debug.Log("A");
+        //    OnAcceptButton?.Invoke();
+        //}
     }
 }

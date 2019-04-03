@@ -61,7 +61,7 @@ public class MenuManager : MonoBehaviour
         timer = startTimer;
 
         PlayerMenu.OnReady += PlayersReady;
-        //PlayerMenu.OnNotReady += PlayerNotReady;
+        PlayerMenu.OnNotReady += PlayerNotReady;
         MenuUI.OnMatchmaking += SetUpMatchMaking;
     }
 
@@ -72,7 +72,11 @@ public class MenuManager : MonoBehaviour
             playerColors[i].enabled = _canActive;
             playersIDs[i].enabled = _canActive;
             texts[i].enabled = _canActive;
-            GameObject avatar = Instantiate(Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation);
+
+            if (_canActive)
+            {
+                GameObject avatar = Instantiate(Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation);
+            }
         }
     }
 
@@ -119,7 +123,7 @@ public class MenuManager : MonoBehaviour
         for (int i = 0; i < _joysticks.Count; i++)
         {
             PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
-            player.Id = (byte)i;
+            player.Id = (byte) i;
             Players.Add(player);
         }
 
