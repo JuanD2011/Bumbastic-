@@ -221,10 +221,10 @@ ModelImporter:
     4300004: Cube.005
     4300006: Plane.001
     4300008: Cube.006
-    7400000: Armature|Fly
-    7400002: Armature|FlyWBox
-    7400004: Armature|Getting down
-    7400006: Armature|PoseLib
+    7400000: Crow-Fly
+    7400002: Crow-FlyWBox
+    7400004: Crow-Dropping
+    7400006: Crow-PoseLib
     9500000: //RootNode
     13700000: Cube.003
     13700002: Cube.004
@@ -265,7 +265,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Fly
+      name: Crow-Fly
       takeName: Armature|Fly
       firstFrame: 0
       lastFrame: 174
@@ -293,7 +293,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|FlyWBox
+      name: Crow-FlyWBox
       takeName: Armature|FlyWBox
       firstFrame: 0
       lastFrame: 89
@@ -321,10 +321,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Getting down
+      name: Crow-Dropping
       takeName: Armature|Getting down
       firstFrame: 0
-      lastFrame: 163
+      lastFrame: 65
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -349,7 +349,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|PoseLib
+      name: Crow-PoseLib
       takeName: Armature|PoseLib
       firstFrame: 0
       lastFrame: 1.6000001
