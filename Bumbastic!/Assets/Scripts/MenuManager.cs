@@ -75,7 +75,11 @@ public class MenuManager : MonoBehaviour
 
             if (_canActive)
             {
-                GameObject avatar = Instantiate(Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation);
+                Instantiate(Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation, Players[i].transform);
+            }
+            else
+            {
+                Destroy(Players[i].transform.GetChild(0).gameObject);
             }
         }
     }
