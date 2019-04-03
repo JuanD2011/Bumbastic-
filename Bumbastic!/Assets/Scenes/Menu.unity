@@ -3230,11 +3230,16 @@ MonoBehaviour:
   - {fileID: 1159906182}
   - {fileID: 1981430499}
   - {fileID: 135899083}
-  playersHUDId:
-  - {fileID: 233318210}
-  - {fileID: 2103003500}
-  - {fileID: 1075956915}
-  - {fileID: 1652605476}
+  playersIDs:
+  - {fileID: 233318212}
+  - {fileID: 2103003502}
+  - {fileID: 1075956917}
+  - {fileID: 1652605478}
+  playerColors:
+  - {fileID: 128653489}
+  - {fileID: 1751687089}
+  - {fileID: 130717593}
+  - {fileID: 2095008754}
   countdownText: {fileID: 1066795180}
   playerMenuPrefab: {fileID: 6489573870341292119, guid: f36bde14ecd43834b99a7a979b3d2db1,
     type: 3}

@@ -19,7 +19,10 @@ public class MenuManager : MonoBehaviour
     private TextMeshProUGUI[] texts;
 
     [SerializeField]
-    private GameObject[] playersHUDId;
+    private TextMeshProUGUI[] playersIDs;
+
+    [SerializeField]
+    private Image[] playerColors;
 
     [SerializeField]
     private TextMeshProUGUI countdownText;
@@ -66,8 +69,9 @@ public class MenuManager : MonoBehaviour
     {
         for (int i = 0; i < Players.Count; i++)
         {
-            playersHUDId[i].SetActive(_canActive);
-            texts[i].enabled = true;
+            playerColors[i].enabled = _canActive;
+            playersIDs[i].enabled = _canActive;
+            texts[i].enabled = _canActive;
             GameObject avatar = Instantiate(Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation);
         }
     }
