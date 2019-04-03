@@ -387,7 +387,7 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 3
+    axis: 5
     joyNum: 1
   - serializedVersion: 3
     m_Name: P1RVertical
@@ -403,7 +403,7 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 3
+    axis: 5
     joyNum: 2
   - serializedVersion: 3
     m_Name: P2RVertical
@@ -419,7 +419,7 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 3
+    axis: 5
     joyNum: 3
   - serializedVersion: 3
     m_Name: P3RVertical
@@ -435,7 +435,7 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 3
+    axis: 5
     joyNum: 4
   - serializedVersion: 3
     m_Name: 0RHorizontal
