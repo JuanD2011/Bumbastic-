@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class AimPath : MonoBehaviour
 {
@@ -13,6 +14,13 @@ public class AimPath : MonoBehaviour
     {
         m_Player = GetComponentInParent<Player>();
         m_LineRenderer = GetComponent<LineRenderer>();
+
+        SetPositionKeys();
+    }
+
+    private void SetPositionKeys()
+    {
+        m_LineRenderer.SetPosition(1, Vector3.forward * 6f);
     }
 
     private void Update()
