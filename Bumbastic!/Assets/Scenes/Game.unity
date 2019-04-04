@@ -601,7 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PositionMode: 1
+  m_PositionMode: 0
   m_RotationMode: 1
   m_UpdateMethod: 2
   m_Targets: []
@@ -1338,6 +1338,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6708685767058008684, guid: 786b8c6ef3f631c4488b231982dcc8a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3626111542099895056, guid: 786b8c6ef3f631c4488b231982dcc8a3,
         type: 3}
       propertyPath: m_Name
@@ -1422,11 +1427,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6708685767058008684, guid: 786b8c6ef3f631c4488b231982dcc8a3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3628763504567345097, guid: 786b8c6ef3f631c4488b231982dcc8a3,
         type: 3}
@@ -2119,7 +2119,7 @@ MonoBehaviour:
   m_ZDamping: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 10
+  m_CameraDistance: 59
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
