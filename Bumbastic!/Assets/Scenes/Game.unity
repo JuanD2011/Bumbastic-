@@ -253,8 +253,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 63817899032751289, guid: f83502d98471cb04da5a707e5cc13688,
     type: 3}
   floor: {fileID: 1981395067}
-  bomb: {fileID: 0}
-  powerUp: {fileID: 1455909190}
+  bomb: {fileID: 1429717419}
+  powerUp: {fileID: 2077235624929507412}
   magnetParticleSystem: {fileID: 6569818202052991651, guid: 0e8e4defdde8c224fa7a7ccd7abe821c,
     type: 3}
 --- !u!4 &490962512
@@ -281,7 +281,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: b22bc94092c1a5146a6d6547258c4d27, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -327,75 +327,6 @@ MonoBehaviour:
     type: 3}
   audioMixer: {fileID: 24100000, guid: 1d2552f71ff182f43bf6a2aaab3cd88b, type: 2}
   audioMutes: []
---- !u!1001 &499431116
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2077235624929507413, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_Name
-      value: PowerUpBox
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c4030b046145e6e45b6f51cc48026bb7, type: 3}
 --- !u!1 &545860454
 GameObject:
   m_ObjectHideFlags: 3
@@ -1440,6 +1371,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 786b8c6ef3f631c4488b231982dcc8a3, type: 3}
+--- !u!114 &1429717419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5785541414852654725, guid: 786b8c6ef3f631c4488b231982dcc8a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1429717418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fe113f31bdbe841a192a86d23111a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1441434527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1529,18 +1472,6 @@ PrefabInstance:
       objectReference: {fileID: 1340814105}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08d2bd453aad04246960e41f45b930b8, type: 3}
---- !u!114 &1455909190 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2077235624929507412, guid: c4030b046145e6e45b6f51cc48026bb7,
-    type: 3}
-  m_PrefabInstance: {fileID: 499431116}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae5ec0d7f778d8e448af80d868bf85d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1566880042
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,6 +2105,87 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1441434527}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1953283843043332823
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2077235624929507413, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_Name
+      value: PowerUpBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4030b046145e6e45b6f51cc48026bb7, type: 3}
+--- !u!114 &2077235624929507412 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2077235624929507412, guid: c4030b046145e6e45b6f51cc48026bb7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1953283843043332823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5ec0d7f778d8e448af80d868bf85d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &7531901721390460144 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7531901721390460144, guid: bd638fd56519df6428dc3b9aed6c34c4,
