@@ -22,8 +22,10 @@ public class CrowDropPU : StateMachineBehaviour
         {
             if (GameManager.manager.powerUp.transform.parent != null)
             {
-                GameManager.manager.powerUp.transform.parent = null;
                 GameManager.manager.powerUp.transform.eulerAngles = Vector3.zero;
+                GameManager.manager.powerUp.transform.position = inGame.posDropPU.position;
+                GameManager.manager.powerUp.Collider.enabled = true;
+                GameManager.manager.powerUp.transform.parent = null;
             }
 
             if (!animator.GetBool("PUDropped"))

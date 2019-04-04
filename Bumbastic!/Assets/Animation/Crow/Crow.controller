@@ -128,7 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flyingVel: 25
   inGame: {fileID: 11400000, guid: 3bc68cae35300d841b678d14df40174c, type: 2}
-  animatorOverrideController: {fileID: 0}
+  animatorOverrideController: {fileID: 22100000, guid: cba576c66a8b80849933e8beec9519a5,
+    type: 2}
 --- !u!114 &114930639870511148
 MonoBehaviour:
   m_ObjectHideFlags: 1
