@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
             bomb.Timer = Random.Range(minTime, maxTime);
             bomb.Exploded = false;
             bomb.gameObject.SetActive(true);
+            Debug.Break();
         }
         else if (Players.Count == 1)
         {
