@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posDropPU: {fileID: 930839126329981298, guid: 9fbd70ba3d88cb74b993e040034e155d,
     type: 3}
-  maxPlayers: 3
+  maxPlayers: 4
