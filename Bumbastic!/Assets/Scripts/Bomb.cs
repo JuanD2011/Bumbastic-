@@ -20,7 +20,7 @@ public class Bomb : MonoBehaviour
     private AnimationCurve animationCurve = new AnimationCurve();
     private float speed = 4f;
 
-    public delegate void BombDelegate(Player _player);
+    public delegate void BombDelegate();
     public static BombDelegate OnExplode;
 
     private void Awake()
@@ -62,29 +62,24 @@ public class Bomb : MonoBehaviour
 
     void Explode()
     {
-        GameObject parent = transform.parent.gameObject;
-
+        t = 0;
         if (AudioManager.instance != null)
         {
             AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
         }
-
+        transform.SetParent(null);
         CameraShake.instance.OnShake?.Invoke(0.4f, 6f, 1.2f);
         Exploded = true;
-        RigidBody.constraints = RigidbodyConstraints.None;
-        OnExplode?.Invoke(parent.GetComponent<Player>());//ParticleModification hears it
-        transform.SetParent(null);
+        RigidBody.isKinematic = false;
+        OnExplode?.Invoke();//ParticleModification hears it
         //gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "Floor")
+        if (collision.transform.CompareTag("Floor") && !Exploded)
         {
-            transform.SetParent(GameManager.manager.BombHolder.transform);
-            transform.position = GameManager.manager.BombHolder.transform.GetChild(1).transform.position;
-            RigidBody.constraints = RigidbodyConstraints.FreezeAll;
-            GameManager.manager.BombHolder.HasBomb = true;
+            GameManager.manager.PassBomb();
         }
     }
 }

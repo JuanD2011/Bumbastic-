@@ -49,4 +49,10 @@ public class CameraShake : MonoBehaviour
         virtualCameraNoise.m_AmplitudeGain = 0f;
         shakeElapsedTime = 0f;
     }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        virtualCameraNoise.m_AmplitudeGain = 0f;
+    }
 }
