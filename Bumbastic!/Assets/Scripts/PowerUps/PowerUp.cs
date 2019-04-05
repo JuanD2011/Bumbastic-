@@ -24,10 +24,12 @@ public class PowerUp : MonoBehaviour, IPowerUp
                 _player.gameObject.AddComponent<Velocity>();
                 break;
             case 1:
-                _player.gameObject.AddComponent<Magnet>();
+                //_player.gameObject.AddComponent<Magnet>();
+                _player.gameObject.AddComponent<Velocity>();
                 break;
             case 2:
-                _player.gameObject.AddComponent<Shield>();
+                //_player.gameObject.AddComponent<Shield>();
+                _player.gameObject.AddComponent<Velocity>();
                 break;
             case 3:
                 //GameManager.instance.bombHolder.gameObject.AddComponent<Velocity>();

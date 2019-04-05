@@ -254,7 +254,7 @@ MonoBehaviour:
     type: 3}
   floor: {fileID: 1981395067}
   bomb: {fileID: 1429717419}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1169578613}
   magnetParticleSystem: {fileID: 6569818202052991651, guid: 0e8e4defdde8c224fa7a7ccd7abe821c,
     type: 3}
 --- !u!4 &490962512
@@ -920,6 +920,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 47.155003, z: 0}
+--- !u!114 &1169578613 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2077235624929507412, guid: c4030b046145e6e45b6f51cc48026bb7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1340632417}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5ec0d7f778d8e448af80d868bf85d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1286426372
 GameObject:
   m_ObjectHideFlags: 0
