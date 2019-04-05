@@ -3224,7 +3224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inGame: {fileID: 11400000, guid: 3bc68cae35300d841b678d14df40174c, type: 2}
-  settings: {fileID: 0}
+  settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
   startTimer: 5
   texts:
   - {fileID: 1184597499}
