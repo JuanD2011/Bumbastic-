@@ -27,6 +27,7 @@ public class CrowDropPU : StateMachineBehaviour
                 GameManager.manager.powerUp.transform.position = inGame.posDropPU.position;
                 GameManager.manager.powerUp.Collider.enabled = true;
                 GameManager.manager.powerUp.transform.parent = null;
+                AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.powerUpBoxDropped, AudioType.SFx);
             }
 
             if (!animator.GetBool("PUDropped"))
