@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
 
     private bool hasBomb;
 
+    private Transform catapult;
+
     public bool SpeedPU { private get => speedPU; set => speedPU = value; }
     public bool CanMove { private get => canMove; set => canMove = value; }
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
@@ -92,6 +94,7 @@ public class Player : MonoBehaviour
         player.transform.SetParent(transform);
         Animator = GetComponentInChildren<Animator>();
         HasBomb = false;
+        catapult = GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0);
     }
 
     public void Throw()
@@ -103,11 +106,11 @@ public class Player : MonoBehaviour
             GameManager.manager.Bomb.RigidBody.isKinematic = false;
             if (InputAiming != Vector2.zero)
             {
-                GameManager.manager.Bomb.RigidBody.AddForce(new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x) * throwForce);
+                GameManager.manager.Bomb.RigidBody.AddForce((new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x) + Vector3.up) / 2 * throwForce);
             }
             else
             {
-                GameManager.manager.Bomb.RigidBody.AddForce(transform.forward * throwForce);
+                GameManager.manager.Bomb.RigidBody.AddForce(catapult.forward * throwForce);
             }
         }
     }

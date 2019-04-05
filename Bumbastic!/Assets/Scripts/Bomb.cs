@@ -22,6 +22,7 @@ public class Bomb : MonoBehaviour
 
     public delegate void BombDelegate();
     public static BombDelegate OnExplode;
+    [SerializeField] private float gravity = 12f;
 
     private void Awake()
     {
@@ -47,6 +48,8 @@ public class Bomb : MonoBehaviour
 
     private void Update()
     {
+        RigidBody.AddForce(-Vector3.up * gravity);
+
         m_Animator.speed = animationCurve.Evaluate(t) * speed;
 
         if (!Exploded && transform.parent != null)
