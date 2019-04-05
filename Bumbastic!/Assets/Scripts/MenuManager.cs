@@ -66,13 +66,22 @@ public class MenuManager : MonoBehaviour
         PlayerMenu.OnReady += PlayersReady;
         PlayerMenu.OnNotReady += PlayerNotReady;
         MenuUI.OnMatchmaking += SetUpMatchMaking;
+
+        SetPlayersColor();
+    }
+
+    private void SetPlayersColor()
+    {
+        for (int i = 0; i < Players.Count; i++)
+        {
+            playerColors[i].color = settings.playersColor[i];
+        }
     }
 
     private void SetUpMatchMaking(bool _canActive)
     {
         for (int i = 0; i < Players.Count; i++)
         {
-            playerColors[i].color = settings.playersColor[i];
             playerColors[i].enabled = _canActive;
 
             playersIDs[i].enabled = _canActive;
