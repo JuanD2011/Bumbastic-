@@ -18,3 +18,4 @@ MonoBehaviour:
   buttonBack: {fileID: 8300000, guid: 437107694e9bb73409f0e8eb497ff965, type: 3}
   buttonSelection: {fileID: 8300000, guid: f8311f94e8f66fb43b5b2e1a9cb99c4a, type: 3}
   crow: {fileID: 8300000, guid: 6ae37caf4ecc134499da1d60d9d92111, type: 3}
+  powerUpBoxDropped: {fileID: 8300000, guid: 3b3e03b87525a28449953f103fb0b0fd, type: 3}
