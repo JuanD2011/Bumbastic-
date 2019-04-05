@@ -44,7 +44,7 @@ public class ParticleModication : MonoBehaviour {
         Bomb.OnExplode += SetParticles;
 	}
 
-    private void SetParticles(Player _player)
+    private void SetParticles()
     {
         m_audioSource = AudioManager.instance.CurrentAudioSource;
 

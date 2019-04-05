@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     public delegate void GameStateDelegate();
     public event GameStateDelegate OnGameOver;
 
+    private bool cooldown;
+    private float time = 0;
+
     private void Awake()
     {
         if (manager == null) manager = this;
@@ -55,10 +58,10 @@ public class GameManager : MonoBehaviour
         Bomb.OnExplode += StartNewRound;
     }
 
-    private void StartNewRound(Player _player)
+    private void StartNewRound()
     {
-        Players.Remove(_player);
-        _player.gameObject.SetActive(false);
+        Players.Remove(BombHolder);
+        BombHolder.gameObject.SetActive(false);
 
         foreach (Player player in Players)
         {
@@ -66,7 +69,21 @@ public class GameManager : MonoBehaviour
             player.CanMove = false;
         }
 
-        GiveBombs();
+        cooldown = true;
+    }
+
+    private void Update()
+    {
+        if (cooldown)
+        {
+            time += Time.deltaTime;
+            if (time > 1)
+            {
+                cooldown = false;
+                time = 0;
+                GiveBombs();
+            }
+        }
     }
 
     private void SpawnPlayers()
@@ -105,14 +122,18 @@ public class GameManager : MonoBehaviour
 
             for (int i = 0; i < bummies.Count; i++)
             {
-                Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 4, 0), Quaternion.identity);
+                Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 6, 0), Quaternion.identity);
                 bummies.RemoveAt(i);
             }
-            bomb.transform.position = bummies[0].transform.position + new Vector3(0, 4, 0);
+            bomb.transform.position = bummies[0].transform.position + new Vector3(0, 6, 0);
             bomb.Timer = Random.Range(minTime, maxTime);
             bomb.Exploded = false;
+            if (bomb.RigidBody != null)
+            {
+                bomb.RigidBody.velocity = Vector3.zero; 
+            }
+            bomb.transform.rotation = Quaternion.identity;
             bomb.gameObject.SetActive(true);
-            Debug.Break();
         }
         else if (Players.Count == 1)
         {
@@ -139,5 +160,47 @@ public class GameManager : MonoBehaviour
     {
         OnGameOver?.Invoke();
         Debug.Log("Game Over");
+    }
+
+    /// <summary>
+    /// Pass bomb to the player that the bomb touch
+    /// </summary>
+    /// <param name="_receiver"></param>
+    public void PassBomb(Player _receiver)
+    {
+        if (BombHolder != null)
+        {
+            BombHolder.HasBomb = false; 
+        }
+        _receiver.HasBomb = true;
+        BombHolder = _receiver;
+        this.Bomb.RigidBody.isKinematic = true;
+        Transform receiverCatapult = _receiver.GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0);
+        Bomb.transform.position = receiverCatapult.position;
+        Bomb.transform.SetParent(receiverCatapult);
+    }
+
+    /// <summary>
+    /// Pass bomb between players when one touch another
+    /// </summary>
+    /// <param name="_receiver"></param>
+    /// <param name="_transmitter"></param>
+    public void PassBomb(Player _receiver, Player _transmitter)
+    {
+        _transmitter.HasBomb = false;
+        _receiver.HasBomb = true;
+        BombHolder = _receiver;
+        this.Bomb.RigidBody.isKinematic = true;
+        Transform receiverCatapult = _receiver.GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0);
+        Bomb.transform.position = receiverCatapult.position;
+        Bomb.transform.SetParent(receiverCatapult);
+    }
+
+    public void PassBomb()
+    {
+        this.Bomb.RigidBody.isKinematic = true;
+        Transform receiverCatapult = BombHolder.GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0);
+        Bomb.transform.position = receiverCatapult.position;
+        Bomb.transform.SetParent(receiverCatapult);
     }
 }

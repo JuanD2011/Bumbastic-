@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     public GameObject Avatar { private get => avatar; set => avatar = value; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
     public byte Id { get => id; set => id = value; }
+    public Animator Animator { get => m_Animator; set => m_Animator = value; }
 
     private void Start() => GameManager.manager.Director.stopped += LetMove;
 
@@ -82,14 +83,14 @@ public class Player : MonoBehaviour
 
         transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
         animationSpeedPercent = ((SpeedPU) ? 1 : 0.5f) * inputDirection.magnitude;
-        m_Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
+        Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
     }
 
     public void Initialize()
     {
         player = Instantiate(avatar, transform.position, transform.rotation);
         player.transform.SetParent(transform);
-        m_Animator = GetComponentInChildren<Animator>();
+        Animator = GetComponentInChildren<Animator>();
         HasBomb = false;
     }
 
@@ -97,11 +98,17 @@ public class Player : MonoBehaviour
     {
         if (HasBomb)
         {
-            m_Animator.SetTrigger("Throw");
-            hasBomb = false;
+            Animator.SetTrigger("Throw");
             GameManager.manager.Bomb.transform.parent = null;
-            GameManager.manager.Bomb.RigidBody.constraints = RigidbodyConstraints.None;
-            GameManager.manager.Bomb.RigidBody.AddForce(new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x) * throwForce); 
+            GameManager.manager.Bomb.RigidBody.isKinematic = false;
+            if (InputAiming != Vector2.zero)
+            {
+                GameManager.manager.Bomb.RigidBody.AddForce(new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x) * throwForce);
+            }
+            else
+            {
+                GameManager.manager.Bomb.RigidBody.AddForce(transform.forward * throwForce);
+            }
         }
     }
 
@@ -130,39 +137,18 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Player player = other.gameObject.GetComponent<Player>();
-        Bomb bomb = other.gameObject.GetComponent<Bomb>();
-
-        if (!HasBomb)
+        if (other.GetComponent<Player>() != null)
         {
-            if (player != null)
+            if (!HasBomb)
             {
-                if (player.HasBomb)
-                {
-                    player.HasBomb = false;
-                    PassBomb();
-                } 
-            }
-            else if (bomb != null)
-            {
-                if (GameManager.manager.BombHolder != null)
-                {
-                    GameManager.manager.BombHolder.HasBomb = false; 
-                }
-                PassBomb();
+                GameManager.manager.PassBomb(this, other.GetComponent<Player>());
+                Animator.SetTrigger("Reception");
             }
         }
-    }
-
-    private void PassBomb()
-    {
-        m_Animator.SetTrigger("Reception");
-        GameManager.manager.Bomb.RigidBody.constraints = RigidbodyConstraints.FreezeAll;
-        GameManager.manager.BombHolder = this;
-        HasBomb = true;
-        GameObject catapult = GameManager.manager.BombHolder.GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0).gameObject;
-        Debug.Log(catapult.name);
-        GameManager.manager.Bomb.transform.SetParent(catapult.transform);
-        GameManager.manager.Bomb.transform.position = catapult.transform.position;
+        else if (other.GetComponent<Bomb>() != null)
+        {
+            GameManager.manager.PassBomb(this);
+            Animator.SetTrigger("Reception");
+        }
     }
 }

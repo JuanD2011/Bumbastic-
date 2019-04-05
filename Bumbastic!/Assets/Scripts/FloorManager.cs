@@ -106,11 +106,11 @@ public class FloorManager : MonoBehaviour
                 colliders[i].localPosition = Vector3.MoveTowards(colliders[i].localPosition, colliders[i].forward * nRings * 4f, (anticipationTime/2) * Time.deltaTime);
             }
 
-            for (int i = 0; i < rings[anticipationRing].module.Length; i++)
-            {
-				rings[anticipationRing].module[i].GetComponent<Renderer>().material.shader = Shader.Find("HDRP/Lit");
-				rings[anticipationRing].module[i].GetComponent<Renderer>().material.SetColor("_BaseColor", colorAnticipation.Evaluate(time));
-			}
+   //         for (int i = 0; i < rings[anticipationRing].module.Length; i++)
+   //         {
+			//	rings[anticipationRing].module[i].GetComponent<Renderer>().material.shader = Shader.Find("HDRP/Lit");
+			//	rings[anticipationRing].module[i].GetComponent<Renderer>().material.SetColor("_BaseColor", colorAnticipation.Evaluate(time));
+			//}
 
             if (time >= 1)
             {
