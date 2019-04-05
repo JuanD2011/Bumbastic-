@@ -21,4 +21,6 @@ public class Settings : ScriptableObject
         sFxSlider = _sFXVol;
     }
     #endregion
+
+    public Color[] playersColor = { Color.red, Color.green, Color.blue, Color.yellow };
 }

@@ -1,16 +1,24 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CanvasBillboard : MonoBehaviour
 {
-    TextMeshProUGUI nicknameText;
+    [SerializeField] Settings settings;
+
     Player player;
+
+    TextMeshProUGUI nicknameText;
+    Image playerColor;
 
     private void Start()
     {
         player = GetComponentInParent<Player>();
         nicknameText = GetComponentInChildren<TextMeshProUGUI>();
+        playerColor = GetComponentInChildren<Image>();
+
         nicknameText.text = string.Format("P{0}", player.Id + 1);
+        playerColor.color = settings.playersColor[player.Id];
     }
 
     private void Update()

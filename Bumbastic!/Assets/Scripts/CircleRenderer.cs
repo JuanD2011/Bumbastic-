@@ -2,6 +2,8 @@
 
 public class CircleRenderer : MonoBehaviour
 {
+    [SerializeField] Settings settings;
+
     [SerializeField] int vertexCount = 40;
     [SerializeField] float lineWidth = 0.2f;
     [SerializeField] float radius;
@@ -21,16 +23,16 @@ public class CircleRenderer : MonoBehaviour
         switch (player.Id)
         {
             case 0:
-                mLineRenderer.material.SetColor("_BaseColor", Color.red);
+                mLineRenderer.material.SetColor("_BaseColor", settings.playersColor[0]);
                 break;
             case 1:
-                mLineRenderer.material.SetColor("_BaseColor", Color.green);
+                mLineRenderer.material.SetColor("_BaseColor", settings.playersColor[1]);
                 break;
             case 2:
-                mLineRenderer.material.SetColor("_BaseColor", Color.blue);
+                mLineRenderer.material.SetColor("_BaseColor", settings.playersColor[2]);
                 break;
             case 3:
-                mLineRenderer.material.SetColor("_BaseColor", Color.yellow);
+                mLineRenderer.material.SetColor("_BaseColor", settings.playersColor[3]);
                 break;
             default:
                 mLineRenderer.material.SetColor("_BaseColor", Color.cyan);

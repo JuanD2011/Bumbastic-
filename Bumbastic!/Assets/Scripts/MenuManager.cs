@@ -12,6 +12,9 @@ public class MenuManager : MonoBehaviour
     private InGame inGame;
 
     [SerializeField]
+    Settings settings;
+
+    [SerializeField]
     private float startTimer = 5f;
     private float timer;
 
@@ -69,7 +72,9 @@ public class MenuManager : MonoBehaviour
     {
         for (int i = 0; i < Players.Count; i++)
         {
+            playerColors[i].color = settings.playersColor[i];
             playerColors[i].enabled = _canActive;
+
             playersIDs[i].enabled = _canActive;
             texts[i].enabled = _canActive;
 
