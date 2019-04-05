@@ -90,6 +90,7 @@ public class Player : MonoBehaviour
         player = Instantiate(avatar, transform.position, transform.rotation);
         player.transform.SetParent(transform);
         m_Animator = GetComponentInChildren<Animator>();
+        HasBomb = false;
     }
 
     public void Throw()
@@ -156,12 +157,12 @@ public class Player : MonoBehaviour
     private void PassBomb()
     {
         m_Animator.SetTrigger("Reception");
-        GameManager.manager.Bomb.RigidBody.Sleep();
-        //GameManager.manager.Bomb.RigidBody.isKinematic = true;
+        GameManager.manager.Bomb.RigidBody.constraints = RigidbodyConstraints.FreezeAll;
         GameManager.manager.BombHolder = this;
-        GameManager.manager.BombHolder.HasBomb = true;
-        GameObject bummie = GameManager.manager.BombHolder.GetComponentInChildren<Animator>().gameObject;
-        GameManager.manager.Bomb.transform.SetParent(bummie.transform);
-        GameManager.manager.Bomb.transform.position = bummie.transform.position;
+        HasBomb = true;
+        GameObject catapult = GameManager.manager.BombHolder.GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0).gameObject;
+        Debug.Log(catapult.name);
+        GameManager.manager.Bomb.transform.SetParent(catapult.transform);
+        GameManager.manager.Bomb.transform.position = catapult.transform.position;
     }
 }
