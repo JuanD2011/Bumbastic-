@@ -10,7 +10,7 @@ public class CrowIdle : StateMachineBehaviour
     float t = 0f;
     Vector3 dir;
 
-    Vector3 posPowerUpBox = new Vector3(0, -1.4f, 0);
+    Vector3 reference = new Vector3(0, -1.4f, 0);
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
@@ -50,7 +50,7 @@ public class CrowIdle : StateMachineBehaviour
         {
             GameManager.manager.powerUp.Collider.enabled = false;
             GameManager.manager.powerUp.transform.parent = animator.transform;
-            GameManager.manager.powerUp.transform.position = animator.transform.position + posPowerUpBox;
+            GameManager.manager.powerUp.transform.position = animator.transform.position + reference;
             GameManager.manager.powerUp.gameObject.SetActive(true);
         }
     }

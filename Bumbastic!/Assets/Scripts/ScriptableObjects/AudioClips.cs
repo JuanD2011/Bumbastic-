@@ -9,6 +9,7 @@ public class AudioClips : ScriptableObject
     //SFx
     public AudioClip bomb;
     public AudioClip buttonDefault, buttonBack, buttonSelection;
+    public AudioClip crow;
 
     /// <summary>
     /// Method called by buttons

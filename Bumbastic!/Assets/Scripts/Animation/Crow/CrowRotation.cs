@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class CrowRotation : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CrowRotation : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         antPos = transform.position;
+        StartCoroutine(CrowSound());
     }
 
     void Update()
@@ -18,5 +20,13 @@ public class CrowRotation : MonoBehaviour
             transform.LookAt(-antPos + (2 * transform.position));
             antPos = transform.position; 
         }
+    }
+
+    IEnumerator CrowSound()
+    {
+        WaitForSeconds waitForSeconds = new WaitForSeconds(Random.Range(10f, 15f));
+        yield return waitForSeconds;
+        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.crow, AudioType.SFx);
+        StartCoroutine(CrowSound());
     }
 }

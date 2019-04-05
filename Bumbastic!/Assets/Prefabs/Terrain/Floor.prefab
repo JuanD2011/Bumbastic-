@@ -146,6 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propsModule:
   - {fileID: 5248455873920448594, guid: ca1113d4b3a1658419551ec74dd94077, type: 3}
+  - {fileID: 6273977997727067049, guid: 3049415d3265ef848af411e966bf89c8, type: 3}
+  - {fileID: 9050841040588373035, guid: f73d579f3d3264741aa3362030f4a0fc, type: 3}
   colliders:
   - {fileID: 0}
   - {fileID: 0}
@@ -183,6 +185,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+  offsetSuelo: 0.07
+  propsPos: {x: 0, y: 0.5, z: 0}
 --- !u!65 &2551631303393605371
 BoxCollider:
   m_ObjectHideFlags: 0
