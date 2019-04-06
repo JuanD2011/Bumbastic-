@@ -4,6 +4,7 @@ public class ConfettiBomb : MonoBehaviour
 {
     private ParticleSystem m_Particle;
     private Renderer m_Renderer;
+
     void Start()
     {
         m_Particle = GetComponentInChildren<ParticleSystem>();
@@ -16,5 +17,6 @@ public class ConfettiBomb : MonoBehaviour
         m_Renderer.enabled = false;
         GetComponent<Collider>().enabled = false;
         m_Particle.Play();
+        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.confettiBomb, AudioType.SFx);
     }
 }

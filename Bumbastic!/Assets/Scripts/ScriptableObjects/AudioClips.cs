@@ -7,7 +7,7 @@ public class AudioClips : ScriptableObject
     public AudioClip inGameMusic;
 
     //SFx
-    public AudioClip bomb;
+    public AudioClip bomb, confettiBomb;
     public AudioClip buttonDefault, buttonBack, buttonSelection;
     public AudioClip crow;
     public AudioClip powerUpBoxDropped;
