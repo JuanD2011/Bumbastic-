@@ -13,8 +13,15 @@ MonoBehaviour:
   m_Name: Skins data
   m_EditorClassIdentifier: 
   skins:
+  - name: Bummie
+    description: 
+    value: 0
+    prefab: {fileID: 6652167441946210589, guid: 4091fa549d9f78348a4b000f77346b83,
+      type: 3}
+    choosed: 0
   - name: Ameribummie
     description: 
     value: 0
     prefab: {fileID: 6652167441946210589, guid: ce67e58a3face90418962c966cbb0bdd,
       type: 3}
+    choosed: 0
