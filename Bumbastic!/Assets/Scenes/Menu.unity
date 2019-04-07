@@ -3678,11 +3678,6 @@ MonoBehaviour:
   countdownText: {fileID: 1066795180}
   playerMenuPrefab: {fileID: 6489573870341292119, guid: f36bde14ecd43834b99a7a979b3d2db1,
     type: 3}
-  spawnPoints:
-  - {fileID: 524263268}
-  - {fileID: 1422304138}
-  - {fileID: 412404455}
-  - {fileID: 993701301}
 --- !u!114 &431491413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3721,6 +3716,11 @@ MonoBehaviour:
   - {fileID: 1655584806}
   - {fileID: 1796041207}
   - {fileID: 318992830}
+  spawnPoints:
+  - {fileID: 524263268}
+  - {fileID: 1422304138}
+  - {fileID: 412404455}
+  - {fileID: 993701301}
 --- !u!1001 &433386985
 PrefabInstance:
   m_ObjectHideFlags: 0
