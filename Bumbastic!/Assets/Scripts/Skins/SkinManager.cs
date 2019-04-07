@@ -26,7 +26,10 @@ public class SkinManager : MonoBehaviour
 
     private void ChangeSkin(int _player, int _position)
     {
-        Destroy(MenuManager.menu.Players[_player].transform.GetChild(0).gameObject);
+        if (MenuManager.menu.Players[_player].transform.GetChild(0) != null)
+        {
+            Destroy(MenuManager.menu.Players[_player].transform.GetChild(0).gameObject); 
+        }
         MenuManager.menu.Players[_player].Avatar = skinsData.skins[_position].prefab;
         Instantiate(MenuManager.menu.Players[_player].Avatar, spawnPoints[_player].transform.localPosition, spawnPoints[_player].transform.rotation, MenuManager.menu.Players[_player].transform);
     }
