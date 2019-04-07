@@ -33,9 +33,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject playerMenuPrefab;
 
-    [SerializeField]
-    private GameObject[] spawnPoints;
-
     private bool countdown = false;
 
     private byte playersReady = 0;
@@ -85,15 +82,6 @@ public class MenuManager : MonoBehaviour
             playerColors[i].enabled = _canActive;
             playersIDs[i].enabled = _canActive;
             texts[i].enabled = _canActive;
-
-            if (_canActive)
-            {
-                Instantiate(Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation, Players[i].transform);
-            }
-            else
-            {
-                Destroy(Players[i].transform.GetChild(0).gameObject);
-            }
         }
     }
 
