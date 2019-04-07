@@ -65,7 +65,7 @@ public class MenuManager : MonoBehaviour
 
         PlayerMenu.OnReady += PlayersReady;
         PlayerMenu.OnNotReady += PlayerNotReady;
-        MenuUI.OnMatchmaking += SetUpMatchMaking;
+        SkinManager.OnSkinsSet += SetUpMatchMaking;
 
         SetPlayersColor();
     }
@@ -83,7 +83,6 @@ public class MenuManager : MonoBehaviour
         for (int i = 0; i < Players.Count; i++)
         {
             playerColors[i].enabled = _canActive;
-
             playersIDs[i].enabled = _canActive;
             texts[i].enabled = _canActive;
 

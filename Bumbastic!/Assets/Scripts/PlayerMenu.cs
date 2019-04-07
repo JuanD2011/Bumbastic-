@@ -7,7 +7,7 @@ public class PlayerMenu : MonoBehaviour
 
     public bool Ready { get => ready; }
     public Controls Controls { get => controls; set => controls = value; }
-    public GameObject Avatar { get => avatar; }
+    public GameObject Avatar { get => avatar; set => avatar = value; }
     public byte Id { get => id; set => id = value; }
 
     public delegate void ReadyDelegate(byte id);

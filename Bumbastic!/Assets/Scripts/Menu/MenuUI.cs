@@ -59,7 +59,7 @@ public class MenuUI : MonoBehaviour
     {
         isMatchmaking = _bool;
         canvasAnimator.SetBool("Play",_bool);
-        OnMatchmaking?.Invoke(_bool);//MenuCamManager, MenuManager
+        OnMatchmaking?.Invoke(_bool);//MenuCamManager, SkinManager, SkinSelector
     }
 
     public void ConfigurationPanel(bool _bool)
