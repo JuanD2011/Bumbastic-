@@ -8,17 +8,19 @@ public class CanvasBillboard : MonoBehaviour
 
     Player player;
 
-    TextMeshProUGUI nicknameText;
+    TextMeshProUGUI[] playersText;
     Image playerColor;
 
     private void Start()
     {
         player = GetComponentInParent<Player>();
-        nicknameText = GetComponentInChildren<TextMeshProUGUI>();
+        playersText = GetComponentsInChildren<TextMeshProUGUI>();
         playerColor = GetComponentInChildren<Image>();
 
-        nicknameText.text = string.Format("P{0}", player.Id + 1);
+        playersText[0].text = string.Format("P{0}", player.Id + 1);
         playerColor.color = settings.playersColor[player.Id];
+
+        playersText[1].text = string.Format("{0}", player.PrefabName);
     }
 
     private void Update()

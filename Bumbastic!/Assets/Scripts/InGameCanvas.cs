@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using UnityEngine;  
 using TMPro;
 using System.Collections;
 
 public class InGameCanvas : MonoBehaviour
 {
     Animator m_Animator;
+    [SerializeField] Skins skinsData;
     [SerializeField] TextMeshProUGUI textWinner;
 
     public delegate IEnumerator DelLoadString(string _scene);
@@ -43,6 +44,6 @@ public class InGameCanvas : MonoBehaviour
     {
         isEndPanelActive = true;
         m_Animator.SetBool("isGameOver", true);
-        textWinner.text = string.Format("P{0}", GameManager.manager.Players[0].Id + 1);
+        textWinner.text = string.Format("{0}", GameManager.manager.Players[0].PrefabName);
     }
 }

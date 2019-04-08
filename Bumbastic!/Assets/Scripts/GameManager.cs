@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
 			Players.Add(player);
 			player.Controls = inGame.playerSettings[i].controls;
 			player.Avatar = inGame.playerSettings[i].avatar;
+            player.PrefabName = inGame.playerSettings[i].name;
 			player.Id = (byte)i;
 			player.SpawnPoint = GetSpawnPoint();
 			player.transform.position = player.SpawnPoint;

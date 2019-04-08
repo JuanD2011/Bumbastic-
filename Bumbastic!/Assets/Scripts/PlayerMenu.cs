@@ -3,12 +3,14 @@
 public class PlayerMenu : MonoBehaviour
 {
     private byte id;
+    string prefabName;
     private bool ready = false;
 
     public bool Ready { get => ready; }
     public Controls Controls { get => controls; set => controls = value; }
     public GameObject Avatar { get => avatar; set => avatar = value; }
     public byte Id { get => id; set => id = value; }
+    public string PrefabName { get => prefabName; set => prefabName = value; }
 
     public delegate void ReadyDelegate(byte id);
     public static ReadyDelegate OnReady;

@@ -8,32 +8,31 @@ public class SkinSelector : MonoBehaviour
     int position = 0;
 
     Button[] buttons;
+    Image[] images;
 
     public delegate void DelSkinSelector(int _player, int _position);
-    public static DelSkinSelector OnChangeSkin;
+    public DelSkinSelector OnChangeSkin;
 
-    private void Awake()
-    {
-        OnChangeSkin = null;
-    }
+    public Button[] Buttons { get => buttons; set => buttons = value; }
+    public Image[] Images { get => images; set => images = value; }
 
-    private void Start()
+    public void InitSkinSelector()
     {
-        buttons = GetComponentsInChildren<Button>();
-        buttons[0].onClick.AddListener(() => PreviousSkin());
-        buttons[1].onClick.AddListener(() => NextSkin());
         position = player - 1;
+        Buttons = GetComponentsInChildren<Button>(true);
+        Images = GetComponentsInChildren<Image>(true);
+
+        Buttons[0].onClick.AddListener(() => PreviousSkin());
+        Buttons[1].onClick.AddListener(() => NextSkin());
     }
 
     public void NextSkin()
     {
         Debug.Log("Next");
-        //position = (position + 1) % skinsData.skins.Count;
         skinsData.skins[position].choosed = false;
         int currentSkin = GetAvailableSkin(true);
         OnChangeSkin?.Invoke(player - 1, currentSkin);//Skin manager
     }
-
 
     public void PreviousSkin()
     {
@@ -47,7 +46,7 @@ public class SkinSelector : MonoBehaviour
     {
         if (_Forward)
         {
-            for (int i = position; i < skinsData.skins.Count; i++)
+            for (int i = position + 1; i < skinsData.skins.Count; i++)
             {
                 if (!skinsData.skins[i].choosed)
                 {
@@ -58,7 +57,7 @@ public class SkinSelector : MonoBehaviour
         }
         else
         {
-            for (int i = position; i >= 0; i--)
+            for (int i = position - 1; i > -1; i--)
             {
                 if (!skinsData.skins[i].choosed)
                 {

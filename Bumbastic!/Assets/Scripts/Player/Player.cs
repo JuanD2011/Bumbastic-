@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private bool canMove = false;
 
     private byte id;
+    string prefabName;
 
     [SerializeField]
     private GameObject avatar;
@@ -40,10 +41,11 @@ public class Player : MonoBehaviour
     public bool HasBomb { get => hasBomb; set => hasBomb = value; }
     public Vector2 InputAiming { get => inputAiming; private set => inputAiming = value; }
     public Controls Controls { private get => controls; set => controls = value; }
-    public GameObject Avatar { private get => avatar; set => avatar = value; }
+    public GameObject Avatar { get => avatar; set => avatar = value; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
     public byte Id { get => id; set => id = value; }
     public Animator Animator { get => m_Animator; set => m_Animator = value; }
+    public string PrefabName { get => prefabName; set => prefabName = value; }
 
     private void Start() => GameManager.manager.Director.stopped += LetMove;
 

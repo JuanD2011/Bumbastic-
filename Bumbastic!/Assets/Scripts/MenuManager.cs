@@ -117,7 +117,7 @@ public class MenuManager : MonoBehaviour
         inGame.playerSettings.Clear();
         for (int i = 0; i < Players.Count; i++)
         {
-            inGame.playerSettings.Add(new PlayerSettings("Danson", Players[i].Avatar, Players[i].Controls));
+            inGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls));
         }
         OnStartGame?.Invoke("Game");//MenuUI hears it.
         Debug.Log("The game has started");
