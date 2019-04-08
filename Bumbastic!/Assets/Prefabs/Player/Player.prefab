@@ -53,7 +53,7 @@ MonoBehaviour:
   turnSmooth: 0.15
   powerUpSpeed: 4.5
   avatar: {fileID: 6652167441946210589, guid: 4091fa549d9f78348a4b000f77346b83, type: 3}
-  throwForce: 100
+  throwForce: 60
 --- !u!54 &1806622985
 Rigidbody:
   m_ObjectHideFlags: 0

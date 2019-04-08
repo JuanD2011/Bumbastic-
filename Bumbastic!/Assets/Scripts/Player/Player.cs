@@ -106,11 +106,14 @@ public class Player : MonoBehaviour
             GameManager.manager.Bomb.RigidBody.isKinematic = false;
             if (InputAiming != Vector2.zero)
             {
-                GameManager.manager.Bomb.RigidBody.AddForce((new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x) + Vector3.up) / 2 * throwForce);
+                Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
+                Vector3 direction = Quaternion.AngleAxis(-20, transform.right) * aiming;
+                GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce);
             }
             else
             {
-                GameManager.manager.Bomb.RigidBody.AddForce(catapult.forward * throwForce);
+                Vector3 direction = Quaternion.AngleAxis(-20, transform.right) * transform.forward;
+                GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce);
             }
         }
     }
