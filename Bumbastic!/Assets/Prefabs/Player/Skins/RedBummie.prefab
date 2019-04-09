@@ -2753,7 +2753,7 @@ GameObject:
   - component: {fileID: 7458880909081447575}
   - component: {fileID: 331275390231443649}
   m_Layer: 0
-  m_Name: ameribummie
+  m_Name: RedBummie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
