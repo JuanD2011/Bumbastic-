@@ -96,11 +96,11 @@ public class AudioManager : MonoBehaviour
                     if (!currentAudioSource.isPlaying)
                     {
                         currentAudioSource.clip = _clipToPlay;
-                        StartCoroutine(MusicTrack(currentAudioSource));
+                        StartCoroutine(MusicTrack(currentAudioSource, 0.7f));
                     }
                     else
                     {
-                        StartCoroutine(MusicTrack(currentAudioSource, _clipToPlay));
+                        StartCoroutine(MusicTrack(currentAudioSource, _clipToPlay, 0.7f));
                     }
                     break;
                 case AudioType.SFx:
@@ -118,12 +118,12 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="_currentAudioSource"></param>
     /// <returns></returns>
-    private IEnumerator MusicTrack(AudioSource _currentAudioSource)
+    private IEnumerator MusicTrack(AudioSource _currentAudioSource, float _Volume)
     {
         _currentAudioSource.volume = 0f;
         _currentAudioSource.Play();
 
-        while (_currentAudioSource.volume < 0.9f)
+        while (_currentAudioSource.volume < _Volume)
         {
             _currentAudioSource.volume += Time.deltaTime;
             yield return null;
@@ -138,7 +138,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="_currentAudioSource"></param>
     /// <param name="_newMusicTrack"></param>
     /// <returns></returns>
-    private IEnumerator MusicTrack(AudioSource _currentAudioSource, AudioClip _newMusicTrack)
+    private IEnumerator MusicTrack(AudioSource _currentAudioSource, AudioClip _newMusicTrack, float _Volume)
     {
         while (_currentAudioSource.volume > 0.05f)
         {
@@ -149,7 +149,7 @@ public class AudioManager : MonoBehaviour
         _currentAudioSource.volume = 0f;
         _currentAudioSource.clip = _newMusicTrack;
 
-        while (_currentAudioSource.volume < 0.9f)
+        while (_currentAudioSource.volume < _Volume)
         {
             _currentAudioSource.volume += Time.deltaTime;
             yield return null;
