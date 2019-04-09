@@ -176,8 +176,8 @@ public class GameManager : MonoBehaviour
         _receiver.HasBomb = true;
         BombHolder = _receiver;
         this.Bomb.RigidBody.isKinematic = true;
-        Transform receiverCatapult = _receiver.GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0);
-        Bomb.transform.position = receiverCatapult.position;
+        Transform receiverCatapult = _receiver.GetComponentInChildren<Animator>().transform.GetChild(2);
+        Bomb.transform.position = receiverCatapult.GetChild(0).position;
         Bomb.transform.SetParent(receiverCatapult);
     }
 
@@ -192,8 +192,8 @@ public class GameManager : MonoBehaviour
         _receiver.HasBomb = true;
         BombHolder = _receiver;
         this.Bomb.RigidBody.isKinematic = true;
-        Transform receiverCatapult = _receiver.GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0);
-        Bomb.transform.position = receiverCatapult.position;
+        Transform receiverCatapult = _receiver.GetComponentInChildren<Animator>().transform.GetChild(2);
+        Bomb.transform.position = receiverCatapult.GetChild(0).position;
         Bomb.transform.SetParent(receiverCatapult);
     }
 
@@ -201,8 +201,8 @@ public class GameManager : MonoBehaviour
     {
         BombHolder.HasBomb = true;
         this.Bomb.RigidBody.isKinematic = true;
-        Transform receiverCatapult = BombHolder.GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0);
-        Bomb.transform.position = receiverCatapult.position;
+        Transform receiverCatapult = BombHolder.GetComponentInChildren<Animator>().transform.GetChild(2);
+        Bomb.transform.position = receiverCatapult.GetChild(0).position;
         Bomb.transform.SetParent(receiverCatapult);
     }
 }
