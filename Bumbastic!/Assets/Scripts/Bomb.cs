@@ -74,7 +74,7 @@ public class Bomb : MonoBehaviour
         CameraShake.instance.OnShake?.Invoke(0.4f, 6f, 1.2f);
         Exploded = true;
         RigidBody.isKinematic = false;
-        OnExplode?.Invoke();//ParticleModification, FloorManager hears it
+        OnExplode?.Invoke();//ParticleModification, GameManager, FloorManager hears it
         //gameObject.SetActive(false);
     }
 

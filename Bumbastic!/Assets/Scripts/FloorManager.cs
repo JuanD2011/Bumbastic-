@@ -75,7 +75,6 @@ public class FloorManager : MonoBehaviour
         }
 
         Bomb.OnExplode += MapDrop;
-
     }
 
     private void SpawnProps(int _length)
@@ -85,6 +84,7 @@ public class FloorManager : MonoBehaviour
 
     private void MapDrop()
     {
+        Debug.Log("dsds");
         if (!canDrop)
         {
             if (nRings > 2)

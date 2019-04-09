@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
                 bummies.RemoveAt(i);
             }
             bomb.transform.position = bummies[0].transform.position + new Vector3(0, 6, 0);
-            bomb.Timer = Random.Range(minTime, maxTime);
+            bomb.Timer = Random.Range(minTime -= 5f, maxTime -= 5f);
             bomb.Exploded = false;
             if (bomb.RigidBody != null)
             {
@@ -178,9 +178,8 @@ public class GameManager : MonoBehaviour
         _receiver.Collider.enabled = false;
         BombHolder = _receiver;
         this.Bomb.RigidBody.isKinematic = true;
-        Transform receiverCatapult = _receiver.GetComponentInChildren<Animator>().transform.GetChild(2);
-        Bomb.transform.position = receiverCatapult.GetChild(0).position;
-        Bomb.transform.SetParent(receiverCatapult);
+        Bomb.transform.position = _receiver.Catapult.position;
+        Bomb.transform.SetParent(_receiver.Catapult.transform);
     }
 
     /// <summary>
@@ -196,17 +195,15 @@ public class GameManager : MonoBehaviour
         _receiver.Collider.enabled = false;
         BombHolder = _receiver;
         this.Bomb.RigidBody.isKinematic = true;
-        Transform receiverCatapult = _receiver.GetComponentInChildren<Animator>().transform.GetChild(2);
-        Bomb.transform.position = receiverCatapult.GetChild(0).position;
-        Bomb.transform.SetParent(receiverCatapult);
+        Bomb.transform.position = _receiver.Catapult.position;
+        Bomb.transform.SetParent(_receiver.Catapult);
     }
 
     public void PassBomb()
     {
         BombHolder.HasBomb = true;
         this.Bomb.RigidBody.isKinematic = true;
-        Transform receiverCatapult = BombHolder.GetComponentInChildren<Animator>().transform.GetChild(2);
-        Bomb.transform.position = receiverCatapult.GetChild(0).position;
-        Bomb.transform.SetParent(receiverCatapult);
+        Bomb.transform.position = BombHolder.Catapult.position;
+        Bomb.transform.SetParent(BombHolder.Catapult);
     }
 }

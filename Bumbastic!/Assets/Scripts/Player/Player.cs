@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     public Animator Animator { get => m_Animator; set => m_Animator = value; }
     public string PrefabName { get => prefabName; set => prefabName = value; }
     public SphereCollider Collider { get => collider; private set => collider = value; }
+    public Transform Catapult { get => catapult; private set => catapult = value; }
 
     private void Start() => GameManager.manager.Director.stopped += LetMove;
 
@@ -98,8 +99,8 @@ public class Player : MonoBehaviour
         player.transform.SetParent(transform);
         Animator = GetComponentInChildren<Animator>();
         HasBomb = false;
-        catapult = GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0);
-        SphereCollider[] colliders = GetComponents<SphereCollider>();
+        Catapult = GetComponentInChildren<Bummie>().Catapult;
+        SphereCollider[] colliders = GetComponentsInChildren<SphereCollider>();
         foreach (SphereCollider sphere in colliders)
         {
             if (sphere.isTrigger)
