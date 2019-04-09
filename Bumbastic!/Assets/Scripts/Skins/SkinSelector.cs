@@ -15,10 +15,11 @@ public class SkinSelector : MonoBehaviour
 
     public Button[] Buttons { get => buttons; set => buttons = value; }
     public Image[] Images { get => images; set => images = value; }
+    public int Position { get => position; protected set => position = value; }
 
     public void InitSkinSelector()
     {
-        position = player - 1;
+        Position = player - 1;
         Buttons = GetComponentsInChildren<Button>(true);
         Images = GetComponentsInChildren<Image>(true);
 
@@ -26,15 +27,10 @@ public class SkinSelector : MonoBehaviour
         Buttons[1].onClick.AddListener(() => NextSkin());
     }
 
-    private void OnEnable()
-    {
-        position = player - 1;
-    }
-
     public void NextSkin()
     {
         Debug.Log("Next");
-        skinsData.skins[position].choosed = false;
+        skinsData.skins[Position].choosed = false;
         int currentSkin = GetAvailableSkin(true);
         OnChangeSkin?.Invoke(player - 1, currentSkin);//Skin manager
     }
@@ -42,7 +38,7 @@ public class SkinSelector : MonoBehaviour
     public void PreviousSkin()
     {
         Debug.Log("Previous");
-        skinsData.skins[position].choosed = false; 
+        skinsData.skins[Position].choosed = false; 
         int currentSkin = GetAvailableSkin(false);
         OnChangeSkin?.Invoke(player - 1, currentSkin);//Skin manager
     }
@@ -51,26 +47,26 @@ public class SkinSelector : MonoBehaviour
     {
         if (_Forward)
         {
-            for (int i = position + 1; i < skinsData.skins.Count; i++)
+            for (int i = Position + 1; i < skinsData.skins.Count; i++)
             {
                 if (!skinsData.skins[i].choosed)
                 {
-                    return position = i;
+                    return Position = i;
                     break;
                 }
             }
         }
         else
         {
-            for (int i = position - 1; i > -1; i--)
+            for (int i = Position - 1; i > -1; i--)
             {
                 if (!skinsData.skins[i].choosed)
                 {
-                    return position = i;
+                    return Position = i;
                     break;
                 }
             }
         }
-        return position;
+        return Position;
     }
 }
