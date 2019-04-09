@@ -8403,7 +8403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSystem: {fileID: 1424916019}
-  selectedObject: {fileID: 1132968079}
+  selectedObject: {fileID: 219336459}
 --- !u!1 &1125343970
 GameObject:
   m_ObjectHideFlags: 0
