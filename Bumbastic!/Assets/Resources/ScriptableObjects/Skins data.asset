@@ -18,22 +18,22 @@ MonoBehaviour:
     value: 0
     prefab: {fileID: 6652167441946210589, guid: 4091fa549d9f78348a4b000f77346b83,
       type: 3}
-    choosed: 1
-  - name: Angry! >(
+    choosed: 0
+  - name: Grumpy
     description: 
     value: 0
-    prefab: {fileID: 6652167441946210589, guid: ce67e58a3face90418962c966cbb0bdd,
+    prefab: {fileID: 6652167441946210589, guid: 0d90b3be79be26048a6b93f8869815d5,
       type: 3}
-    choosed: 1
+    choosed: 0
   - name: Dabadee
     description: 
     value: 0
-    prefab: {fileID: 6652167441946210589, guid: 9128a2736481a50428a49807a2a82fee,
+    prefab: {fileID: 6652167441946210589, guid: 6f1393a37444dfc4e824a52d9a095078,
       type: 3}
-    choosed: 1
+    choosed: 0
   - name: Blacked
     description: 
     value: 0
-    prefab: {fileID: 6652167441946210589, guid: a0a58d480d3c29242a1eee9a6935e6ff,
+    prefab: {fileID: 6652167441946210589, guid: 4eb4846c553299342a021d81d17b61b8,
       type: 3}
     choosed: 0

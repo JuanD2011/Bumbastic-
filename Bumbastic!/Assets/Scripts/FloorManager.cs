@@ -74,7 +74,8 @@ public class FloorManager : MonoBehaviour
             modules[i].transform.position += new Vector3(0, Random.Range(0f,offsetSuelo), 0);
         }
 
-        GameManager.manager.Director.stopped += MapDrop;
+        Bomb.OnExplode += MapDrop;
+
     }
 
     private void SpawnProps(int _length)
@@ -82,7 +83,7 @@ public class FloorManager : MonoBehaviour
         Instantiate(propsModule[Random.Range(0, _length)], propsPos, Quaternion.identity);
     }
 
-    private void MapDrop(PlayableDirector obj)
+    private void MapDrop()
     {
         if (!canDrop)
         {
@@ -121,7 +122,7 @@ public class FloorManager : MonoBehaviour
 
     IEnumerator Anticipation(int ring)
     {
-        WaitForSeconds waitForSeconds = new WaitForSeconds(10f);
+        WaitForSeconds waitForSeconds = new WaitForSeconds(5f);
 
         yield return waitForSeconds;
 
