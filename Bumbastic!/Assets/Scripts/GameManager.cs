@@ -171,9 +171,11 @@ public class GameManager : MonoBehaviour
     {
         if (BombHolder != null)
         {
-            BombHolder.HasBomb = false; 
+            BombHolder.HasBomb = false;
+            BombHolder.Collider.enabled = true;
         }
         _receiver.HasBomb = true;
+        _receiver.Collider.enabled = false;
         BombHolder = _receiver;
         this.Bomb.RigidBody.isKinematic = true;
         Transform receiverCatapult = _receiver.GetComponentInChildren<Animator>().transform.GetChild(2);
@@ -189,7 +191,9 @@ public class GameManager : MonoBehaviour
     public void PassBomb(Player _receiver, Player _transmitter)
     {
         _transmitter.HasBomb = false;
+        _transmitter.Collider.enabled = true;
         _receiver.HasBomb = true;
+        _receiver.Collider.enabled = false;
         BombHolder = _receiver;
         this.Bomb.RigidBody.isKinematic = true;
         Transform receiverCatapult = _receiver.GetComponentInChildren<Animator>().transform.GetChild(2);

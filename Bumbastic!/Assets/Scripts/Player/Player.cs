@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     private float throwForce;
 
     private GameObject player;
+    private SphereCollider collider;
     private Animator m_Animator;
     private Vector3 spawnPoint;
     private Controls controls;
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
     public byte Id { get => id; set => id = value; }
     public Animator Animator { get => m_Animator; set => m_Animator = value; }
     public string PrefabName { get => prefabName; set => prefabName = value; }
+    public SphereCollider Collider { get => collider; private set => collider = value; }
 
     private void Start() => GameManager.manager.Director.stopped += LetMove;
 
@@ -97,6 +99,14 @@ public class Player : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         HasBomb = false;
         catapult = GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0);
+        SphereCollider[] colliders = GetComponents<SphereCollider>();
+        foreach (SphereCollider sphere in colliders)
+        {
+            if (sphere.isTrigger)
+            {
+                collider = sphere;
+            }
+        }
     }
 
     public void Throw()
@@ -148,7 +158,7 @@ public class Player : MonoBehaviour
     {
         if (other.GetComponent<Player>() != null)
         {
-            if (!HasBomb)
+            if (other.GetComponent<Player>().HasBomb)
             {
                 GameManager.manager.PassBomb(this, other.GetComponent<Player>());
                 Animator.SetTrigger("Reception");
