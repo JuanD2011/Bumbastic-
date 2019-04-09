@@ -26,6 +26,11 @@ public class SkinSelector : MonoBehaviour
         Buttons[1].onClick.AddListener(() => NextSkin());
     }
 
+    private void OnEnable()
+    {
+        position = player - 1;
+    }
+
     public void NextSkin()
     {
         Debug.Log("Next");
