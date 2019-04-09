@@ -199,6 +199,7 @@ public class GameManager : MonoBehaviour
 
     public void PassBomb()
     {
+        BombHolder.HasBomb = true;
         this.Bomb.RigidBody.isKinematic = true;
         Transform receiverCatapult = BombHolder.GetComponentInChildren<Animator>().transform.GetChild(2).GetChild(0);
         Bomb.transform.position = receiverCatapult.position;

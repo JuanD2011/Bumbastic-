@@ -5,7 +5,6 @@ using System.Collections;
 public class InGameCanvas : MonoBehaviour
 {
     Animator m_Animator;
-    [SerializeField] Skins skinsData;
     [SerializeField] TextMeshProUGUI textWinner;
 
     public delegate IEnumerator DelLoadString(string _scene);

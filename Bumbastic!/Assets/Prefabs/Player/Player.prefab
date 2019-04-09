@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceba96052aec3994e86fba0a91a25ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 3.5
   turnSmooth: 0.15
-  powerUpSpeed: 4.5
+  powerUpSpeed: 5
   avatar: {fileID: 6652167441946210589, guid: 4091fa549d9f78348a4b000f77346b83, type: 3}
-  throwForce: 60
+  throwForce: 25
 --- !u!54 &1806622985
 Rigidbody:
   m_ObjectHideFlags: 0

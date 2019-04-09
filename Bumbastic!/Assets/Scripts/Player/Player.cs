@@ -109,14 +109,15 @@ public class Player : MonoBehaviour
             if (InputAiming != Vector2.zero)
             {
                 Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
-                Vector3 direction = Quaternion.AngleAxis(-20, transform.right) * aiming;
-                GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce);
+                Vector3 direction = Quaternion.AngleAxis(-10, transform.right) * aiming;
+                GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
             }
             else
             {
-                Vector3 direction = Quaternion.AngleAxis(-20, transform.right) * transform.forward;
-                GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce);
+                Vector3 direction = Quaternion.AngleAxis(-10, transform.right) * transform.forward;
+                GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
             }
+            HasBomb = false;
         }
     }
 
