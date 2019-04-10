@@ -30,7 +30,7 @@ MonoBehaviour:
     value: 0
     prefab: {fileID: 6652167441946210589, guid: 118ffb613b6531540a38c33d6d84788e,
       type: 3}
-    choosed: 1
+    choosed: 0
   - name: Blacked
     description: 
     value: 0

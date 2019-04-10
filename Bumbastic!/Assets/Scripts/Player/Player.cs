@@ -127,9 +127,9 @@ public class Player : MonoBehaviour
     {
         float elapsedTime = 0f;
 
-        while (elapsedTime < _CurrentStateInfo.normalizedTime * 0.5f)
+        while (elapsedTime < 0.5f)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime = _CurrentStateInfo.normalizedTime;
             yield return null;
         }
 
