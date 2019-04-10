@@ -129,7 +129,7 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
 
-        _currentAudioSource.volume = 1f;
+        _currentAudioSource.volume = _Volume;
     }
 
     /// <summary>
@@ -154,7 +154,7 @@ public class AudioManager : MonoBehaviour
             _currentAudioSource.volume += Time.deltaTime;
             yield return null;
         }
-        _currentAudioSource.volume = 1f;
+        _currentAudioSource.volume = _Volume;
     }
 
     private AudioSource GetAudioSource(AudioType _audioType)

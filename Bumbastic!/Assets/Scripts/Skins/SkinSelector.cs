@@ -47,8 +47,12 @@ public class SkinSelector : MonoBehaviour
     {
         if (_Forward)
         {
-            for (int i = Position + 1; i < skinsData.skins.Count; i++)
+            for (int i = Position + 1; i <= skinsData.skins.Count; i++)
             {
+                if (i == skinsData.skins.Count)
+                {
+                    i = 0;
+                }
                 if (!skinsData.skins[i].choosed)
                 {
                     return Position = i;
@@ -58,8 +62,12 @@ public class SkinSelector : MonoBehaviour
         }
         else
         {
-            for (int i = Position - 1; i > -1; i--)
+            for (int i = Position - 1; i >= -1; i--)
             {
+                if (i <= -1)
+                {
+                    i = skinsData.skins.Count - 1;
+                }
                 if (!skinsData.skins[i].choosed)
                 {
                     return Position = i;
