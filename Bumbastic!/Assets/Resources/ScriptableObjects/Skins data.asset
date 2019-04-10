@@ -37,3 +37,8 @@ MonoBehaviour:
     prefab: {fileID: 6652167441946210589, guid: 0a78f9b1190904e49bced7056578dd74,
       type: 3}
     choosed: 0
+  - name: PixelPit
+    description: 
+    value: 0
+    prefab: {fileID: 798887283, guid: 0ebbe7a158ff22a46b0a5a6685eda882, type: 3}
+    choosed: 0
