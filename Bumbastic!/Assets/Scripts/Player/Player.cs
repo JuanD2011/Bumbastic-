@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -115,21 +116,38 @@ public class Player : MonoBehaviour
         if (HasBomb)
         {
             Animator.SetTrigger("Throw");
-            GameManager.manager.Bomb.transform.parent = null;
-            GameManager.manager.Bomb.RigidBody.isKinematic = false;
-            if (InputAiming != Vector2.zero)
+            if (Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"))
             {
-                Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
-                Vector3 direction = Quaternion.AngleAxis(-10, transform.right) * aiming;
-                GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+                StartCoroutine(SyncThrowAnim(InputAiming, Animator.GetCurrentAnimatorStateInfo(0))); 
             }
-            else
-            {
-                Vector3 direction = Quaternion.AngleAxis(-10, transform.right) * transform.forward;
-                GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
-            }
-            HasBomb = false;
         }
+    }
+
+    IEnumerator SyncThrowAnim(Vector2 _InputAiming, AnimatorStateInfo _CurrentStateInfo)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _CurrentStateInfo.normalizedTime * 0.5f)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        GameManager.manager.Bomb.transform.parent = null;
+        GameManager.manager.Bomb.RigidBody.isKinematic = false;
+
+        if (_InputAiming != Vector2.zero)
+        {
+            Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
+            Vector3 direction = Quaternion.AngleAxis(-10, transform.right) * aiming;
+            GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+        }
+        else
+        {
+            Vector3 direction = Quaternion.AngleAxis(-10, transform.right) * transform.forward;
+            GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+        }
+        HasBomb = false;
     }
 
     private void OnCollisionEnter(Collision collision)
