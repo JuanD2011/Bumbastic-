@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpeedUpParticle : ParticleModication
 {
-    PowerUp powerUp;
+    Velocity p_Velocity;
     [SerializeField] private float angularVel = 0.5f;
 
     public Action OnComplete;
@@ -17,11 +17,11 @@ public class SpeedUpParticle : ParticleModication
     protected void Start()
     {
         lightIntensity = 2f;
-        powerUp = GetComponentInParent<PowerUp>();
+        p_Velocity = GetComponentInParent<Velocity>();
 
-        if (powerUp != null)
+        if (p_Velocity != null)
         {
-            duration = powerUp.Duration;
+            duration = p_Velocity.Duration;
         }
         Execute();
     }
