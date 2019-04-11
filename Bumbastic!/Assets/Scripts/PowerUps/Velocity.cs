@@ -9,8 +9,8 @@ public class Velocity : PowerUp
     {
         base.Start();
         Duration = 5f;
-        speedUpParticle.GetComponent<SpeedUpParticle>().OnComplete += OnComplete;
         StartCoroutine(Execute());
+        speedUpParticle.GetComponent<SpeedUpParticle>().OnComplete += OnComplete;
     }
 
     private void OnComplete()
