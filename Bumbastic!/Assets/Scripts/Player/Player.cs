@@ -65,11 +65,20 @@ public class Player : MonoBehaviour
             inputAiming = new Vector2(Input.GetAxis(Controls.rjoystickHorizontal), Input.GetAxis(Controls.rjoystickVertical));
             Move(); 
         }
-		if (Input.GetAxis(Controls.rightTrigger) > 0.8f)
-		{
-			Debug.Log("Throw");
-			Throw();
-		}
+        if (controls.rightButtonTrigger != KeyCode.None)
+        {
+            if (Input.GetKeyDown(controls.rightButtonTrigger))
+            {
+                Throw(); 
+            }
+        }
+        else if (controls.rightAxisTrigger != "")
+        {
+            if (Input.GetAxis(controls.rightAxisTrigger) > 0.8f)
+            {
+                Throw(); 
+            }
+        }
 
 		if (Input.GetKeyDown(Controls.startButton))
         {

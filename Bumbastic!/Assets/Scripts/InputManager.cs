@@ -93,7 +93,7 @@ public class InputManager : MonoBehaviour
 
     private void UpdateControllers()
     {
-
+        
     }
 }
 
@@ -103,11 +103,12 @@ public struct Controls
     public KeyCode aButton;
     public KeyCode bButton;
     public KeyCode startButton;
+    public KeyCode rightButtonTrigger;
     public string ljoystickHorizontal;
     public string ljoystickVertical;
     public string rjoystickHorizontal;
     public string rjoystickVertical;
-    public string rightTrigger;
+    public string rightAxisTrigger;
 
     public Controls(byte _joystickNumber, string _controllerName) : this()
     {
@@ -115,93 +116,141 @@ public struct Controls
         {
             case 0:
                 controllerName = _controllerName;
-                if (controllerName.Length > 31)
+                if (controllerName.Length == 33)
                 {
                     aButton = KeyCode.Joystick1Button0;
                     bButton = KeyCode.Joystick1Button1;
                     startButton = KeyCode.Joystick1Button7;
-                    rightTrigger = "0RightTrigger";
+                    rightAxisTrigger = "0RightTrigger";
+                    rightButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "0RHorizontal";
                     rjoystickVertical = "0RVertical";
                 }
-                else if (controllerName.Length > 18)
+                else if (controllerName.Length == 19)
                 {
                     aButton = KeyCode.Joystick1Button1;
                     bButton = KeyCode.Joystick1Button2;
                     startButton = KeyCode.Joystick1Button9;
-                    rightTrigger = "P0RightTrigger";
+                    rightAxisTrigger = "P0RightTrigger";
+                    rightButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "P0RHorizontal";
                     rjoystickVertical = "P0RVertical";
-                }              
+                }
+                else if (controllerName.Length == 22)
+                {
+                    aButton = KeyCode.Joystick1Button2;
+                    bButton = KeyCode.Joystick1Button1;
+                    startButton = KeyCode.Joystick1Button9;
+                    rightButtonTrigger = KeyCode.Joystick1Button7;
+                    rightAxisTrigger = "";
+                    rjoystickHorizontal = "G0RHorizontal";
+                    rjoystickVertical = "G0RVertical";
+                }
                 ljoystickHorizontal = "0Horizontal";
                 ljoystickVertical = "0Vertical";  
                 break;
 
             case 1:
                 controllerName = _controllerName;
-                if (controllerName.Length > 31)
+                if (controllerName.Length == 33)
                 {
                     aButton = KeyCode.Joystick2Button0;
                     bButton = KeyCode.Joystick2Button1;
                     startButton = KeyCode.Joystick2Button7;
-                    rightTrigger = "1RightTrigger";
+                    rightAxisTrigger = "1RightTrigger";
+                    rightButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "1RHorizontal";
                     rjoystickVertical = "1RVertical";
                 }
-                else if (controllerName.Length > 18)
+                else if (controllerName.Length == 19)
                 {
                     aButton = KeyCode.Joystick2Button1;
                     bButton = KeyCode.Joystick2Button2;
                     startButton = KeyCode.Joystick2Button9;
-                    rightTrigger = "P1RightTrigger";
+                    rightAxisTrigger = "P1RightTrigger";
+                    rightButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "P1RHorizontal";
                     rjoystickVertical = "P1RVertical";
+                }
+                else if (controllerName.Length == 22)
+                {
+                    aButton = KeyCode.Joystick2Button2;
+                    bButton = KeyCode.Joystick2Button1;
+                    startButton = KeyCode.Joystick2Button9;
+                    rightButtonTrigger = KeyCode.Joystick2Button7;
+                    rightAxisTrigger = "";
+                    rjoystickHorizontal = "G1RHorizontal";
+                    rjoystickVertical = "G1RVertical";
                 }
                 ljoystickHorizontal = "1Horizontal";
                 ljoystickVertical = "1Vertical";
                 break;
             case 2:
                 controllerName = _controllerName;
-                if (controllerName.Length > 31)
+                if (controllerName.Length == 33)
                 {
                     aButton = KeyCode.Joystick3Button0;
                     bButton = KeyCode.Joystick3Button1;
                     startButton = KeyCode.Joystick3Button7;
-                    rightTrigger = "2RightTrigger";
+                    rightAxisTrigger = "2RightTrigger";
+                    rightButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "2RHorizontal";
                     rjoystickVertical = "2RVertical";
                 }
-                else if (controllerName.Length > 18)
+                else if (controllerName.Length == 19)
                 {
                     aButton = KeyCode.Joystick3Button1;
                     bButton = KeyCode.Joystick3Button2;
                     startButton = KeyCode.Joystick3Button9;
-                    rightTrigger = "P2RightTrigger";
+                    rightAxisTrigger = "P2RightTrigger";
+                    rightButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "P2RHorizontal";
                     rjoystickVertical = "P2RVertical";
+                }
+                else if (controllerName.Length == 22)
+                {
+                    aButton = KeyCode.Joystick3Button2;
+                    bButton = KeyCode.Joystick3Button1;
+                    startButton = KeyCode.Joystick3Button9;
+                    rightButtonTrigger = KeyCode.Joystick3Button7;
+                    rightAxisTrigger = "";
+                    rjoystickHorizontal = "G2RHorizontal";
+                    rjoystickVertical = "G2RVertical";
                 }
                 ljoystickHorizontal = "2Horizontal";
                 ljoystickVertical = "2Vertical";
                 break;
             case 3:
                 controllerName = _controllerName;
-                if (controllerName.Length > 31)
+                if (controllerName.Length == 33)
                 {
                     aButton = KeyCode.Joystick4Button0;
                     bButton = KeyCode.Joystick4Button1;
                     startButton = KeyCode.Joystick4Button7;
-                    rightTrigger = "3RightTrigger";
+                    rightAxisTrigger = "3RightTrigger";
+                    rightButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "3RHorizontal";
                     rjoystickVertical = "3RVertical";
                 }
-                else if (controllerName.Length > 18)
+                else if (controllerName.Length == 19)
                 {
                     aButton = KeyCode.Joystick4Button1;
                     bButton = KeyCode.Joystick4Button2;
                     startButton = KeyCode.Joystick4Button9;
-                    rightTrigger = "P3RightTrigger";
+                    rightAxisTrigger = "P3RightTrigger";
+                    rightButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "P3RHorizontal";
                     rjoystickVertical = "P3RVertical";
+                }
+                else if (controllerName.Length == 22)
+                {
+                    aButton = KeyCode.Joystick4Button2;
+                    bButton = KeyCode.Joystick4Button1;
+                    startButton = KeyCode.Joystick4Button9;
+                    rightButtonTrigger = KeyCode.Joystick4Button7;
+                    rightAxisTrigger = "";
+                    rjoystickHorizontal = "G3RHorizontal";
+                    rjoystickVertical = "G3RVertical";
                 }
                 ljoystickHorizontal = "3Horizontal";
                 ljoystickVertical = "3Vertical";

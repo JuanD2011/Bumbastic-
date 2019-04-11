@@ -37,8 +37,6 @@ public class PlayerMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(controls.startButton) || Input.GetKeyDown(controls.aButton))
         {
-            Debug.Log("Start");
-            Debug.Log(controls.startButton);
             OnStartButton?.Invoke();
 
             if (MenuUI.isMatchmaking)
