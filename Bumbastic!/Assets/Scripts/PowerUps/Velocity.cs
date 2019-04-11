@@ -5,16 +5,12 @@ public class Velocity : PowerUp
 {
     GameObject speedUpParticle;
 
-    private void Awake()
-    {
-        StartCoroutine(Execute());
-    }
-
     protected override void Start()
     {
         base.Start();
         Duration = 5f;
         speedUpParticle.GetComponent<SpeedUpParticle>().OnComplete += OnComplete;
+        StartCoroutine(Execute());
     }
 
     private void OnComplete()
