@@ -14,7 +14,7 @@ public class Velocity : PowerUp
     {
         base.Start();
         Duration = 5f;
-        speedUpParticle.GetComponentInChildren<SpeedUpParticle>().OnComplete += OnComplete;
+        speedUpParticle.GetComponent<SpeedUpParticle>().OnComplete += OnComplete;
     }
 
     private void OnComplete()

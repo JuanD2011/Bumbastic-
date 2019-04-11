@@ -12,7 +12,7 @@ public class Magnet : PowerUp
     protected override void Start()
     {
         base.Start();
-        magnetManager.GetComponentInChildren<MagnetManager>().OnLerpComplete += OnComplete;
+        magnetManager.GetComponent<MagnetManager>().OnLerpComplete += OnComplete;
     }
 
     private void OnComplete()
