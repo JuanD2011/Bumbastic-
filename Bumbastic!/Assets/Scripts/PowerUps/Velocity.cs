@@ -23,7 +23,7 @@ public class Velocity : PowerUp
     {
         WaitForSeconds wait = new WaitForSeconds(Duration);
 
-        speedUpParticle = Instantiate(GameManager.manager.speedUpParticleSystem, Vector3.zero, Quaternion.identity, transform);
+        speedUpParticle = Instantiate(GameManager.manager.speedUpParticleSystem, Vector3.zero, Quaternion.identity, GetComponent<Bummie>().transform);
         player.SpeedPU = true;
         yield return wait;
         player.SpeedPU = false;
