@@ -56,7 +56,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.21698102
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -74,7 +74,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.0833333
-        value: 0.21698102
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -84,7 +84,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.r
+    attribute: material._Color.r
     path: 
     classID: 23
     script: {fileID: 0}
@@ -93,7 +93,16 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.21698102
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.96666664
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -102,7 +111,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.0833333
-        value: 0.21698102
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -112,7 +121,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.g
+    attribute: material._Color.g
     path: 
     classID: 23
     script: {fileID: 0}
@@ -121,7 +130,16 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.21698102
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.96666664
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -130,7 +148,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.0833333
-        value: 0.21698102
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -140,7 +158,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.b
+    attribute: material._Color.b
     path: 
     classID: 23
     script: {fileID: 0}
@@ -168,7 +186,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.a
+    attribute: material._Color.a
     path: 
     classID: 23
     script: {fileID: 0}
@@ -189,28 +207,28 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 0
-      attribute: 1136458424
+      attribute: 1303350129
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 0
-      attribute: 1404893880
+      attribute: 1571785585
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 0
-      attribute: 1673329336
+      attribute: 1840221041
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 0
-      attribute: 1941764792
+      attribute: 2108656497
       script: {fileID: 0}
       typeID: 23
       customType: 22
@@ -353,7 +371,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.21698102
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -371,7 +389,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.0833333
-        value: 0.21698102
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -381,7 +399,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.r
+    attribute: material._Color.r
     path: 
     classID: 23
     script: {fileID: 0}
@@ -390,7 +408,16 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.21698102
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.96666664
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -399,7 +426,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.0833333
-        value: 0.21698102
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -409,7 +436,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.g
+    attribute: material._Color.g
     path: 
     classID: 23
     script: {fileID: 0}
@@ -418,7 +445,16 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.21698102
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.96666664
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -427,7 +463,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.0833333
-        value: 0.21698102
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -437,7 +473,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.b
+    attribute: material._Color.b
     path: 
     classID: 23
     script: {fileID: 0}
@@ -465,7 +501,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.a
+    attribute: material._Color.a
     path: 
     classID: 23
     script: {fileID: 0}
