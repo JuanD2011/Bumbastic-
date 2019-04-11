@@ -9,7 +9,12 @@ public class SpeedUpParticle : ParticleModication
 
     public Action OnComplete;
 
-    protected override void Start()
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
+    protected void Start()
     {
         lightIntensity = 2f;
         powerUp = GetComponentInParent<PowerUp>();
@@ -18,7 +23,6 @@ public class SpeedUpParticle : ParticleModication
         {
             duration = powerUp.Duration;
         }
-        base.Start();
         Execute();
     }
 
