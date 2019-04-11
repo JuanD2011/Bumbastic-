@@ -18,24 +18,24 @@ public class CircleRenderer : MonoBehaviour
         player = GetComponentInParent<Player>();
         Debug.Log(player.Id);
 
-        mLineRenderer.material.shader = Shader.Find("HDRP/Lit");
+        mLineRenderer.material.color = settings.playersColor[0];
 
         switch (player.Id)
         {
             case 0:
-                mLineRenderer.material.SetColor("_BaseColor", settings.playersColor[0]);
+                mLineRenderer.material.color = settings.playersColor[0];
                 break;
             case 1:
-                mLineRenderer.material.SetColor("_BaseColor", settings.playersColor[1]);
+                mLineRenderer.material.color = settings.playersColor[1];
                 break;
             case 2:
-                mLineRenderer.material.SetColor("_BaseColor", settings.playersColor[2]);
+                mLineRenderer.material.color = settings.playersColor[2];
                 break;
             case 3:
-                mLineRenderer.material.SetColor("_BaseColor", settings.playersColor[3]);
+                mLineRenderer.material.color = settings.playersColor[3];
                 break;
             default:
-                mLineRenderer.material.SetColor("_BaseColor", Color.cyan);
+                mLineRenderer.material.color = settings.playersColor[0];
                 break;
         }
         SetCircle();

@@ -48,7 +48,7 @@ public abstract class ParticleModication : MonoBehaviour
             }
         }
 
-        Light = GetComponentInChildren<Light>();
+        Light = GetComponentInChildren<Light>(true);
         RealTime = MainModules[0].duration + MainModules[0].startLifetime.Evaluate(1);
 	}
 
