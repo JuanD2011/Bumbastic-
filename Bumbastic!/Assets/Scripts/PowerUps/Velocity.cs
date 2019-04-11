@@ -3,19 +3,33 @@ using System.Collections;
 
 public class Velocity : PowerUp
 {
+    GameObject speedUpParticle;
+
+    private void Awake()
+    {
+        StartCoroutine(Execute());
+    }
+
     protected override void Start()
     {
         base.Start();
-        duration = 5f;
-        StartCoroutine(Execute());
+        Duration = 5f;
+        speedUpParticle.GetComponentInChildren<SpeedUpParticle>().OnComplete += OnComplete;
+    }
+
+    private void OnComplete()
+    {
+        Destroy(speedUpParticle.gameObject);
+        Destroy(this);
     }
 
     IEnumerator Execute()
     {
-        WaitForSeconds wait = new WaitForSeconds(duration);
+        WaitForSeconds wait = new WaitForSeconds(Duration);
+
+        speedUpParticle = Instantiate(GameManager.manager.speedUpParticleSystem, Vector3.zero, Quaternion.identity, transform);
         player.SpeedPU = true;
         yield return wait;
         player.SpeedPU = false;
-        Destroy(this);
     }
 }

@@ -2,7 +2,7 @@
 
 public class Magnet : PowerUp
 {
-    MagnetManager magnetManager;
+    GameObject magnetManager;
 
     private void Awake()
     {
@@ -12,8 +12,7 @@ public class Magnet : PowerUp
     protected override void Start()
     {
         base.Start();
-        magnetManager = GetComponentInChildren<MagnetManager>();
-        magnetManager.OnLerpComplete += OnComplete;
+        magnetManager.GetComponentInChildren<MagnetManager>().OnLerpComplete += OnComplete;
     }
 
     private void OnComplete()
@@ -24,6 +23,6 @@ public class Magnet : PowerUp
 
     void Execute()
     {
-        Instantiate(GameManager.manager.magnetParticleSystem, Vector3.zero, Quaternion.identity, gameObject.transform);
+        magnetManager = Instantiate(GameManager.manager.magnetParticleSystem, Vector3.zero, Quaternion.identity, gameObject.transform);
     }
 }

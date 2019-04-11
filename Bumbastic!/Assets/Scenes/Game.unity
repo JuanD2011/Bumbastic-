@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.23151374, g: 0.263888, b: 0.24435423, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -348,6 +348,8 @@ MonoBehaviour:
   bomb: {fileID: 1429717419}
   powerUp: {fileID: 1169578613}
   magnetParticleSystem: {fileID: 6569818202052991651, guid: 0e8e4defdde8c224fa7a7ccd7abe821c,
+    type: 3}
+  speedUpParticleSystem: {fileID: 7379601420566035011, guid: c91d992a0904ade42aa34b1a01e0815f,
     type: 3}
 --- !u!4 &490962512
 Transform:
@@ -1532,6 +1534,36 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3628763504567345097, guid: 786b8c6ef3f631c4488b231982dcc8a3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628763504567345097, guid: 786b8c6ef3f631c4488b231982dcc8a3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 691604942803257578, guid: 786b8c6ef3f631c4488b231982dcc8a3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802731064491133677, guid: 786b8c6ef3f631c4488b231982dcc8a3,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802731064491133677, guid: 786b8c6ef3f631c4488b231982dcc8a3,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802731064491133677, guid: 786b8c6ef3f631c4488b231982dcc8a3,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3626111542099895056, guid: 786b8c6ef3f631c4488b231982dcc8a3,
         type: 3}
       propertyPath: m_Name
@@ -1616,36 +1648,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3628763504567345097, guid: 786b8c6ef3f631c4488b231982dcc8a3,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3628763504567345097, guid: 786b8c6ef3f631c4488b231982dcc8a3,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 691604942803257578, guid: 786b8c6ef3f631c4488b231982dcc8a3,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3802731064491133677, guid: 786b8c6ef3f631c4488b231982dcc8a3,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3802731064491133677, guid: 786b8c6ef3f631c4488b231982dcc8a3,
-        type: 3}
-      propertyPath: m_AngularDrag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3802731064491133677, guid: 786b8c6ef3f631c4488b231982dcc8a3,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 786b8c6ef3f631c4488b231982dcc8a3, type: 3}

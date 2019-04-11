@@ -1,113 +1,56 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ParticleModication : MonoBehaviour {
-
-    [SerializeField] Gradient gradient;
-    [SerializeField] float duration, radius, velocity, lightIntensity, size;
-    [SerializeField] AnimationCurve curve;
+public abstract class ParticleModication : MonoBehaviour
+{
+    [SerializeField] protected Gradient gradient;
+    [SerializeField] protected float duration, radius, velocity, lightIntensity, size;
+    [SerializeField] protected AnimationCurve curve;
 
     ParticleSystem[] particleSystems;
     ParticleSystem.ShapeModule[] shapeModules;
     ParticleSystem.MainModule[] mainModules;
 
-    [SerializeField] bool modifySize;
-    [SerializeField] bool modifyRadius;
+    [SerializeField] protected bool modifySize;
+    [SerializeField] protected bool modifyRadius;
+    [SerializeField] protected bool modifyStartColor = false;
 
     new Light light;
-    AudioSource m_audioSource;
 
     float realTime = 0f;
 
-    void Awake()
+    protected int particlesToSetColor = 2;
+
+    protected ParticleSystem[] ParticleSystems { get => particleSystems; set => particleSystems = value; }
+    protected ParticleSystem.ShapeModule[] ShapeModules { get => shapeModules; set => shapeModules = value; }
+    protected ParticleSystem.MainModule[] MainModules { get => mainModules; set => mainModules = value; }
+    protected float RealTime { get => realTime; private set => realTime = value; }
+    protected Light Light { get => light; set => light = value; }
+
+    protected virtual void Start()
     {
-        particleSystems = GetComponentsInChildren<ParticleSystem>();
-        mainModules = new ParticleSystem.MainModule[particleSystems.Length];
-        shapeModules = new ParticleSystem.ShapeModule[particleSystems.Length];
+        ParticleSystems = GetComponentsInChildren<ParticleSystem>();
+        MainModules = new ParticleSystem.MainModule[ParticleSystems.Length];
+        ShapeModules = new ParticleSystem.ShapeModule[ParticleSystems.Length];
 
         for (int i = 0; i < particleSystems.Length; i++)
         {
-            mainModules[i] = particleSystems[i].main;
-            shapeModules[i] = particleSystems[i].shape;
-            mainModules[i].simulationSpeed = velocity;
-            mainModules[i].duration = duration;
+            MainModules[i] = ParticleSystems[i].main;
+            ShapeModules[i] = ParticleSystems[i].shape;
+            MainModules[i].simulationSpeed = velocity;
+            MainModules[i].duration = duration;
 
-            if (i != particleSystems.Length - 2)
+            if (modifyStartColor)
             {
-                mainModules[i].startColor = gradient;
+                if (i < particlesToSetColor)
+                {
+                    MainModules[i].startColor = gradient;
+                } 
             }
         }
 
-        light = GetComponentInChildren<Light>();
-        realTime = mainModules[0].duration + mainModules[0].startLifetime.Evaluate(1);
-
-        Bomb.OnExplode += SetParticles;
+        Light = GetComponentInChildren<Light>();
+        RealTime = MainModules[0].duration + MainModules[0].startLifetime.Evaluate(1);
 	}
 
-    private void SetParticles()
-    {
-        m_audioSource = AudioManager.instance.CurrentAudioSource;
-
-        if (m_audioSource != null)
-        {
-            if (light != null)
-            {
-                StartCoroutine(ExplosionParticles());
-            }
-            else Debug.LogError("There's no light attached");
-        }
-        else Debug.LogError("There's no Audio Source available");
-    }
-
-    IEnumerator ExplosionParticles()
-    {
-        float elapsedTime = 0f;
-
-        float volume = m_audioSource.volume;
-        float pitch = m_audioSource.pitch;
-
-        light.enabled = true;
-
-        foreach (ParticleSystem item in particleSystems)
-        {
-            item.Play();
-            yield return null;
-        }
-
-        while (elapsedTime < realTime)
-        {
-            float realValue = curve.Evaluate((elapsedTime * velocity) / realTime);
-            float value = curve.Evaluate(elapsedTime / duration);
-
-            light.intensity = realValue * lightIntensity;
-            light.color = gradient.Evaluate(elapsedTime / duration); 
-
-            m_audioSource.pitch = realValue;
-            m_audioSource.volume = realValue; 
-
-            if (modifySize)
-            {
-                mainModules[0].startSize = value * size;
-                mainModules[1].startSize = value * size;
-            }
-
-            if (modifyRadius)
-            {
-                shapeModules[0].radius = curve.Evaluate(elapsedTime / duration) * radius;
-            }
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        if (m_audioSource.isPlaying)
-        {
-            m_audioSource.Stop();
-        }
-
-        m_audioSource.pitch = pitch;
-        m_audioSource.volume = volume; 
-
-        light.enabled = false; 
-    }
+    protected abstract void Execute();
 }

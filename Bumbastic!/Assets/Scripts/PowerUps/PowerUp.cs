@@ -3,11 +3,12 @@
 [RequireComponent(typeof(BoxCollider))]
 public class PowerUp : MonoBehaviour, IPowerUp
 {
-    protected float duration;
+    private float duration;
     protected Player player;
 
     Collider m_Collider;
     public Collider Collider { get => m_Collider; set => m_Collider = value; }
+    public float Duration { get => duration; protected set => duration = value; }
 
     protected virtual void Start()
     {
