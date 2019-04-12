@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 728864678}
   - component: {fileID: 728864677}
   - component: {fileID: 728864676}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SkinPaperBag
   m_TagString: Untagged
   m_Icon: {fileID: 0}

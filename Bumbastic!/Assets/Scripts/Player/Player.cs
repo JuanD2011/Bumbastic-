@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
 
     private Transform catapult;
 
+    private bool throwing;
+
     public bool SpeedPU { private get => speedPU; set => speedPU = value; }
     public bool CanMove { private get => canMove; set => canMove = value; }
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
@@ -67,16 +69,16 @@ public class Player : MonoBehaviour
         }
         if (controls.rightButtonTrigger != KeyCode.None)
         {
-            if (Input.GetKeyDown(controls.rightButtonTrigger))
+            if (Input.GetKeyDown(controls.rightButtonTrigger) && !throwing)
             {
-                Throw(); 
+                Throw();
             }
         }
-        else if (controls.rightAxisTrigger != "")
+        else if (controls.rightAxisTrigger != "" && !throwing)
         {
-            if (Input.GetAxis(controls.rightAxisTrigger) > 0.8f)
+            if (Input.GetAxis(controls.rightAxisTrigger) == 1f)
             {
-                Throw(); 
+                Throw();
             }
         }
 
@@ -125,20 +127,24 @@ public class Player : MonoBehaviour
         if (HasBomb)
         {
             Animator.SetTrigger("Throw");
-            if (Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"))
-            {
-                StartCoroutine(SyncThrowAnim(InputAiming, Animator.GetCurrentAnimatorStateInfo(0))); 
-            }
+
+            StartCoroutine(SyncThrowAnim(InputAiming));
         }
     }
 
-    IEnumerator SyncThrowAnim(Vector2 _InputAiming, AnimatorStateInfo _CurrentStateInfo)
+    IEnumerator SyncThrowAnim(Vector2 _InputAiming)
     {
+        throwing = true;
+
+        yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"));
+
         float elapsedTime = 0f;
 
-        while (elapsedTime < 0.5f)
+        AnimatorStateInfo animatorStateInfo = Animator.GetCurrentAnimatorStateInfo(0);
+
+        while (elapsedTime < 0.1f)
         {
-            elapsedTime = _CurrentStateInfo.normalizedTime;
+            elapsedTime = animatorStateInfo.normalizedTime;
             yield return null;
         }
 
@@ -148,15 +154,16 @@ public class Player : MonoBehaviour
         if (_InputAiming != Vector2.zero)
         {
             Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
-            Vector3 direction = Quaternion.AngleAxis(-10, transform.right) * aiming;
+            Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
             GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         else
         {
-            Vector3 direction = Quaternion.AngleAxis(-10, transform.right) * transform.forward;
+            Vector3 direction = Quaternion.AngleAxis(10, transform.right) * transform.forward;
             GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         HasBomb = false;
+        throwing = false;
     }
 
     private void OnCollisionEnter(Collision collision)

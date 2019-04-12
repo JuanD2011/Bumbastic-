@@ -136,7 +136,7 @@ public struct Controls
                     rjoystickHorizontal = "P0RHorizontal";
                     rjoystickVertical = "P0RVertical";
                 }
-                else if (controllerName.Length == 22)
+                else if (controllerName.Length == 22 || controllerName.Length == 29)
                 {
                     aButton = KeyCode.Joystick1Button2;
                     bButton = KeyCode.Joystick1Button1;
@@ -172,7 +172,7 @@ public struct Controls
                     rjoystickHorizontal = "P1RHorizontal";
                     rjoystickVertical = "P1RVertical";
                 }
-                else if (controllerName.Length == 22)
+                else if (controllerName.Length == 22 || controllerName.Length == 29)
                 {
                     aButton = KeyCode.Joystick2Button2;
                     bButton = KeyCode.Joystick2Button1;
@@ -207,7 +207,7 @@ public struct Controls
                     rjoystickHorizontal = "P2RHorizontal";
                     rjoystickVertical = "P2RVertical";
                 }
-                else if (controllerName.Length == 22)
+                else if (controllerName.Length == 22 || controllerName.Length == 29)
                 {
                     aButton = KeyCode.Joystick3Button2;
                     bButton = KeyCode.Joystick3Button1;
@@ -242,7 +242,7 @@ public struct Controls
                     rjoystickHorizontal = "P3RHorizontal";
                     rjoystickVertical = "P3RVertical";
                 }
-                else if (controllerName.Length == 22)
+                else if (controllerName.Length == 22 || controllerName.Length == 29)
                 {
                     aButton = KeyCode.Joystick4Button2;
                     bButton = KeyCode.Joystick4Button1;

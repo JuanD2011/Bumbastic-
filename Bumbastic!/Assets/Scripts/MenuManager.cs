@@ -125,6 +125,8 @@ public class MenuManager : MonoBehaviour
 
     public void InitializeFirstPlayers(List<string> _joysticks)
     {
+        inGame.maxPlayers = _joysticks.Count;
+
         for (int i = 0; i < _joysticks.Count; i++)
         {
             PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();

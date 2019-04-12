@@ -1617,7 +1617,7 @@ GameObject:
   - component: {fileID: 8795203142112711241}
   - component: {fileID: 8504449706390626467}
   - component: {fileID: 225615867367998232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PixelPit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

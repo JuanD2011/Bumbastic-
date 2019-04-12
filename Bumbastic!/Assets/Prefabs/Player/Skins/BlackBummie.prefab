@@ -3742,7 +3742,7 @@ GameObject:
   - component: {fileID: 7458880909081447575}
   - component: {fileID: 331275390231443649}
   - component: {fileID: 1892011261185378092}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BlackBummie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
