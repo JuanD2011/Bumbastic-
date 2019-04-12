@@ -5,13 +5,9 @@ public class ExplosionParticle : ParticleModication
 {
     AudioSource m_audioSource;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
-    }
-
-    protected void Start()
-    {
+        base.Start();
         Bomb.OnExplode += Execute;
     }
 

@@ -26,7 +26,7 @@ public abstract class ParticleModication : MonoBehaviour
     protected float RealTime { get => realTime; private set => realTime = value; }
     protected Light Light { get => light; set => light = value; }
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         ParticleSystems = GetComponentsInChildren<ParticleSystem>();
         MainModules = new ParticleSystem.MainModule[ParticleSystems.Length];
