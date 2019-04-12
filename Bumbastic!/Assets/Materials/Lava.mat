@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Lava
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 177b0fe5e1f609a4a8272544552f7d66, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -41,6 +41,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _M1:
+        m_Texture: {fileID: 2800000, guid: deaf2f61d979ae142bcbacf26e8efd93, type: 3}
+        m_Scale: {x: 1.25, y: 1.25}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -65,23 +69,39 @@ Material:
         m_Texture: {fileID: 2800000, guid: c3bd1b6a5af1d314ca745b5d6e89ece7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _T1:
+        m_Texture: {fileID: 2800000, guid: deeb2ec6b24796e4fa75d0f6133f60eb, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AP1: 0.1
+    - _AV1: 0.1
     - _BumpScale: 1
+    - _Com: 4
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _I1: 10
     - _Metallic: 0
     - _Mode: 0
+    - _Mult: 0.01
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _S1: 0.5
+    - _S2: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _V1: 1
+    - _V2: 0
     - _ZWrite: 1
     m_Colors:
+    - _C1: {r: 1, g: 0.44191527, b: 0.1273585, a: 1}
+    - _C2: {r: 0.764151, g: 0.33953285, b: 0.09732112, a: 1}
+    - _C3: {r: 0.066037714, g: 0.023985395, b: 0.023985395, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
