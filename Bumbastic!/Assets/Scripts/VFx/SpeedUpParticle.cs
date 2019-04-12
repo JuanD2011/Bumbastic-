@@ -5,20 +5,21 @@ using UnityEngine;
 public class SpeedUpParticle : ParticleModication
 {
     Velocity p_Velocity;
-    [SerializeField] private float angularVel = 0.5f;
+    [SerializeField] private float angularVel = 5f;
 
     public Action OnComplete;
 
     protected override void Start()
     {
-        lightIntensity = 2f;
         p_Velocity = GetComponentInParent<Velocity>();
 
         if (p_Velocity != null)
         {
             duration = p_Velocity.Duration;
         }
+
         base.Start();
+
         Execute();
     }
 

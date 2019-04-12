@@ -3,15 +3,15 @@
 public abstract class ParticleModication : MonoBehaviour
 {
     [SerializeField] protected Gradient gradient;
-    [SerializeField] protected float duration, radius, velocity, lightIntensity, size;
+    [SerializeField] protected float duration = 5f, radius = 1f, velocity = 1f, lightIntensity = 2f, size = 5f;
     [SerializeField] protected AnimationCurve curve;
 
     ParticleSystem[] particleSystems;
     ParticleSystem.ShapeModule[] shapeModules;
     ParticleSystem.MainModule[] mainModules;
 
-    [SerializeField] protected bool modifySize;
-    [SerializeField] protected bool modifyRadius;
+    [SerializeField] protected bool modifySize = true;
+    [SerializeField] protected bool modifyRadius = true;
     [SerializeField] protected bool modifyStartColor = false;
 
     new Light light;
@@ -32,12 +32,12 @@ public abstract class ParticleModication : MonoBehaviour
         MainModules = new ParticleSystem.MainModule[ParticleSystems.Length];
         ShapeModules = new ParticleSystem.ShapeModule[ParticleSystems.Length];
 
-        for (int i = 0; i < particleSystems.Length; i++)
+        for (int i = 0; i < ParticleSystems.Length; i++)
         {
             MainModules[i] = ParticleSystems[i].main;
-            ShapeModules[i] = ParticleSystems[i].shape;
             MainModules[i].simulationSpeed = velocity;
             MainModules[i].duration = duration;
+            ShapeModules[i] = ParticleSystems[i].shape; 
 
             if (modifyStartColor)
             {
