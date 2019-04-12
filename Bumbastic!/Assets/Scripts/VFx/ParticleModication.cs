@@ -19,6 +19,7 @@ public abstract class ParticleModication : MonoBehaviour
     float realTime = 0f;
 
     protected int particlesToSetColor = 2;
+    protected float startLifetime;
 
     protected ParticleSystem[] ParticleSystems { get => particleSystems; set => particleSystems = value; }
     protected ParticleSystem.ShapeModule[] ShapeModules { get => shapeModules; set => shapeModules = value; }
@@ -48,8 +49,10 @@ public abstract class ParticleModication : MonoBehaviour
             }
         }
 
+        startLifetime = MainModules[0].startLifetime.Evaluate(1);
+
         Light = GetComponentInChildren<Light>(true);
-        RealTime = MainModules[0].duration + MainModules[0].startLifetime.Evaluate(1);
+        RealTime = MainModules[0].duration + startLifetime;
 	}
 
     protected abstract void Execute();
