@@ -116,7 +116,7 @@ public struct Controls
         {
             case 0:
                 controllerName = _controllerName;
-                if (controllerName.Length == 33)
+                if (controllerName.Length == 33 || controllerName.Length == 32)
                 {
                     aButton = KeyCode.Joystick1Button0;
                     bButton = KeyCode.Joystick1Button1;
@@ -152,7 +152,7 @@ public struct Controls
 
             case 1:
                 controllerName = _controllerName;
-                if (controllerName.Length == 33)
+                if (controllerName.Length == 33 || controllerName.Length == 32)
                 {
                     aButton = KeyCode.Joystick2Button0;
                     bButton = KeyCode.Joystick2Button1;
@@ -187,7 +187,7 @@ public struct Controls
                 break;
             case 2:
                 controllerName = _controllerName;
-                if (controllerName.Length == 33)
+                if (controllerName.Length == 33 || controllerName.Length == 32)
                 {
                     aButton = KeyCode.Joystick3Button0;
                     bButton = KeyCode.Joystick3Button1;
@@ -222,7 +222,7 @@ public struct Controls
                 break;
             case 3:
                 controllerName = _controllerName;
-                if (controllerName.Length == 33)
+                if (controllerName.Length == 33 || controllerName.Length == 32)
                 {
                     aButton = KeyCode.Joystick4Button0;
                     bButton = KeyCode.Joystick4Button1;

@@ -15,7 +15,6 @@ public class Velocity : PowerUp
 
     private void OnComplete()
     {
-        Debug.Log("fdaf"); 
         Destroy(speedUpParticle.gameObject);
         Destroy(this);
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1149849133}
-  m_IndirectSpecularColor: {r: 0.70704734, g: 0.40122682, b: 0.2258948, a: 1}
+  m_IndirectSpecularColor: {r: 0.7070554, g: 0.40122056, b: 0.22589536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 307307057}
   - component: {fileID: 307307056}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: FloorLava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,7 +295,7 @@ Transform:
   m_GameObject: {fileID: 307307055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2, y: -3.3, z: 5.3}
-  m_LocalScale: {x: 5.5981, y: 5.5981, z: 5.5981}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 20
@@ -1194,7 +1194,7 @@ PrefabInstance:
     - target: {fileID: 6488248007249943936, guid: d35ad8b261cba514e944f0b19592eff2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6488248007249943936, guid: d35ad8b261cba514e944f0b19592eff2,
         type: 3}
