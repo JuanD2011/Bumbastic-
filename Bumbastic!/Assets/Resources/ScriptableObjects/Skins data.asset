@@ -42,3 +42,8 @@ MonoBehaviour:
     value: 0
     prefab: {fileID: 798887283, guid: 0ebbe7a158ff22a46b0a5a6685eda882, type: 3}
     choosed: 0
+  - name: Ugly bomb
+    description: 
+    value: 0
+    prefab: {fileID: 728864674, guid: cccb06cfc2a60b84bbc245f6dacc1813, type: 3}
+    choosed: 0
