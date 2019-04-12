@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
                 bummies.RemoveAt(i);
             }
             bomb.transform.position = bummies[0].transform.position + new Vector3(0, 6, 0);
-            bomb.Timer = Random.Range(minTime -= 5f, maxTime -= 5f);
+            bomb.Timer = Random.Range(minTime -= 3f, maxTime -= 3f);
             bomb.Exploded = false;
             if (bomb.RigidBody != null)
             {
