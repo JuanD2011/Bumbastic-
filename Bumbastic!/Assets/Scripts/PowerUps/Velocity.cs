@@ -8,13 +8,14 @@ public class Velocity : PowerUp
     protected override void Start()
     {
         base.Start();
-        Duration = 5f;
         StartCoroutine(Execute());
         speedUpParticle.GetComponent<SpeedUpParticle>().OnComplete += OnComplete;
+        Duration = 5f;
     }
 
     private void OnComplete()
     {
+        Debug.Log("fdaf"); 
         Destroy(speedUpParticle.gameObject);
         Destroy(this);
     }

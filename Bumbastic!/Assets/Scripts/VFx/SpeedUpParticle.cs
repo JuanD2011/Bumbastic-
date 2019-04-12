@@ -40,7 +40,7 @@ public class SpeedUpParticle : ParticleModication
             yield return null;
         }
 
-        while (elapsedTime < RealTime)
+        while (elapsedTime < duration)
         {
             Light.intensity = lightIntensity * Mathf.Sin(angularVel * elapsedTime) + 4f;
 
@@ -52,7 +52,7 @@ public class SpeedUpParticle : ParticleModication
 
         while (Light.intensity > 0)
         {
-            Mathf.Lerp(Light.intensity, 0, elapsedTime);
+            Light.intensity = Mathf.Lerp(Light.intensity, 0, elapsedTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
