@@ -12553,8 +12553,8 @@ MonoBehaviour:
   axis: {fileID: 1554308924}
   principalCamera: {fileID: 1965420920}
   matchmakingCamera: {fileID: 856167797}
-  angularVel: 0.05
-  amplitude: 45
+  angularVel: 0.07
+  amplitude: 10
 --- !u!1001 &1940048925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12723,7 +12723,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1708102946}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 60
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
