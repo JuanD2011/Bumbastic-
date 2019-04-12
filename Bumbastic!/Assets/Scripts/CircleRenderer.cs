@@ -16,7 +16,6 @@ public class CircleRenderer : MonoBehaviour
     {
         mLineRenderer = GetComponent<LineRenderer>();
         player = GetComponentInParent<Player>();
-        Debug.Log(player.Id);
 
         mLineRenderer.material.color = settings.playersColor[0];
 

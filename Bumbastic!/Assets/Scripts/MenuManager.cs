@@ -120,7 +120,6 @@ public class MenuManager : MonoBehaviour
             inGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls));
         }
         OnStartGame?.Invoke("Game");//MenuUI hears it.
-        Debug.Log("The game has started");
     }
 
     public void InitializeFirstPlayers(List<string> _joysticks)
