@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayAudio(audioClips.inGameMusic, AudioType.Music);
+        PlayAudio(audioClips.inGameMusic, AudioType.Music, 0.8f, 1f, 2f);
 
         if (audioMutes != null)
         {
@@ -96,15 +96,15 @@ public class AudioManager : MonoBehaviour
                     if (!currentAudioSource.isPlaying)
                     {
                         currentAudioSource.clip = _clipToPlay;
-                        StartCoroutine(MusicTrack(currentAudioSource, 0.7f));
+                        StartCoroutine(MusicTrack(currentAudioSource, currentAudioSource.volume));
                     }
                     else
                     {
-                        StartCoroutine(MusicTrack(currentAudioSource, _clipToPlay, 0.7f));
+                        StartCoroutine(ChangeMusicTracks(currentAudioSource, _clipToPlay, currentAudioSource.volume));
                     }
                     break;
                 case AudioType.SFx:
-                    currentAudioSource.PlayOneShot(_clipToPlay, 0.6f);
+                    currentAudioSource.PlayOneShot(_clipToPlay);
                     break;
                 default:
                     currentAudioSource.PlayOneShot(_clipToPlay);
@@ -113,11 +113,64 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Init the music with fade in
-    /// </summary>
-    /// <param name="_currentAudioSource"></param>
-    /// <returns></returns>
+    public void PlayAudio(AudioClip _clipToPlay, AudioType _audioType, float _Volume)
+    {
+        if (GetAudioSource(_audioType) != null && _clipToPlay != null)
+        {
+            currentAudioSource = GetAudioSource(_audioType);
+
+            switch (_audioType)
+            {
+                case AudioType.Music:
+                    if (!currentAudioSource.isPlaying)
+                    {
+                        currentAudioSource.clip = _clipToPlay;
+                        StartCoroutine(MusicTrack(currentAudioSource, _Volume));
+                    }
+                    else
+                    {
+                        StartCoroutine(ChangeMusicTracks(currentAudioSource, _clipToPlay, _Volume));
+                    }
+                    break;
+                case AudioType.SFx:
+                    currentAudioSource.PlayOneShot(_clipToPlay, _Volume);
+                    break;
+                default:
+                    currentAudioSource.PlayOneShot(_clipToPlay, _Volume);
+                    break;
+            }
+        }
+    }
+
+    public void PlayAudio(AudioClip _clipToPlay, AudioType _audioType, float _Volume, float _TimeToFadeOut, float _TimeToFadeIn)
+    {
+        if (GetAudioSource(_audioType) != null && _clipToPlay != null)
+        {
+            currentAudioSource = GetAudioSource(_audioType);
+
+            switch (_audioType)
+            {
+                case AudioType.Music:
+                    if (!currentAudioSource.isPlaying)
+                    {
+                        currentAudioSource.clip = _clipToPlay;
+                        StartCoroutine(MusicTrack(currentAudioSource, _Volume , _TimeToFadeIn));
+                    }
+                    else
+                    {
+                        StartCoroutine(ChangeMusicTracks(currentAudioSource, _clipToPlay, _Volume, _TimeToFadeOut, _TimeToFadeIn));
+                    }
+                    break;
+                case AudioType.SFx:
+                    currentAudioSource.PlayOneShot(_clipToPlay, _Volume);
+                    break;
+                default:
+                    currentAudioSource.PlayOneShot(_clipToPlay, _Volume);
+                    break;
+            }
+        }
+    }
+
     private IEnumerator MusicTrack(AudioSource _currentAudioSource, float _Volume)
     {
         _currentAudioSource.volume = 0f;
@@ -133,12 +186,35 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Init the music with a Time to fade in
+    /// </summary>
+    /// <param name="_currentAudioSource"></param>
+    /// <returns></returns>
+    private IEnumerator MusicTrack(AudioSource _currentAudioSource, float _Volume, float _TimeToFadeIn)
+    {
+        _currentAudioSource.volume = 0f;
+        _currentAudioSource.Play();
+
+        float elapsedTime = 0f;
+        float currentVolume = _currentAudioSource.volume;
+
+        while (elapsedTime < _TimeToFadeIn)
+        {
+            _currentAudioSource.volume = Mathf.Lerp(currentVolume, _Volume, elapsedTime / _TimeToFadeIn);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _currentAudioSource.volume = _Volume;
+    }
+
+    /// <summary>
     /// Change the current music to a new one
     /// </summary>
     /// <param name="_currentAudioSource"></param>
     /// <param name="_newMusicTrack"></param>
     /// <returns></returns>
-    private IEnumerator MusicTrack(AudioSource _currentAudioSource, AudioClip _newMusicTrack, float _Volume)
+    private IEnumerator ChangeMusicTracks(AudioSource _currentAudioSource, AudioClip _newMusicTrack, float _Volume)
     {
         while (_currentAudioSource.volume > 0.05f)
         {
@@ -152,6 +228,32 @@ public class AudioManager : MonoBehaviour
         while (_currentAudioSource.volume < _Volume)
         {
             _currentAudioSource.volume += Time.deltaTime;
+            yield return null;
+        }
+        _currentAudioSource.volume = _Volume;
+    }
+
+    private IEnumerator ChangeMusicTracks(AudioSource _currentAudioSource, AudioClip _newMusicTrack, float _Volume, float _TimeToFadeOut, float _TimeToFadeIn)
+    {
+        float elapsedTime = 0f;
+        float currentVolume = _currentAudioSource.volume;
+
+        while (elapsedTime < _TimeToFadeOut)
+        {
+            _currentAudioSource.volume = Mathf.Lerp(currentVolume, 0f, elapsedTime / _TimeToFadeOut);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _currentAudioSource.clip = _newMusicTrack;
+
+        currentVolume = 0f;
+        elapsedTime = 0f;
+
+        while (elapsedTime < _TimeToFadeIn)
+        {
+            _currentAudioSource.volume = Mathf.Lerp(currentVolume, _Volume, elapsedTime / _TimeToFadeIn);
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
         _currentAudioSource.volume = _Volume;

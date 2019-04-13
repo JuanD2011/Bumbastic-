@@ -52,6 +52,7 @@ public class SpeedUpParticle : ParticleModication
         while (elapsedTime < startLifetime)
         {
             MainModules[0].startColor = Color.Lerp(MainModules[0].startColor.colorMax, Color.clear, elapsedTime / startLifetime);
+            MainModules[1].startColor = Color.Lerp(MainModules[1].startColor.colorMax, Color.clear, elapsedTime / startLifetime);
             Light.intensity = Mathf.Lerp(Light.intensity, 0, elapsedTime / startLifetime);
             elapsedTime += Time.deltaTime;
             yield return null;
