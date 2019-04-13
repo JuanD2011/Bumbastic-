@@ -21,7 +21,7 @@ public class InGameCanvas : MonoBehaviour
     {
         m_Animator = GetComponent<Animator>();
         GameManager.manager.OnGameOver += SetEndAnimation;
-        Player.OnStartInGame += CanLoadScene;
+        PlayerMenu.OnStartButton += CanLoadScene;
     }
 
     private void CanLoadScene()

@@ -104,7 +104,7 @@ public class AudioManager : MonoBehaviour
                     }
                     break;
                 case AudioType.SFx:
-                    currentAudioSource.PlayOneShot(_clipToPlay);
+                    currentAudioSource.PlayOneShot(_clipToPlay, 0.6f);
                     break;
                 default:
                     currentAudioSource.PlayOneShot(_clipToPlay);

@@ -24,14 +24,14 @@ MonoBehaviour:
     value: 0
     prefab: {fileID: 6652167441946210589, guid: 205462f60df731d4db10372444530363,
       type: 3}
-    choosed: 1
+    choosed: 0
   - name: Dabadee
     description: 
     value: 0
     prefab: {fileID: 6652167441946210589, guid: 118ffb613b6531540a38c33d6d84788e,
       type: 3}
-    choosed: 0
-  - name: Blacked
+    choosed: 1
+  - name: Carbon
     description: 
     value: 0
     prefab: {fileID: 6652167441946210589, guid: 0a78f9b1190904e49bced7056578dd74,
@@ -46,4 +46,4 @@ MonoBehaviour:
     description: 
     value: 0
     prefab: {fileID: 728864674, guid: cccb06cfc2a60b84bbc245f6dacc1813, type: 3}
-    choosed: 0
+    choosed: 1

@@ -57,8 +57,6 @@ public class Player : MonoBehaviour
 
     private void LetMove(PlayableDirector _obj) => canMove = true;
 
-    public static PlayerMenu.ButtonsDelegate OnStartInGame;
-
     void Update()
     {
         if (canMove)
@@ -84,7 +82,7 @@ public class Player : MonoBehaviour
 
 		if (Input.GetKeyDown(Controls.startButton))
         {
-            OnStartInGame?.Invoke();
+            PlayerMenu.OnStartButton?.Invoke();
         }
     }
 
