@@ -33,6 +33,8 @@ public class PlayerMenu : MonoBehaviour
         OnBackButton = null;
         OnAcceptButton = null;
         OnStartButton = null;
+        OnLeftTrigger = null;
+        OnRightTrigger = null;
     }
 
     private void Update()
