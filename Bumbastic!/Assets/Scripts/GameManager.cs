@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     private InGame inGame;
 
     [SerializeField]
+    GameModeDataBase gameMode;
+
+    [SerializeField]
     private List<Transform> spawnPoints = new List<Transform>();
 
     private PlayableDirector director;
@@ -159,8 +162,23 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        OnGameOver?.Invoke();
+        GetNextGameMode();
+        OnGameOver?.Invoke();//InGameCanvas
         Debug.Log("Game Over");
+    }
+
+    private void GetNextGameMode()
+    {
+        int random = Random.Range(0, gameMode.gameModes.Length);
+
+        if (GameModeDataBase.currentGameMode.gameModeType != gameMode.gameModes[random].gameModeType)
+        {
+           GameModeDataBase.currentGameMode = gameMode.gameModes[random];
+        }
+        else
+        {
+            GetNextGameMode();
+        }
     }
 
     /// <summary>

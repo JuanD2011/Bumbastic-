@@ -60,7 +60,7 @@ public class InGameCanvas : MonoBehaviour
     #region Animation events
     public void OnLoadScreenComplete()
     {
-        StartCoroutine(OnLoadScene?.Invoke("Menu"));//Lvl Manager hears it.
+        StartCoroutine(OnLoadScene?.Invoke("GameMode"));//Lvl Manager hears it.
     }
     #endregion
 
