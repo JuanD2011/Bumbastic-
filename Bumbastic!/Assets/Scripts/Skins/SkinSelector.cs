@@ -25,8 +25,30 @@ public class SkinSelector : MonoBehaviour
 
         Buttons[0].onClick.AddListener(() => PreviousSkin());
         Buttons[1].onClick.AddListener(() => NextSkin());
+
+        PlayerMenu.OnLeftTrigger += PreviousSkin;
+        PlayerMenu.OnRightTrigger += NextSkin;
     }
 
+    #region With Triggers
+    public void PreviousSkin(byte _playerID)
+    {
+        Debug.Log("Previous");
+        skinsData.skins[Position].choosed = false;
+        int currentSkin = GetAvailableSkin(false);
+        OnChangeSkin?.Invoke(_playerID, currentSkin);//Skin manager
+    }
+
+    public void NextSkin(byte _playerId)
+    {
+        Debug.Log("Next");
+        skinsData.skins[Position].choosed = false;
+        int currentSkin = GetAvailableSkin(true);
+        OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager
+    }
+    #endregion
+
+    #region With Buttons
     public void NextSkin()
     {
         Debug.Log("Next");
@@ -42,6 +64,7 @@ public class SkinSelector : MonoBehaviour
         int currentSkin = GetAvailableSkin(false);
         OnChangeSkin?.Invoke(player - 1, currentSkin);//Skin manager
     }
+    #endregion
 
     private int GetAvailableSkin(bool _Forward)
     {
