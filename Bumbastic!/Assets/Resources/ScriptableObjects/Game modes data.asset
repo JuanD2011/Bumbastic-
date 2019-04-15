@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80378734568814f46a68587dc55bda84, type: 3}
-  m_Name: GameModes
+  m_Name: Game modes data
   m_EditorClassIdentifier: 
   gameModes:
   - name: Hot potato
     description: You have to pass the bomb before it explodes!
-    id: 0
+    gameModeType: 0

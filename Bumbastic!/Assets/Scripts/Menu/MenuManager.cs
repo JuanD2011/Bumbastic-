@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
@@ -10,6 +9,9 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField]
     private InGame inGame;
+
+    [SerializeField]
+    private GameModeDataBase gameMode;
 
     [SerializeField]
     Settings settings;
@@ -119,7 +121,16 @@ public class MenuManager : MonoBehaviour
         {
             inGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls));
         }
-        OnStartGame?.Invoke("Game");//MenuUI hears it.
+        GameModeDataBase.currentGameMode = GetRandomGameMode();
+        OnStartGame?.Invoke("GameMode");//MenuUI hears it.
+    }
+
+    private GameMode GetRandomGameMode()
+    {
+        GameMode result;
+        int random = Random.Range(0, gameMode.gameModes.Length);
+        result = gameMode.gameModes[random];
+        return result;
     }
 
     public void InitializeFirstPlayers(List<string> _joysticks)

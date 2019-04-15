@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     {
         MenuUI.OnLoadScene += LoadAsynchronously;
         InGameCanvas.OnLoadScene += LoadAsynchronously;
+        CanvasGameMode.OnLoadScene += LoadAsynchronously;
     }
 
     IEnumerator LoadAsynchronously(string _sceneName)

@@ -1128,6 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 698940dbb58338940ba538f61aa8847f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameModeData: {fileID: 0}
   gameModeName: {fileID: 382640906}
   gamemodeDescription: {fileID: 1222788196}
   image: {fileID: 0}

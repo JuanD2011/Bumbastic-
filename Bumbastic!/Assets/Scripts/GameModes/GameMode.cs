@@ -3,12 +3,18 @@ public class GameMode
 {
     public string name;
     public string description;
-    public int id;
+    public GameModeType gameModeType;
 
-    public GameMode(string _name, string _description, int _id)
+    public GameMode(string _name, string _description, GameModeType _gameModeType)
     {
         name = _name;
         description = _description;
-        id = _id;
+        gameModeType = _gameModeType;
     }
 }
+
+public enum GameModeType
+{
+    HotPotato,
+    Deathmatch
+};

@@ -8,7 +8,7 @@ public class MenuUI : MonoBehaviour
 
     [SerializeField] string[] stateName;
 
-    private string levelToLoad;
+    [SerializeField] string levelToLoad;
 
     public delegate void DelMenuUI(bool _canActive);
     public static DelMenuUI OnMatchmaking;

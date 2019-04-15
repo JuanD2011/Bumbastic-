@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: dc08e1bdfbfc3e34c840d14b172dbbb6
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/GameMode.unity
+    guid: 1a235c4d5207c934bb5c8e2b14fa9dfb
+  - enabled: 1
+    path: Assets/Scenes/HotPotato.unity
     guid: e5ece25819de1894b8ea200260c76d8a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d7e0dcc3f23802348b50384070208e51,
