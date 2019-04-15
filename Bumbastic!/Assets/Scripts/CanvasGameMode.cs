@@ -7,13 +7,14 @@ public class CanvasGameMode : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI gameModeName, gamemodeDescription;
     [SerializeField] Image image;
+    [SerializeField] GameObject bgImageContainer;
 
     [SerializeField] float timeToChangebg = 4f, alphaImage = 0.6f, fadeOut = 1f, fadeIn = 1f;
-    [SerializeField] Image[] backgroundImages;
 
     [SerializeField] Color[] colors;
 
     int imageCount = 0;
+    Image[] backgroundImages;
 
     private void Start()
     {
@@ -23,6 +24,8 @@ public class CanvasGameMode : MonoBehaviour
 
     private void InitCanvas()
     {
+        backgroundImages = bgImageContainer.GetComponentsInChildren<Image>(true);
+
         foreach (Image background in backgroundImages)
         {
             background.color = colors[0];
