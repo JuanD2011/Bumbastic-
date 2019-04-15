@@ -26,7 +26,10 @@ public class InGameCanvas : MonoBehaviour
         GameManager.manager.OnGameOver += SetEndAnimation;
         PlayerMenu.OnStartButton += StartButton;
 
-        SetScoreNames();
+        if (GameManager.manager.Players.Count != 0)
+        {
+            SetScoreNames(); 
+        }
     }
 
     private void SetScoreNames()
