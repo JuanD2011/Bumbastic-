@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayAudio(audioClips.inGameMusic, AudioType.Music, 0.8f, 1f, 2f);
+        PlayAudio(audioClips.inGameMusic, AudioType.Music, 0.6f, 1f, 2f);
 
         if (audioMutes != null)
         {

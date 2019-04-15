@@ -50,12 +50,11 @@ public class GameManager : MonoBehaviour
 
         players = new List<Player>();
         Director = GetComponent<PlayableDirector>();
+        SpawnPlayers();
     }
 
     private void Start()
     {
-        SpawnPlayers();
-
         Bomb.OnExplode += StartNewRound;
     }
 

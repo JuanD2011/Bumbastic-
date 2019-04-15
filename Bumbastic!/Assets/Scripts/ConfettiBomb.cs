@@ -17,6 +17,6 @@ public class ConfettiBomb : MonoBehaviour
         m_Renderer.enabled = false;
         GetComponent<Collider>().enabled = false;
         m_Particle.Play();
-        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.confettiBomb, AudioType.SFx);
+        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.confettiBomb, AudioType.SFx, 0.6f);
     }
 }
