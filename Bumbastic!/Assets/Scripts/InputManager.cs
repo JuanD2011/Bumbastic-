@@ -104,13 +104,13 @@ public struct Controls
     public KeyCode bButton;
     public KeyCode startButton;
     public KeyCode rightButtonTrigger;
-    public KeyCode leftButtonTrigger;
+    public KeyCode leftBumper;
+    public KeyCode rightBumper;
     public string ljoystickHorizontal;
     public string ljoystickVertical;
     public string rjoystickHorizontal;
     public string rjoystickVertical;
     public string rightAxisTrigger;
-    public string leftAxisTrigger;
 
     public Controls(byte _joystickNumber, string _controllerName) : this()
     {
@@ -125,8 +125,6 @@ public struct Controls
                     startButton = KeyCode.Joystick1Button7;
                     rightAxisTrigger = "0RightTrigger";
                     rightButtonTrigger = KeyCode.None;
-                    leftAxisTrigger = "0LeftTrigger";
-                    leftButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "0RHorizontal";
                     rjoystickVertical = "0RVertical";
                 }
@@ -137,8 +135,6 @@ public struct Controls
                     startButton = KeyCode.Joystick1Button9;
                     rightAxisTrigger = "P0RightTrigger";
                     rightButtonTrigger = KeyCode.None;
-                    leftAxisTrigger = "P0LeftTrigger";
-                    leftButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "P0RHorizontal";
                     rjoystickVertical = "P0RVertical";
                 }
@@ -149,13 +145,13 @@ public struct Controls
                     startButton = KeyCode.Joystick1Button9;
                     rightButtonTrigger = KeyCode.Joystick1Button7;
                     rightAxisTrigger = "";
-                    leftButtonTrigger = KeyCode.Joystick1Button6;
-                    leftAxisTrigger = "";
                     rjoystickHorizontal = "G0RHorizontal";
                     rjoystickVertical = "G0RVertical";
                 }
                 ljoystickHorizontal = "0Horizontal";
                 ljoystickVertical = "0Vertical";
+                leftBumper = KeyCode.Joystick1Button4;
+                rightBumper = KeyCode.Joystick1Button5;
                 break;
 
             case 1:
@@ -167,8 +163,6 @@ public struct Controls
                     startButton = KeyCode.Joystick2Button7;
                     rightAxisTrigger = "1RightTrigger";
                     rightButtonTrigger = KeyCode.None;
-                    leftAxisTrigger = "1LeftTrigger";
-                    leftButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "1RHorizontal";
                     rjoystickVertical = "1RVertical";
                 }
@@ -179,8 +173,6 @@ public struct Controls
                     startButton = KeyCode.Joystick2Button9;
                     rightAxisTrigger = "P1RightTrigger";
                     rightButtonTrigger = KeyCode.None;
-                    leftAxisTrigger = "P1LeftTrigger";
-                    leftButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "P1RHorizontal";
                     rjoystickVertical = "P1RVertical";
                 }
@@ -191,13 +183,13 @@ public struct Controls
                     startButton = KeyCode.Joystick2Button9;
                     rightButtonTrigger = KeyCode.Joystick2Button7;
                     rightAxisTrigger = "";
-                    leftButtonTrigger = KeyCode.Joystick2Button6;
-                    leftAxisTrigger = "";
                     rjoystickHorizontal = "G1RHorizontal";
                     rjoystickVertical = "G1RVertical";
                 }
                 ljoystickHorizontal = "1Horizontal";
                 ljoystickVertical = "1Vertical";
+                leftBumper = KeyCode.Joystick2Button4;
+                rightBumper = KeyCode.Joystick2Button5;
                 break;
             case 2:
                 controllerName = _controllerName;
@@ -208,8 +200,6 @@ public struct Controls
                     startButton = KeyCode.Joystick3Button7;
                     rightAxisTrigger = "2RightTrigger";
                     rightButtonTrigger = KeyCode.None;
-                    leftAxisTrigger = "2LeftTrigger";
-                    leftButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "2RHorizontal";
                     rjoystickVertical = "2RVertical";
                 }
@@ -220,8 +210,6 @@ public struct Controls
                     startButton = KeyCode.Joystick3Button9;
                     rightAxisTrigger = "P2RightTrigger";
                     rightButtonTrigger = KeyCode.None;
-                    leftAxisTrigger = "P2LeftTrigger";
-                    leftButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "P2RHorizontal";
                     rjoystickVertical = "P2RVertical";
                 }
@@ -232,13 +220,13 @@ public struct Controls
                     startButton = KeyCode.Joystick3Button9;
                     rightButtonTrigger = KeyCode.Joystick3Button7;
                     rightAxisTrigger = "";
-                    leftButtonTrigger = KeyCode.Joystick3Button6;
-                    leftAxisTrigger = "";
                     rjoystickHorizontal = "G2RHorizontal";
                     rjoystickVertical = "G2RVertical";
                 }
                 ljoystickHorizontal = "2Horizontal";
                 ljoystickVertical = "2Vertical";
+                leftBumper = KeyCode.Joystick3Button4;
+                rightBumper = KeyCode.Joystick3Button5;
                 break;
             case 3:
                 controllerName = _controllerName;
@@ -249,8 +237,6 @@ public struct Controls
                     startButton = KeyCode.Joystick4Button7;
                     rightAxisTrigger = "3RightTrigger";
                     rightButtonTrigger = KeyCode.None;
-                    leftAxisTrigger = "3LeftTrigger";
-                    leftButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "3RHorizontal";
                     rjoystickVertical = "3RVertical";
                 }
@@ -261,8 +247,6 @@ public struct Controls
                     startButton = KeyCode.Joystick4Button9;
                     rightAxisTrigger = "P3RightTrigger";
                     rightButtonTrigger = KeyCode.None;
-                    leftAxisTrigger = "P3LeftTrigger";
-                    leftButtonTrigger = KeyCode.None;
                     rjoystickHorizontal = "P3RHorizontal";
                     rjoystickVertical = "P3RVertical";
                 }
@@ -273,13 +257,13 @@ public struct Controls
                     startButton = KeyCode.Joystick4Button9;
                     rightButtonTrigger = KeyCode.Joystick4Button7;
                     rightAxisTrigger = "";
-                    leftButtonTrigger = KeyCode.Joystick4Button6;
-                    leftAxisTrigger = "";
                     rjoystickHorizontal = "G3RHorizontal";
                     rjoystickVertical = "G3RVertical";
                 }
                 ljoystickHorizontal = "3Horizontal";
                 ljoystickVertical = "3Vertical";
+                leftBumper = KeyCode.Joystick4Button4;
+                rightBumper = KeyCode.Joystick4Button5;
                 break;
         }
     }

@@ -20,8 +20,8 @@ public class PlayerMenu : MonoBehaviour
     public static ButtonsDelegate OnBackButton;
     public static ButtonsDelegate OnAcceptButton;
     public static ButtonsDelegate OnStartButton;
-    public static ButtonsDelegate OnLeftTrigger;
-    public static ButtonsDelegate OnRightTrigger;
+    public static ButtonsDelegate OnLeftBumper;
+    public static ButtonsDelegate OnRightBumper;
 
     private Controls controls;
 
@@ -33,8 +33,8 @@ public class PlayerMenu : MonoBehaviour
         OnBackButton = null;
         OnAcceptButton = null;
         OnStartButton = null;
-        OnLeftTrigger = null;
-        OnRightTrigger = null;
+        OnLeftBumper = null;
+        OnRightBumper = null;
     }
 
     private void Update()
@@ -69,34 +69,14 @@ public class PlayerMenu : MonoBehaviour
             OnBackButton?.Invoke(Id);//MenuUI hears it
         }
 
-        if (controls.rightButtonTrigger != KeyCode.None)
+        if (Input.GetKeyDown(controls.rightBumper))
         {
-            if (Input.GetKeyDown(controls.rightButtonTrigger))
-            {
-                OnRightTrigger?.Invoke(Id);
-            }
-        }
-        else if (controls.rightAxisTrigger != "")
-        {
-            if (Input.GetAxis(controls.rightAxisTrigger) == 1f)
-            {
-                OnRightTrigger?.Invoke(Id);
-            }
+            OnRightBumper?.Invoke(Id);
         }
 
-        if (controls.leftButtonTrigger != KeyCode.None)
+        if (Input.GetKeyDown(controls.leftBumper))
         {
-            if (Input.GetKeyDown(controls.leftButtonTrigger))
-            {
-                OnLeftTrigger?.Invoke(Id);
-            }
-        }
-        else if (controls.leftAxisTrigger != "")
-        {
-            if (Input.GetAxis(controls.leftAxisTrigger) == 1f)
-            {
-                OnLeftTrigger?.Invoke(Id);
-            }
+            OnLeftBumper?.Invoke(Id);
         }
 
         //if (Input.GetKeyDown(controls.aButton))

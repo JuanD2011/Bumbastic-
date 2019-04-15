@@ -19,8 +19,8 @@ public class SkinSelector : MonoBehaviour
 
     private void Start()
     {
-        PlayerMenu.OnLeftTrigger += PreviousSkin;
-        PlayerMenu.OnRightTrigger += NextSkin; 
+        PlayerMenu.OnLeftBumper += PreviousSkin;
+        PlayerMenu.OnRightBumper += NextSkin; 
     }
 
     public void InitSkinSelector()
