@@ -17,6 +17,12 @@ public class SkinSelector : MonoBehaviour
     public Image[] Images { get => images; set => images = value; }
     public int Position { get => position; protected set => position = value; }
 
+    private void Start()
+    {
+        PlayerMenu.OnLeftTrigger += PreviousSkin;
+        PlayerMenu.OnRightTrigger += NextSkin;
+    }
+
     public void InitSkinSelector()
     {
         Position = player - 1;
@@ -25,9 +31,6 @@ public class SkinSelector : MonoBehaviour
 
         Buttons[0].onClick.AddListener(() => PreviousSkin());
         Buttons[1].onClick.AddListener(() => NextSkin());
-
-        PlayerMenu.OnLeftTrigger += PreviousSkin;
-        PlayerMenu.OnRightTrigger += NextSkin;
     }
 
     #region With Triggers
