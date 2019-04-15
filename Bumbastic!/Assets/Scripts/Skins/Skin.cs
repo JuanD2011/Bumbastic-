@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-[Serializable]
+[System.Serializable]
 public class Skin
 {
     public string name;
