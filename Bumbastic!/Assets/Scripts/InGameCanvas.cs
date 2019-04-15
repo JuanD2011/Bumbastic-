@@ -37,7 +37,7 @@ public class InGameCanvas : MonoBehaviour
         }
     }
 
-    private void StartButton()
+    private void StartButton(byte _id)
     {
         if (isEndPanelActive)
         {

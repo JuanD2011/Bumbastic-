@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
 
 		if (Input.GetKeyDown(Controls.startButton))
         {
-            PlayerMenu.OnStartButton?.Invoke();
+            PlayerMenu.OnStartButton?.Invoke(Id);
         }
     }
 

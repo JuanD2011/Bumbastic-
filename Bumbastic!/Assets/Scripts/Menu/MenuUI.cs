@@ -78,7 +78,7 @@ public class MenuUI : MonoBehaviour
     }
     #endregion
 
-    private void BackButton()
+    private void BackButton(byte _id)
     {
         AnimatorStateInfo stateInfo = canvasAnimator.GetCurrentAnimatorStateInfo(0);
 
