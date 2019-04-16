@@ -16,7 +16,7 @@ MonoBehaviour:
   - name: Hot potato
     description: You have to pass the bomb before it explodes!
     gameModeType: 0
-    gameModeImages:
+    gameModeBackgrounds:
     - {fileID: 21300000, guid: 2fc196f50471b3a4e94ecb4ec98a4e59, type: 3}
+    - {fileID: 21300000, guid: bdb29c151dcd7eb4c979ccea41dce270, type: 3}
     - {fileID: 21300000, guid: 6386e728da34f464897122e216758cef, type: 3}
-    - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
