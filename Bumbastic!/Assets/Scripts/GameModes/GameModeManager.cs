@@ -8,6 +8,11 @@ public class GameModeManager : MonoBehaviour
     public delegate IEnumerator DelCanvasGameMode(string _sceneToLoad);
     public static DelCanvasGameMode OnLoadScene;
 
+    private void Awake()
+    {
+        OnLoadScene = null;
+    }
+
     private void Start()
     {
         Invoke("SceneToLoad", timeToLoad);
