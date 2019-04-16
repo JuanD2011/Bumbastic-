@@ -66,6 +66,7 @@ public class InGameCanvas : MonoBehaviour
 
     private void SetEndAnimation()
     {
+        Debug.Log("GameeeOveerr");
         isEndPanelActive = true;
         m_Animator.SetTrigger("isGameOver");
         textWinner.text = string.Format("{0}", GameManager.manager.Players[0].PrefabName);
