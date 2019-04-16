@@ -8,6 +8,7 @@ public class InGame : ScriptableObject
 
     public int maxPlayers;
     public List<PlayerSettings> playerSettings = new List<PlayerSettings>();
+    public static List<Player> players = new List<Player>();
 
     Vector3 crowPos;
     public Vector3 CrowPos { get => crowPos; set => crowPos = value; }
