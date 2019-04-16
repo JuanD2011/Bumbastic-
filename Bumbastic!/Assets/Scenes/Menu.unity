@@ -3948,7 +3948,6 @@ GameObject:
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
-  - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4057,18 +4056,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Cinemachine.CinemachineBrain+VcamActivatedEvent, Cinemachine, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &534669907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &548230774
 GameObject:
   m_ObjectHideFlags: 0
@@ -6562,9 +6549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ee07d3bb6ffd439539e0de44a7b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasAnimator: {fileID: 938795974}
-  settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
-  stateName:
+  animatorStateNames:
   - Menu_Principal
   - Menu_Options_Stay
   - Menu_Matchmaking
@@ -6572,6 +6557,7 @@ MonoBehaviour:
   - Menu_Quit_Open
   - Menu_Matchmaking_Countdown
   - Menu_Matchmaking_Countdown_Cancel
+  settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
   levelToLoad: GameMode
 --- !u!1 &949985401
 GameObject:

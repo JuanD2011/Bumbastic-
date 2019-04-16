@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FreeForAllCanvas
+  m_Controller: {fileID: 9100000, guid: a43d22a00969af44489775e0598766ae, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f7c893a012d915d45a7442ad82338966, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f7c893a012d915d45a7442ad82338966, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7e063ae7410c1314a88bc9a1527b0430, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7e063ae7410c1314a88bc9a1527b0430, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9c382607b23ede34396cddf93bfc10d4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9c382607b23ede34396cddf93bfc10d4, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7027428f9b42854409366bfd73fa07a2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 29c19d343fdcaa8479eea88b3ed40b7a, type: 2}

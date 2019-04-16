@@ -35,6 +35,7 @@ public abstract class GameManager : MonoBehaviour
         players = new List<Player>();
         Director = GetComponent<PlayableDirector>();
         SpawnPlayers();
+        PlayerMenu.ResetDel();
     }
 
     protected void SpawnPlayers()
@@ -46,6 +47,7 @@ public abstract class GameManager : MonoBehaviour
 			player.Controls = inGame.playerSettings[i].controls;
 			player.Avatar = inGame.playerSettings[i].avatar;
             player.PrefabName = inGame.playerSettings[i].name;
+            player.SkinSprite = inGame.playerSettings[i].skinSprite;
 			player.Id = (byte)i;
 			player.SpawnPoint = GetSpawnPoint();
 			player.transform.position = player.SpawnPoint;

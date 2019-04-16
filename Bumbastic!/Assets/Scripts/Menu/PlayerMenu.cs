@@ -5,12 +5,14 @@ public class PlayerMenu : MonoBehaviour
     private byte id;
     string prefabName;
     private bool ready = false;
+    Sprite skinSprite;
 
     public bool Ready { get => ready; }
     public Controls Controls { get => controls; set => controls = value; }
     public GameObject Avatar { get => avatar; set => avatar = value; }
     public byte Id { get => id; set => id = value; }
     public string PrefabName { get => prefabName; set => prefabName = value; }
+    public Sprite SkinSprite { get => skinSprite; set => skinSprite = value; }
 
     public delegate void ReadyDelegate(byte id);
     public static ReadyDelegate OnReady;
@@ -30,6 +32,11 @@ public class PlayerMenu : MonoBehaviour
 
     private void Awake()
     {
+        ResetDel();
+    }
+
+    public static void ResetDel()
+    {
         OnBackButton = null;
         OnAcceptButton = null;
         OnStartButton = null;
@@ -43,7 +50,7 @@ public class PlayerMenu : MonoBehaviour
         {
             OnStartButton?.Invoke(Id);
 
-            if (MenuUI.isMatchmaking)
+            if (MenuCanvas.isMatchmaking)
             {
                 if (!ready)
                 {
@@ -58,7 +65,7 @@ public class PlayerMenu : MonoBehaviour
             Debug.Log("Back");
             Debug.Log(controls.bButton);
 
-            if (MenuUI.isMatchmaking)
+            if (MenuCanvas.isMatchmaking)
             {
                 if (ready)
                 {
@@ -84,7 +91,5 @@ public class PlayerMenu : MonoBehaviour
         //    Debug.Log("A");
         //    OnAcceptButton?.Invoke();
         //}
-
-
     }
 }
