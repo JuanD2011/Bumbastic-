@@ -34,6 +34,11 @@ public class CanvasGameMode : MonoBehaviour
             GameObject bgTemplateClon = Instantiate(bgTemplate, bgImageContainer.transform);
             bgTemplateClon.name = string.Format("background {0}", i);
             bgTemplateClon.GetComponent<Image>().sprite = GameModeDataBase.currentGameMode.gameModeImages[i];
+
+            if (i > 0)
+            {
+                bgTemplateClon.SetActive(false);
+            }
         }
     }
 
