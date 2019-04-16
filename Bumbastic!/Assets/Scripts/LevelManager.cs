@@ -9,8 +9,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        MenuUI.OnLoadScene += LoadAsynchronously;
-        InGameCanvas.OnLoadScene += LoadAsynchronously;
+        Canvas.OnLoadScene += LoadAsynchronously;
         GameModeManager.OnLoadScene += LoadAsynchronously;
     }
 

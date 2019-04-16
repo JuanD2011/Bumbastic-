@@ -22,8 +22,8 @@ public class SkinManager : MonoBehaviour
 
     private void Start()
     {
-        MenuUI.OnMatchmaking += SetSkins;
-        MenuUI.OnMatchmaking += InitSkinSelectors;
+        MenuCanvas.OnMatchmaking += SetSkins;
+        MenuCanvas.OnMatchmaking += InitSkinSelectors;
 
         foreach (SkinSelector skinSelector in skinSelectors)
         {

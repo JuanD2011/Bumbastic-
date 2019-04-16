@@ -30,6 +30,11 @@ public class PlayerMenu : MonoBehaviour
 
     private void Awake()
     {
+        ResetDel();
+    }
+
+    public static void ResetDel()
+    {
         OnBackButton = null;
         OnAcceptButton = null;
         OnStartButton = null;
@@ -43,7 +48,7 @@ public class PlayerMenu : MonoBehaviour
         {
             OnStartButton?.Invoke(Id);
 
-            if (MenuUI.isMatchmaking)
+            if (MenuCanvas.isMatchmaking)
             {
                 if (!ready)
                 {
@@ -58,7 +63,7 @@ public class PlayerMenu : MonoBehaviour
             Debug.Log("Back");
             Debug.Log(controls.bButton);
 
-            if (MenuUI.isMatchmaking)
+            if (MenuCanvas.isMatchmaking)
             {
                 if (ready)
                 {
@@ -84,7 +89,5 @@ public class PlayerMenu : MonoBehaviour
         //    Debug.Log("A");
         //    OnAcceptButton?.Invoke();
         //}
-
-
     }
 }

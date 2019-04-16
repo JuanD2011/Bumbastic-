@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 
-public class CanvasGameMode : MonoBehaviour
+public class GameModeCanvas : MonoBehaviour
 {
     [SerializeField] GameObject bgImageContainer;
     [SerializeField] GameObject bgTemplate;

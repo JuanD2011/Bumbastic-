@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         players = new List<Player>();
         Director = GetComponent<PlayableDirector>();
         SpawnPlayers();
+        PlayerMenu.ResetDel();
     }
 
     private void Start()

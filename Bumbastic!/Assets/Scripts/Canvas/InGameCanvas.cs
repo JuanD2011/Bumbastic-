@@ -1,28 +1,21 @@
 ﻿using UnityEngine;
 using TMPro;
-using System.Collections;
 
-public class InGameCanvas : MonoBehaviour
+public class InGameCanvas : Canvas
 {
-    Animator m_Animator;
     [SerializeField] TextMeshProUGUI textWinner;
     [SerializeField] TextMeshProUGUI[] textPlayerNames;
 
-    public delegate IEnumerator DelLoadString(string _scene);
-    public static DelLoadString OnLoadScene;
-
     bool isEndPanelActive = false;
 
-    [SerializeField] string[] animatorStateNames;
-
-    private void Awake()
+    protected override void Awake()
     {
-        OnLoadScene = null;
+        base.Awake();
     }
 
-    void Start()
+    protected override void Start()
     {
-        m_Animator = GetComponent<Animator>();
+        base.Start();
         GameManager.manager.OnGameOver += SetEndAnimation;
         PlayerMenu.OnStartButton += StartButton;
 
@@ -66,7 +59,6 @@ public class InGameCanvas : MonoBehaviour
 
     private void SetEndAnimation()
     {
-        Debug.Log("GameeeOveerr");
         isEndPanelActive = true;
         m_Animator.SetTrigger("isGameOver");
         textWinner.text = string.Format("{0}", GameManager.manager.Players[0].PrefabName);
