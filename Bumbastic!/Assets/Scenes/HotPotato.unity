@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1149849133}
-  m_IndirectSpecularColor: {r: 0.7070554, g: 0.40122056, b: 0.22589536, a: 1}
+  m_IndirectSpecularColor: {r: 0.7070534, g: 0.4012202, b: 0.22589613, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -309,10 +309,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 490962512}
-  - component: {fileID: 490962511}
   - component: {fileID: 490962513}
   - component: {fileID: 490962515}
   - component: {fileID: 490962514}
+  - component: {fileID: 490962511}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -329,29 +329,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 490962510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba606efe3605120468eb8449a3d5119e, type: 3}
+  m_Script: {fileID: 11500000, guid: b46e1db6b953c384eb98b8ecb927f4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inGame: {fileID: 11400000, guid: 3bc68cae35300d841b678d14df40174c, type: 2}
-  gameMode: {fileID: 11400000, guid: 2c753694f5b545d4b97c4adb9986a284, type: 2}
   spawnPoints:
   - {fileID: 1325869886}
   - {fileID: 1720550338}
   - {fileID: 987014065}
   - {fileID: 1566880043}
-  minTime: 20
-  maxTime: 25
-  confettiBomb: {fileID: 8979841836204213343, guid: 2c7fdaf6443d0b04997420f96c9aa4af,
-    type: 3}
+  gameMode: {fileID: 11400000, guid: 2c753694f5b545d4b97c4adb9986a284, type: 2}
   playerPrefab: {fileID: 63817899032751289, guid: f83502d98471cb04da5a707e5cc13688,
     type: 3}
-  floor: {fileID: 1981395067}
-  bomb: {fileID: 1429717419}
   powerUp: {fileID: 1169578613}
   magnetParticleSystem: {fileID: 6569818202052991651, guid: 0e8e4defdde8c224fa7a7ccd7abe821c,
     type: 3}
   speedUpParticleSystem: {fileID: 7379601420566035011, guid: c91d992a0904ade42aa34b1a01e0815f,
     type: 3}
+  floor: {fileID: 1981395067}
+  bomb: {fileID: 1429717419}
+  confettiBomb: {fileID: 8979841836204213343, guid: 2c7fdaf6443d0b04997420f96c9aa4af,
+    type: 3}
+  minTime: 20
+  maxTime: 25
 --- !u!4 &490962512
 Transform:
   m_ObjectHideFlags: 0

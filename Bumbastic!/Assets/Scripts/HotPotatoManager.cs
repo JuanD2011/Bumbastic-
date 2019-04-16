@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class HotPotatoManager : GameManager
 {
@@ -31,7 +30,6 @@ public class HotPotatoManager : GameManager
         else Destroy(this);
 
         base.Awake();
-        GiveBombs();
     }
 
     private void Start()
