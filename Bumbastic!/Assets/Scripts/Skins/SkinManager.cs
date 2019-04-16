@@ -56,6 +56,7 @@ public class SkinManager : MonoBehaviour
             if (MenuManager.menu.Players[_player].Avatar != skinsData.skins[_skinPosition].prefab)
             {
                 MenuManager.menu.Players[_player].PrefabName = skinsData.skins[_skinPosition].name;
+                MenuManager.menu.Players[_player].SkinSprite = skinsData.skins[_skinPosition].skinSprite;
                 skinNames[_player].text = skinsData.skins[_skinPosition].name;
 
                 if (MenuManager.menu.Players[_player].transform.GetChild(0) != null)
@@ -93,6 +94,7 @@ public class SkinManager : MonoBehaviour
                 skinsData.skins[skinSelectors[i].Position].choosed = _canActive;
 
                 MenuManager.menu.Players[i].PrefabName = skinsData.skins[skinSelectors[i].Position].name;
+                MenuManager.menu.Players[i].SkinSprite = skinsData.skins[skinSelectors[i].Position].skinSprite;
                 Instantiate(MenuManager.menu.Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation, MenuManager.menu.Players[i].transform);
             }
             else

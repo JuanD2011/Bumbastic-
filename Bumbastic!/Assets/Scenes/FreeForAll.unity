@@ -597,6 +597,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 364448030}
+  - component: {fileID: 364448031}
   m_Layer: 5
   m_Name: PanelHUD
   m_TagString: Untagged
@@ -624,6 +625,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &364448031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364448029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60c9ebde91edc64c8ed16084989a279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
+  skinSprites:
+  - {fileID: 225327824}
+  - {fileID: 1487185464}
+  - {fileID: 1015938025}
+  - {fileID: 671418228}
+  playersImageColor:
+  - {fileID: 762806250}
+  - {fileID: 1232262425}
+  - {fileID: 2136965099}
+  - {fileID: 359553715}
+  playerKills:
+  - {fileID: 1382865189}
+  - {fileID: 1768993126}
+  - {fileID: 2072221647}
+  - {fileID: 1549127735}
 --- !u!1 &490962510
 GameObject:
   m_ObjectHideFlags: 0
