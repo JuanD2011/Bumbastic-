@@ -9,7 +9,7 @@ public class Props : MonoBehaviour
 
     void Start()
     {
-        modules = GameManager.manager.floor.GetComponentsInChildren<Transform>();
+        modules = GameManager.Manager.floor.GetComponentsInChildren<Transform>();
 
         for (int i = 1; i < modules.Length; i++)
         {

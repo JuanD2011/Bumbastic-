@@ -25,7 +25,7 @@ public class PathParticles : MonoBehaviour
         main = mPartSystem.main;
         shape = mPartSystem.shape;
 
-        target = GameManager.manager.Bomb.transform;
+        target = HotPotatoManager.HotPotato.Bomb.transform;
     }
 
     void Initialize()

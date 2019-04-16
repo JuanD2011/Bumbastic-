@@ -4,6 +4,8 @@ using UnityEngine.Playables;
 
 public abstract class GameManager : MonoBehaviour
 {
+    public static GameManager Manager;
+
     protected List<Player> players;
 
     [SerializeField]
@@ -11,9 +13,6 @@ public abstract class GameManager : MonoBehaviour
 
     public PlayableDirector Director { get => director; protected set => director = value; }
     public List<Player> Players { get => players; protected set => players = value; }
-
-    [SerializeField]
-    private InGame inGame;
 
     [SerializeField]
     GameModeDataBase gameMode;
@@ -26,35 +25,42 @@ public abstract class GameManager : MonoBehaviour
     public PowerUp powerUp;
     public GameObject magnetParticleSystem;
     public GameObject speedUpParticleSystem;
+    public GameObject floor;
 
     public delegate void GameStateDelegate();
     public event GameStateDelegate OnGameOver;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        players = new List<Player>();
+        if (Manager == null) Manager = this;
+        else Destroy(this);
+
+        Players = new List<Player>();
         Director = GetComponent<PlayableDirector>();
-        SpawnPlayers();
         PlayerMenu.ResetDel();
+        SpawnPlayers();
     }
 
     protected void SpawnPlayers()
     {
-		for (int i = 0; i < inGame.playerSettings.Count; i++)
-		{
-			Player player = Instantiate(playerPrefab).GetComponent<Player>();
-			Players.Add(player);
-			player.Controls = inGame.playerSettings[i].controls;
-			player.Avatar = inGame.playerSettings[i].avatar;
-            player.PrefabName = inGame.playerSettings[i].name;
-            player.SkinSprite = inGame.playerSettings[i].skinSprite;
-			player.Id = (byte)i;
-			player.SpawnPoint = GetSpawnPoint();
-			player.transform.position = player.SpawnPoint;
-			player.Initialize();
-		}
+        for (int i = 0; i < InGame.playerSettings.Count; i++)
+        {
+            Player player = Instantiate(playerPrefab).GetComponent<Player>();
+            Players.Add(player);
+            player.Controls = InGame.playerSettings[i].controls;
+            player.Avatar = InGame.playerSettings[i].avatar;
+            player.PrefabName = InGame.playerSettings[i].name;
+            player.SkinSprite = InGame.playerSettings[i].skinSprite;
+            player.Id = (byte)i;
+            player.SpawnPoint = GetSpawnPoint();
+            player.transform.position = player.SpawnPoint;
+            player.Initialize();
+        }
+
         GiveBombs();
     }
+
+    protected abstract void GiveBombs();
 
     public Vector3 GetSpawnPoint()
     {
@@ -62,11 +68,9 @@ public abstract class GameManager : MonoBehaviour
         Vector3 spawnPos = spawnPoints[random].position;
         spawnPoints.RemoveAt(random);
         return spawnPos;
-    }
+    }  
 
-    
-
-    private List<Player> RandomizeBummieList()
+    protected List<Player> RandomizeBummieList()
     {
         List<Player> bummies = new List<Player>(Players);
         List<Player> randomBummies = new List<Player>();
@@ -81,7 +85,7 @@ public abstract class GameManager : MonoBehaviour
         return randomBummies;
     }
 
-    private void GameOver()
+    protected void GameOver()
     {
         GetNextGameMode();
         OnGameOver?.Invoke();//InGameCanvas
@@ -109,5 +113,9 @@ public abstract class GameManager : MonoBehaviour
         }
     }
 
-    
+    public abstract void PassBomb();
+
+    public abstract void PassBomb(Player _receiver);
+
+    public abstract void PassBomb(Player _receiver, Player _transmitter);
 }

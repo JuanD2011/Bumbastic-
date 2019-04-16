@@ -82,7 +82,7 @@ public class Bomb : MonoBehaviour
     {
         if (collision.transform.CompareTag("Floor") && !Exploded)
         {
-            GameManager.manager.PassBomb();
+            GameManager.Manager.PassBomb();
         }
     }
 }

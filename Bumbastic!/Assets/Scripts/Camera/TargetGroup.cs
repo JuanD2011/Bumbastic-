@@ -10,13 +10,13 @@ public class TargetGroup : MonoBehaviour
     {
         cinemachineTargetGroup = GetComponent<CinemachineTargetGroup>();
 
-        if (GameManager.manager.Players.Count != 0)
+        if (GameManager.Manager.Players.Count != 0)
         {
-            cinemachineTargetGroup.m_Targets = new CinemachineTargetGroup.Target[GameManager.manager.Players.Count];
+            cinemachineTargetGroup.m_Targets = new CinemachineTargetGroup.Target[GameManager.Manager.Players.Count];
 
-            for (int i = 0; i < GameManager.manager.Players.Count; i++)
+            for (int i = 0; i < GameManager.Manager.Players.Count; i++)
             {
-                cinemachineTargetGroup.m_Targets[i].target = GameManager.manager.Players[i].transform;
+                cinemachineTargetGroup.m_Targets[i].target = GameManager.Manager.Players[i].transform;
             }
         }
         else

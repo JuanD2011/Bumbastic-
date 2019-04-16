@@ -26,10 +26,10 @@ public class MagnetManager : MonoBehaviour
         ringMain = ringParticles.main;
         wave.gameObject.SetActive(true);
 
-        if (GameManager.manager.Bomb != null)
+        if (HotPotatoManager.HotPotato.Bomb != null)
         {
-            bomb = GameManager.manager.Bomb.gameObject;
-            posBomb = GameManager.manager.Bomb.transform;
+            bomb = HotPotatoManager.HotPotato.Bomb.gameObject;
+            posBomb = HotPotatoManager.HotPotato.Bomb.transform;
             StartCoroutine(LerpBomb());
         }
     }

@@ -6,6 +6,7 @@ public struct PlayerSettings
     public GameObject avatar;
     public Controls controls;
     public Sprite skinSprite;
+    public byte score;
 
     public PlayerSettings(string _name, GameObject _avatar, Controls _controls, Sprite _skinSprite) : this()
     {
@@ -13,5 +14,6 @@ public struct PlayerSettings
         avatar = _avatar;
         controls = _controls;
         skinSprite = _skinSprite;
+        score = 0;
     }
 }

@@ -16,10 +16,10 @@ public class HUDFreeForAll : MonoBehaviour
 
     private void SetPlayerFeatures()
     {
-        for (int i = 0; i < GameManager.manager.Players.Count; i++)
+        for (int i = 0; i < HotPotatoManager.HotPotato.Players.Count; i++)
         {
             playersImageColor[i].color = settings.playersColor[i];
-            skinSprites[i].sprite = GameManager.manager.Players[i].SkinSprite;
+            skinSprites[i].sprite = GameManager.Manager.Players[i].SkinSprite;
         }
     }
 }

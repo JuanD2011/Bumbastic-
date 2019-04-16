@@ -16,10 +16,10 @@ public class InGameCanvas : Canvas
     protected override void Start()
     {
         base.Start();
-        GameManager.manager.OnGameOver += SetEndAnimation;
+        GameManager.Manager.OnGameOver += SetEndAnimation;
         PlayerMenu.OnStartButton += StartButton;
 
-        if (GameManager.manager.Players.Count != 0)
+        if (GameManager.Manager.Players.Count != 0)
         {
             SetScoreNames(); 
         }
@@ -27,9 +27,9 @@ public class InGameCanvas : Canvas
 
     private void SetScoreNames()
     {
-        for (int i = 0; i < GameManager.manager.Players.Count; i++)
+        for (int i = 0; i < GameManager.Manager.Players.Count; i++)
         {
-            textPlayerNames[i].text = GameManager.manager.Players[i].PrefabName;
+            textPlayerNames[i].text = GameManager.Manager.Players[i].PrefabName;
         }
     }
 
@@ -61,6 +61,6 @@ public class InGameCanvas : Canvas
     {
         isEndPanelActive = true;
         m_Animator.SetTrigger("isGameOver");
-        textWinner.text = string.Format("{0}", GameManager.manager.Players[0].PrefabName);
+        textWinner.text = string.Format("{0}", GameManager.Manager.Players[0].PrefabName);
     }
 }

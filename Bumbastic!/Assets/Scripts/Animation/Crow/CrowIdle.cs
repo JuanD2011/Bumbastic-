@@ -32,7 +32,7 @@ public class CrowIdle : StateMachineBehaviour
         animator.transform.parent.eulerAngles = new Vector3(0, t * flyingVel, 0);
         dir = (animator.transform.parent.position - animator.transform.position).normalized;
 
-        if (GameManager.manager.powerUp.transform.parent == animator.transform)
+        if (GameManager.Manager.powerUp.transform.parent == animator.transform)
         {
             if (animator.runtimeAnimatorController != animatorOverrideController)
             {
@@ -46,12 +46,12 @@ public class CrowIdle : StateMachineBehaviour
                 } 
             }
         }
-        else if (Mathf.Round(dir.x) == 0 && Mathf.Round(dir.z) == 1 && !GameManager.manager.powerUp.gameObject.activeInHierarchy)
+        else if (Mathf.Round(dir.x) == 0 && Mathf.Round(dir.z) == 1 && !GameManager.Manager.powerUp.gameObject.activeInHierarchy)
         {
-            GameManager.manager.powerUp.Collider.enabled = false;
-            GameManager.manager.powerUp.transform.parent = animator.transform;
-            GameManager.manager.powerUp.transform.position = animator.transform.position + reference;
-            GameManager.manager.powerUp.gameObject.SetActive(true);
+            GameManager.Manager.powerUp.Collider.enabled = false;
+            GameManager.Manager.powerUp.transform.parent = animator.transform;
+            GameManager.Manager.powerUp.transform.position = animator.transform.position + reference;
+            GameManager.Manager.powerUp.gameObject.SetActive(true);
         }
     }
 

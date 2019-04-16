@@ -23,6 +23,6 @@ public class Magnet : PowerUp
 
     void Execute()
     {
-        magnetManager = Instantiate(GameManager.manager.magnetParticleSystem, Vector3.zero, Quaternion.identity, gameObject.transform);
+        magnetManager = Instantiate(GameManager.Manager.magnetParticleSystem, Vector3.zero, Quaternion.identity, gameObject.transform);
     }
 }

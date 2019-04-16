@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     public Transform Catapult { get => catapult; private set => catapult = value; }
     public Sprite SkinSprite { get => skinSprite; set => skinSprite = value; }
 
-    private void Start() => GameManager.manager.Director.stopped += LetMove;
+    private void Start() => GameManager.Manager.Director.stopped += LetMove;
 
     private void LetMove(PlayableDirector _obj) => canMove = true;
 
@@ -148,19 +148,19 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
-        GameManager.manager.Bomb.transform.parent = null;
-        GameManager.manager.Bomb.RigidBody.isKinematic = false;
+        HotPotatoManager.HotPotato.Bomb.transform.parent = null;
+        HotPotatoManager.HotPotato.Bomb.RigidBody.isKinematic = false;
 
         if (_InputAiming != Vector2.zero)
         {
             Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
-            GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+            HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         else
         {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * transform.forward;
-            GameManager.manager.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+            HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         HasBomb = false;
         throwing = false;
@@ -195,13 +195,13 @@ public class Player : MonoBehaviour
         {
             if (other.GetComponent<Player>().HasBomb)
             {
-                GameManager.manager.PassBomb(this, other.GetComponent<Player>());
+                GameManager.Manager.PassBomb(this, other.GetComponent<Player>());
                 Animator.SetTrigger("Reception");
             }
         }
         else if (other.GetComponent<Bomb>() != null)
         {
-            GameManager.manager.PassBomb(this);
+            GameManager.Manager.PassBomb(this);
             Animator.SetTrigger("Reception");
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine.Playables;
 
 public class HotPotatoManager : GameManager
 {
-    public static HotPotatoManager Manager;
+    public static HotPotatoManager HotPotato;
 
     private Player bombHolder;
 
@@ -20,15 +20,18 @@ public class HotPotatoManager : GameManager
     private bool cooldown;
     private float time = 0;
 
-    public Player BombHolder { get => bombHolder; private set => bombHolder = value; }
+    private List<Player> bummies = new List<Player>();
 
-    private void Awake()
+    public Player BombHolder { get => bombHolder; private set => bombHolder = value; }
+    public Bomb Bomb { get => bomb; private set => bomb = value; }
+
+    protected override void Awake()
     {
-        if (Manager == null) Manager = this;
+        if (HotPotato == null) HotPotato = this;
         else Destroy(this);
 
-        Players = new List<Player>();
-        Director = GetComponent<PlayableDirector>();
+        base.Awake();
+        GiveBombs();
     }
 
     private void Start()
@@ -64,7 +67,7 @@ public class HotPotatoManager : GameManager
         cooldown = true;
     }
 
-    public void GiveBombs()
+    protected override void GiveBombs()
     {
         if (Players.Count > 1)
         {
@@ -79,15 +82,15 @@ public class HotPotatoManager : GameManager
                 Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 6, 0), Quaternion.identity);
                 bummies.RemoveAt(i);
             }
-            bomb.transform.position = bummies[0].transform.position + new Vector3(0, 6, 0);
-            bomb.Timer = Random.Range(minTime -= 3f, maxTime -= 3f);
-            bomb.Exploded = false;
-            if (bomb.RigidBody != null)
+            Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 6, 0);
+            Bomb.Timer = Random.Range(minTime -= 3f, maxTime -= 3f);
+            Bomb.Exploded = false;
+            if (Bomb.RigidBody != null)
             {
-                bomb.RigidBody.velocity = Vector3.zero;
+                Bomb.RigidBody.velocity = Vector3.zero;
             }
-            bomb.transform.rotation = Quaternion.identity;
-            bomb.gameObject.SetActive(true);
+            Bomb.transform.rotation = Quaternion.identity;
+            Bomb.gameObject.SetActive(true);
         }
         else if (Players.Count == 1)
         {
@@ -99,7 +102,7 @@ public class HotPotatoManager : GameManager
     /// Pass bomb to the player that the bomb touch
     /// </summary>
     /// <param name="_receiver"></param>
-    public void PassBomb(Player _receiver)
+    public override void PassBomb(Player _receiver)
     {
         if (BombHolder != null)
         {
@@ -109,7 +112,7 @@ public class HotPotatoManager : GameManager
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
         BombHolder = _receiver;
-        this.Bomb.RigidBody.isKinematic = true;
+        Bomb.RigidBody.isKinematic = true;
         Bomb.transform.position = _receiver.Catapult.position;
         Bomb.transform.SetParent(_receiver.Catapult.transform);
     }
@@ -119,22 +122,22 @@ public class HotPotatoManager : GameManager
     /// </summary>
     /// <param name="_receiver"></param>
     /// <param name="_transmitter"></param>
-    public void PassBomb(Player _receiver, Player _transmitter)
+    public override void PassBomb(Player _receiver, Player _transmitter)
     {
         _transmitter.HasBomb = false;
         _transmitter.Collider.enabled = true;
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
         BombHolder = _receiver;
-        this.Bomb.RigidBody.isKinematic = true;
+        Bomb.RigidBody.isKinematic = true;
         Bomb.transform.position = _receiver.Catapult.position;
         Bomb.transform.SetParent(_receiver.Catapult);
     }
 
-    public void PassBomb()
+    public override void PassBomb()
     {
         BombHolder.HasBomb = true;
-        this.Bomb.RigidBody.isKinematic = true;
+        Bomb.RigidBody.isKinematic = true;
         Bomb.transform.position = BombHolder.Catapult.position;
         Bomb.transform.SetParent(BombHolder.Catapult);
     }
