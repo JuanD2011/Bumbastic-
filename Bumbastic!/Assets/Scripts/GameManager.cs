@@ -171,14 +171,14 @@ public class GameManager : MonoBehaviour
     {
         int random = Random.Range(0, gameMode.gameModes.Length);
 
-        if (GameModeDataBase.currentGameMode.gameModeType != gameMode.gameModes[random].gameModeType)
-        {
-           GameModeDataBase.currentGameMode = gameMode.gameModes[random];
-        }
-        else
-        {
-            GetNextGameMode();
-        }
+        // if (GameModeDataBase.currentGameMode.gameModeType != gameMode.gameModes[random].gameModeType)
+        // {
+        GameModeDataBase.currentGameMode = gameMode.gameModes[random];
+        // }
+        // else
+        // {
+        //     GetNextGameMode();
+        // }
     }
 
     /// <summary>

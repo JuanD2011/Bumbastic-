@@ -34,7 +34,7 @@ public class InGameCanvas : MonoBehaviour
 
     private void SetScoreNames()
     {
-        for (int i = 0; i < textPlayerNames.Length; i++)
+        for (int i = 0; i < GameManager.manager.Players.Count; i++)
         {
             textPlayerNames[i].text = GameManager.manager.Players[i].PrefabName;
         }
@@ -67,7 +67,7 @@ public class InGameCanvas : MonoBehaviour
     private void SetEndAnimation()
     {
         isEndPanelActive = true;
-        m_Animator.SetBool("isGameOver", true);
+        m_Animator.SetTrigger("isGameOver");
         textWinner.text = string.Format("{0}", GameManager.manager.Players[0].PrefabName);
     }
 }

@@ -333,6 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inGame: {fileID: 11400000, guid: 3bc68cae35300d841b678d14df40174c, type: 2}
+  gameMode: {fileID: 11400000, guid: 2c753694f5b545d4b97c4adb9986a284, type: 2}
   spawnPoints:
   - {fileID: 1325869886}
   - {fileID: 1720550338}
