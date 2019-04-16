@@ -5,21 +5,36 @@ using System.Collections;
 
 public class CanvasGameMode : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI gameModeName, gamemodeDescription;
-    [SerializeField] Image image;
     [SerializeField] GameObject bgImageContainer;
-
-    [SerializeField] float timeToChangebg = 4f, alphaImage = 0.6f, fadeOut = 1f, fadeIn = 1f;
+    [SerializeField] GameObject bgTemplate;
 
     [SerializeField] Color[] colors;
+    [SerializeField] TextMeshProUGUI gameModeName, gamemodeDescription;
+    [SerializeField] float timeToChangebg = 4f, alphaImage = 0.6f, fadeOut = 1f, fadeIn = 1f;
+
+    Image[] backgroundImages;
 
     int imageCount = 0;
-    Image[] backgroundImages;
+
+    private void Awake()
+    {
+        CreateBackgrounds();
+    }
 
     private void Start()
     {
         InitCanvas();
         StartCoroutine(FirstImage(fadeIn, alphaImage));
+    }
+
+    private void CreateBackgrounds()
+    {
+        for (int i = 0; i < GameModeDataBase.currentGameMode.gameModeImages.Length; i++)
+        {
+            GameObject bgTemplateClon = Instantiate(bgTemplate, bgImageContainer.transform);
+            bgTemplateClon.name = string.Format("background {0}", i);
+            bgTemplateClon.GetComponent<Image>().sprite = GameModeDataBase.currentGameMode.gameModeImages[i];
+        }
     }
 
     private void InitCanvas()
