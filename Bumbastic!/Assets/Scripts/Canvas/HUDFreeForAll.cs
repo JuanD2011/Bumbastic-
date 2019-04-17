@@ -4,10 +4,9 @@ using TMPro;
 
 public class HUDFreeForAll : MonoBehaviour
 {
-    [SerializeField] Settings settings;
     [SerializeField] Image[] skinSprites;
-    [SerializeField] Image[] playersImageColor;
     [SerializeField] TextMeshProUGUI[] playerKills;
+    [SerializeField] Image[] playerColors;
 
     private void Start()
     {
@@ -16,10 +15,16 @@ public class HUDFreeForAll : MonoBehaviour
 
     private void SetPlayerFeatures()
     {
-        for (int i = 0; i < HotPotatoManager.HotPotato.Players.Count; i++)
+        for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
-            playersImageColor[i].color = settings.playersColor[i];
-            skinSprites[i].sprite = GameManager.Manager.Players[i].SkinSprite;
+            skinSprites[i].sprite = InGame.playerSettings[i].skinSprite;
+            playerColors[i].color = InGame.playerSettings[i].color;
+            playerKills[i].text = 0.ToString();
         }
+    }
+
+    private void UpdateKills(byte _playerID)
+    {
+        //playerKills[_playerID].text = string.Format("{0}", GameManager.Manager.Players[_playerID].Kills);
     }
 }

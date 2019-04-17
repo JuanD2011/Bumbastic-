@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
 
     private byte id;
     string prefabName;
-    Sprite skinSprite;
 
     [SerializeField]
     private GameObject avatar;
@@ -53,7 +52,6 @@ public class Player : MonoBehaviour
     public string PrefabName { get => prefabName; set => prefabName = value; }
     public SphereCollider Collider { get => collider; private set => collider = value; }
     public Transform Catapult { get => catapult; private set => catapult = value; }
-    public Sprite SkinSprite { get => skinSprite; set => skinSprite = value; }
 
     private void Start() => GameManager.Manager.Director.stopped += LetMove;
 

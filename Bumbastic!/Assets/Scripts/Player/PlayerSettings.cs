@@ -7,13 +7,15 @@ public struct PlayerSettings
     public Controls controls;
     public Sprite skinSprite;
     public byte score;
+    public Color color;
 
-    public PlayerSettings(string _name, GameObject _avatar, Controls _controls, Sprite _skinSprite) : this()
+    public PlayerSettings(string _name, GameObject _avatar, Controls _controls, Sprite _skinSprite, Color _color) : this()
     {
         name = _name;
         avatar = _avatar;
         controls = _controls;
         skinSprite = _skinSprite;
         score = 0;
+        color = _color;
     }
 }

@@ -73,7 +73,8 @@ public class MenuManager : MonoBehaviour
     {
         for (int i = 0; i < Players.Count; i++)
         {
-            playerColors[i].color = settings.playersColor[i];
+            Players[i].Color = settings.playersColor[i];
+            playerColors[i].color = Players[i].Color;
         }
     }
 
@@ -120,7 +121,7 @@ public class MenuManager : MonoBehaviour
         InGame.playerSettings.Clear();
         for (int i = 0; i < Players.Count; i++)
         {
-            InGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls, Players[i].SkinSprite));
+            InGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls, Players[i].SkinSprite, Players[i].Color));
         }
         GameModeDataBase.currentGameMode = GetRandomGameMode();
         OnStartGame?.Invoke("GameMode");//MenuUI hears it.

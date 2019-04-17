@@ -198,22 +198,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60c9ebde91edc64c8ed16084989a279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
   skinSprites:
   - {fileID: 225327824}
   - {fileID: 1487185464}
   - {fileID: 1015938025}
   - {fileID: 671418228}
-  playersImageColor:
-  - {fileID: 762806250}
-  - {fileID: 1232262425}
-  - {fileID: 2136965099}
-  - {fileID: 359553715}
   playerKills:
   - {fileID: 1382865189}
   - {fileID: 1768993126}
   - {fileID: 2072221647}
   - {fileID: 1549127735}
+  playerColors:
+  - {fileID: 762806250}
+  - {fileID: 1232262425}
+  - {fileID: 2136965099}
+  - {fileID: 359553715}
 --- !u!1 &671418226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,7 +1381,7 @@ PrefabInstance:
     - target: {fileID: 7531901721390460109, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
       propertyPath: m_Name
-      value: InGameF4A
+      value: InGameF4A Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7531901721390460145, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
@@ -1546,32 +1545,24 @@ PrefabInstance:
       objectReference: {fileID: 2863524618924693541}
     - target: {fileID: 7531901721390460147, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
-      propertyPath: textPlayerNames.Array.data[0]
+      propertyPath: scorePlayerName.Array.data[0]
       value: 
       objectReference: {fileID: 2863524619978233403}
     - target: {fileID: 7531901721390460147, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
-      propertyPath: textPlayerNames.Array.data[1]
+      propertyPath: scorePlayerName.Array.data[1]
       value: 
       objectReference: {fileID: 2863524620298508709}
     - target: {fileID: 7531901721390460147, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
-      propertyPath: textPlayerNames.Array.data[2]
+      propertyPath: scorePlayerName.Array.data[2]
       value: 
       objectReference: {fileID: 2863524618931863958}
     - target: {fileID: 7531901721390460147, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
-      propertyPath: textPlayerNames.Array.data[3]
+      propertyPath: scorePlayerName.Array.data[3]
       value: 
       objectReference: {fileID: 2863524618993720131}
-    - target: {fileID: 1771014705, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1771014705, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1771014705, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
       propertyPath: m_textInfo.textComponent
       value: 

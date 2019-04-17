@@ -6,6 +6,7 @@ public class PlayerMenu : MonoBehaviour
     string prefabName;
     private bool ready = false;
     Sprite skinSprite;
+    Color color;
 
     public bool Ready { get => ready; }
     public Controls Controls { get => controls; set => controls = value; }
@@ -13,6 +14,7 @@ public class PlayerMenu : MonoBehaviour
     public byte Id { get => id; set => id = value; }
     public string PrefabName { get => prefabName; set => prefabName = value; }
     public Sprite SkinSprite { get => skinSprite; set => skinSprite = value; }
+    public Color Color { get => color; set => color = value; }
 
     public delegate void ReadyDelegate(byte id);
     public static ReadyDelegate OnReady;

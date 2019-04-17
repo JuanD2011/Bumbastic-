@@ -50,7 +50,6 @@ public abstract class GameManager : MonoBehaviour
             player.Controls = InGame.playerSettings[i].controls;
             player.Avatar = InGame.playerSettings[i].avatar;
             player.PrefabName = InGame.playerSettings[i].name;
-            player.SkinSprite = InGame.playerSettings[i].skinSprite;
             player.Id = (byte)i;
             player.SpawnPoint = GetSpawnPoint();
             player.transform.position = player.SpawnPoint;

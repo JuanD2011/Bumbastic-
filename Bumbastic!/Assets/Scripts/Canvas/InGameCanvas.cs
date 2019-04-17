@@ -4,7 +4,7 @@ using TMPro;
 public class InGameCanvas : Canvas
 {
     [SerializeField] TextMeshProUGUI textWinner;
-    [SerializeField] TextMeshProUGUI[] textPlayerNames;
+    [SerializeField] TextMeshProUGUI[] scorePlayerName;
 
     bool isEndPanelActive = false;
 
@@ -27,9 +27,9 @@ public class InGameCanvas : Canvas
 
     private void SetScoreNames()
     {
-        for (int i = 0; i < GameManager.Manager.Players.Count; i++)
+        for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
-            textPlayerNames[i].text = GameManager.Manager.Players[i].PrefabName;
+            scorePlayerName[i].text = InGame.playerSettings[i].name;
         }
     }
 
