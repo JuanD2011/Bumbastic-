@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class FloorManager : MonoBehaviour
 {
+    [SerializeField] bool drop = true;
+
     [SerializeField]
     GameObject[] propsModule;
 
@@ -17,7 +18,7 @@ public class FloorManager : MonoBehaviour
 	Gradient colorAnticipation;
 	
 	[SerializeField]
-	float offsetSuelo = 0.07f;
+	float floorOffset = 0.07f;
 	
 	[SerializeField]
 	Vector3 propsPos = new Vector3(0, 0.5f, 0);
@@ -40,6 +41,15 @@ public class FloorManager : MonoBehaviour
 
     void Start()
     {
+        if (drop)
+        {
+            Init();
+            Bomb.OnExplode += MapDrop; 
+        }
+    }
+
+    private void Init()
+    {
         modules = GetComponentsInChildren<Rigidbody>();
 
         while (modules.Length >= (Mathf.Pow((c + 2), 2)))
@@ -47,7 +57,7 @@ public class FloorManager : MonoBehaviour
             c += 2;
         }
 
-        nRings = (c/ 2);
+        nRings = (c / 2);
 
         rings = new Rings[nRings];
 
@@ -55,12 +65,12 @@ public class FloorManager : MonoBehaviour
         {
             rings[i].module = new Rigidbody[(int)(Mathf.Pow(((i * 2) + 2), 2) - Mathf.Pow((i * 2), 2))];
 
-            for (int j = 0; j < Mathf.Pow(((i*2)+2),2)- Mathf.Pow((i*2),2); j++)
+            for (int j = 0; j < Mathf.Pow(((i * 2) + 2), 2) - Mathf.Pow((i * 2), 2); j++)
             {
                 if (i > 0)
-                    rings[i].module[j] = modules[j + (int)(Mathf.Pow((((i-1) * 2) + 2), 2))];
+                    rings[i].module[j] = modules[j + (int)(Mathf.Pow((((i - 1) * 2) + 2), 2))];
                 else
-                    rings[i].module[j] = modules[j];  
+                    rings[i].module[j] = modules[j];
             }
         }
 
@@ -71,10 +81,8 @@ public class FloorManager : MonoBehaviour
 
         for (int i = 0; i < modules.Length; i++)
         {
-            modules[i].transform.position += new Vector3(0, Random.Range(0f,offsetSuelo), 0);
+            modules[i].transform.position += new Vector3(0, Random.Range(0f, floorOffset), 0);
         }
-
-        Bomb.OnExplode += MapDrop;
     }
 
     private void SpawnProps(int _length)
@@ -84,7 +92,6 @@ public class FloorManager : MonoBehaviour
 
     private void MapDrop()
     {
-        Debug.Log("dsds");
         if (!canDrop)
         {
             if (nRings > 2)
