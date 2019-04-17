@@ -5,21 +5,22 @@ public class HotPotatoManager : GameManager
 {
     public static HotPotatoManager HotPotato;
 
-    private Player bombHolder;
+    protected Player bombHolder;
+    protected Player transmitter;
 
     [SerializeField]
     private Bomb bomb;
 
     [SerializeField]
-    private GameObject confettiBomb;
+    protected GameObject confettiBomb;
 
     [SerializeField]
-    private float minTime, maxTime;
+    protected float minTime, maxTime;
 
-    private bool cooldown;
-    private float time = 0;
+    protected bool cooldown;
+    protected float time = 0;
 
-    private List<Player> bummies = new List<Player>();
+    protected List<Player> bummies = new List<Player>();
 
     public Player BombHolder { get => bombHolder; private set => bombHolder = value; }
     public Bomb Bomb { get => bomb; private set => bomb = value; }
@@ -32,12 +33,12 @@ public class HotPotatoManager : GameManager
         base.Awake();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        Bomb.OnExplode += StartNewRound;
+        Bomb.OnExplode += OnBombExplode;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (cooldown)
         {
@@ -51,7 +52,7 @@ public class HotPotatoManager : GameManager
         }
     }
 
-    private void StartNewRound()
+    protected virtual void OnBombExplode()
     {
         Players.Remove(BombHolder);
         BombHolder.gameObject.SetActive(false);
@@ -77,10 +78,10 @@ public class HotPotatoManager : GameManager
 
             for (int i = 0; i < bummies.Count; i++)
             {
-                Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 6, 0), Quaternion.identity);
+                Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 1, 0), Quaternion.identity);
                 bummies.RemoveAt(i);
             }
-            Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 6, 0);
+            Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 1, 0);
             Bomb.Timer = Random.Range(minTime -= 3f, maxTime -= 3f);
             Bomb.Exploded = false;
             if (Bomb.RigidBody != null)
@@ -104,6 +105,7 @@ public class HotPotatoManager : GameManager
     {
         if (BombHolder != null)
         {
+            transmitter = BombHolder;
             BombHolder.HasBomb = false;
             BombHolder.Collider.enabled = true;
         }
@@ -122,6 +124,7 @@ public class HotPotatoManager : GameManager
     /// <param name="_transmitter"></param>
     public override void PassBomb(Player _receiver, Player _transmitter)
     {
+        transmitter = _transmitter;
         _transmitter.HasBomb = false;
         _transmitter.Collider.enabled = true;
         _receiver.HasBomb = true;
