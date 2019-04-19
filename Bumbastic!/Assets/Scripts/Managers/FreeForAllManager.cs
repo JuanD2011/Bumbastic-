@@ -14,7 +14,7 @@ public class FreeForAllManager : HotPotatoManager
     public int[] KillsCounter { get => killsCounter; private set => killsCounter = value; }
 
     public delegate void DelFreeForAll(byte _killerID);
-    public DelFreeForAll OnPlayerKilled;
+    public event DelFreeForAll OnPlayerKilled;
 
     protected override void Awake()
     {
