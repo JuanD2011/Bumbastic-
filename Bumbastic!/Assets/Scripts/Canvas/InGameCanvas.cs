@@ -19,7 +19,7 @@ public class InGameCanvas : Canvas
         GameManager.Manager.OnGameOver += SetEndAnimation;
         PlayerMenu.OnStartButton += StartButton;
 
-        if (GameManager.Manager.Players.Count != 0)
+        if (InGame.playerSettings.Count != 0)
         {
             SetScoreNames(); 
         }

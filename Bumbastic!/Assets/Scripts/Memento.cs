@@ -2,45 +2,20 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class Memento : MonoBehaviour
+public static class Memento
 {
-    public static Memento instance;
+    static string resourceSettings = "ScriptableObjects/Settings";
 
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(this);
-        LoadData();
-    }
-
-    string resourceSettings = "ScriptableObjects/Settings";
-
-    private bool ExistsDirectory()
+    private static bool ExistsDirectory()
     {
         return Directory.Exists(Application.persistentDataPath + "/game_save");
     }
-
-#if UNITY_EDITOR
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SaveData(0);
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            LoadData();
-        }
-    }
-#endif
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="_TypeToSave">0 is for Settings</param>
-    public void SaveData(int _TypeToSave)
+    public static void SaveData(int _TypeToSave)
     {
         if (!ExistsDirectory())
         {
@@ -65,7 +40,7 @@ public class Memento : MonoBehaviour
         }
     }
 
-    public void LoadData()
+    public static void LoadData()
     {
         if (!Directory.Exists(Application.persistentDataPath + "/game_save/settings_data"))
         {

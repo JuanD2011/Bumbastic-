@@ -56,6 +56,8 @@ public class MenuManager : MonoBehaviour
     {
         if (menu == null) menu = this;
         else Destroy(this);
+
+        Memento.LoadData();
     }
 
     void Start()
@@ -168,5 +170,10 @@ public class MenuManager : MonoBehaviour
         texts[_id].text = "Press Start";
         countdown = false;
         timer = startTimer;
+    }
+
+    public void SaveData(int _id)
+    {
+        Memento.SaveData(_id);
     }
 }

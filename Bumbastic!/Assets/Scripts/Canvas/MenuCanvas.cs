@@ -82,7 +82,7 @@ public class MenuCanvas : Canvas
         else if (stateInfo.IsName(animatorStateNames[1]))//Options Panel
         {
             ConfigurationPanel(false);
-            Memento.instance.SaveData(0);
+            Memento.SaveData(0);
         }
         else if (stateInfo.IsName(animatorStateNames[2]) || stateInfo.IsName(animatorStateNames[6]))//Matchmaking
         {
