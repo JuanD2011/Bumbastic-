@@ -11,6 +11,7 @@ public class HUDFreeForAll : MonoBehaviour
     private void Start()
     {
         SetPlayerFeatures();
+        FreeForAllManager.FreeForAll.OnPlayerKilled += UpdateKillsScore;
     }
 
     private void SetPlayerFeatures()
@@ -23,8 +24,8 @@ public class HUDFreeForAll : MonoBehaviour
         }
     }
 
-    private void UpdateKills(byte _playerID)
+    private void UpdateKillsScore(byte _playerID)
     {
-        //playerKills[_playerID].text = string.Format("{0}", GameManager.Manager.Players[_playerID].Kills);
+        playerKills[_playerID].text = string.Format("{0}", FreeForAllManager.FreeForAll.KillsCounter[_playerID]);
     }
 }

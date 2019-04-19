@@ -7,11 +7,21 @@ public class FreeForAllManager : HotPotatoManager
     private bool gameOver;
 
     [SerializeField]
-    private byte maxScore = 3;
+    private byte maxKills = 3;
+
+    int[] killsCounter;
+
+    public int[] KillsCounter { get => killsCounter; private set => killsCounter = value; }
+
+    public delegate void DelFreeForAll(byte _killerID);
+    public DelFreeForAll OnPlayerKilled;
 
     protected override void Awake()
     {
         base.Awake();
+
+        if (FreeForAll == null) FreeForAll = this;
+        else Destroy(this);
     }
 
     protected override void Update()
@@ -31,21 +41,29 @@ public class FreeForAllManager : HotPotatoManager
     protected override void Start()
     {
         base.Start();
+        KillsCounter = new int[players.Count];
     }
 
     protected override void OnBombExplode()
     {
         transmitter.transform.position = transmitter.SpawnPoint;
         cooldown = true;
+
+        if (transmitter.Id != BombHolder.Id)
+        {
+            KillsCounter[transmitter.Id] += 1;
+            OnPlayerKilled?.Invoke(transmitter.Id);//HUDFreeForAll hears it.
+        }
     }
 
     protected void GiveBomb()
     {
-        for (int i = 0; i < InGame.playerSettings.Count; i++)
+        for (int i = 0; i < killsCounter.Length; i++)
         {
-            if (InGame.playerSettings[i].score == maxScore)
+            if (KillsCounter[i] == maxKills)
             {
                 gameOver = true;
+                break;
             }
         }
 
