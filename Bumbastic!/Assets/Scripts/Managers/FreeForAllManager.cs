@@ -9,9 +9,9 @@ public class FreeForAllManager : HotPotatoManager
     [SerializeField]
     private byte maxKills = 3;
 
-    int[] killsCounter;
+    byte[] killsCounter;
 
-    public int[] KillsCounter { get => killsCounter; private set => killsCounter = value; }
+    public byte[] KillsCounter { get => killsCounter; private set => killsCounter = value; }
 
     public delegate void DelFreeForAll(byte _killerID);
     public event DelFreeForAll OnPlayerKilled;
