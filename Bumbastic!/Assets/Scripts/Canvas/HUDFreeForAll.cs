@@ -18,6 +18,7 @@ public class HUDFreeForAll : MonoBehaviour
     {
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
+            skinSprites[i].gameObject.SetActive(true);
             skinSprites[i].sprite = InGame.playerSettings[i].skinSprite;
             playerColors[i].color = InGame.playerSettings[i].color;
             playerKills[i].text = 0.ToString();
