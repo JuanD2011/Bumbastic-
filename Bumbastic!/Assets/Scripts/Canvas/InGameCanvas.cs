@@ -28,7 +28,7 @@ public class InGameCanvas : Canvas
 
     private void UpdateScore()
     {
-        for (int i = 0; i < playerScores.Length; i++)
+        for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             for (int j = 0; j < InGame.playerSettings[i].score; j++)
             {
@@ -42,7 +42,7 @@ public class InGameCanvas : Canvas
 
     private void SetPlayersScore()
     {
-        for (int i = 0; i < playerScores.Length; i++)
+        for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             playerScores[i].InitComponents();
             playerScores[i].Name.text = InGame.playerSettings[i].name;

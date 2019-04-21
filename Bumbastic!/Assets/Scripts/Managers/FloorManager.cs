@@ -46,6 +46,13 @@ public class FloorManager : MonoBehaviour
             Init();
             Bomb.OnExplode += MapDrop; 
         }
+        else
+        {
+            foreach(Transform collider in colliders)
+            {
+                collider.gameObject.SetActive(false);
+            }
+        }
     }
 
     private void Init()
