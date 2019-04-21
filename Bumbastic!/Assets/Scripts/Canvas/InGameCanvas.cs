@@ -4,9 +4,10 @@ using TMPro;
 public class InGameCanvas : Canvas
 {
     [SerializeField] TextMeshProUGUI textWinner;
-    [SerializeField] TextMeshProUGUI[] scorePlayerName;
+    [SerializeField] PlayerScore[] playerScores;
 
     bool isEndPanelActive = false;
+    private string _scene = "GameMode";
 
     protected override void Awake()
     {
@@ -16,20 +17,39 @@ public class InGameCanvas : Canvas
     protected override void Start()
     {
         base.Start();
-        GameManager.Manager.OnGameOver += SetEndAnimation;
+        GameManager.Manager.OnGameModeOver += SetEndAnimation;
+        GameManager.Manager.OnGameModeOver += UpdateScore;
+        GameManager.Manager.OnGameOver += () => _scene = "Menu";
         PlayerMenu.OnStartButton += StartButton;
 
-        if (InGame.playerSettings.Count != 0)
+        SetPlayersScore();
+    }
+
+    private void UpdateScore()
+    {
+        for (int i = 0; i < playerScores.Length; i++)
         {
-            SetScoreNames(); 
+            for (int j = 0; j < InGame.playerSettings[i].score; j++)
+            {
+                if (!playerScores[i].Stars[j].enabled)
+                {
+                    playerScores[i].Stars[j].enabled = true; 
+                }
+            }
         }
     }
 
-    private void SetScoreNames()
+    private void SetPlayersScore()
     {
-        for (int i = 0; i < InGame.playerSettings.Count; i++)
+        for (int i = 0; i < playerScores.Length; i++)
         {
-            scorePlayerName[i].text = InGame.playerSettings[i].name;
+            playerScores[i].InitComponents();
+            playerScores[i].Name.text = InGame.playerSettings[i].name;
+
+            for (int j = 0; j < InGame.playerSettings[i].score; j++)
+            {
+                playerScores[i].Stars[j].enabled = true;
+            }
         }
     }
 
@@ -53,7 +73,7 @@ public class InGameCanvas : Canvas
     #region Animation events
     public void OnLoadScreenComplete()
     {
-        StartCoroutine(OnLoadScene?.Invoke("GameMode"));//Lvl Manager hears it.
+        StartCoroutine(OnLoadScene?.Invoke(_scene));//Lvl Manager hears it.
     }
     #endregion
 

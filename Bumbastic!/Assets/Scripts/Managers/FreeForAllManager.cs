@@ -24,6 +24,12 @@ public class FreeForAllManager : HotPotatoManager
         else Destroy(this);
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        KillsCounter = new int[players.Count];
+    }
+
     protected override void Update()
     {
         if (cooldown)
@@ -36,12 +42,6 @@ public class FreeForAllManager : HotPotatoManager
                 GiveBomb();
             }
         }
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-        KillsCounter = new int[players.Count];
     }
 
     protected override void OnBombExplode()
@@ -62,6 +62,7 @@ public class FreeForAllManager : HotPotatoManager
         {
             if (KillsCounter[i] == maxKills)
             {
+                InGame.playerSettings[i].score += 1;
                 gameOver = true;
                 break;
             }

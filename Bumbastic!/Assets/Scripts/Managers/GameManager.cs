@@ -28,6 +28,7 @@ public abstract class GameManager : MonoBehaviour
     public GameObject floor;
 
     public delegate void GameStateDelegate();
+    public event GameStateDelegate OnGameModeOver;
     public event GameStateDelegate OnGameOver;
 
     protected virtual void Awake()
@@ -86,9 +87,20 @@ public abstract class GameManager : MonoBehaviour
 
     protected void GameOver()
     {
-        GetNextGameMode();
-        OnGameOver?.Invoke();//InGameCanvas
         Debug.Log("Game Over");
+        OnGameModeOver?.Invoke();//InGameCanvas
+
+        for (int i = 0; i < InGame.playerSettings.Count; i++)
+        {
+            if (InGame.playerSettings[i].score == InGame.maxScore)
+            {
+                OnGameOver?.Invoke();//InGameCanvas hears it.
+                return;
+                break;
+            }
+        }
+
+        GetNextGameMode();
     }
 
     private void GetNextGameMode()

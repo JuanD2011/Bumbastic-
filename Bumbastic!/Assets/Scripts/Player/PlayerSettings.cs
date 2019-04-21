@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 
-public struct PlayerSettings
+public class PlayerSettings
 {
     public string name;
     public GameObject avatar;
     public Controls controls;
     public Sprite skinSprite;
     public byte score;
-    public Color color;
+    public Color color;                     
 
-    public PlayerSettings(string _name, GameObject _avatar, Controls _controls, Sprite _skinSprite, Color _color) : this()
+    public PlayerSettings(string _name, GameObject _avatar, Controls _controls, Sprite _skinSprite, Color _color)
     {
         name = _name;
         avatar = _avatar;

@@ -148,10 +148,10 @@ public class FloorManager : MonoBehaviour
 
         StartCoroutine(Drop(ring));
 
-        if (nRings > 2)
-        {
-            StartCoroutine(Anticipation(nRings - 1));
-        }
+        //if (nRings > 2)
+        //{
+        //    StartCoroutine(Anticipation(nRings - 1));
+        //}
     }
 
     IEnumerator Drop(int ring)

@@ -93,6 +93,7 @@ public class HotPotatoManager : GameManager
         }
         else if (Players.Count == 1)
         {
+            InGame.playerSettings[Players[0].Id].score += 1;
             GameOver();
         }
     }

@@ -1383,6 +1383,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameF4A Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7531901721390460144, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: bd726f1522e269e4999c29ea4f5a3b27,
+        type: 2}
     - target: {fileID: 7531901721390460145, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1488,56 +1494,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1854028550, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 2863524618908084498}
-    - target: {fileID: 7531901722099129863, guid: bd638fd56519df6428dc3b9aed6c34c4,
-        type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 5709430514822614035}
-    - target: {fileID: 2018419161, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 2863524619205653453}
-    - target: {fileID: 779830319, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 2863524619978233403}
-    - target: {fileID: 996297649, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 2863524620298508709}
-    - target: {fileID: 1746736002, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 2863524618931863958}
-    - target: {fileID: 1705822551, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 2863524618993720131}
-    - target: {fileID: 8373086988623730908, guid: bd638fd56519df6428dc3b9aed6c34c4,
-        type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 3771777675228021319}
-    - target: {fileID: 8373086988623730908, guid: bd638fd56519df6428dc3b9aed6c34c4,
-        type: 3}
-      propertyPath: m_FillRect
-      value: 
-      objectReference: {fileID: 3709825506028107042}
-    - target: {fileID: 8373086988623730908, guid: bd638fd56519df6428dc3b9aed6c34c4,
-        type: 3}
-      propertyPath: m_HandleRect
-      value: 
-      objectReference: {fileID: 6747883460264448030}
-    - target: {fileID: 7531901721390460144, guid: bd638fd56519df6428dc3b9aed6c34c4,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: bd726f1522e269e4999c29ea4f5a3b27,
-        type: 2}
     - target: {fileID: 7531901721390460147, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
       propertyPath: textWinner
@@ -1563,15 +1519,79 @@ PrefabInstance:
       propertyPath: scorePlayerName.Array.data[3]
       value: 
       objectReference: {fileID: 2863524618993720131}
+    - target: {fileID: 7531901721390460147, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: playersScore.Array.data[0]
+      value: 
+      objectReference: {fileID: 2863524619978233403}
+    - target: {fileID: 7531901721390460147, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: playersScore.Array.data[1]
+      value: 
+      objectReference: {fileID: 2863524620298508709}
+    - target: {fileID: 7531901721390460147, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: playersScore.Array.data[2]
+      value: 
+      objectReference: {fileID: 2863524618931863958}
+    - target: {fileID: 7531901721390460147, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: playersScore.Array.data[3]
+      value: 
+      objectReference: {fileID: 2863524618993720131}
     - target: {fileID: 1771014705, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
       propertyPath: m_textInfo.textComponent
       value: 
       objectReference: {fileID: 2863524618924693541}
+    - target: {fileID: 1746736002, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 2863524618931863958}
+    - target: {fileID: 1705822551, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 2863524618993720131}
+    - target: {fileID: 779830319, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 2863524619978233403}
+    - target: {fileID: 996297649, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 2863524620298508709}
+    - target: {fileID: 1854028550, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 2863524618908084498}
+    - target: {fileID: 7531901722099129863, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 5709430514822614035}
     - target: {fileID: 7531901722148324507, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
       propertyPath: m_textInfo.textComponent
       value: 
       objectReference: {fileID: 5709430514840360591}
+    - target: {fileID: 2018419161, guid: bd638fd56519df6428dc3b9aed6c34c4, type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 2863524619205653453}
+    - target: {fileID: 8373086988623730908, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 3771777675228021319}
+    - target: {fileID: 8373086988623730908, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: m_FillRect
+      value: 
+      objectReference: {fileID: 3709825506028107042}
+    - target: {fileID: 8373086988623730908, guid: bd638fd56519df6428dc3b9aed6c34c4,
+        type: 3}
+      propertyPath: m_HandleRect
+      value: 
+      objectReference: {fileID: 6747883460264448030}
     - target: {fileID: 5451501453490675958, guid: bd638fd56519df6428dc3b9aed6c34c4,
         type: 3}
       propertyPath: m_textInfo.textComponent
