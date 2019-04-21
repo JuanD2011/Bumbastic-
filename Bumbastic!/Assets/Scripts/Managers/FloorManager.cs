@@ -64,13 +64,21 @@ public class FloorManager : MonoBehaviour
         for (int i = 0; i < rings.Length; i++)
         {
             rings[i].module = new Rigidbody[(int)(Mathf.Pow(((i * 2) + 2), 2) - Mathf.Pow((i * 2), 2))];
+            rings[i].renderers = new Renderer[rings[i].module.Length];
 
             for (int j = 0; j < Mathf.Pow(((i * 2) + 2), 2) - Mathf.Pow((i * 2), 2); j++)
             {
                 if (i > 0)
+                {
                     rings[i].module[j] = modules[j + (int)(Mathf.Pow((((i - 1) * 2) + 2), 2))];
+                    rings[i].renderers[j] = rings[i].module[j].gameObject.GetComponent<Renderer>();
+                }
+
                 else
+                {
                     rings[i].module[j] = modules[j];
+                    rings[i].renderers[j] = rings[i].module[j].gameObject.GetComponent<Renderer>();
+                }
             }
         }
 
@@ -114,11 +122,10 @@ public class FloorManager : MonoBehaviour
                 colliders[i].localPosition = Vector3.MoveTowards(colliders[i].localPosition, colliders[i].forward * nRings * 4f, (anticipationTime/2) * Time.deltaTime);
             }
 
-   //         for (int i = 0; i < rings[anticipationRing].module.Length; i++)
-   //         {
-			//	rings[anticipationRing].module[i].GetComponent<Renderer>().material.shader = Shader.Find("HDRP/Lit");
-			//	rings[anticipationRing].module[i].GetComponent<Renderer>().material.SetColor("_BaseColor", colorAnticipation.Evaluate(time));
-			//}
+            for (int i = 0; i < rings[anticipationRing].module.Length; i++)
+            {
+				rings[anticipationRing].renderers[i].material.color= colorAnticipation.Evaluate(time);
+			}
 
             if (time >= 1)
             {
@@ -183,4 +190,5 @@ public class FloorManager : MonoBehaviour
 public struct Rings
 {
     public Rigidbody[] module;
+    public Renderer[] renderers;
 }
