@@ -17,9 +17,10 @@ public class InGameCanvas : Canvas
     protected override void Start()
     {
         base.Start();
+        GameManager.Manager.OnGameOver += () => _scene = "Menu";
+
         GameManager.Manager.OnGameModeOver += SetEndAnimation;
         GameManager.Manager.OnGameModeOver += UpdateScore;
-        GameManager.Manager.OnGameOver += () => _scene = "Menu";
         PlayerMenu.OnStartButton += StartButton;
 
         SetPlayersScore();
