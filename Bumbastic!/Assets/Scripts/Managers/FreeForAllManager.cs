@@ -27,7 +27,7 @@ public class FreeForAllManager : HotPotatoManager
     protected override void Start()
     {
         base.Start();
-        KillsCounter = new int[players.Count];
+        KillsCounter = new byte[players.Count];
     }
 
     protected override void Update()
