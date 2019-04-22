@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
 
     private GameObject player;
     private SphereCollider collider;
+    private Rigidbody m_Rigidbody;
     private Animator m_Animator;
     private Vector3 spawnPoint;
     private Controls controls;
@@ -52,8 +53,13 @@ public class Player : MonoBehaviour
     public string PrefabName { get => prefabName; set => prefabName = value; }
     public SphereCollider Collider { get => collider; private set => collider = value; }
     public Transform Catapult { get => catapult; private set => catapult = value; }
+    public Rigidbody Rigidbody { get => m_Rigidbody; private set => m_Rigidbody = value; }
 
-    private void Start() => GameManager.Manager.Director.stopped += LetMove;
+    private void Start()
+    {
+        m_Rigidbody = GetComponent<Rigidbody>();
+        GameManager.Manager.Director.stopped += LetMove;
+    }
 
     private void LetMove(PlayableDirector _obj) => canMove = true;
 
