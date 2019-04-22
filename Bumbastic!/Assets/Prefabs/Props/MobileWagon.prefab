@@ -136,5 +136,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushForce: 8
   velocity: 10
-  timeToRestart: 10
+  timeToRestart: 7
   timeToStart: 5

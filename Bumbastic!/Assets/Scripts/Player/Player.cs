@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
+        Rigidbody = GetComponent<Rigidbody>();
         GameManager.Manager.Director.stopped += LetMove;
     }
 

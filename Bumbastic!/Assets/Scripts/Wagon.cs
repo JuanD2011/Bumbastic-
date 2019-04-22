@@ -31,6 +31,8 @@ public class Wagon : MonoBehaviour
         }
 
         yield return waitToRestart;
+
+        m_Rigidbody.velocity = Vector3.zero;
         transform.position = initPos;
         StartCoroutine(InitWagon());
     }
