@@ -17,13 +17,13 @@ MonoBehaviour:
     description: You have to pass the bomb before it explodes!
     gameModeType: 0
     gameModeBackgrounds:
-    - {fileID: 21300000, guid: 2fc196f50471b3a4e94ecb4ec98a4e59, type: 3}
-    - {fileID: 21300000, guid: 6386e728da34f464897122e216758cef, type: 3}
-    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 21300000, guid: 4f58868d7783d2a43b7b3e2ccc4f8211, type: 3}
+    - {fileID: 21300000, guid: 7c75182672a1d9740af1b3c2402bf5ec, type: 3}
+    - {fileID: 21300000, guid: 2d7d018d56b3cda4da2f43f37e903424, type: 3}
   - name: Free For All
     description: The one who reaches x points wins!
     gameModeType: 1
     gameModeBackgrounds:
-    - {fileID: 21300000, guid: 2fc196f50471b3a4e94ecb4ec98a4e59, type: 3}
-    - {fileID: 21300000, guid: 6386e728da34f464897122e216758cef, type: 3}
-    - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 21300000, guid: c1b177e8c8918cb489df0492de6d5075, type: 3}
+    - {fileID: 21300000, guid: 09a4bed90a46e9246bf5802134edc8ae, type: 3}
+    - {fileID: 21300000, guid: 37e72ddc606985e49bb1e4ad8cda9416, type: 3}
