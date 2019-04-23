@@ -111,8 +111,8 @@ public class HotPotatoManager : GameManager
         }
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
-        BombHolder = _receiver;
         transmitter = BombHolder;
+        BombHolder = _receiver;
         Bomb.RigidBody.isKinematic = true;
         Bomb.transform.position = _receiver.Catapult.position;
         Bomb.transform.SetParent(_receiver.Catapult.transform);
