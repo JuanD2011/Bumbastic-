@@ -35,9 +35,17 @@ public class Wagon : MonoBehaviour
         {
             if (m_Rigidbody.velocity != Vector3.zero)
             {
-                playerCollisioned.Rigidbody.AddForce(transform.right * pushForce, ForceMode.Impulse); 
+                if (playerCollisioned.transform.position.z > transform.position.z)
+                {
+                    playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(40, Vector3.right) * Vector3.forward * pushForce, ForceMode.Impulse);
+                }
+                else
+                {
+                    playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(40, Vector3.right) * -Vector3.forward * pushForce, ForceMode.Impulse);
+                }
             }
         }
+        else Debug.Log("null");
 
         if (GameModeDataBase.IsCurrentFreeForAll())
         {
