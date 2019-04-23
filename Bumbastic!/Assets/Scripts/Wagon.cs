@@ -38,7 +38,6 @@ public class Wagon : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Player playerCollisioned = other.GetComponentInParent<Player>();
-        Capsule capsule = other.GetComponent<Capsule>();
 
         if (playerCollisioned != null)
         {
