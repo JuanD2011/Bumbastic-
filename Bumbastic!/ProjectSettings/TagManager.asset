@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Catapult
   - Floor
+  - Wagon
   layers:
   - Default
   - TransparentFX

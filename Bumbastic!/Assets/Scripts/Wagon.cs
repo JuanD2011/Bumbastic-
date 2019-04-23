@@ -7,43 +7,69 @@ public class Wagon : MonoBehaviour
     [SerializeField] float pushForce = 10f;
     [SerializeField] float velocity = 15f;
     [SerializeField] float timeToRestart = 7f, timeToStart = 5f;
+    [SerializeField] float timeToLerpPosition = 0.3f;
 
     Rigidbody m_Rigidbody;
-    Vector3 initPos; 
+
+    Collider[] colliders;
 
     private void Start()
     {
-        initPos = transform.position;
-        m_Rigidbody = GetComponent<Rigidbody>();
+        if (GameModeDataBase.currentGameMode != null && GameModeDataBase.currentGameMode.gameModeType == GameModeType.FreeForAll)
+        {
+            m_Rigidbody = GetComponent<Rigidbody>();
+            colliders = GetComponentsInChildren<Collider>();
+
+            foreach (Collider collider in colliders)
+            {
+                collider.gameObject.transform.parent = null;   
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Player playerCollisioned = other.GetComponentInParent<Player>();
+
+        if (playerCollisioned != null)
+        {
+            if (m_Rigidbody.velocity != Vector3.zero)
+            {
+                playerCollisioned.Rigidbody.AddForce(Vector3.Cross(transform.forward, playerCollisioned.transform.up) * pushForce, ForceMode.Impulse); 
+            }
+        }
+
+        if (other.tag == "Wagon")
+        {
+            StartCoroutine(LerpPosition(timeToLerpPosition, transform.position, other.transform.position));
+            transform.rotation = other.transform.rotation;
+            m_Rigidbody.velocity = Vector3.zero;
+        }
+    }
+
+    IEnumerator LerpPosition(float _timeToLerp, Vector3 _lastPosition, Vector3 _target)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _timeToLerp)
+        {
+            transform.position = Vector3.Lerp(_lastPosition, _target, elapsedTime / _timeToLerp);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
         StartCoroutine(InitWagon());
     }
 
     private IEnumerator InitWagon()
     {
         WaitForSeconds waitToStart = new WaitForSeconds(timeToStart);
-        WaitForSeconds waitToRestart = new WaitForSeconds(timeToRestart);
 
         yield return waitToStart;
 
         if (m_Rigidbody.velocity == Vector3.zero)
         {
-            m_Rigidbody.AddForce(transform.forward * velocity, ForceMode.Impulse); 
-        }
-
-        yield return waitToRestart;
-
-        m_Rigidbody.velocity = Vector3.zero;
-        transform.position = initPos;
-        StartCoroutine(InitWagon());
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Player playerCollisioned = other.GetComponent<Player>();
-
-        if (playerCollisioned != null)
-        {
-            playerCollisioned.Rigidbody.AddForce(Vector3.Cross(transform.forward, playerCollisioned.transform.up) * pushForce, ForceMode.Impulse);
+            m_Rigidbody.AddForce(transform.forward * velocity, ForceMode.Impulse);
         }
     }
 }
