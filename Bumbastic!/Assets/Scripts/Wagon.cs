@@ -39,11 +39,14 @@ public class Wagon : MonoBehaviour
             }
         }
 
-        if (other.tag == "Wagon")
+        if (GameModeDataBase.currentGameMode.gameModeType == GameModeType.FreeForAll)
         {
-            StartCoroutine(LerpPosition(timeToLerpPosition, transform.position, other.transform.position));
-            transform.rotation = other.transform.rotation;
-            m_Rigidbody.velocity = Vector3.zero;
+            if (other.tag == "Wagon")
+            {
+                StartCoroutine(LerpPosition(timeToLerpPosition, transform.position, other.transform.position));
+                transform.rotation = other.transform.rotation;
+                m_Rigidbody.velocity = Vector3.zero;
+            } 
         }
     }
 
