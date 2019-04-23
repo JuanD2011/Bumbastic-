@@ -15,7 +15,7 @@ public class Wagon : MonoBehaviour
 
     private void Start()
     {
-        if (GameModeDataBase.currentGameMode != null && GameModeDataBase.currentGameMode.gameModeType == GameModeType.FreeForAll)
+        if (GameModeDataBase.currentGameMode.gameModeType == GameModeType.FreeForAll)
         {
             m_Rigidbody = GetComponent<Rigidbody>();
             colliders = GetComponentsInChildren<Collider>();
