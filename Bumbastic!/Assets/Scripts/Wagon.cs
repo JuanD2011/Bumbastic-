@@ -9,6 +9,8 @@ public class Wagon : MonoBehaviour
     [SerializeField] float timeToRestart = 7f, timeToStart = 5f;
     [SerializeField] float timeToLerpPosition = 0.3f;
 
+    bool move = false;
+
     Rigidbody m_Rigidbody;
 
     Collider[] colliders;
@@ -17,12 +19,18 @@ public class Wagon : MonoBehaviour
     {
         if (GameModeDataBase.currentGameMode.gameModeType == GameModeType.FreeForAll)
         {
+            move = true;
+        }
+
+        if (move)
+        {
             m_Rigidbody = GetComponent<Rigidbody>();
             colliders = GetComponentsInChildren<Collider>();
 
             foreach (Collider collider in colliders)
             {
-                collider.gameObject.transform.parent = null;   
+                collider.gameObject.transform.parent = null;
+
             }
         }
     }
@@ -30,23 +38,24 @@ public class Wagon : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Player playerCollisioned = other.GetComponentInParent<Player>();
+        Capsule capsule = other.GetComponent<Capsule>();
 
         if (playerCollisioned != null)
         {
             if (m_Rigidbody.velocity != Vector3.zero)
             {
-                playerCollisioned.Rigidbody.AddForce(Vector3.Cross(transform.forward, playerCollisioned.transform.up) * pushForce, ForceMode.Impulse); 
+                playerCollisioned.Rigidbody.AddForce(transform.right * pushForce, ForceMode.Impulse); 
             }
         }
 
-        if (GameModeDataBase.currentGameMode.gameModeType == GameModeType.FreeForAll)
+        if (move)
         {
             if (other.tag == "Wagon")
             {
                 StartCoroutine(LerpPosition(timeToLerpPosition, transform.position, other.transform.position));
                 transform.rotation = other.transform.rotation;
                 m_Rigidbody.velocity = Vector3.zero;
-            } 
+            }
         }
     }
 
