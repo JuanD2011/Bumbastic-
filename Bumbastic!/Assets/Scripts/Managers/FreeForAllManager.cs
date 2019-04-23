@@ -49,6 +49,7 @@ public class FreeForAllManager : HotPotatoManager
         transmitter.transform.position = transmitter.SpawnPoint;
         cooldown = true;
 
+        Debug.Log(string.Format("{0}/{1}", transmitter.Id, BombHolder.Id));
         if (transmitter.Id != BombHolder.Id)
         {
             KillsCounter[transmitter.Id] += 1;

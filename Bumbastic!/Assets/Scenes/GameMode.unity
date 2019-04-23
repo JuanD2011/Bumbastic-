@@ -1510,10 +1510,10 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 0.69803923}
   gameModeName: {fileID: 382640906}
   gamemodeDescription: {fileID: 1222788196}
-  timeToChangebg: 3
+  timeToChangebg: 1.5
   alphaImage: 0.6
-  fadeOut: 0.7
-  fadeIn: 0.7
+  fadeOut: 0.5
+  fadeIn: 0.5
 --- !u!1 &1234142373
 GameObject:
   m_ObjectHideFlags: 0

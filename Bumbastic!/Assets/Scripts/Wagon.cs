@@ -9,20 +9,13 @@ public class Wagon : MonoBehaviour
     [SerializeField] float timeToRestart = 7f, timeToStart = 5f;
     [SerializeField] float timeToLerpPosition = 0.3f;
 
-    bool move = false;
-
     Rigidbody m_Rigidbody;
 
     Collider[] colliders;
 
     private void Start()
     {
-        if (GameModeDataBase.currentGameMode.gameModeType == GameModeType.FreeForAll)
-        {
-            move = true;
-        }
-
-        if (move)
+        if (GameModeDataBase.IsCurrentFreeForAll())
         {
             m_Rigidbody = GetComponent<Rigidbody>();
             colliders = GetComponentsInChildren<Collider>();
@@ -30,7 +23,6 @@ public class Wagon : MonoBehaviour
             foreach (Collider collider in colliders)
             {
                 collider.gameObject.transform.parent = null;
-
             }
         }
     }
@@ -47,7 +39,7 @@ public class Wagon : MonoBehaviour
             }
         }
 
-        if (move)
+        if (GameModeDataBase.IsCurrentFreeForAll())
         {
             if (other.tag == "Wagon")
             {
