@@ -20,42 +20,33 @@ MonoBehaviour:
       type: 3}
     choosed: 1
     skinSprite: {fileID: 21300000, guid: 0ca0023405c90ca468b06e25f10f0252, type: 3}
-  - name: Grumpy
-    description: 
-    value: 0
-    prefab: {fileID: 6652167441946210589, guid: 205462f60df731d4db10372444530363,
-      type: 3}
-    choosed: 0
-    skinSprite: {fileID: 21300000, guid: e287531c22f45ac419406e9a99991f1d, type: 3}
-  - name: Dabadee
-    description: 
-    value: 0
-    prefab: {fileID: 6652167441946210589, guid: 118ffb613b6531540a38c33d6d84788e,
-      type: 3}
-    choosed: 1
-    skinSprite: {fileID: 21300000, guid: 6386e728da34f464897122e216758cef, type: 3}
-  - name: Carbon
-    description: 
-    value: 0
-    prefab: {fileID: 6652167441946210589, guid: 0a78f9b1190904e49bced7056578dd74,
-      type: 3}
-    choosed: 0
-    skinSprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   - name: PixelPit
     description: 
     value: 0
     prefab: {fileID: 798887283, guid: 0ebbe7a158ff22a46b0a5a6685eda882, type: 3}
     choosed: 0
     skinSprite: {fileID: 21300000, guid: e97369dfd69c5f74eab117c79a7bf6c8, type: 3}
-  - name: Ugly bomb
+  - name: Redskin
     description: 
     value: 0
-    prefab: {fileID: 728864674, guid: cccb06cfc2a60b84bbc245f6dacc1813, type: 3}
+    prefab: {fileID: 624004247, guid: 6a4b20526e70a134cb763d66ed497b80, type: 3}
     choosed: 1
-    skinSprite: {fileID: 21300000, guid: cec02990172423545bf93eb8b5c26369, type: 3}
+    skinSprite: {fileID: 21300000, guid: 6386e728da34f464897122e216758cef, type: 3}
   - name: El Bummie
     description: 
     value: 0
     prefab: {fileID: 578281793, guid: feac96b055eabe140bb1cfe6632abf20, type: 3}
-    choosed: 1
+    choosed: 0
     skinSprite: {fileID: 21300000, guid: 7d6e0b155bb56434882bf2c23acd2b33, type: 3}
+  - name: Ugly Bomb
+    description: 
+    value: 0
+    prefab: {fileID: 728864674, guid: cccb06cfc2a60b84bbc245f6dacc1813, type: 3}
+    choosed: 0
+    skinSprite: {fileID: 21300000, guid: cec02990172423545bf93eb8b5c26369, type: 3}
+  - name: Saboten
+    description: 
+    value: 0
+    prefab: {fileID: 1885799808, guid: d3ad895f063e4fb4eb7295075a623885, type: 3}
+    choosed: 1
+    skinSprite: {fileID: 21300000, guid: cec02990172423545bf93eb8b5c26369, type: 3}
