@@ -20,5 +20,6 @@ public class GameMode
 public enum GameModeType
 {
     HotPotato,
-    FreeForAll
+    FreeForAll,
+    BasesGame
 };
