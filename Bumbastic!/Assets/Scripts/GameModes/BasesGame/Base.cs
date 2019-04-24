@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Base : MonoBehaviour
 {
     [SerializeField] byte lifePoints = 3;
     [SerializeField] byte id = 0;
+    Renderer m_Renderer;
 
     public byte LifePoints { get => lifePoints; private set => lifePoints = value; }
+    public Renderer Renderer { get => m_Renderer; set => m_Renderer = value; }
 
     public delegate void DelBase(byte _baseID, byte _lifePoints);
     public static event DelBase OnBaseDamage;
@@ -13,6 +16,7 @@ public class Base : MonoBehaviour
     private void Awake()
     {
         OnBaseDamage = null;
+        Renderer = GetComponent<Renderer>();
     }
 
     private void OnTriggerEnter(Collider other)

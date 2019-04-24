@@ -13,12 +13,14 @@ public abstract class GameManager : MonoBehaviour
 
     public PlayableDirector Director { get => director; protected set => director = value; }
     public List<Player> Players { get => players; protected set => players = value; }
+    protected List<Transform> SpawnPoints { get => spawnPoints; private set => spawnPoints = value; }
+    protected GameObject PlayerPrefab { get => playerPrefab; private set => playerPrefab = value; }
 
     [SerializeField]
     GameModeDataBase gameMode;
 
     [SerializeField]
-    private GameObject playerPrefab;
+    GameObject playerPrefab;
 
     protected PlayableDirector director;
 
@@ -42,11 +44,11 @@ public abstract class GameManager : MonoBehaviour
         SpawnPlayers();
     }
 
-    protected void SpawnPlayers()
+    protected virtual void SpawnPlayers()
     {
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
-            Player player = Instantiate(playerPrefab).GetComponent<Player>();
+            Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
             Players.Add(player);
             player.Controls = InGame.playerSettings[i].controls;
             player.Avatar = InGame.playerSettings[i].avatar;
@@ -64,9 +66,9 @@ public abstract class GameManager : MonoBehaviour
 
     public Vector3 GetSpawnPoint()
     {
-        int random = Random.Range(0, spawnPoints.Count);
-        Vector3 spawnPos = spawnPoints[random].position;
-        spawnPoints.RemoveAt(random);
+        int random = Random.Range(0, SpawnPoints.Count);
+        Vector3 spawnPos = SpawnPoints[random].position;
+        SpawnPoints.RemoveAt(random);
         return spawnPos;
     }  
 
