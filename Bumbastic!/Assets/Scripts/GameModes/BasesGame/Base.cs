@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
 public class Base : MonoBehaviour
@@ -13,8 +14,11 @@ public class Base : MonoBehaviour
     public delegate void DelBase(byte _baseID, byte _lifePoints);
     public static event DelBase OnBaseDamage;
 
+    public static Action OnBaseDestoryed;
+
     private void Awake()
     {
+        OnBaseDestoryed = null;
         OnBaseDamage = null;
         Renderer = GetComponent<Renderer>();
     }
@@ -34,6 +38,7 @@ public class Base : MonoBehaviour
                 }
                 else
                 {
+                    OnBaseDestoryed?.Invoke();
                     Debug.Log("Base Destroyed");
                 }
             }
