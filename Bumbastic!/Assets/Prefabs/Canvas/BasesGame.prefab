@@ -5859,7 +5859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813345266133379802}
-  - component: {fileID: 8813345266133379803}
+  - component: {fileID: 1784758858}
   m_Layer: 5
   m_Name: PanelHUD
   m_TagString: Untagged
@@ -5887,7 +5887,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8813345266133379803
+--- !u!114 &1784758858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5896,24 +5896,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8813345266133379801}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60c9ebde91edc64c8ed16084989a279, type: 3}
+  m_Script: {fileID: 11500000, guid: 446f494a8dfcf0d409ff3bce7ec5c364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinSprites:
-  - {fileID: 8813345266256517396}
-  - {fileID: 8813345267024496124}
-  - {fileID: 8813345266556262445}
-  - {fileID: 8813345266749678768}
-  playerKills:
-  - {fileID: 8813345267112082145}
-  - {fileID: 8813345267799134882}
-  - {fileID: 8813345267512947723}
-  - {fileID: 8813345267080033267}
-  playerColors:
-  - {fileID: 8813345266792815662}
-  - {fileID: 8813345267262420701}
-  - {fileID: 8813345267566140463}
-  - {fileID: 8813345266122324343}
+  playerHUD:
+  - {fileID: 8813345267024496114}
+  - {fileID: 8813345266556262435}
+  - {fileID: 8813345266256517386}
+  - {fileID: 8813345266749678774}
 --- !u!1 &8813345266256517386
 GameObject:
   m_ObjectHideFlags: 0
@@ -5926,7 +5916,7 @@ GameObject:
   - component: {fileID: 8813345266256517397}
   - component: {fileID: 8813345266256517396}
   m_Layer: 5
-  m_Name: BasePlayer1
+  m_Name: BasePlayer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6001,7 +5991,7 @@ GameObject:
   - component: {fileID: 8813345266556262446}
   - component: {fileID: 8813345266556262445}
   m_Layer: 5
-  m_Name: BasePlayer3
+  m_Name: BasePlayer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6225,7 +6215,7 @@ GameObject:
   - component: {fileID: 8813345267024496125}
   - component: {fileID: 8813345267024496124}
   m_Layer: 5
-  m_Name: BasePlayer2
+  m_Name: BasePlayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

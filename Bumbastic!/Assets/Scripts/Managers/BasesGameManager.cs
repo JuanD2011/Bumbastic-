@@ -1,9 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BasesGameManager : GameManager
 {
+    public static BasesGameManager basesGame;
+
+    public Base[] bases;
+
+    protected override void Awake()
+    {
+        if (basesGame == null) basesGame = this;
+        else Destroy(this);
+
+        base.Awake();
+    }
+
     public override void PassBomb()
     {
         throw new System.NotImplementedException();

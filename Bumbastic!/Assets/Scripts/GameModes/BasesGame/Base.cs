@@ -2,7 +2,18 @@
 
 public class Base : MonoBehaviour
 {
-    [SerializeField] int lifePoints = 3;
+    [SerializeField] byte lifePoints = 3;
+    [SerializeField] byte id = 0;
+
+    public byte LifePoints { get => lifePoints; private set => lifePoints = value; }
+
+    public delegate void DelBase(byte _baseID, byte _lifePoints);
+    public static event DelBase OnBaseDamage;
+
+    private void Awake()
+    {
+        OnBaseDamage = null;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,9 +23,10 @@ public class Base : MonoBehaviour
         {
             if (player.HasBomb)
             {
-                if (lifePoints > 0)
+                if (LifePoints > 0)
                 {
-                    lifePoints--;
+                    LifePoints--;
+                    OnBaseDamage?.Invoke(id, LifePoints);//HUDBaseGame hears it.
                 }
                 else
                 {
