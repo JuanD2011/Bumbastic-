@@ -71,6 +71,7 @@ public class Bomb : MonoBehaviour
             AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
         }
         transform.SetParent(null);
+        Debug.Log("gasdg");
         CameraShake.instance.OnShake?.Invoke(0.4f, 6f, 1.2f);
         Exploded = true;
         RigidBody.isKinematic = false;

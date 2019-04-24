@@ -46,15 +46,26 @@ public class FreeForAllManager : HotPotatoManager
 
     protected override void OnBombExplode()
     {
-        transmitter.transform.position = transmitter.SpawnPoint;
-        cooldown = true;
-
-        Debug.Log(string.Format("{0}/{1}", transmitter.Id, BombHolder.Id));
-        if (transmitter.Id != BombHolder.Id)
+        if (transmitter != null)
         {
-            KillsCounter[transmitter.Id] += 1;
-            OnPlayerKilled?.Invoke(transmitter.Id);//HUDFreeForAll hears it.
+            BombHolder.transform.position = BombHolder.SpawnPoint;
+
+            if (transmitter.Id != BombHolder.Id)
+            {
+                BombHolder = null;
+                KillsCounter[transmitter.Id] += 1;
+                OnPlayerKilled?.Invoke(transmitter.Id);//HUDFreeForAll hears it.
+                transmitter = null;
+            } 
         }
+
+        Bomb.RigidBody.isKinematic = false;
+
+        foreach (Player player in Players)
+        {
+            player.Collider.enabled = true;
+        }
+        cooldown = true;
     }
 
     protected void GiveBomb()

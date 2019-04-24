@@ -22,7 +22,7 @@ public class HotPotatoManager : GameManager
 
     protected List<Player> bummies = new List<Player>();
 
-    public Player BombHolder { get => bombHolder; private set => bombHolder = value; }
+    public Player BombHolder { get => bombHolder; protected set => bombHolder = value; }
     public Bomb Bomb { get => bomb; private set => bomb = value; }
 
     protected override void Awake()
@@ -108,10 +108,11 @@ public class HotPotatoManager : GameManager
         {
             BombHolder.HasBomb = false;
             BombHolder.Collider.enabled = true;
+            transmitter = BombHolder;
+            Debug.Log("Transmitter:" + transmitter.Id);
         }
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
-        transmitter = BombHolder;
         BombHolder = _receiver;
         Bomb.RigidBody.isKinematic = true;
         Bomb.transform.position = _receiver.Catapult.position;
@@ -125,6 +126,7 @@ public class HotPotatoManager : GameManager
     /// <param name="_transmitter"></param>
     public override void PassBomb(Player _receiver, Player _transmitter)
     {
+        Debug.Log("Transmitter:" + _transmitter.Id);
         transmitter = _transmitter;
         _transmitter.HasBomb = false;
         _transmitter.Collider.enabled = true;
