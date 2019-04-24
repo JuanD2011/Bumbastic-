@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BombPool : MonoBehaviour
 {
     public static BombPool instance;
 
-    [Tooltip("Use BombBaseGame")]
     [SerializeField] GameObject bombTemplate;
 
     [Header("Bombs to instantiate")]

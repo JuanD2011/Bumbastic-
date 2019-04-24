@@ -2,7 +2,7 @@
 
 public class BombSpawner : MonoBehaviour
 {
-    [SerializeField] float force = 1f;
+    [SerializeField] float force = 5f;
     [SerializeField] float timeToSpawnBomb = 5f;
     [SerializeField] float xRandom = 25f, zRandom = 25f;
 
@@ -20,6 +20,7 @@ public class BombSpawner : MonoBehaviour
     private void SpawnBomb()
     {
         bombToSpawn = BombPool.instance.GetAvailableBomb();
+        bombToSpawn.gameObject.SetActive(true);
         bombToSpawn.transform.position = spawner.GetPointInVolume();
         bombToSpawn.RigidBody.AddForce(GetRandomVector() * force, ForceMode.Impulse);
     }
