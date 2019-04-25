@@ -37,6 +37,7 @@
         for (int i = 0; i < bases.Length; i++)
         {
             bases[i].Renderer.material.SetColor("_Color", InGame.playerSettings[i].color);
+            bases[i].Renderer.material.SetTexture("_MainTex", InGame.playerSettings[i].skinSprite.texture);
         }
     }
 

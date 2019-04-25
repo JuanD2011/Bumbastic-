@@ -40,7 +40,7 @@
 			fixed4 mask = tex2D(_Mask, IN.uv_MainTex);
 			
             o.Albedo = c.rgb;
-			o.Alpha = c.a - (1 - mask);
+			o.Alpha = c.a + mask;
         }
 
 		float4 LightingHalfLambert(SurfaceOutput s, fixed3 lightDir, fixed atten)
