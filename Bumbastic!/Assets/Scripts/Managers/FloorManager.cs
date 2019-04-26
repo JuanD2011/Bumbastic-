@@ -39,16 +39,6 @@ public class FloorManager : MonoBehaviour
 
     void Start()
     {
-        InitRings();
-
-        if (GameModeDataBase.IsCurrentHotPotato())
-        {
-            Bomb.OnExplode += MapDrop;
-        } 
-    }
-
-    private void InitRings()
-    {
         modules = GetComponentsInChildren<Rigidbody>();
 
         while (modules.Length >= (Mathf.Pow((c + 2), 2)))
@@ -58,6 +48,25 @@ public class FloorManager : MonoBehaviour
 
         nRings = (c / 2);
 
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].localPosition = colliders[i].forward * nRings * 4f;
+        }
+
+        if (GameModeDataBase.IsCurrentHotPotato())
+        {
+            InitRings();
+            Bomb.OnExplode += MapDrop;
+        } 
+    }
+
+    private void SpawnProps(int _length)
+    {
+        Instantiate(propsModule[Random.Range(0, _length)], propsPos, Quaternion.identity);
+    }
+
+    private void InitRings()
+    {
         rings = new Rings[nRings];
 
         for (int i = 0; i < rings.Length; i++)
@@ -81,20 +90,10 @@ public class FloorManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            colliders[i].localPosition = colliders[i].forward * nRings * 4f;
-        }
-
         for (int i = 0; i < modules.Length; i++)
         {
             modules[i].transform.position += new Vector3(0, Random.Range(0f, floorOffset), 0);
         }
-    }
-
-    private void SpawnProps(int _length)
-    {
-        Instantiate(propsModule[Random.Range(0, _length)], propsPos, Quaternion.identity);
     }
 
     private void MapDrop()
