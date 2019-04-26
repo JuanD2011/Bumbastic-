@@ -145,12 +145,14 @@ public class Player : MonoBehaviour
 			elapsedTime = stateInfo.normalizedTime;
 
 			Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
-			Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
-			Vector3 currentRotation = direction - transform.eulerAngles;
+			Vector3 currentRotation = aiming - transform.eulerAngles;
 			Quaternion newRotation = Quaternion.LookRotation(currentRotation);
 			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, elapsedTime / 1);
 			yield return null;
 		}
+
+		targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
+		transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
 
 		throwing = false;
 	}
