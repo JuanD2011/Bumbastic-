@@ -1,5 +1,4 @@
-﻿
-public class HUDBaseGame : HUDFreeForAll
+﻿public class HUDBaseGame : HUDFreeForAll
 {
     private void Start()
     {
