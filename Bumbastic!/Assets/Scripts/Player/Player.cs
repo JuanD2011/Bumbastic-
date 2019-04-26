@@ -90,12 +90,17 @@ public class Player : MonoBehaviour
         {
             PlayerMenu.OnStartButton?.Invoke(Id);
         }
+
+        if (transform.position.y < 0f)
+        {
+            //Debug.Break();
+        }
     }
 
 
     private void Move()
     {
-        if (inputDirection != Vector2.zero)
+        if (inputDirection != Vector2.zero && !throwing)
         {
             targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
@@ -149,6 +154,14 @@ public class Player : MonoBehaviour
         while (elapsedTime < 0.1f)
         {
             elapsedTime = animatorStateInfo.normalizedTime;
+            if (_InputAiming != Vector2.zero)
+            {
+                targetRotation = Mathf.Atan2(-InputAiming.normalized.y, InputAiming.normalized.x) * Mathf.Rad2Deg;
+                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
+            }
+            Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
+            Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
+            transform.rotation = Quaternion.LookRotation(direction);
             yield return null;
         }
 

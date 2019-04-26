@@ -2601,6 +2601,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poste (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6513579554501215805, guid: 78e42f03595fb1b49aa5c6f5136af48b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 9082724644870550384, guid: 78e42f03595fb1b49aa5c6f5136af48b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2751,6 +2756,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poste
       objectReference: {fileID: 0}
+    - target: {fileID: 6513579554501215805, guid: 78e42f03595fb1b49aa5c6f5136af48b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 9082724644870550384, guid: 78e42f03595fb1b49aa5c6f5136af48b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2825,6 +2835,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Poste
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513579554501215805, guid: 78e42f03595fb1b49aa5c6f5136af48b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9082724644870550384, guid: 78e42f03595fb1b49aa5c6f5136af48b,
         type: 3}
@@ -2976,6 +2991,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9216835746104406164, guid: bdfe88d60b913b245af6f9b1073949e4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4393931213835421311, guid: bdfe88d60b913b245af6f9b1073949e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3050,6 +3070,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Piedra2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 49696307962634682, guid: b3bc902208afddd4c957c4ce7574f307,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7819537983720091086, guid: b3bc902208afddd4c957c4ce7574f307,
         type: 3}
@@ -3351,6 +3376,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caja
       objectReference: {fileID: 0}
+    - target: {fileID: 2979329884503496553, guid: 1195e029dbbe1264ab56c23f8430b7dd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 808676375220297424, guid: 1195e029dbbe1264ab56c23f8430b7dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3500,6 +3530,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Piedra1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216835746104406164, guid: bdfe88d60b913b245af6f9b1073949e4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4393931213835421311, guid: bdfe88d60b913b245af6f9b1073949e4,
         type: 3}
@@ -3651,6 +3686,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1
       objectReference: {fileID: 0}
+    - target: {fileID: 9216835746104406164, guid: bdfe88d60b913b245af6f9b1073949e4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4393931213835421311, guid: bdfe88d60b913b245af6f9b1073949e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3725,6 +3765,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Piedra2
+      objectReference: {fileID: 0}
+    - target: {fileID: 49696307962634682, guid: b3bc902208afddd4c957c4ce7574f307,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7819537983720091086, guid: b3bc902208afddd4c957c4ce7574f307,
         type: 3}
@@ -4101,6 +4146,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poste (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6513579554501215805, guid: 78e42f03595fb1b49aa5c6f5136af48b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 9082724644870550384, guid: 78e42f03595fb1b49aa5c6f5136af48b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4176,6 +4226,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vagon
       objectReference: {fileID: 0}
+    - target: {fileID: 4663141024319248329, guid: 5577df05dc0fef445ad1f5ced6b7e2ce,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1871587311136854989, guid: 5577df05dc0fef445ad1f5ced6b7e2ce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4250,6 +4305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Piedra1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216835746104406164, guid: bdfe88d60b913b245af6f9b1073949e4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4393931213835421311, guid: bdfe88d60b913b245af6f9b1073949e4,
         type: 3}
@@ -4551,6 +4611,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hueso
       objectReference: {fileID: 0}
+    - target: {fileID: 2345936508817113479, guid: 8c2672b3d559b954da3d1903a1410fc7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1939949913148734156, guid: 8c2672b3d559b954da3d1903a1410fc7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4851,6 +4916,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cerca
       objectReference: {fileID: 0}
+    - target: {fileID: 4156916063996110712, guid: c0b626e62c4a832468c63bb2c493f33f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 953622899927629944, guid: c0b626e62c4a832468c63bb2c493f33f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4925,6 +4995,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Caja
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979329884503496553, guid: 1195e029dbbe1264ab56c23f8430b7dd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 808676375220297424, guid: 1195e029dbbe1264ab56c23f8430b7dd,
         type: 3}
@@ -5001,6 +5076,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 49696307962634682, guid: b3bc902208afddd4c957c4ce7574f307,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7819537983720091086, guid: b3bc902208afddd4c957c4ce7574f307,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5076,6 +5156,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caja
       objectReference: {fileID: 0}
+    - target: {fileID: 2979329884503496553, guid: 1195e029dbbe1264ab56c23f8430b7dd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 808676375220297424, guid: 1195e029dbbe1264ab56c23f8430b7dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5150,6 +5235,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Poste
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513579554501215805, guid: 78e42f03595fb1b49aa5c6f5136af48b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9082724644870550384, guid: 78e42f03595fb1b49aa5c6f5136af48b,
         type: 3}
@@ -5751,6 +5841,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barril (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3861868863084711800, guid: 519cea2f9b1b66645aa02b0cad534fdf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2218662318945412044, guid: 519cea2f9b1b66645aa02b0cad534fdf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5900,6 +5995,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861868863084711800, guid: 519cea2f9b1b66645aa02b0cad534fdf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2218662318945412044, guid: 519cea2f9b1b66645aa02b0cad534fdf,
         type: 3}
@@ -6061,6 +6161,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poste
       objectReference: {fileID: 0}
+    - target: {fileID: 6513579554501215805, guid: 78e42f03595fb1b49aa5c6f5136af48b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 9082724644870550384, guid: 78e42f03595fb1b49aa5c6f5136af48b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6210,6 +6315,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hueso
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345936508817113479, guid: 8c2672b3d559b954da3d1903a1410fc7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1939949913148734156, guid: 8c2672b3d559b954da3d1903a1410fc7,
         type: 3}
@@ -6586,6 +6696,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 49696307962634682, guid: b3bc902208afddd4c957c4ce7574f307,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7819537983720091086, guid: b3bc902208afddd4c957c4ce7574f307,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6885,6 +7000,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Caja (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979329884503496553, guid: 1195e029dbbe1264ab56c23f8430b7dd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 808676375220297424, guid: 1195e029dbbe1264ab56c23f8430b7dd,
         type: 3}
@@ -7336,6 +7456,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1
       objectReference: {fileID: 0}
+    - target: {fileID: 9216835746104406164, guid: bdfe88d60b913b245af6f9b1073949e4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4393931213835421311, guid: bdfe88d60b913b245af6f9b1073949e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7410,6 +7535,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cerca
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156916063996110712, guid: c0b626e62c4a832468c63bb2c493f33f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 953622899927629944, guid: c0b626e62c4a832468c63bb2c493f33f,
         type: 3}
@@ -7495,6 +7625,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Barril
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861868863084711800, guid: 519cea2f9b1b66645aa02b0cad534fdf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2218662318945412044, guid: 519cea2f9b1b66645aa02b0cad534fdf,
         type: 3}
@@ -7646,6 +7781,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra2
       objectReference: {fileID: 0}
+    - target: {fileID: 49696307962634682, guid: b3bc902208afddd4c957c4ce7574f307,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7819537983720091086, guid: b3bc902208afddd4c957c4ce7574f307,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7721,6 +7861,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poste (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6513579554501215805, guid: 78e42f03595fb1b49aa5c6f5136af48b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 9082724644870550384, guid: 78e42f03595fb1b49aa5c6f5136af48b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7795,6 +7940,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Poste (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513579554501215805, guid: 78e42f03595fb1b49aa5c6f5136af48b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9082724644870550384, guid: 78e42f03595fb1b49aa5c6f5136af48b,
         type: 3}
@@ -7945,6 +8095,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Poste (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513579554501215805, guid: 78e42f03595fb1b49aa5c6f5136af48b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9082724644870550384, guid: 78e42f03595fb1b49aa5c6f5136af48b,
         type: 3}
@@ -8246,6 +8401,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poste (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6513579554501215805, guid: 78e42f03595fb1b49aa5c6f5136af48b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 9082724644870550384, guid: 78e42f03595fb1b49aa5c6f5136af48b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8321,6 +8481,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CraneoToro
       objectReference: {fileID: 0}
+    - target: {fileID: 2390146996476788063, guid: 76fe89396e41670478b1d1d425388bcb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6491163022076875136, guid: 76fe89396e41670478b1d1d425388bcb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8395,6 +8560,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cerca
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156916063996110712, guid: c0b626e62c4a832468c63bb2c493f33f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 953622899927629944, guid: c0b626e62c4a832468c63bb2c493f33f,
         type: 3}
@@ -8545,6 +8715,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Piedra2
+      objectReference: {fileID: 0}
+    - target: {fileID: 49696307962634682, guid: b3bc902208afddd4c957c4ce7574f307,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7819537983720091086, guid: b3bc902208afddd4c957c4ce7574f307,
         type: 3}
@@ -9071,6 +9246,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Craneo
       objectReference: {fileID: 0}
+    - target: {fileID: 8816679938279948287, guid: 9e61fe32d75523b4597203cd81e842ca,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4505142088683856091, guid: 9e61fe32d75523b4597203cd81e842ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9145,6 +9325,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cerca (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156916063996110712, guid: c0b626e62c4a832468c63bb2c493f33f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 953622899927629944, guid: c0b626e62c4a832468c63bb2c493f33f,
         type: 3}
@@ -9306,6 +9491,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vagon
       objectReference: {fileID: 0}
+    - target: {fileID: 4663141024319248329, guid: 5577df05dc0fef445ad1f5ced6b7e2ce,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1871587311136854989, guid: 5577df05dc0fef445ad1f5ced6b7e2ce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9380,6 +9570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Piedra2
+      objectReference: {fileID: 0}
+    - target: {fileID: 49696307962634682, guid: b3bc902208afddd4c957c4ce7574f307,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7819537983720091086, guid: b3bc902208afddd4c957c4ce7574f307,
         type: 3}
@@ -10131,6 +10326,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cerca
       objectReference: {fileID: 0}
+    - target: {fileID: 4156916063996110712, guid: c0b626e62c4a832468c63bb2c493f33f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 953622899927629944, guid: c0b626e62c4a832468c63bb2c493f33f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10290,6 +10490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Piedra2
+      objectReference: {fileID: 0}
+    - target: {fileID: 49696307962634682, guid: b3bc902208afddd4c957c4ce7574f307,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7819537983720091086, guid: b3bc902208afddd4c957c4ce7574f307,
         type: 3}
@@ -10515,6 +10720,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cerca (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156916063996110712, guid: c0b626e62c4a832468c63bb2c493f33f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 953622899927629944, guid: c0b626e62c4a832468c63bb2c493f33f,
         type: 3}

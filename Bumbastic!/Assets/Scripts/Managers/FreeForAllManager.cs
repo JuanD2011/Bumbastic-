@@ -11,6 +11,10 @@ public class FreeForAllManager : HotPotatoManager
 
     byte[] killsCounter;
 
+    private Player lastPlayerGiven;
+
+    private byte timesBombPlayed = 0;
+
     public byte[] KillsCounter { get => killsCounter; private set => killsCounter = value; }
 
     public delegate void DelFreeForAll(byte _killerID);
@@ -46,11 +50,13 @@ public class FreeForAllManager : HotPotatoManager
 
     protected override void OnBombExplode()
     {
+        lastPlayerGiven = BombHolder;
+        Bomb.RigidBody.isKinematic = true;
+        BombHolder.transform.position = BombHolder.SpawnPoint;
+
         if (transmitter != null)
         {
-            BombHolder.transform.position = BombHolder.SpawnPoint;
-
-            if (transmitter.Id != BombHolder.Id)
+            if (timesBombPlayed > 1 && BombHolder.Id != transmitter.Id)
             {
                 BombHolder = null;
                 KillsCounter[transmitter.Id] += 1;
@@ -59,12 +65,13 @@ public class FreeForAllManager : HotPotatoManager
             } 
         }
 
-        Bomb.RigidBody.isKinematic = false;
+        timesBombPlayed = 0;
 
         foreach (Player player in Players)
         {
             player.Collider.enabled = true;
         }
+        
         cooldown = true;
     }
 
@@ -84,6 +91,11 @@ public class FreeForAllManager : HotPotatoManager
         {
             int random = Random.Range(0, Players.Count);
 
+            while (Players[random] == lastPlayerGiven)
+            {
+                random = Random.Range(0, Players.Count);
+            }
+
             Bomb.transform.position = Players[random].transform.position + new Vector3(0, 2, 0);
             Bomb.Timer = Random.Range(minTime, maxTime);
             Bomb.Exploded = false;
@@ -98,5 +110,17 @@ public class FreeForAllManager : HotPotatoManager
         {
             GameOver();
         }
+    }
+
+    public override void PassBomb(Player _receiver)
+    {
+        base.PassBomb(_receiver);
+        if (!Bomb.Exploded) timesBombPlayed++;
+    }
+
+    public override void PassBomb(Player _receiver, Player _transmitter)
+    {
+        base.PassBomb(_receiver, _transmitter);
+        if (!Bomb.Exploded) timesBombPlayed++;
     }
 }

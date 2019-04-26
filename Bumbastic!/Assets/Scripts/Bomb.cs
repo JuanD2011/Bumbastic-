@@ -13,7 +13,7 @@ public class Bomb : MonoBehaviour
 
     public float Timer { private get => timer; set => timer = value; }
     public Rigidbody RigidBody { get => m_rigidBody; set => m_rigidBody = value; }
-    public bool Exploded { private get => exploded; set => exploded = value; }
+    public bool Exploded { get => exploded; set => exploded = value; }
 
     private Animator m_Animator;
 
@@ -66,22 +66,22 @@ public class Bomb : MonoBehaviour
     void Explode()
     {
         t = 0;
+        Exploded = true;
         if (AudioManager.instance != null)
         {
             AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
         }
         transform.SetParent(null);
-        Debug.Log("gasdg");
         CameraShake.instance.OnShake?.Invoke(0.4f, 6f, 1.2f);
-        Exploded = true;
         RigidBody.isKinematic = false;
         OnExplode?.Invoke();//ParticleModification, GameManager, FloorManager hears it
         //gameObject.SetActive(false);
+        Debug.Log("Boom");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("Floor") && !Exploded)
+        if (collision.transform.CompareTag("Floor") && !Exploded && transform.parent == null)
         {
             GameManager.Manager.PassBomb();
         }

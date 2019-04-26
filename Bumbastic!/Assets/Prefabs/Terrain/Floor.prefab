@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816029f707f72304d9e68f2f76b4a939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drop: 1
   propsModule:
   - {fileID: 5248455873920448594, guid: ca1113d4b3a1658419551ec74dd94077, type: 3}
   - {fileID: 6273977997727067049, guid: 3049415d3265ef848af411e966bf89c8, type: 3}
@@ -185,7 +186,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  offsetSuelo: 0.07
+  floorOffset: 0.07
   propsPos: {x: 0, y: 0.5, z: 0}
 --- !u!65 &2551631303393605371
 BoxCollider:
@@ -198,8 +199,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 40, y: 1, z: 40.5}
-  m_Center: {x: -1.5, y: 0.5, z: 2.5}
+  m_Size: {x: 40, y: 2, z: 40.5}
+  m_Center: {x: -1.5, y: 0, z: 2.5}
 --- !u!1001 &19471642620471976
 PrefabInstance:
   m_ObjectHideFlags: 0

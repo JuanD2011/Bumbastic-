@@ -117,6 +117,7 @@ public class HotPotatoManager : GameManager
         Bomb.RigidBody.isKinematic = true;
         Bomb.transform.position = _receiver.Catapult.position;
         Bomb.transform.SetParent(_receiver.Catapult.transform);
+
     }
 
     /// <summary>
@@ -140,6 +141,7 @@ public class HotPotatoManager : GameManager
 
     public override void PassBomb()
     {
+        Debug.Log("P3");
         BombHolder.HasBomb = true;
         Bomb.RigidBody.isKinematic = true;
         Bomb.transform.position = BombHolder.Catapult.position;
