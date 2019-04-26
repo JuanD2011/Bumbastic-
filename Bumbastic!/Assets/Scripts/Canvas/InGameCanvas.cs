@@ -47,6 +47,8 @@ public class InGameCanvas : Canvas
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             playerScores[i].InitComponents();
+            playerScores[i].PlayerSkinSprite.enabled = true;
+            playerScores[i].PlayerSkinSprite.sprite = InGame.playerSettings[i].skinSprite;
             playerScores[i].Name.text = InGame.playerSettings[i].name;
 
             for (int j = 0; j < InGame.playerSettings[i].score; j++)
