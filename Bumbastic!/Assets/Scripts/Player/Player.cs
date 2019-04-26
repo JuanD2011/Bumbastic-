@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
 	{
 		float elapsedTime = 0;
 
-		while (elapsedTime < 0.5f)
+		while (elapsedTime < 0.8f)
 		{
 			elapsedTime = stateInfo.normalizedTime;
 
@@ -150,9 +150,6 @@ public class Player : MonoBehaviour
 			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, elapsedTime / 1);
 			yield return null;
 		}
-
-		targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
-		transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
 
 		throwing = false;
 	}
