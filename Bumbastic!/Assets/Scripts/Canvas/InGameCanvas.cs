@@ -21,7 +21,7 @@ public class InGameCanvas : Canvas
         base.Start();
         GameManager.Manager.OnGameOver += () => _scene = "Menu";
 
-        GameManager.Manager.OnGameModeOver += SetEndAnimation;
+        GameManager.Manager.OnGameModeOver += Winner;
         GameManager.Manager.OnGameModeOver += UpdateScore;
         PlayerMenu.OnStartButton += StartButton;
 
@@ -80,7 +80,7 @@ public class InGameCanvas : Canvas
     }
     #endregion
 
-    private void SetEndAnimation()
+    private void Winner()
     {
         isEndPanelActive = true;
         m_Animator.SetTrigger("isGameOver");
@@ -92,8 +92,8 @@ public class InGameCanvas : Canvas
         }
         else if (GameModeDataBase.IsCurrentFreeForAll())
         {
-            textWinner.text = string.Format("{0}", GameManager.Manager.Players[0].PrefabName);
-            playerSprite.sprite = InGame.playerSettings[GameManager.Manager.Players[0].Id].skinSprite;
+            textWinner.text = string.Format("{0}", InGame.playerSettings[FreeForAllManager.FreeForAll.WinnerID].name);
+            playerSprite.sprite = InGame.playerSettings[FreeForAllManager.FreeForAll.WinnerID].skinSprite;
         }
         else if (GameModeDataBase.IsCurrentBasesGame())
         {

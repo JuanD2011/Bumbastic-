@@ -102,7 +102,7 @@ public abstract class GameManager : MonoBehaviour
             }
         }
 
-        //GetNextGameMode();
+        GetNextGameMode();
     }
 
     private void GetNextGameMode()

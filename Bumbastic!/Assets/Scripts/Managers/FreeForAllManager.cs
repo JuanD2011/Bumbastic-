@@ -10,12 +10,14 @@ public class FreeForAllManager : HotPotatoManager
     private byte maxKills = 3;
 
     byte[] killsCounter;
+    byte winnerID = 0;
 
     private Player lastPlayerGiven;
 
     private byte timesBombPlayed = 0;
 
     public byte[] KillsCounter { get => killsCounter; private set => killsCounter = value; }
+    public byte WinnerID { get => winnerID; private set => winnerID = value; }
 
     public delegate void DelFreeForAll(byte _killerID);
     public event DelFreeForAll OnPlayerKilled;
@@ -77,10 +79,11 @@ public class FreeForAllManager : HotPotatoManager
 
     protected void GiveBomb()
     {
-        for (int i = 0; i < killsCounter.Length; i++)
+        for (byte i = 0; i < killsCounter.Length; i++)
         {
             if (KillsCounter[i] == maxKills)
             {
+                WinnerID = i;
                 InGame.playerSettings[i].score += 1;
                 gameOver = true;
                 break;
