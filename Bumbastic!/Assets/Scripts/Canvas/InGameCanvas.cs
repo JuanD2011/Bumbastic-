@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class InGameCanvas : Canvas
 {
     [SerializeField] TextMeshProUGUI textWinner;
+    [SerializeField] Image playerSprite;
     [SerializeField] PlayerScore[] playerScores;
 
     bool isEndPanelActive = false;
@@ -82,6 +84,20 @@ public class InGameCanvas : Canvas
     {
         isEndPanelActive = true;
         m_Animator.SetTrigger("isGameOver");
-        textWinner.text = string.Format("{0}", GameManager.Manager.Players[0].PrefabName);
+
+        if (GameModeDataBase.IsCurrentHotPotato())
+        {
+            textWinner.text = string.Format("{0}", GameManager.Manager.Players[0].PrefabName);
+            playerSprite.sprite = InGame.playerSettings[GameManager.Manager.Players[0].Id].skinSprite;
+        }
+        else if (GameModeDataBase.IsCurrentFreeForAll())
+        {
+            textWinner.text = string.Format("{0}", GameManager.Manager.Players[0].PrefabName);
+            playerSprite.sprite = InGame.playerSettings[GameManager.Manager.Players[0].Id].skinSprite;
+        }
+        else if (GameModeDataBase.IsCurrentBasesGame())
+        {
+
+        }
     }
 }

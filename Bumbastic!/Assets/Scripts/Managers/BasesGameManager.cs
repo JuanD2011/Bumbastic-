@@ -1,8 +1,11 @@
-﻿public class BasesGameManager : GameManager
+﻿using UnityEngine;
+
+public class BasesGameManager : GameManager
 {
     public static BasesGameManager basesGame;
 
     public Base[] bases;
+
 
     protected override void Awake()
     {
@@ -34,9 +37,12 @@
 
     private void SetBasesColor()
     {
+        Color baseInitColor;
+        baseInitColor = bases[0].Renderer.material.GetColor("_Color");
+
         for (int i = 0; i < bases.Length; i++)
         {
-            bases[i].Renderer.material.SetColor("_Color", InGame.playerSettings[i].color);
+            bases[i].Renderer.material.SetColor("_Color", InGame.playerSettings[i].color - (Color.white - baseInitColor));
             bases[i].Renderer.material.SetTexture("_MainTex", InGame.playerSettings[i].skinSprite.texture);
         }
     }
