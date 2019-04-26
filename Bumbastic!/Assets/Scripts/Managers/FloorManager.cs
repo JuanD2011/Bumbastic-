@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class FloorManager : MonoBehaviour
 {
-    [SerializeField] bool drop = true;
-
     [SerializeField]
     GameObject[] propsModule;
 
@@ -41,21 +39,15 @@ public class FloorManager : MonoBehaviour
 
     void Start()
     {
-        if (drop)
+        InitRings();
+
+        if (GameModeDataBase.IsCurrentHotPotato())
         {
-            Init();
-            Bomb.OnExplode += MapDrop; 
-        }
-        else
-        {
-            foreach(Transform collider in colliders)
-            {
-                collider.gameObject.SetActive(false);
-            }
-        }
+            Bomb.OnExplode += MapDrop;
+        } 
     }
 
-    private void Init()
+    private void InitRings()
     {
         modules = GetComponentsInChildren<Rigidbody>();
 

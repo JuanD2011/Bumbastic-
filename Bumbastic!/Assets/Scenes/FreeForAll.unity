@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1149849133}
-  m_IndirectSpecularColor: {r: 0.7070534, g: 0.4012202, b: 0.22589613, a: 1}
+  m_IndirectSpecularColor: {r: 0.7070554, g: 0.40122056, b: 0.22589536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -240,6 +240,111 @@ PrefabInstance:
     - target: {fileID: 1487185464, guid: 38fb70717f28e584bb4aa75868c5e656, type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435477752935164, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435477881434732, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435477932176904, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435477982310837, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435478265102975, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435478908647301, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435478943244937, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435479081297941, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435479542205997, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435479594463231, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107069503482641263, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000015258789
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435477752935154, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435477881434722, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435477932176910, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435477982310827, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435478265102973, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435478908647355, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435478943244943, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435479081297931, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435479542205987, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977435479594463229, guid: 38fb70717f28e584bb4aa75868c5e656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38fb70717f28e584bb4aa75868c5e656, type: 3}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "InGame",menuName = "InGame")]
 public class InGame : ScriptableObject
 {
-    public const byte maxScore = 5;
+    public const byte maxScore = 3;
     public int maxPlayers;
     public Transform posDropPU;
 
