@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
 
 		Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
 
-		while (elapsedTime < 0.6f)
+		while (elapsedTime < 0.8f)
 		{
 			elapsedTime = stateInfo.normalizedTime;			
 			Vector3 currentRotation = aiming - transform.eulerAngles;
