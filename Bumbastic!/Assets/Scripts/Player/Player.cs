@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
 	{
 		float elapsedTime = 0;
 
-		while (elapsedTime < 1)
+		while (elapsedTime < 0.5f)
 		{
 			elapsedTime = stateInfo.normalizedTime;
 
