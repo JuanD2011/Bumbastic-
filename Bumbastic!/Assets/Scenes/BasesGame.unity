@@ -2387,6 +2387,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8083158310848667050, guid: a1ee15dbcd9207d45a4e923e87b8a1f4,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: bd726f1522e269e4999c29ea4f5a3b27,
+        type: 2}
     - target: {fileID: 8083158310848667049, guid: a1ee15dbcd9207d45a4e923e87b8a1f4,
         type: 3}
       propertyPath: playerScores.Array.data[0]
