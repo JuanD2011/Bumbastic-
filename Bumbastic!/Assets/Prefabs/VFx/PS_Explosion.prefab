@@ -9515,7 +9515,7 @@ MonoBehaviour:
   radius: 1.2
   velocity: 1.2
   lightIntensity: 7
-  size: 6
+  size: 3
   curve:
     serializedVersion: 2
     m_Curve:

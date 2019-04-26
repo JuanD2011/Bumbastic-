@@ -112,18 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &10339936 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6795486853038825454, guid: 884b695f7919ffe409dfe66677c1bc31,
-    type: 3}
-  m_PrefabInstance: {fileID: 6795486853046376846}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &41061220
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd489c49105408e4d84380361414dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 10339936}
+  slider: {fileID: 6795486853046376847}
 --- !u!114 &490962515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2437,5 +2425,32 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -350.25
       objectReference: {fileID: 0}
+    - target: {fileID: 6775570186412848237, guid: 884b695f7919ffe409dfe66677c1bc31,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876118537266721754, guid: 884b695f7919ffe409dfe66677c1bc31,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275043886711183078, guid: 884b695f7919ffe409dfe66677c1bc31,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 884b695f7919ffe409dfe66677c1bc31, type: 3}
+--- !u!114 &6795486853046376847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1428286271089829252, guid: 884b695f7919ffe409dfe66677c1bc31,
+    type: 3}
+  m_PrefabInstance: {fileID: 6795486853046376846}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

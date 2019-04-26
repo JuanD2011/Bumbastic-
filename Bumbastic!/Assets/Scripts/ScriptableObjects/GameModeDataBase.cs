@@ -14,4 +14,20 @@ public class GameModeDataBase : ScriptableObject
         }
         return false;
     }
+    public static bool IsCurrentHotPotato()
+    {
+        if (currentGameMode.gameModeType == GameModeType.HotPotato)
+        {
+            return true;
+        }
+        return false;
+    }
+    public static bool IsCurrentBasesGame()
+    {
+        if (currentGameMode.gameModeType == GameModeType.BasesGame)
+        {
+            return true;
+        }
+        return false;
+    }
 }
