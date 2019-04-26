@@ -140,16 +140,18 @@ public class Player : MonoBehaviour
 	{
 		float elapsedTime = 0;
 
-		while (elapsedTime < 0.8f)
-		{
-			elapsedTime = stateInfo.normalizedTime;
+		Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
 
-			Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
+		while (elapsedTime < 0.6f)
+		{
+			elapsedTime = stateInfo.normalizedTime;			
 			Vector3 currentRotation = aiming - transform.eulerAngles;
 			Quaternion newRotation = Quaternion.LookRotation(currentRotation);
 			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, elapsedTime / 1);
 			yield return null;
 		}
+
+		transform.eulerAngles = aiming;
 
 		throwing = false;
 	}
