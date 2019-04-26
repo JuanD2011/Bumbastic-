@@ -90,11 +90,6 @@ public class Player : MonoBehaviour
         {
             PlayerMenu.OnStartButton?.Invoke(Id);
         }
-
-        if (transform.position.y < 0f)
-        {
-            //Debug.Break();
-        }
     }
 
 
@@ -141,27 +136,40 @@ public class Player : MonoBehaviour
         }
     }
 
+	private IEnumerator RotateWhileThrowing(AnimatorStateInfo stateInfo)
+	{
+		float elapsedTime = 0;
+
+		while (elapsedTime < 1)
+		{
+			elapsedTime = stateInfo.normalizedTime;
+
+			Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
+			Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
+			Vector3 currentRotation = direction - transform.eulerAngles;
+			Quaternion newRotation = Quaternion.LookRotation(currentRotation);
+			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, elapsedTime / 1);
+			yield return null;
+		}
+
+		throwing = false;
+	}
+
     IEnumerator SyncThrowAnim(Vector2 _InputAiming)
     {
         throwing = true;
 
         yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"));
 
+
         float elapsedTime = 0f;
 
         AnimatorStateInfo animatorStateInfo = Animator.GetCurrentAnimatorStateInfo(0);
+		StartCoroutine(RotateWhileThrowing(animatorStateInfo));
 
         while (elapsedTime < 0.1f)
         {
             elapsedTime = animatorStateInfo.normalizedTime;
-            if (_InputAiming != Vector2.zero)
-            {
-                targetRotation = Mathf.Atan2(-InputAiming.normalized.y, InputAiming.normalized.x) * Mathf.Rad2Deg;
-                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
-            }
-            Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
-            Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
-            transform.rotation = Quaternion.LookRotation(direction);
             yield return null;
         }
 
@@ -180,7 +188,7 @@ public class Player : MonoBehaviour
             HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         HasBomb = false;
-        throwing = false;
+        
     }
 
     private void OnCollisionEnter(Collision collision)
