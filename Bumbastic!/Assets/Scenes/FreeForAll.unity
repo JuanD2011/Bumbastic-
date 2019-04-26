@@ -229,20 +229,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 671418228, guid: 38fb70717f28e584bb4aa75868c5e656, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015938025, guid: 38fb70717f28e584bb4aa75868c5e656, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487185464, guid: 38fb70717f28e584bb4aa75868c5e656, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38fb70717f28e584bb4aa75868c5e656, type: 3}
---- !u!114 &10339936 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6020862145284328136, guid: 38fb70717f28e584bb4aa75868c5e656,
-    type: 3}
-  m_PrefabInstance: {fileID: 10339935}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &41061220
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd489c49105408e4d84380361414dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 10339936}
+  slider: {fileID: 0}
 --- !u!114 &490962515
 MonoBehaviour:
   m_ObjectHideFlags: 0

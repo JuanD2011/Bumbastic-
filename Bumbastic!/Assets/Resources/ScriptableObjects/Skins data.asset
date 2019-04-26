@@ -31,7 +31,7 @@ MonoBehaviour:
     value: 0
     prefab: {fileID: 624004247, guid: 6a4b20526e70a134cb763d66ed497b80, type: 3}
     choosed: 1
-    skinSprite: {fileID: 21300000, guid: 6386e728da34f464897122e216758cef, type: 3}
+    skinSprite: {fileID: 21300000, guid: 31a0ae94e528af348883f356e912a78b, type: 3}
   - name: El Bummie
     description: 
     value: 0
@@ -44,9 +44,9 @@ MonoBehaviour:
     prefab: {fileID: 728864674, guid: cccb06cfc2a60b84bbc245f6dacc1813, type: 3}
     choosed: 0
     skinSprite: {fileID: 21300000, guid: cec02990172423545bf93eb8b5c26369, type: 3}
-  - name: Saboten
+  - name: Samurai
     description: 
     value: 0
     prefab: {fileID: 1885799808, guid: d3ad895f063e4fb4eb7295075a623885, type: 3}
     choosed: 1
-    skinSprite: {fileID: 21300000, guid: cec02990172423545bf93eb8b5c26369, type: 3}
+    skinSprite: {fileID: 21300000, guid: 66e582198088cfc4ca274b4d1ccad82e, type: 3}
