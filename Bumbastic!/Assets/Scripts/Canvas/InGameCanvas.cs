@@ -19,6 +19,7 @@ public class InGameCanvas : Canvas
     protected override void Start()
     {
         base.Start();
+
         GameManager.Manager.OnGameOver += () => _scene = "Menu";
 
         GameManager.Manager.OnGameModeOver += Winner;

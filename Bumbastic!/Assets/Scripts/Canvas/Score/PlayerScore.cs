@@ -14,8 +14,8 @@ public class PlayerScore : MonoBehaviour
 
     public void InitComponents()
     {
-        PlayerSkinSprite = GetComponentInParent<Image>();
-        Name = GetComponent<TextMeshProUGUI>();
-        Stars = GetComponentsInChildren<Image>(true);
+        PlayerSkinSprite = GetComponent<Image>();
+        Name = GetComponentInChildren<TextMeshProUGUI>();
+        Stars = Name.GetComponentsInChildren<Image>();
     }
 }

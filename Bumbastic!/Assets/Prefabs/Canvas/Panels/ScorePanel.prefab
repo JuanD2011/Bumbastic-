@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9017406730078350099}
   - component: {fileID: 1038077009652360499}
   - component: {fileID: 2242793299704902696}
-  - component: {fileID: 3287978362828635759}
   m_Layer: 5
   m_Name: PlayerName3
   m_TagString: Untagged
@@ -196,18 +195,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
---- !u!114 &3287978362828635759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87876578794038756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44d2f453b9ade544a407c8a2fd86fa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &102251789251705282
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +576,7 @@ GameObject:
   - component: {fileID: 7100978367485327540}
   - component: {fileID: 5913124579344646668}
   - component: {fileID: 9092549183682415636}
+  - component: {fileID: 9199684439223128909}
   m_Layer: 5
   m_Name: Player2Sprite
   m_TagString: Untagged
@@ -653,6 +641,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &9199684439223128909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973382448217117030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44d2f453b9ade544a407c8a2fd86fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1547841929052215980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,6 +1626,7 @@ GameObject:
   - component: {fileID: 1210277135753303816}
   - component: {fileID: 7622032388487080394}
   - component: {fileID: 3024448743596598664}
+  - component: {fileID: 8772541758933204737}
   m_Layer: 5
   m_Name: Player4Sprite
   m_TagString: Untagged
@@ -1690,6 +1691,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &8772541758933204737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072284855406940028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44d2f453b9ade544a407c8a2fd86fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6149315429275554326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,7 +1789,6 @@ GameObject:
   - component: {fileID: 6370165819850808278}
   - component: {fileID: 6370165819850808265}
   - component: {fileID: 6370165819850808279}
-  - component: {fileID: 6370165821078848573}
   m_Layer: 5
   m_Name: PlayerName1
   m_TagString: Untagged
@@ -1960,18 +1972,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
---- !u!114 &6370165821078848573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6370165819850808267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44d2f453b9ade544a407c8a2fd86fa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6370165819883519909
 GameObject:
   m_ObjectHideFlags: 0
@@ -2936,7 +2936,6 @@ GameObject:
   - component: {fileID: 4265501523873188588}
   - component: {fileID: 7992238981551160436}
   - component: {fileID: 8444585314403765833}
-  - component: {fileID: 746461399147638624}
   m_Layer: 5
   m_Name: PlayerName2
   m_TagString: Untagged
@@ -3120,18 +3119,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
---- !u!114 &746461399147638624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6521655205221094998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44d2f453b9ade544a407c8a2fd86fa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6885578529614362992
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,6 +3278,7 @@ GameObject:
   - component: {fileID: 936368804379921018}
   - component: {fileID: 6354503648178823924}
   - component: {fileID: 7618363197065088850}
+  - component: {fileID: 5272890257011709453}
   m_Layer: 5
   m_Name: Player1Sprite
   m_TagString: Untagged
@@ -3355,6 +3343,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &5272890257011709453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072934768796898480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44d2f453b9ade544a407c8a2fd86fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7226392678439532563
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,7 +3367,6 @@ GameObject:
   - component: {fileID: 3465875847944908731}
   - component: {fileID: 6333399405490183057}
   - component: {fileID: 8324168266024976352}
-  - component: {fileID: 2517941768468492765}
   m_Layer: 5
   m_Name: PlayerName4
   m_TagString: Untagged
@@ -3551,18 +3550,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
---- !u!114 &2517941768468492765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7226392678439532563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44d2f453b9ade544a407c8a2fd86fa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7264149000989783711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,6 +3857,7 @@ GameObject:
   - component: {fileID: 835911310141669001}
   - component: {fileID: 5385380798219421447}
   - component: {fileID: 5070339003585364082}
+  - component: {fileID: 4942679901526750927}
   m_Layer: 5
   m_Name: Player3Sprite
   m_TagString: Untagged
@@ -3934,6 +3922,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &4942679901526750927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7947354569601230408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44d2f453b9ade544a407c8a2fd86fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8537070870616104357
 GameObject:
   m_ObjectHideFlags: 0
