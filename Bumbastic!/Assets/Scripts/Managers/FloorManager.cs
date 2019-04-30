@@ -33,7 +33,6 @@ public class FloorManager : MonoBehaviour
 	float time = 0;
 
 	bool anticipation = false;
-    bool canDrop = false;
 
     private void Awake()
     {
@@ -101,13 +100,9 @@ public class FloorManager : MonoBehaviour
 
     private void MapDrop()
     {
-        if (!canDrop)
+        if (nRings > 2)
         {
-            if (nRings > 2)
-            {
-                StartCoroutine(Anticipation(nRings - 1));
-            }
-            canDrop = true;
+            StartCoroutine(Anticipation(nRings - 1));
         }
     }
 
@@ -135,6 +130,7 @@ public class FloorManager : MonoBehaviour
 
             if (time >= 1)
             {
+                AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.anticipation, AudioType.SFx, 0.7f);
                 time = 0;
             }
         }
@@ -149,15 +145,11 @@ public class FloorManager : MonoBehaviour
         nRings -= 1;
         anticipationRing = ring;
         anticipation = true;
+        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.anticipation, AudioType.SFx, 0.7f);
 
         yield return new WaitForSeconds(anticipationTime);
 
         StartCoroutine(Drop(ring));
-
-        //if (nRings > 2)
-        //{
-        //    StartCoroutine(Anticipation(nRings - 1));
-        //}
     }
 
     IEnumerator Drop(int ring)
@@ -174,6 +166,7 @@ public class FloorManager : MonoBehaviour
             }
 
             rings[ring].module[i].constraints = RigidbodyConstraints.None;
+            AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.dropModule, AudioType.SFx, 0.6f);
 
             StartCoroutine(Desactivate(rings[ring].module[i]));
             yield return new WaitForSeconds(dropInterval);

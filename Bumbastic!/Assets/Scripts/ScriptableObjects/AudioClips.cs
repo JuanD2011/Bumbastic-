@@ -11,6 +11,7 @@ public class AudioClips : ScriptableObject
     public AudioClip buttonDefault, buttonBack, buttonSelection;
     public AudioClip crow;
     public AudioClip powerUpBoxDropped;
+    public AudioClip dropModule, anticipation;
 
     /// <summary>
     /// Method called by buttons
