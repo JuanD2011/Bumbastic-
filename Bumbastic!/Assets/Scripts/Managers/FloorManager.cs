@@ -4,6 +4,9 @@ using UnityEngine;
 public class FloorManager : MonoBehaviour
 {
     [SerializeField]
+    Material plane;
+
+    [SerializeField]
     GameObject[] propsModule;
 
 	[SerializeField]
@@ -110,6 +113,11 @@ public class FloorManager : MonoBehaviour
 
     void Update()
     {
+        if (GameModeDataBase.IsCurrentHotPotato() || GameModeDataBase.IsCurrentFreeForAll())
+        {
+            plane.SetVector("_Target", HotPotatoManager.HotPotato.Bomb.transform.position); 
+        }
+
         if (anticipation)
         {
 

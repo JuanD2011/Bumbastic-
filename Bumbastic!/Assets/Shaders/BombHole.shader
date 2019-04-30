@@ -27,15 +27,14 @@
         fixed4 _Color;
         fixed4 _HoleColor;
 		float3 _Target;
-		float dis;
         
 		void surf (Input IN, inout SurfaceOutput o)
         {
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 
-			dis = distance(_Target, IN.worldPos);
+			float dist = distance(_Target, IN.worldPos);
 
-			if (dis >= 0 && dis <= 1.5)
+			if (dist >= 0 && dist <= 1.5)
 			{
 				c.rgb = _HoleColor;
 			}
