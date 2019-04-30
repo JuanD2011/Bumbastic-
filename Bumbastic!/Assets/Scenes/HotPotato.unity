@@ -1617,8 +1617,19 @@ PrefabInstance:
       propertyPath: colliders.Array.data[3]
       value: 
       objectReference: {fileID: 1340814105}
+    - target: {fileID: 2636637570083272972, guid: 08d2bd453aad04246960e41f45b930b8,
+        type: 3}
+      propertyPath: targetGroup
+      value: 
+      objectReference: {fileID: 1444334848}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08d2bd453aad04246960e41f45b930b8, type: 3}
+--- !u!4 &1444334848 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2077235624929507408, guid: c4030b046145e6e45b6f51cc48026bb7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1340632417}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1566880042
 GameObject:
   m_ObjectHideFlags: 0
