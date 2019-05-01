@@ -59,7 +59,7 @@ public class FloorManager : MonoBehaviour
         {
             InitRings();
             Bomb.OnExplode += MapDrop;
-        } 
+        }
     }
 
     private void SpawnProps(int _length)
@@ -131,6 +131,7 @@ public class FloorManager : MonoBehaviour
             if (time >= 1)
             {
                 AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.anticipation, AudioType.SFx, 0.7f);
+                
                 time = 0;
             }
         }
