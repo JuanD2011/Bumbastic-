@@ -136,41 +136,23 @@ public class Player : MonoBehaviour
         }
     }
 
-	private IEnumerator RotateWhileThrowing(AnimatorStateInfo stateInfo)
-	{
-		float elapsedTime = 0;
-
-		Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
-
-		while (elapsedTime < 0.8f)
-		{
-			elapsedTime = stateInfo.normalizedTime;			
-			Vector3 currentRotation = aiming - transform.eulerAngles;
-			Quaternion newRotation = Quaternion.LookRotation(currentRotation);
-			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, elapsedTime / 1);
-			yield return null;
-		}
-
-		transform.eulerAngles = aiming;
-
-		throwing = false;
-	}
-
     IEnumerator SyncThrowAnim(Vector2 _InputAiming)
     {
         throwing = true;
-
-        yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"));
-
-
+        
         float elapsedTime = 0f;
 
-        AnimatorStateInfo animatorStateInfo = Animator.GetCurrentAnimatorStateInfo(0);
-		StartCoroutine(RotateWhileThrowing(animatorStateInfo));
-
-        while (elapsedTime < 0.1f)
-        {
-            elapsedTime = animatorStateInfo.normalizedTime;
+        Quaternion initialRotation = transform.rotation;
+        Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
+    
+        while (elapsedTime < 0.14f)
+        { 
+            if (InputAiming != Vector2.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(aiming);
+                transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, elapsedTime / 0.14f);
+            }
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
@@ -178,8 +160,7 @@ public class Player : MonoBehaviour
         HotPotatoManager.HotPotato.Bomb.RigidBody.isKinematic = false;
 
         if (_InputAiming != Vector2.zero)
-        {
-            Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
+        {         
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
             HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
@@ -189,7 +170,7 @@ public class Player : MonoBehaviour
             HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         HasBomb = false;
-        
+        throwing = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -230,5 +211,13 @@ public class Player : MonoBehaviour
             GameManager.Manager.PassBomb(this);
             Animator.SetTrigger("Reception");
         }
+    }
+
+    public IEnumerator Stun(float _duration)
+    {
+        canMove = false;
+        Animator.SetTrigger("Stun");
+        yield return new WaitForSeconds(_duration);
+        canMove = true;
     }
 }
