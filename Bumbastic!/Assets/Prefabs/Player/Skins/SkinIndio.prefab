@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 624004251}
   - component: {fileID: 624004250}
   - component: {fileID: 624004249}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SkinIndio
   m_TagString: Untagged
   m_Icon: {fileID: 0}

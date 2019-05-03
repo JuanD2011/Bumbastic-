@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1885799812}
   - component: {fileID: 1885799811}
   - component: {fileID: 1885799810}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SkinSamurai
   m_TagString: Untagged
   m_Icon: {fileID: 0}

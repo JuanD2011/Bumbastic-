@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 578281797}
   - component: {fileID: 578281796}
   - component: {fileID: 578281795}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SkinLuchador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
