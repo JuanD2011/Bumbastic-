@@ -72,10 +72,9 @@ public class Bomb : MonoBehaviour
             AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.bomb, AudioType.SFx);
         }
         transform.SetParent(null);
-        CameraShake.instance.OnShake?.Invoke(0.4f, 6f, 1.2f);
+        CameraShake.instance.OnShakeDuration?.Invoke(0.4f, 6f, 1.2f);
         RigidBody.isKinematic = false;
         OnExplode?.Invoke();//ParticleModification, GameManager, FloorManager hears it
-        //gameObject.SetActive(false);
         Debug.Log("Boom");
     }
 

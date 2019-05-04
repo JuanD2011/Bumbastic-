@@ -17,6 +17,20 @@ public class ConfettiBomb : MonoBehaviour
         m_Renderer.enabled = false;
         GetComponent<Collider>().enabled = false;
         m_Particle.Play();
-        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.confettiBomb, AudioType.SFx, 0.6f);
+        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.confettiBomb, AudioType.SFx, 0.4f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Player player = other.GetComponentInParent<Player>();
+
+        if (player != null)
+        {
+            if (transform.parent == null)
+            {
+                transform.position = player.Catapult.position;
+                transform.SetParent(player.Catapult);  
+            }
+        }
     }
 }

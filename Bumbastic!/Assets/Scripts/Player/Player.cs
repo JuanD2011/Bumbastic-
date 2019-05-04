@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
                 if (!HasBomb)
                 {
                     IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
-                    powerUp.PickPowerUp(GetComponent<Player>());
+                    powerUp.PickPowerUp(this);
                 }
                 else
                 {

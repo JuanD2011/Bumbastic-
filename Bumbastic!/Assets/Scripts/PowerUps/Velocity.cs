@@ -5,10 +5,10 @@ public class Velocity : PowerUp
 {
     GameObject speedUpParticle;
 
-    protected override void Start()
+    public void Execute()
     {
-        base.Start();
-        StartCoroutine(Execute());
+        StartCoroutine(InitSpeedUP());
+
         speedUpParticle.GetComponent<SpeedUpParticle>().OnComplete += OnComplete;
         Duration = 5f;
     }
@@ -19,11 +19,11 @@ public class Velocity : PowerUp
         Destroy(this);
     }
 
-    IEnumerator Execute()
+    IEnumerator InitSpeedUP()
     {
         WaitForSeconds wait = new WaitForSeconds(Duration);
 
-        speedUpParticle = Instantiate(GameManager.Manager.speedUpParticleSystem, transform.position, Quaternion.identity, GetComponentInChildren<Bummie>().transform);
+        speedUpParticle = Instantiate(GameManager.Manager.speedUpParticleSystem, transform.position, Quaternion.identity, player.transform);
         player.SpeedPU = true;
         yield return wait;
         player.SpeedPU = false;

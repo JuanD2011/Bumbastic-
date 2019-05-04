@@ -142,7 +142,6 @@ public class FloorManager : MonoBehaviour
         WaitForSeconds waitForSeconds = new WaitForSeconds(5f);
 
         yield return waitForSeconds;
-
         nRings -= 1;
         anticipationRing = ring;
         anticipation = true;
@@ -155,6 +154,8 @@ public class FloorManager : MonoBehaviour
 
     IEnumerator Drop(int ring)
     {
+        CameraShake.instance.OnStartShake?.Invoke(1f, 0.5f);//Starts Camera shake.
+
         for (int i = rings[ring].module.Length -1 ; i >= 0 ; i--)
         {
             rings[ring].module[i].useGravity = true;
@@ -176,6 +177,8 @@ public class FloorManager : MonoBehaviour
                 anticipation = false;
             }
         }
+
+        CameraShake.instance.OnStopShake?.Invoke();//Stops Camera shake
     }
 
     IEnumerator Desactivate (Rigidbody module)

@@ -12,25 +12,30 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     protected virtual void Start()
     {
-        player = GetComponent<Player>();
         Collider = GetComponent<Collider>();
     }
 
     public void PickPowerUp(Player _player)
     {
+        player = _player;
+
         int randomPU = Random.Range(0, 3);
+
         switch (randomPU)
         {
             case 0:
-                _player.gameObject.AddComponent<Velocity>();
+                //player.gameObject.AddComponent<Velocity>();
+                //player.GetComponent<Velocity>().Execute();
                 break;
             case 1:
                 //_player.gameObject.AddComponent<Magnet>();
-                _player.gameObject.AddComponent<Velocity>();
+                //player.gameObject.AddComponent<Velocity>();
+                //player.GetComponent<Velocity>().Execute();
                 break;
             case 2:
                 //_player.gameObject.AddComponent<Shield>();
-                _player.gameObject.AddComponent<Velocity>();
+                //player.gameObject.AddComponent<Velocity>();
+                //player.GetComponent<Velocity>().Execute();
                 break;
             case 3:
                 //GameManager.instance.bombHolder.gameObject.AddComponent<Velocity>();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class CameraShake : MonoBehaviour
 {
@@ -18,7 +19,10 @@ public class CameraShake : MonoBehaviour
     CinemachineBasicMultiChannelPerlin virtualCameraNoise;
 
     public delegate void DelCamera(float _duration, float _shakeAmplitude, float _shakeFrequency);
-    public DelCamera OnShake;
+    public DelCamera OnShakeDuration;
+
+    public Action<float, float> OnStartShake;
+    public Action OnStopShake;
 
     void Start()
     {
@@ -27,7 +31,20 @@ public class CameraShake : MonoBehaviour
         if (virtualCamera != null)
             virtualCameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-        OnShake += ShakeOnce;
+        OnShakeDuration += ShakeOnce;
+        OnStartShake += StartShaking;
+        OnStopShake += StopShaking;
+    }
+
+    /// <summary>
+    /// It sets the amplitude and frequency, it does not stop.
+    /// </summary>
+    /// <param name="_shakeAmplitude"></param>
+    /// <param name="_shakeFrequency"></param>
+    private void StartShaking(float _shakeAmplitude, float _shakeFrequency)
+    {
+        virtualCameraNoise.m_AmplitudeGain = _shakeAmplitude;
+        virtualCameraNoise.m_FrequencyGain = _shakeFrequency;
     }
 
     private void ShakeOnce(float _duration, float _shakeAmplitude, float _shakeFrequency)
@@ -37,22 +54,21 @@ public class CameraShake : MonoBehaviour
 
     private IEnumerator ShakeCamera(float _duration, float _shakeAmplitude, float _shakeFrequency)
     {
-        float shakeElapsedTime = _duration;
         virtualCameraNoise.m_AmplitudeGain = _shakeAmplitude;
         virtualCameraNoise.m_FrequencyGain = _shakeFrequency;
+        yield return new WaitForSeconds(_duration);
+        StopShaking();
+    }
 
-        while (shakeElapsedTime > 0)
-        {
-            shakeElapsedTime -= Time.deltaTime;
-            yield return null;
-        }
+    private void StopShaking()
+    {
+        virtualCameraNoise.m_FrequencyGain = 0f;
         virtualCameraNoise.m_AmplitudeGain = 0f;
-        shakeElapsedTime = 0f;
     }
 
     private void OnDisable()
     {
         StopAllCoroutines();
-        virtualCameraNoise.m_AmplitudeGain = 0f;
+        StopShaking();
     }
 }
