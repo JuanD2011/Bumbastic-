@@ -90,6 +90,12 @@ public abstract class GameManager : MonoBehaviour
     protected void GameOver()
     {
         Debug.Log("Game Over");
+
+        foreach (Player player in Players)
+        {
+            player.CanMove = false;
+        }
+
         OnGameModeOver?.Invoke();//InGameCanvas
 
         for (int i = 0; i < InGame.playerSettings.Count; i++)

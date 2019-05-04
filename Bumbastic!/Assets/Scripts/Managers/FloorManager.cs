@@ -110,7 +110,7 @@ public class FloorManager : MonoBehaviour
     {
         if (GameModeDataBase.IsCurrentHotPotato() || GameModeDataBase.IsCurrentFreeForAll())
         {
-            plane.SetVector("_Target", HotPotatoManager.HotPotato.Bomb.transform.position); 
+            plane.SetVector("_Target", HotPotatoManager.HotPotato.Bomb.transform.position);  
         }
 
         if (anticipation)

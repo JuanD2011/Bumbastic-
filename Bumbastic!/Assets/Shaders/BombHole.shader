@@ -34,7 +34,7 @@
 
 			float dist = distance(_Target, IN.worldPos);
 
-			if (dist >= 0 && dist <= 1.5)
+			if (dist >= 0 && dist <= 1)
 			{
 				c.rgb = _HoleColor;
 			}

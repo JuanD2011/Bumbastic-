@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private Vector2 inputAiming;
     #endregion
 
-    private bool speedPU;
+    public bool speedPU;
     private bool canMove = false;
 
     private byte id;
@@ -30,9 +30,12 @@ public class Player : MonoBehaviour
     private GameObject player;
     private SphereCollider collider;
     private Rigidbody m_Rigidbody;
-    private Animator m_Animator;
     private Vector3 spawnPoint;
     private Controls controls;
+
+    private Animator m_Animator;
+    private AnimatorOverrideController animatorWNoBomb;
+    [SerializeField] AnimatorOverrideController animatorWBomb;
 
     private bool hasBomb;
 
@@ -40,7 +43,6 @@ public class Player : MonoBehaviour
 
     private bool throwing;
 
-    public bool SpeedPU { private get => speedPU; set => speedPU = value; }
     public bool CanMove { private get => canMove; set => canMove = value; }
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
     public bool HasBomb { get => hasBomb; set => hasBomb = value; }
@@ -57,8 +59,35 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        if (animatorWNoBomb == null)
+        {
+            animatorWNoBomb = new AnimatorOverrideController(m_Animator.runtimeAnimatorController);
+        }
+
         Rigidbody = GetComponent<Rigidbody>();
         GameManager.Manager.Director.stopped += LetMove;
+        Bomb.OnExplode += ResetPlayer;
+    }
+
+    private void ResetPlayer()
+    {
+        Debug.Log("NoBom");
+        m_Animator.runtimeAnimatorController = animatorWNoBomb;
+    }
+
+    public void SetOverrideAnimator(bool _hasBomb)
+    {
+        if (!_hasBomb)
+        {
+            m_Animator.runtimeAnimatorController = animatorWNoBomb;
+        }
+        else
+        {
+            if (m_Animator.runtimeAnimatorController != animatorWBomb)
+            {
+                m_Animator.runtimeAnimatorController = animatorWBomb;
+            }
+        }
     }
 
     private void LetMove(PlayableDirector _obj) => canMove = true;
@@ -95,17 +124,18 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
+        inputDirection.Normalize();
+
         if (inputDirection != Vector2.zero && !throwing)
         {
             targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
         }
 
-        targetSpeed = ((SpeedPU) ? powerUpSpeed : moveSpeed) * inputDirection.magnitude;
+        targetSpeed = ((speedPU) ? powerUpSpeed : moveSpeed) * inputDirection.magnitude; 
         currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVel, speedSmooothTime);
-
         transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
-        animationSpeedPercent = ((SpeedPU) ? 1 : 0.5f) * inputDirection.magnitude;
+        animationSpeedPercent = ((speedPU) ? 1 : 0.5f) * inputDirection.magnitude;
         Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
     }
 
@@ -131,7 +161,7 @@ public class Player : MonoBehaviour
         if (HasBomb)
         {
             Animator.SetTrigger("Throw");
-
+            SetOverrideAnimator(false);
             StartCoroutine(SyncThrowAnim(InputAiming));
         }
     }
@@ -198,25 +228,37 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>() != null)
+        Player collisionedPlayer = other.GetComponent<Player>();
+        Bomb collisionedBomb = other.GetComponent<Bomb>();
+
+        if (collisionedPlayer != null)
         {
-            if (other.GetComponent<Player>().HasBomb)
+            if (collisionedPlayer.HasBomb)
             {
-                GameManager.Manager.PassBomb(this, other.GetComponent<Player>());
+                GameManager.Manager.PassBomb(this, collisionedPlayer);
                 Animator.SetTrigger("Reception");
+
+                collisionedPlayer.SetOverrideAnimator(false);
+                SetOverrideAnimator(true);
             }
         }
-        else if (other.GetComponent<Bomb>() != null)
+        else if (collisionedBomb != null)
         {
             GameManager.Manager.PassBomb(this);
             Animator.SetTrigger("Reception");
+            SetOverrideAnimator(true);
         }
     }
 
-    public IEnumerator Stun(float _duration)
+    public IEnumerator Stun(bool _isWagon, float _duration)
     {
+        inputDirection = Vector2.zero;
         canMove = false;
-        Animator.SetTrigger("Stun");
+
+        if (_isWagon)
+        {
+            Animator.SetTrigger("Stun"); 
+        }
         yield return new WaitForSeconds(_duration);
         canMove = true;
     }

@@ -3,39 +3,39 @@
 [RequireComponent(typeof(BoxCollider))]
 public class PowerUp : MonoBehaviour, IPowerUp
 {
-    private float duration;
+    private float duration = 0f;
     protected Player player;
 
     Collider m_Collider;
     public Collider Collider { get => m_Collider; set => m_Collider = value; }
     public float Duration { get => duration; protected set => duration = value; }
 
-    protected virtual void Start()
+    private void Awake()
     {
         Collider = GetComponent<Collider>();
     }
 
+    protected virtual void Start()
+    {
+        player = GetComponent<Player>();
+    }
+
     public void PickPowerUp(Player _player)
     {
-        player = _player;
-
         int randomPU = Random.Range(0, 3);
 
         switch (randomPU)
         {
             case 0:
-                //player.gameObject.AddComponent<Velocity>();
-                //player.GetComponent<Velocity>().Execute();
+                _player.gameObject.AddComponent<Velocity>();
                 break;
             case 1:
                 //_player.gameObject.AddComponent<Magnet>();
-                //player.gameObject.AddComponent<Velocity>();
-                //player.GetComponent<Velocity>().Execute();
+                _player.gameObject.AddComponent<Velocity>();
                 break;
             case 2:
                 //_player.gameObject.AddComponent<Shield>();
-                //player.gameObject.AddComponent<Velocity>();
-                //player.GetComponent<Velocity>().Execute();
+                _player.gameObject.AddComponent<Velocity>();
                 break;
             case 3:
                 //GameManager.instance.bombHolder.gameObject.AddComponent<Velocity>();

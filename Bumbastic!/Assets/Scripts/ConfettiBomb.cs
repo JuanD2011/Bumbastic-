@@ -9,7 +9,7 @@ public class ConfettiBomb : MonoBehaviour
     {
         m_Particle = GetComponentInChildren<ParticleSystem>();
         m_Renderer = GetComponent<Renderer>();
-        Invoke("Bum", 2.5f);
+        Invoke("Bum", 2f);
     }
 
     private void Bum()

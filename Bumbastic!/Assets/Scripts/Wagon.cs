@@ -44,7 +44,7 @@ public class Wagon : MonoBehaviour
                     playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * -Vector3.forward * pushForce, ForceMode.Impulse);
                 }
 
-                StartCoroutine(playerCollisioned.Stun(1f));
+                StartCoroutine(playerCollisioned.Stun(true, 2.2f));
             }
         }
 
