@@ -12,7 +12,7 @@ public class CrowDropPU : StateMachineBehaviour
         distance = Vector3.Distance(animator.transform.position, inGame.posDropPU.position);
         Vector3 dir = (inGame.posDropPU.position - animator.transform.position).normalized;
         animator.transform.LookAt(dir);
-        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.crow, AudioType.SFx);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crow);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -27,7 +27,7 @@ public class CrowDropPU : StateMachineBehaviour
                 GameManager.Manager.powerUp.transform.position = inGame.posDropPU.position;
                 GameManager.Manager.powerUp.Collider.enabled = true;
                 GameManager.Manager.powerUp.transform.parent = null;
-                AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.powerUpBoxDropped, AudioType.SFx);
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBoxDropped);
             }
 
             if (!animator.GetBool("PUDropped"))

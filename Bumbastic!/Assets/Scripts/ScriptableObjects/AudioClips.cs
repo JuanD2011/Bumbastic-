@@ -21,9 +21,9 @@ public class AudioClips : ScriptableObject
     {
         if (_isBack)
         {
-            AudioManager.instance.PlayAudio(buttonBack, AudioType.SFx);
+            AudioManager.instance.PlaySFx(buttonBack);
         }
         else
-            AudioManager.instance.PlayAudio(buttonDefault, AudioType.SFx);
+            AudioManager.instance.PlaySFx(buttonDefault);
     }
 }

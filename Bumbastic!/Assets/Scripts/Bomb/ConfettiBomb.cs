@@ -17,7 +17,7 @@ public class ConfettiBomb : MonoBehaviour
         m_Renderer.enabled = false;
         GetComponent<Collider>().enabled = false;
         m_Particle.Play();
-        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.confettiBomb, AudioType.SFx, 0.4f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.confettiBomb, 0.4f);
     }
 
     private void OnTriggerEnter(Collider other)

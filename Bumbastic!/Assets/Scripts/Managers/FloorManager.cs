@@ -133,7 +133,7 @@ public class FloorManager : MonoBehaviour
 
             if (time >= 1)
             {
-                AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.anticipation, AudioType.SFx, 0.7f);
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.anticipation, 0.7f);
                 
                 time = 0;
             }
@@ -148,7 +148,7 @@ public class FloorManager : MonoBehaviour
         nRings -= 1;
         anticipationRing = ring;
         anticipation = true;
-        AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.anticipation, AudioType.SFx, 0.7f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.anticipation, 0.7f);
 
         yield return new WaitForSeconds(anticipationTime);
 
@@ -171,7 +171,7 @@ public class FloorManager : MonoBehaviour
             }
 
             rings[ring].module[i].constraints = RigidbodyConstraints.None;
-            AudioManager.instance.PlayAudio(AudioManager.instance.audioClips.dropModule, AudioType.SFx, 0.6f);
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dropModule, 0.6f);
 
             StartCoroutine(Desactivate(rings[ring].module[i]));
             yield return new WaitForSeconds(dropInterval);
