@@ -112,7 +112,7 @@ public class FloorManager : MonoBehaviour
         {
             if (HotPotatoManager.HotPotato.Bomb.transform.parent == null)
             {
-                plane.SetVector("_Target", HotPotatoManager.HotPotato.Bomb.transform.position); 
+                plane.SetVector("_Target", HotPotatoManager.HotPotato.Bomb.transform.position);
             }
         }
 
