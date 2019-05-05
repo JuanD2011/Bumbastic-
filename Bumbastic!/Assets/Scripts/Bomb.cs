@@ -22,7 +22,7 @@ public class Bomb : MonoBehaviour
 
     public delegate void BombDelegate();
     public static BombDelegate OnExplode;
-    [SerializeField] private float gravity = 12f;
+    private float gravity = 16f;
 
     private void Awake()
     {
