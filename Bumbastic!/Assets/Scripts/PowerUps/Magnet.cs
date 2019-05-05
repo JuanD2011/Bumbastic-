@@ -25,7 +25,7 @@ public class Magnet : PowerUp
 
         Vector3 initBombPos = HotPotatoManager.HotPotato.Bomb.transform.position;
 
-        while (elapsedTime < lerpDuration)
+        while (HotPotatoManager.HotPotato.Bomb.transform.parent == null)
         {
             elapsedTime += Time.deltaTime;
             HotPotatoManager.HotPotato.Bomb.transform.position = Vector3.Lerp(initBombPos, player.Catapult.position, elapsedTime / lerpDuration);
