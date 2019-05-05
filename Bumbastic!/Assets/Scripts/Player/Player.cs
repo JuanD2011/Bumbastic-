@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
     private void ResetPlayer()
     {
         m_Animator.runtimeAnimatorController = animatorWNoBomb;
+        hasBomb = false;
     }
 
     public void SetOverrideAnimator(bool _hasBomb)

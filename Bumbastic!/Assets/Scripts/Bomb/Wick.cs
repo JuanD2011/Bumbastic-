@@ -31,8 +31,6 @@ public class Wick : MonoBehaviour
         float timePerPoint;
         float elapsedTime = 0f;
         timePerPoint = bomb.Timer / (points.Length - 1);
-        Debug.Log(bomb.Timer);
-        Debug.Log(timePerPoint);
         particles.position = points[0].position;
 
         yield return new WaitUntil(() => !bomb.Exploded);
@@ -43,12 +41,11 @@ public class Wick : MonoBehaviour
             {
                 float distance = Vector3.Distance(points[currentPoint].position, particles.position);
                 particles.position = Vector3.MoveTowards(particles.position, points[currentPoint].position, (Time.deltaTime * distance) / timePerPoint);
-                renderer.material.SetFloat("_Factor", 1f - elapsedTime / bomb.Timer);
+                renderer.material.SetFloat("_Factor", elapsedTime / bomb.Timer);
 
                 if (distance < 0.1f && currentPoint < points.Length - 1)
                 {
                     currentPoint++;
-                    Debug.Log(currentPoint);
                 }
                 elapsedTime += Time.deltaTime; 
             }

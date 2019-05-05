@@ -7,8 +7,7 @@
 
 		//Alpha
 		_AlphaMask("Alpha mask", 2D) = "white" {}
-		_Factor("Alpha Factor", Range(0, 1)) = 0.5
-		_Treshold("Treshold", Range(0, 1)) = 0.5
+		_Factor("Factor", Range(0, 1)) = 0.5
     }
     SubShader
     {
@@ -34,7 +33,6 @@
 
         fixed4 _Color;
 		float _Factor;
-		float _Treshold;
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
@@ -43,9 +41,7 @@
 
 			o.Albedo = c.rgb;
 
-			fixed alpha = _Factor * mask;
-			
-			if (alpha < _Treshold)
+			if (mask.r <= _Factor)
 			{
 				o.Alpha = 0;
 			}
