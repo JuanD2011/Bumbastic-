@@ -71,7 +71,6 @@ public class Player : MonoBehaviour
 
     private void ResetPlayer()
     {
-        Debug.Log("NoBom");
         m_Animator.runtimeAnimatorController = animatorWNoBomb;
     }
 
@@ -250,12 +249,21 @@ public class Player : MonoBehaviour
         }
     }
 
-    public IEnumerator Stun(bool _isWagon, float _duration)
+    public void Stun(bool _stun)
+    {
+        if (_stun)
+        {
+            Animator.SetTrigger("Stun");
+        }
+        canMove = !_stun;
+    }
+
+    public IEnumerator Stun(bool _animStun, float _duration)
     {
         inputDirection = Vector2.zero;
         canMove = false;
 
-        if (_isWagon)
+        if (_animStun)
         {
             Animator.SetTrigger("Stun"); 
         }

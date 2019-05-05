@@ -18,7 +18,7 @@ public abstract class ParticleModication : MonoBehaviour
 
     float realTime = 0f;
 
-    protected int particlesToSetColor = 2;
+    [SerializeField] protected int particlesToSetColor = 2;
     protected float startLifetime;
 
     protected ParticleSystem[] ParticleSystems { get => particleSystems; set => particleSystems = value; }

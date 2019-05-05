@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6488248007249943936}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,9 +23,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968827711064522490}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.28, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 4, z: 1}
   m_Children:
   - {fileID: 5049282903182820755}
   - {fileID: 4372324292197963923}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5650456173408170352}
   m_Layer: 9
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,8 +77,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 14.43, y: 2.53, z: 0.3}
-  m_Center: {x: 0, y: 0, z: 0.15}
+  m_Size: {x: 40.5, y: 3.71, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!54 &5650456173408170352
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &4348838234938771544
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 5529339619630275894}
   m_Layer: 9
   m_Name: Collider (2)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,8 +138,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 14.43, y: 2.53, z: 0.3}
-  m_Center: {x: 0, y: 0, z: 0.15}
+  m_Size: {x: 40.5, y: 3.71, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!54 &5529339619630275894
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &5500006474521089834
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 7253370970861348602}
   m_Layer: 9
   m_Name: Collider (3)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,8 +199,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 14.43, y: 2.53, z: 0.3}
-  m_Center: {x: 0, y: 0, z: 0.15}
+  m_Size: {x: 40.5, y: 3.71, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!54 &7253370970861348602
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &7185508736637962215
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 5317409557437703099}
   m_Layer: 9
   m_Name: Collider (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,8 +260,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 14.43, y: 2.53, z: 0.3}
-  m_Center: {x: 0, y: 0, z: 0.15}
+  m_Size: {x: 40.5, y: 3.71, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!54 &5317409557437703099
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -277,4 +277,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1

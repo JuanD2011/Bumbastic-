@@ -4009,6 +4009,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 50bf92d60d7289047bd426cbc934e8f3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b90b80bcd1fe2674eb9e93f79b665a82, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50bf92d60d7289047bd426cbc934e8f3, type: 3}
 --- !u!4 &621557086 stripped
@@ -5096,6 +5100,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.67463017
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 9446da0a7cfde3e46bdaf497a37d9fe0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b90b80bcd1fe2674eb9e93f79b665a82, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9446da0a7cfde3e46bdaf497a37d9fe0, type: 3}
 --- !u!1 &813489562
@@ -5780,6 +5788,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.96399
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 6c393d7f8b8bd8f4e9367af9f60c54e1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b90b80bcd1fe2674eb9e93f79b665a82, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c393d7f8b8bd8f4e9367af9f60c54e1, type: 3}
 --- !u!1 &906870379

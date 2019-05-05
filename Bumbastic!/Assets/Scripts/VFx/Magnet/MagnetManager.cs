@@ -1,77 +1,101 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class MagnetManager : MonoBehaviour
+public class MagnetManager : ParticleModication
 {
     LineRenderer wave;
-
     Vector3[] wavePositions = new Vector3[2];
 
-    [SerializeField] PathParticles pathParticles;
+    [SerializeField] float ringsFadeOut = 0.5f;
+    [SerializeField] float thundersSpeed = 20f;
 
-    [SerializeField] ParticleSystem ringParticles;
-    ParticleSystem.MainModule ringMain;
+    ParticleSystem.Particle[] pathParticles;
 
     GameObject bomb;
-    Transform posBomb;
+    Player player;
 
-    [SerializeField] float lerpDuration = 2f, ringsFadeOut = 1f;
+    float t = 0f;
 
-    public delegate void DelMagnetManager();
-    public DelMagnetManager OnLerpComplete;
-
-    void Start()
+    protected override void Start()
     {
-        wave = GetComponentInChildren<LineRenderer>();
-        ringMain = ringParticles.main;
-        wave.gameObject.SetActive(true);
+        base.Start();
+        t = 0;
 
-        if (HotPotatoManager.HotPotato.Bomb != null)
-        {
-            bomb = HotPotatoManager.HotPotato.Bomb.gameObject;
-            posBomb = HotPotatoManager.HotPotato.Bomb.transform;
-            StartCoroutine(LerpBomb());
-        }
+        player = GetComponentInParent<Player>();
+        wave = GetComponentInChildren<LineRenderer>();
+
+        pathParticles = new ParticleSystem.Particle[MainModules[0].maxParticles];
+        bomb = HotPotatoManager.HotPotato.Bomb.gameObject;
+        Execute();
     }
 
-    public IEnumerator LerpBomb()
+    protected override void Execute()
     {
-        wavePositions[0] = transform.position;
+        foreach (ParticleSystem particleSystem in ParticleSystems)
+        {
+            if (!particleSystem.isPlaying)
+            {
+                particleSystem.Play(); 
+            }
+        }
+        StartCoroutine(SetParticles());
+    }
+
+    void Update()
+    {
+        t += Time.deltaTime;
+        float currentSpeed = curve.Evaluate(t / duration) * thundersSpeed;
+        ShapeModules[0].radius = curve.Evaluate(t / duration) * radius;
+        MainModules[0].startSize = curve.Evaluate(t / duration) * size;
+        Light.intensity = curve.Evaluate(t / RealTime) * lightIntensity;
+        Light.color = gradient.Evaluate(t / RealTime);
+
+        int length = ParticleSystems[0].GetParticles(pathParticles);
+        int i = 0;
+        transform.LookAt(bomb.transform.position);
+
+        while (i < length)
+        {
+            Vector3 direction = (bomb.transform.position - pathParticles[i].position).normalized;
+            pathParticles[i].velocity = direction * currentSpeed;
+            float distance = Vector3.Distance(bomb.transform.position, pathParticles[i].position);
+
+            if (distance < 1f)
+            {
+                pathParticles[i].remainingLifetime = -0.1f;
+            }
+            i++;
+        }
+
+        ParticleSystems[0].SetParticles(pathParticles, length);
+    }
+
+    public IEnumerator SetParticles()
+    {
+        Vector3 initBombPos = bomb.transform.position;
+
+        wavePositions[0] = player.Catapult.transform.position;
         wavePositions[1] = bomb.transform.position;
         wave.SetPositions(wavePositions);
 
-        pathParticles.gameObject.SetActive(true);
-        float distance = Mathf.Abs(Vector3.Distance(transform.position, bomb.transform.position));
-        float t = 0;
-        yield return new WaitWhile(() => pathParticles.activateParticles == false);
-        wave.enabled = true;
+        float distance = Mathf.Abs(Vector3.Distance(player.Catapult.transform.position, initBombPos));
 
         while (distance >= 2f)
         {
-            distance = Mathf.Abs(Vector3.Distance(transform.position, bomb.transform.position));
-            wavePositions[0] = transform.position;
+            wavePositions[0] = player.Catapult.position;
             wavePositions[1] = bomb.transform.position;
             wave.SetPositions(wavePositions);
-
-            bomb.transform.position = Vector3.Lerp(bomb.transform.position, transform.position, t/ lerpDuration);
-
-            t += Time.deltaTime;
+            distance = Mathf.Abs(Vector3.Distance(player.Catapult.transform.position, bomb.transform.position));
             yield return null;
         }
 
-        pathParticles.gameObject.SetActive(false);
-        wave.enabled = false;     
-        t = 0;
+        float t = 0;
 
         while(t <= ringsFadeOut)
         {
-            ringMain.startColor = Color.Lerp(ringMain.startColor.colorMax, Color.clear, t / ringsFadeOut);
-            bomb.transform.position = Vector3.Lerp(bomb.transform.position, transform.position, t / ringsFadeOut);
+            MainModules[1].startColor = Color.Lerp(MainModules[1].startColor.colorMax, Color.clear, t / ringsFadeOut);//Refers to the Rings
             t += Time.deltaTime;
             yield return null;
         }
-
-        wave.gameObject.SetActive(false);
-        OnLerpComplete?.Invoke();
     }
 }

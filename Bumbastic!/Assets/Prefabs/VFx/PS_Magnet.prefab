@@ -45,11 +45,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6626e2f550cc646b3ee5f64ff0d59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bomb: {fileID: 0}
-  posBomb: {fileID: 0}
-  pathParticles: {fileID: 6569818202131820206}
-  ringColor: {r: 0, g: 0.4745098, b: 1, a: 1}
-  ringParticles: {fileID: 1428610868580143354}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0.9306717, a: 0}
+    key1: {r: 0, g: 0.8665147, b: 1, a: 0.6117647}
+    key2: {r: 1, g: 0, b: 0.76686954, a: 1}
+    key3: {r: 0, g: 0, b: 0, a: 0.80784315}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 15035
+    atime2: 32768
+    atime3: 53777
+    atime4: 65535
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 5
+  duration: 2
+  radius: 3
+  velocity: 3.5
+  lightIntensity: 10
+  size: 1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.11486797
+      value: 1.0023575
+      inSlope: -0.9146938
+      outSlope: -0.9146938
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11971702
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.1823881
+      outSlope: -1.1823881
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2118328
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  modifySize: 1
+  modifyRadius: 1
+  modifyStartColor: 0
+  particlesToSetColor: 2
+  ringsFadeOut: 0.5
+  thundersSpeed: 40
 --- !u!1 &6569818202131820204
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +129,6 @@ GameObject:
   - component: {fileID: 6569818202131820207}
   - component: {fileID: 6569818202131820200}
   - component: {fileID: 6569818202131820201}
-  - component: {fileID: 6569818202131820206}
   m_Layer: 0
   m_Name: PathParticles
   m_TagString: Untagged
@@ -99,7 +166,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -651,9 +718,9 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 2000
+    maxNumParticles: 1000
     size3D: 0
-    rotation3D: 1
+    rotation3D: 0
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
@@ -916,7 +983,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4749,123 +4816,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &6569818202131820206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6569818202131820204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e0e04e9769a0b49a4d454548c42d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.16229668
-      value: 0.9589622
-      inSlope: -0.27655864
-      outSlope: -0.27655864
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.23936176
-      outWeight: 0.16606486
-    - serializedVersion: 3
-      time: 0.43047953
-      value: 0.4
-      inSlope: -0.030607844
-      outSlope: -0.030607844
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0.4
-      inSlope: -0
-      outSlope: 2
-      tangentMode: 5
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  sizeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -0.04530659
-      outSlope: -0.04530659
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.22115384
-    - serializedVersion: 3
-      time: 0.15695609
-      value: 0.31487942
-      inSlope: -9.665841
-      outSlope: -20.998154
-      tangentMode: 65
-      weightedMode: 0
-      inWeight: 0.034555476
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  radiusCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.05
-      value: 1
-      inSlope: -0
-      outSlope: -2.1466882
-      tangentMode: 5
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.2633234
-    - serializedVersion: 3
-      time: 0.4
-      value: 0.2682837
-      inSlope: -0.20375909
-      outSlope: -0.49332184
-      tangentMode: 65
-      weightedMode: 0
-      inWeight: 0.21592782
-      outWeight: 0.039353367
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  target: {fileID: 0}
-  particleSpeed: 16
-  speedCurveDuration: 2
-  radiusCurveDuration: 2
-  radius: 4
-  activateParticles: 0
 --- !u!1 &6569818202843635146
 GameObject:
   m_ObjectHideFlags: 0
@@ -4940,7 +4890,7 @@ LineRenderer:
   - {x: -22.79, y: 2.159998, z: 9.87}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1.5
+    widthMultiplier: 5
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -4960,25 +4910,25 @@ LineRenderer:
       serializedVersion: 2
       key0: {r: 0, g: 1, b: 0.8638129, a: 1}
       key1: {r: 0.41821098, g: 0, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
+      key2: {r: 1, g: 0.9927227, b: 0.8035126, a: 1}
+      key3: {r: 1, g: 1, b: 1, a: 0}
+      key4: {r: 0.8773585, g: 0.8754147, b: 0.8754147, a: 0}
+      key5: {r: 0.5283019, g: 0.5208259, b: 0.5208259, a: 0}
+      key6: {r: 0.57547176, g: 1, b: 0.08018869, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
+      ctime2: 26600
+      ctime3: 31611
+      ctime4: 40092
+      ctime5: 50886
+      ctime6: 65535
       ctime7: 0
       atime0: 0
       atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
+      atime2: 63029
+      atime3: 65150
+      atime4: 65535
       atime5: 0
       atime6: 0
       atime7: 0
@@ -5060,17 +5010,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7041280955756490299, guid: 96893ea1dce66db438ac6d9ba90d4bda,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041280955756490299, guid: 96893ea1dce66db438ac6d9ba90d4bda,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041280955756490299, guid: 96893ea1dce66db438ac6d9ba90d4bda,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041280955756490299, guid: 96893ea1dce66db438ac6d9ba90d4bda,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634983435657744724, guid: 96893ea1dce66db438ac6d9ba90d4bda,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634983435657744724, guid: 96893ea1dce66db438ac6d9ba90d4bda,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848189453191049787, guid: 96893ea1dce66db438ac6d9ba90d4bda,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96893ea1dce66db438ac6d9ba90d4bda, type: 3}
 --- !u!4 &1428610868580143355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7041280955756490298, guid: 96893ea1dce66db438ac6d9ba90d4bda,
-    type: 3}
-  m_PrefabInstance: {fileID: 8242948226197356225}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1428610868580143354 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7041280955756490299, guid: 96893ea1dce66db438ac6d9ba90d4bda,
     type: 3}
   m_PrefabInstance: {fileID: 8242948226197356225}
   m_PrefabAsset: {fileID: 0}
