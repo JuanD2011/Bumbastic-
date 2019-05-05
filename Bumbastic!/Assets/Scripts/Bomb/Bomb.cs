@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Animator))]
@@ -7,13 +6,15 @@ public class Bomb : MonoBehaviour
 {
     private float t = 0f;
     private bool exploded = false;
+    bool canCount = false;
 
     private float timer;
     private Rigidbody m_rigidBody;
 
-    public float Timer { private get => timer; set => timer = value; }
+    public float Timer { get => timer; set => timer = value; }
     public Rigidbody RigidBody { get => m_rigidBody; set => m_rigidBody = value; }
     public bool Exploded { get => exploded; set => exploded = value; }
+    public bool CanCount { get => canCount; private set => canCount = value; }
 
     private Animator m_Animator;
 
@@ -52,9 +53,23 @@ public class Bomb : MonoBehaviour
 
         m_Animator.speed = animationCurve.Evaluate(t) * speed;
 
-        if (!Exploded && transform.parent != null)
+        if (!Exploded)
         {
-            t += Time.deltaTime;
+            if (transform.parent != null)
+            {
+                if (!canCount)
+                {
+                    canCount = true;
+                }
+                t += Time.deltaTime;
+            }
+            else
+            {
+                if (canCount)
+                {
+                    canCount = false; 
+                }
+            }
         }
 
         if (t > Timer && !Exploded)
