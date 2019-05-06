@@ -24,10 +24,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioMute[] audioMutes;
 
-    public AudioSource CurrentAudioSource
-    {
-        get { return currentAudioSource; }
-    }
+    public AudioSource CurrentAudioSource { get { return currentAudioSource; } }
 
     private void Awake()
     {
@@ -106,7 +103,7 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This is only for loops, you don't know when it is going to finish.
+    /// This is only for loops, you will use it when you don't know when it is going to finish.
     /// </summary>
     /// <param name="_clipToPlay"></param>
     /// <param name="_play"></param>
@@ -115,18 +112,26 @@ public class AudioManager : MonoBehaviour
     {
         if (!_play)
         {
-            currentAudioSource = GetAudioSource(AudioType.SFx);
+            currentAudioSource = GetAudioSourceLooping(AudioType.SFx, _clipToPlay);
+
+            if (currentAudioSource != null && _clipToPlay != null)
+            {
+                currentAudioSource.clip = null;
+                currentAudioSource.loop = false;
+                currentAudioSource.volume = 1f; 
+            }
         }
         else
         {
-            //currentAudioSource = GetAudioSource(AudioType.SFx, true);
-        }
+            currentAudioSource = GetAudioSource(AudioType.SFx);
 
-        if (currentAudioSource != null && _clipToPlay != null)
-        {
-            currentAudioSource.clip = _clipToPlay;
-            currentAudioSource.Play();
-            currentAudioSource.loop = _play;
+            if (currentAudioSource != null && _clipToPlay != null)
+            {
+                currentAudioSource.clip = _clipToPlay;
+                currentAudioSource.volume = _volume;
+                currentAudioSource.loop = true;
+                currentAudioSource.Play();
+            }
         }
     }
     #endregion
@@ -208,6 +213,7 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
+    #region Get AudioSources.
     private AudioSource GetAudioSource(AudioType _audioType)
     {
         for (int i = 0; i < audioSources.Count; i++)
@@ -249,6 +255,45 @@ public class AudioManager : MonoBehaviour
         return audioSourceCreated;
     }
 
+    private AudioSource GetAudioSourceLooping(AudioType _audioType, AudioClip _clipPlaying)
+    {
+        for (int i = 0; i < audioSources.Count; i++)
+        {
+            switch (_audioType)
+            {
+                case AudioType.Music:
+                    if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                    {
+                        return audioSources[i];
+                        break;
+                    }
+                    break;
+                case AudioType.SFx:
+                    if (audioSources[i].loop && audioSources[i].clip == _clipPlaying)
+                    {
+                        if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                        {
+                            return audioSources[i];
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
 
+        GameObject gameObject = Instantiate(audioSourceTemplate);
+        gameObject.name = string.Format("{0} AudioSource_{1}", _audioType.ToString(), audioSources.Count);
+        AudioSource audioSourceCreated = gameObject.GetComponent<AudioSource>();
+        audioSourceCreated.outputAudioMixerGroup = audioMixer.FindMatchingGroups(_audioType.ToString())[0];
 
+        if (audioSourceCreated != null)
+        {
+            audioSources.Add(audioSourceCreated);
+        }
+
+        return audioSourceCreated;
+    }
+    #endregion
 }
