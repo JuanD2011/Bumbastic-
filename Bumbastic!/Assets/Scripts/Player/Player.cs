@@ -256,7 +256,7 @@ public class Player : MonoBehaviour
         {
             Animator.SetTrigger("Stun");
         }
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, _stun, 0.6f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, _stun, 0.3f);
         canMove = !_stun;
     }
 
@@ -277,11 +277,11 @@ public class Player : MonoBehaviour
             Animator.SetTrigger("Stun"); 
         }
 
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, true, 0.6f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, true, 0.3f);
 
         yield return new WaitForSeconds(_duration);
 
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, false, 0.6f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, false, 0.3f);
         canMove = true;
     }
 }
