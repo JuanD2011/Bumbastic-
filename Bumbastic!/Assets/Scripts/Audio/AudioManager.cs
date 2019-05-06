@@ -3,6 +3,13 @@ using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections;
 
+public enum AudioType
+{
+    Music,
+    SFx,
+    Ambient
+};
+
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
@@ -12,8 +19,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Number of AudioSources")]
     [Tooltip("Number of AudioSource to be instantiated")]
-    [Range(2, 10)]
-    [SerializeField] int audioSourcesAmount = 2;
+    [Range(3, 10)]
+    [SerializeField] int audioSourcesAmount = 3;
 
     [SerializeField] GameObject audioSourceTemplate;
     [SerializeField] AudioMixer audioMixer;
@@ -53,7 +60,7 @@ public class AudioManager : MonoBehaviour
 
         for (int i = 0; i < audioSourcesAmount; i++)
         {
-            if (i == 0)
+            if (i == 0)//Music AudioSource
             {
                 GameObject gameObject = Instantiate(audioSourceTemplate);
                 gameObject.name = string.Format("{0} AudioSource_{1}", AudioType.Music.ToString(), i);
@@ -66,7 +73,20 @@ public class AudioManager : MonoBehaviour
                     audioSources.Add(audioSourceCreated);
                 }
             }
-            else
+            else if (i == 1)// Ambient AudioSource
+            {
+                GameObject gameObject = Instantiate(audioSourceTemplate);
+                gameObject.name = string.Format("{0} AudioSource_{1}", AudioType.Ambient.ToString(), i);
+                AudioSource audioSourceCreated = gameObject.GetComponent<AudioSource>();
+                audioSourceCreated.outputAudioMixerGroup = audioMixer.FindMatchingGroups(AudioType.Ambient.ToString())[0];
+                audioSourceCreated.loop = true;
+
+                if (audioSourceCreated != null)
+                {
+                    audioSources.Add(audioSourceCreated);
+                }
+            }
+            else// SFx AudioSources
             {
                 GameObject gameObject = Instantiate(audioSourceTemplate);
                 gameObject.name = string.Format("{0} AudioSource_{1}", AudioType.SFx.ToString(), i);
@@ -121,7 +141,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            if (!ClipCurrentPlaying(_clipToPlay))
+            if (!IsClipPlaying(_clipToPlay))
             {
                 currentAudioSource = GetAudioSource(AudioType.SFx);
 
@@ -232,6 +252,71 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
+    #region Ambient Methods.
+    public void PlayAmbient(AudioClip _clipToPlay, float _volume, float _timeToFadeOut, float _timeToFadeIn)
+    {
+        currentAudioSource = GetAudioSource(AudioType.Ambient);
+
+        if (currentAudioSource != null && _clipToPlay != null)
+        {
+            if (!currentAudioSource.isPlaying)
+            {
+                currentAudioSource.clip = _clipToPlay;
+                StartCoroutine(Ambient(currentAudioSource, _volume, _timeToFadeIn));
+            }
+            else
+            {
+                StartCoroutine(ChangeAmbients(currentAudioSource, _clipToPlay, _volume, _timeToFadeIn, _timeToFadeOut));
+            }
+        }
+    }
+
+    private IEnumerator Ambient(AudioSource _currentAudioSource, float _volume, float _timeToFadeIn)
+    {
+        _currentAudioSource.volume = 0f;
+        _currentAudioSource.Play();
+
+        float elapsedTime = 0f;
+        float currentVolume = _currentAudioSource.volume;
+
+        while (elapsedTime < _timeToFadeIn)
+        {
+            _currentAudioSource.volume = Mathf.Lerp(currentVolume, _volume, elapsedTime / _timeToFadeIn);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _currentAudioSource.volume = _volume;
+    }
+
+    private IEnumerator ChangeAmbients(AudioSource _currentAudioSource, AudioClip _newAmbientTrack, float _volume, float _timeToFadeIn, float _timeToFadeOut)
+    {
+        float elapsedTime = 0f;
+        float currentVolume = _currentAudioSource.volume;
+
+        while (elapsedTime < _timeToFadeOut)
+        {
+            _currentAudioSource.volume = Mathf.Lerp(currentVolume, 0f, elapsedTime / _timeToFadeOut);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _currentAudioSource.clip = _newAmbientTrack;
+
+        currentVolume = 0f;
+        elapsedTime = 0f;
+
+        while (elapsedTime < _timeToFadeIn)
+        {
+            _currentAudioSource.volume = Mathf.Lerp(currentVolume, _volume, elapsedTime / _timeToFadeIn);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        _currentAudioSource.volume = _volume;
+    }
+
+    #endregion
+
     #region Get AudioSources.
     private AudioSource GetAudioSource(AudioType _audioType)
     {
@@ -240,6 +325,13 @@ public class AudioManager : MonoBehaviour
             switch (_audioType) 
             {
                 case AudioType.Music:
+                    if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                    {
+                        return audioSources[i];
+                        break;
+                    }
+                    break;
+                case AudioType.Ambient:
                     if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
                     {
                         return audioSources[i];
@@ -281,10 +373,23 @@ public class AudioManager : MonoBehaviour
             switch (_audioType)
             {
                 case AudioType.Music:
-                    if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                    if (audioSources[i].loop && audioSources[i].clip == _clipPlaying)
                     {
-                        return audioSources[i];
-                        break;
+                        if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                        {
+                            return audioSources[i];
+                            break;
+                        } 
+                    }
+                    break;
+                case AudioType.Ambient:
+                    if (audioSources[i].loop && audioSources[i].clip == _clipPlaying)
+                    {
+                        if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                        {
+                            return audioSources[i];
+                            break;
+                        } 
                     }
                     break;
                 case AudioType.SFx:
@@ -316,7 +421,7 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
-    private bool ClipCurrentPlaying(AudioClip _clipToSearch)
+    private bool IsClipPlaying(AudioClip _clipToSearch)
     {
         bool result = false;
 

@@ -2,12 +2,6 @@
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public enum AudioType
-{
-    Music,
-    SFx
-};
-
 public class AudioMute : MonoBehaviour
 {
     public AudioType mType;
