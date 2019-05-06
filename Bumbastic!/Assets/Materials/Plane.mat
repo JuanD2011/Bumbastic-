@@ -214,6 +214,7 @@ Material:
     - _HeightPoMAmplitude: 2
     - _HeightTessAmplitude: 2
     - _HeightTessCenter: 0.5
+    - _Hole: 0
     - _InitialBend: 1
     - _InvTilingScale: 1
     - _Ior: 1
@@ -221,6 +222,7 @@ Material:
     - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 0
     - _MaterialID: 1
+    - _MaxDistance: 1.25
     - _Metallic: 0
     - _Mode: 0
     - _NormalMapSpace: 0
@@ -284,7 +286,7 @@ Material:
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Target: {r: -7.2803726, g: -2.4067352, b: 4.3838754, a: 0}
+    - _Target: {r: -7.901491, g: 3.6815512, b: -1.6159049, a: 0}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}

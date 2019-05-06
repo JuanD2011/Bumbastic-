@@ -116,23 +116,42 @@ public class AudioManager : MonoBehaviour
 
             if (currentAudioSource != null && _clipToPlay != null)
             {
-                currentAudioSource.clip = null;
-                currentAudioSource.loop = false;
-                currentAudioSource.volume = 1f; 
+                StartCoroutine(SFxOut(currentAudioSource, 0.6f));
             }
         }
         else
         {
-            currentAudioSource = GetAudioSource(AudioType.SFx);
-
-            if (currentAudioSource != null && _clipToPlay != null)
+            if (!ClipCurrentPlaying(_clipToPlay))
             {
-                currentAudioSource.clip = _clipToPlay;
-                currentAudioSource.volume = _volume;
-                currentAudioSource.loop = true;
-                currentAudioSource.Play();
+                currentAudioSource = GetAudioSource(AudioType.SFx);
+
+                if (currentAudioSource != null && _clipToPlay != null)
+                {
+                    currentAudioSource.clip = _clipToPlay;
+                    currentAudioSource.volume = _volume;
+                    currentAudioSource.loop = true;
+                    currentAudioSource.Play();
+                } 
             }
         }
+    }
+
+    IEnumerator SFxOut(AudioSource _currentAudioSource, float _timeToFadeOut)
+    {
+        float elapsedTime = 0f;
+        float audioSourceVol = _currentAudioSource.volume;
+
+        while (elapsedTime < _timeToFadeOut)
+        {
+            _currentAudioSource.volume = Mathf.Lerp(audioSourceVol, 0f, elapsedTime / _timeToFadeOut);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _currentAudioSource.clip = null;
+        _currentAudioSource.loop = false;
+        _currentAudioSource.volume = 1f;
+        _currentAudioSource.Stop();
     }
     #endregion
 
@@ -296,4 +315,20 @@ public class AudioManager : MonoBehaviour
         return audioSourceCreated;
     }
     #endregion
+
+    private bool ClipCurrentPlaying(AudioClip _clipToSearch)
+    {
+        bool result = false;
+
+        for (int i = 0; i < audioSources.Count; i++)
+        {
+            if (audioSources[i].clip == _clipToSearch)
+            {
+                return result = true;
+                break;
+            }
+        }
+
+        return result;
+    }
 }

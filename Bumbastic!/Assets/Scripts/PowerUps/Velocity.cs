@@ -17,6 +17,7 @@ public class Velocity : PowerUp
     {
         speedUpParticle = Instantiate(GameManager.Manager.speedUpParticleSystem, transform.position, Quaternion.identity, player.transform);
         player.speedPU = true;
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.speedUP, 0.6f);
         yield return new WaitForSeconds(Duration);
         player.speedPU = false;
     }

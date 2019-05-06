@@ -256,9 +256,17 @@ public class Player : MonoBehaviour
         {
             Animator.SetTrigger("Stun");
         }
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, _stun, 0.6f);
         canMove = !_stun;
     }
 
+
+    /// <summary>
+    /// This will be used on Pass bomb and Wagon hit.
+    /// </summary>
+    /// <param name="_animStun">Only if stun animation is needed</param>
+    /// <param name="_duration"></param>
+    /// <returns></returns>
     public IEnumerator Stun(bool _animStun, float _duration)
     {
         inputDirection = Vector2.zero;
@@ -268,7 +276,12 @@ public class Player : MonoBehaviour
         {
             Animator.SetTrigger("Stun"); 
         }
+
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, true, 0.6f);
+
         yield return new WaitForSeconds(_duration);
+
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, false, 0.6f);
         canMove = true;
     }
 }

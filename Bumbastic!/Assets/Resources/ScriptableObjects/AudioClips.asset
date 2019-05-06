@@ -22,3 +22,4 @@ MonoBehaviour:
   powerUpBoxDropped: {fileID: 8300000, guid: 3b3e03b87525a28449953f103fb0b0fd, type: 3}
   dropModule: {fileID: 8300000, guid: 52e9bf861ea4fd048b7ab495a9b4f3d4, type: 3}
   anticipation: {fileID: 8300000, guid: 27023d9926128e44f9a9f26cb7e5c93e, type: 3}
+  stun: {fileID: 8300000, guid: 43650f94020820541a4701e9a2aa5c5e, type: 3}
