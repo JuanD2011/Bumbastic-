@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips: {fileID: 11400000, guid: e3c3d6b5205e625479213ec54526372a, type: 2}
-  audioSourcesAmount: 2
+  audioSourcesAmount: 3
   audioSourceTemplate: {fileID: 1342834441763172139, guid: 75b276934fd45b54e81d9877cee9e8be,
     type: 3}
   audioMixer: {fileID: 24100000, guid: 1d2552f71ff182f43bf6a2aaab3cd88b, type: 2}
