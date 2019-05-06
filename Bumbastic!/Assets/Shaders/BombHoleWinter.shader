@@ -99,8 +99,6 @@
 				c.rgb = _HoleColor;
 			}
 
-            o.Albedo = c.rgb;
-
 			//Rim
 			float3 viewDir = normalize(IN.viewDir);
 			half rim = 1.0f - saturate(dot(viewDir, o.Normal));
@@ -112,7 +110,7 @@
 			float snowFactor = (dot(o.Normal, snowAngle) + 1) / 2.0;
 			half sn = (1 - _SnowThr * (1 + 0.1));
 			snowFactor = smoothstep(sn, sn + 0.1, snowFactor);
-			o.Albedo = lerp(o.Albedo, _SnowColor.rgb, snowFactor * _SnowColor.a);
+			o.Albedo = c.rgb + lerp(o.Albedo, _SnowColor.rgb, snowFactor * _SnowColor.a);
 			o.Emission += rim * _SnowRimColor.rgb * _SnowRimColor.a * snowFactor;
         }
 

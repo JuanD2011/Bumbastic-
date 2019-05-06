@@ -281,7 +281,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.990566, g: 0.768669, b: 0.18222679, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.7529412, g: 0.6117647, b: 0.23137255, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
@@ -295,7 +295,7 @@ Material:
     - _SnowShadowColor: {r: 0.19999993, g: 0.19999993, b: 0.29999995, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Target: {r: -1.1292882, g: -0.88798946, b: -4.1474657, a: 0}
+    - _Target: {r: 16.513916, g: -2.415998, b: -8.072612, a: 0}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
