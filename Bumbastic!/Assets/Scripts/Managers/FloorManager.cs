@@ -62,7 +62,7 @@ public class FloorManager : MonoBehaviour
     {
         switch (GameManager.Manager.Enviroment) 
         {
-            case EnumEnviroment.Dessert:
+            case EnumEnviroment.Desert:
                 plane.SetFloat("_SnowThr", 0f);
                 Instantiate(propsModule[Random.Range(0, propsModule.Length)], propsPos, Quaternion.identity);
                 break;

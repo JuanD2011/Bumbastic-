@@ -6,8 +6,12 @@ public class AudioClips : ScriptableObject
     //Music
     public AudioClip inGameMusic;
 
+    //Ambient
+    public AudioClip desertAmbient, winterAmbient;
+
     //SFx
     public AudioClip bomb, confettiBomb;
+    public AudioClip bombThrow, bombReception;
     public AudioClip buttonDefault, buttonBack, buttonSelection;
     public AudioClip crow;
     public AudioClip powerUpBoxDropped;
@@ -22,9 +26,7 @@ public class AudioClips : ScriptableObject
     public void SoundButton(bool _isBack)
     {
         if (_isBack)
-        {
             AudioManager.instance.PlaySFx(buttonBack);
-        }
         else
             AudioManager.instance.PlaySFx(buttonDefault);
     }

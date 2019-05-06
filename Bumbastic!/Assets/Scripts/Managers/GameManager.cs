@@ -20,7 +20,7 @@ public abstract class GameManager : MonoBehaviour
     [SerializeField]
     GameModeDataBase gameMode;
 
-    private EnumEnviroment enviroment = EnumEnviroment.Dessert;
+    private EnumEnviroment enviroment = EnumEnviroment.Desert;
 
     [SerializeField]
     GameObject playerPrefab;
@@ -51,19 +51,22 @@ public abstract class GameManager : MonoBehaviour
 
     private EnumEnviroment GetRandomEnviroment()
     {
-        EnumEnviroment result = EnumEnviroment.Dessert;
+        EnumEnviroment result = EnumEnviroment.Desert;
         int rand = Random.Range(0, 2);
 
         switch (rand)
         {
             case 0:
-                result = EnumEnviroment.Dessert;
+                result = EnumEnviroment.Desert;
+                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.desertAmbient, 0.3f, 0.6f, 1f);
                 break;
             case 1:
                 result = EnumEnviroment.Winter;
+                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.winterAmbient, 0.3f, 0.6f, 1f);
                 break;
             default:
-                result = EnumEnviroment.Dessert;
+                result = EnumEnviroment.Desert;
+                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.desertAmbient, 0.3f, 0.6f, 1f);
                 break;
         }
         return result;

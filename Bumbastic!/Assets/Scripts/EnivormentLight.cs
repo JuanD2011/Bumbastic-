@@ -17,7 +17,7 @@ public class EnivormentLight : MonoBehaviour
     {
         switch (GameManager.Manager.Enviroment)
         {
-            case EnumEnviroment.Dessert:
+            case EnumEnviroment.Desert:
                 light.color = colors[0];
                 light.colorTemperature = colorTemperature[0];
                 break;
