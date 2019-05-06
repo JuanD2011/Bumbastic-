@@ -67,7 +67,7 @@ public class FloorManager : MonoBehaviour
                 Instantiate(propsModule[Random.Range(0, propsModule.Length)], propsPos, Quaternion.identity);
                 break;
             case EnumEnviroment.Winter:
-                plane.SetFloat("_SnowThr", 0.05f);
+                plane.SetFloat("_SnowThr", 1f);
                 Instantiate(propsModuleWinter[Random.Range(0, propsModuleWinter.Length)], propsPos, Quaternion.identity);
                 break;
             default:

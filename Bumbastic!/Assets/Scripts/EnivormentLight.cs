@@ -7,9 +7,10 @@ public class EnivormentLight : MonoBehaviour
     [SerializeField] Color[] colors;
     [SerializeField] float[] colorTemperature;
 
-    private void Awake()
+    private void Start()
     {
         light = GetComponent<Light>();
+        Initialize();
     }
 
     private void Initialize()
