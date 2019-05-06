@@ -15,9 +15,12 @@ public abstract class GameManager : MonoBehaviour
     public List<Player> Players { get => players; protected set => players = value; }
     protected List<Transform> SpawnPoints { get => spawnPoints; private set => spawnPoints = value; }
     protected GameObject PlayerPrefab { get => playerPrefab; private set => playerPrefab = value; }
+    public EnumEnviroment Enviroment { get => enviroment; private set => enviroment = value; }
 
     [SerializeField]
     GameModeDataBase gameMode;
+
+    private EnumEnviroment enviroment = EnumEnviroment.Dessert;
 
     [SerializeField]
     GameObject playerPrefab;
@@ -38,10 +41,32 @@ public abstract class GameManager : MonoBehaviour
         if (Manager == null) Manager = this;
         else Destroy(this);
 
+        Enviroment = GetRandomEnviroment();
+
         Players = new List<Player>();
         Director = GetComponent<PlayableDirector>();
         PlayerMenu.ResetDel();
         SpawnPlayers();
+    }
+
+    private EnumEnviroment GetRandomEnviroment()
+    {
+        EnumEnviroment result = EnumEnviroment.Dessert;
+        int rand = Random.Range(0, 2);
+
+        switch (rand)
+        {
+            case 0:
+                result = EnumEnviroment.Dessert;
+                break;
+            case 1:
+                result = EnumEnviroment.Winter;
+                break;
+            default:
+                result = EnumEnviroment.Dessert;
+                break;
+        }
+        return result;
     }
 
     protected virtual void SpawnPlayers()

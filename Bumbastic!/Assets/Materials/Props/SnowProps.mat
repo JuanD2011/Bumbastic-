@@ -28,7 +28,7 @@ Material:
     - _RampThreshold: 0.108
     - _RimMax: 1
     - _RimMin: 1
-    - _SnowThickness: 0.0891
+    - _SnowThickness: 0.0094
     - _SnowThr: 0.384
     - __dummy__: 0
     m_Colors:

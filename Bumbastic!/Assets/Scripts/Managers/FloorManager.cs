@@ -6,10 +6,9 @@ public class FloorManager : MonoBehaviour
     [SerializeField]
     Material plane;
 
+    [SerializeField] GameObject[] propsModule, propsModuleWinter;
+    
     [SerializeField]
-    GameObject[] propsModule;
-
-	[SerializeField]
 	Transform[] colliders;
 
 	[SerializeField]
@@ -34,13 +33,10 @@ public class FloorManager : MonoBehaviour
 
 	bool anticipation = false;
 
-    private void Awake()
-    {
-        SpawnProps(propsModule.Length);
-    }
-
     void Start()
     {
+        SetEnviroment();
+
         modules = GetComponentsInChildren<Rigidbody>();
 
         while (modules.Length >= (Mathf.Pow((c + 2), 2)))
@@ -62,9 +58,23 @@ public class FloorManager : MonoBehaviour
         }
     }
 
-    private void SpawnProps(int _length)
+    private void SetEnviroment()
     {
-        Instantiate(propsModule[Random.Range(0, _length)], propsPos, Quaternion.identity);
+        switch (GameManager.Manager.Enviroment) 
+        {
+            case EnumEnviroment.Dessert:
+                plane.SetFloat("_SnowThr", 0f);
+                Instantiate(propsModule[Random.Range(0, propsModule.Length)], propsPos, Quaternion.identity);
+                break;
+            case EnumEnviroment.Winter:
+                plane.SetFloat("_SnowThr", 0.05f);
+                Instantiate(propsModuleWinter[Random.Range(0, propsModuleWinter.Length)], propsPos, Quaternion.identity);
+                break;
+            default:
+                plane.SetFloat("_SnowThr", 0f);
+                Instantiate(propsModule[Random.Range(0, propsModule.Length)], propsPos, Quaternion.identity);
+                break;
+        }
     }
 
     private void InitRings()

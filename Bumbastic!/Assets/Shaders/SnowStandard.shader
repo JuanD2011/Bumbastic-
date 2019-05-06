@@ -6,9 +6,7 @@ Shader "Custom/SnowStandard"
 	{
 		//TOONY COLORS
 		_Color ("Color", Color) = (1,1,1,1)
-		_HColor ("Highlight Color", Color) = (0.785,0.785,0.785,1.0)
-		_SColor ("Shadow Color", Color) = (0.195,0.195,0.195,1.0)
-
+		
 		//DIFFUSE
 		_MainTex ("Main Texture", 2D) = "white" {}
 
@@ -17,6 +15,7 @@ Shader "Custom/SnowStandard"
 		_RimMin ("Rim Min", Range(0, 1)) = 0.5
 		_RimMax ("Rim Max", Range(0, 1)) = 1.0
 
+		//SNOW
 		_SnowColor ("Snow Color", Color) = (.94, .96, 1, 1)
 		_SnowShadowColor ("Snow Shadow Color", Color) = (.2, .2, .3, 1)
 		_SnowRimColor ("Snow Rim", Color) = (1, 1, 1, 0.7)
@@ -30,7 +29,6 @@ Shader "Custom/SnowStandard"
 
 	SubShader
 	{
-
 		Tags { "RenderType"="Opaque" }
 
 		CGPROGRAM
@@ -49,7 +47,6 @@ Shader "Custom/SnowStandard"
 		half4 _SnowAngle;
 		fixed _SnowThr;
 		fixed _SnowThickness;
-		fixed _SketchSpeed;
 		fixed4 _RimColor;
 		fixed _RimMin;
 		fixed _RimMax;
@@ -62,20 +59,6 @@ Shader "Custom/SnowStandard"
 			half2 uv_MainTex;
 			float3 viewDir;
 		};
-
-		//================================================================
-		// CUSTOM LIGHTING
-
-		//Lighting-related variables
-		fixed4 _HColor;
-		fixed4 _SColor;
-
-		// Instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-		// #pragma instancing_options assumeuniformscaling
-		UNITY_INSTANCING_BUFFER_START(Props)
-			// put more per-instance properties here
-		UNITY_INSTANCING_BUFFER_END(Props)
 
 		//Vertex input
 		struct appdata_tcp2
@@ -134,7 +117,6 @@ Shader "Custom/SnowStandard"
 			snowFactor = smoothstep(sn, sn + 0.1, snowFactor);
 			o.Albedo = lerp(o.Albedo, _SnowColor.rgb, snowFactor * _SnowColor.a);
 			o.Emission += rim * _SnowRimColor.rgb * _SnowRimColor.a * snowFactor;
-			_SColor = lerp(_SColor, _SnowShadowColor, snowFactor);
 		}
 
 		ENDCG
