@@ -18,7 +18,7 @@ MonoBehaviour:
   bomb: {fileID: 8300000, guid: 954ba09f760448547a16f4923a278dd8, type: 3}
   confettiBomb: {fileID: 8300000, guid: 70d1587c54a681d47a4bb879ff046cd7, type: 3}
   bombThrow: {fileID: 8300000, guid: 9245f1c61e7dd9d478159b55d09f16f4, type: 3}
-  bombReception: {fileID: 0}
+  bombReception: {fileID: 8300000, guid: c9898f4b2d7a49b4086afd7ea73bbdf9, type: 3}
   buttonDefault: {fileID: 8300000, guid: 7353f1fa474ae5b4cb137c118bdc767b, type: 3}
   buttonBack: {fileID: 8300000, guid: 437107694e9bb73409f0e8eb497ff965, type: 3}
   buttonSelection: {fileID: 8300000, guid: f8311f94e8f66fb43b5b2e1a9cb99c4a, type: 3}

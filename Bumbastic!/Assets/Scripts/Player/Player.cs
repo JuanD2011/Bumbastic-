@@ -248,6 +248,7 @@ public class Player : MonoBehaviour
         {
             GameManager.Manager.PassBomb(this);
             Animator.SetTrigger("Reception");
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombReception, 0.6f);
             SetOverrideAnimator(true);
         }
     }
