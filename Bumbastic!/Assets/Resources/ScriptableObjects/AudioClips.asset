@@ -28,3 +28,4 @@ MonoBehaviour:
   anticipation: {fileID: 8300000, guid: 27023d9926128e44f9a9f26cb7e5c93e, type: 3}
   stun: {fileID: 8300000, guid: 43650f94020820541a4701e9a2aa5c5e, type: 3}
   speedUP: {fileID: 8300000, guid: 9e556d666dd7e61479c6afbd576a2edc, type: 3}
+  crowdCheer: {fileID: 8300000, guid: 2da3c7e696c0aa74b8da6f77b5538919, type: 3}

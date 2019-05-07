@@ -137,6 +137,8 @@ public abstract class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over");
 
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer);
+
         foreach (Player player in Players)
         {
             player.CanMove = false;

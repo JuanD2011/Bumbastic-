@@ -3,13 +3,13 @@
 [CreateAssetMenu(fileName = "AudioClips",menuName = "AudioClips")]
 public class AudioClips : ScriptableObject
 {
-    //Music
+    [Header("Music")]
     public AudioClip inGameMusic;
 
-    //Ambient
+    [Header("Ambient")]
     public AudioClip desertAmbient, winterAmbient;
 
-    //SFx
+    [Header("SFx")]
     public AudioClip bomb, confettiBomb;
     public AudioClip bombThrow, bombReception;
     public AudioClip buttonDefault, buttonBack, buttonSelection;
@@ -18,6 +18,9 @@ public class AudioClips : ScriptableObject
     public AudioClip dropModule, anticipation;
     public AudioClip stun;
     public AudioClip speedUP;
+
+    [Header("Support")]
+    public AudioClip crowdCheer;
 
     /// <summary>
     /// Method called by buttons
