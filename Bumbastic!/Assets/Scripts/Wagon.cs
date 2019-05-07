@@ -35,7 +35,7 @@ public class Wagon : MonoBehaviour
         {
             if (m_Rigidbody.velocity != Vector3.zero)
             {
-                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit, 0.6f);
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit);
                 StartCoroutine(playerCollisioned.Stun(true, 2.2f));
 
                 if (playerCollisioned.transform.position.z > transform.position.z)
