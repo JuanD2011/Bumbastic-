@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
 public class PowerUp : MonoBehaviour, IPowerUp
 {
     private float duration = 0f;
@@ -31,6 +30,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
                 break;
             case 1:
                 _player.gameObject.AddComponent<Magnet>();
+                _player.Collider.enabled = true;
                 //_player.gameObject.AddComponent<Velocity>();
                 break;
             case 2:

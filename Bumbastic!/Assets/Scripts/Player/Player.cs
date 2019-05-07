@@ -175,12 +175,12 @@ public class Player : MonoBehaviour
         Quaternion initialRotation = transform.rotation;
         Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
     
-        while (elapsedTime < 0.14f)
+        while (elapsedTime < 0.15f)
         { 
             if (InputAiming != Vector2.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(aiming);
-                transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, elapsedTime / 0.14f);
+                transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, elapsedTime / 0.15f);
             }
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -199,6 +199,8 @@ public class Player : MonoBehaviour
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * transform.forward;
             HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombThrow, 0.7f);
+
         HasBomb = false;
         throwing = false;
     }
