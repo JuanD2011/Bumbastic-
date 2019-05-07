@@ -108,7 +108,7 @@ public class HotPotatoManager : GameManager
         if (BombHolder != null)
         {
             BombHolder.HasBomb = false;
-            //BombHolder.Collider.enabled = true;
+            BombHolder.Collider.enabled = true;
             transmitter = BombHolder;
             Debug.Log("Transmitter:" + transmitter.Id);
         }
@@ -130,7 +130,7 @@ public class HotPotatoManager : GameManager
         Debug.Log("Transmitter:" + _transmitter.Id);
         transmitter = _transmitter;
         _transmitter.HasBomb = false;
-        //_transmitter.Collider.enabled = true;
+        _transmitter.Collider.enabled = true;
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
         BombHolder = _receiver;
