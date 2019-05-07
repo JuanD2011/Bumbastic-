@@ -60,7 +60,6 @@ public class SkinSelector : MonoBehaviour
     #region With Buttons
     public void NextSkin()
     {
-        Debug.Log("Next");
         skinsData.skins[Position].choosed = false;
         int currentSkin = GetAvailableSkin(true);
         OnChangeSkin?.Invoke(player - 1, currentSkin);//Skin manager
@@ -68,7 +67,6 @@ public class SkinSelector : MonoBehaviour
 
     public void PreviousSkin()
     {
-        Debug.Log("Previous");
         skinsData.skins[Position].choosed = false; 
         int currentSkin = GetAvailableSkin(false);
         OnChangeSkin?.Invoke(player - 1, currentSkin);//Skin manager
