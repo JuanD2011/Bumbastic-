@@ -1,34 +1,28 @@
 fileFormatVersion: 2
-guid: 9b4e22a471507ec4b8ac9e90d92bb9c1
+guid: f087055c55537274c808fa6110c2cb6f
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Armature
-    100002: Bone
-    100004: Bone_001
-    100006: Bone_002
-    100008: Bone_003
-    100010: Bone_004
-    100012: //RootNode
-    100014: WickModel
-    400000: Armature
-    400002: Bone
-    400004: Bone_001
-    400006: Bone_002
-    400008: Bone_003
-    400010: Bone_004
-    400012: //RootNode
-    400014: WickModel
-    2100000: WickMat
-    4300000: WickModel
-    7400000: Default Take
-    7400002: Wick
-    9500000: //RootNode
-    13700000: WickModel
-    2186277476908879412: ImportLogs
-  externalObjects: {}
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Base
+    2100002: Pelo
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Circle
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base
+    second: {fileID: 2100000, guid: e64556ade9ea5db4aa09bfa3023b2ec2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pelo
+    second: {fileID: 2100000, guid: ef299752d993c0041ae5146ec9d469b4, type: 2}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -79,7 +73,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -106,7 +100,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
