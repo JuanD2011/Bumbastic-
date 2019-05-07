@@ -36,6 +36,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
             case 2:
                 //_player.gameObject.AddComponent<Shield>();
                 _player.gameObject.AddComponent<Magnet>();
+                _player.Collider.enabled = true;
                 //_player.gameObject.AddComponent<Velocity>();
                 break;
             case 3:
