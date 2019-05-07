@@ -49,7 +49,7 @@ public abstract class GameManager : MonoBehaviour
         SpawnPlayers();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         InitAudio();
     }
