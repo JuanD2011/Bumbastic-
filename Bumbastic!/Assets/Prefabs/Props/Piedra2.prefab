@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8063707967452687327}
   - component: {fileID: 4325837549507354115}
   - component: {fileID: 7607513476233593608}
-  - component: {fileID: 91454544159912644}
+  - component: {fileID: 5379995918864721086}
   m_Layer: 0
   m_Name: Piedra2
   m_TagString: Floor
@@ -91,8 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523603042f7773542801260464edba46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &91454544159912644
-SphereCollider:
+--- !u!65 &5379995918864721086
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,5 +102,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.0452031
-  m_Center: {x: -0.12157469, y: 0.14194249, z: -0.009968518}
+  m_Size: {x: 2.0067759, y: 1.3962305, z: 2.0904064}
+  m_Center: {x: -0.1215747, y: 0.1419425, z: -0.009968519}
