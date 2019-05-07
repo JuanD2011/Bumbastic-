@@ -49,6 +49,27 @@ public abstract class GameManager : MonoBehaviour
         SpawnPlayers();
     }
 
+    private void Start()
+    {
+        InitAudio();
+    }
+
+    private void InitAudio()
+    {
+        switch (Enviroment)
+        {
+            case EnumEnviroment.Desert:
+                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.desertAmbient, 0.3f, 0.6f, 1f);
+                break;
+            case EnumEnviroment.Winter:
+                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.winterAmbient, 0.3f, 0.6f, 1f);
+                break;
+            default:
+                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.desertAmbient, 0.3f, 0.6f, 1f);
+                break;
+        }
+    }
+
     private EnumEnviroment GetRandomEnviroment()
     {
         EnumEnviroment result = EnumEnviroment.Desert;
@@ -58,15 +79,12 @@ public abstract class GameManager : MonoBehaviour
         {
             case 0:
                 result = EnumEnviroment.Desert;
-                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.desertAmbient, 0.3f, 0.6f, 1f);
                 break;
             case 1:
                 result = EnumEnviroment.Winter;
-                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.winterAmbient, 0.3f, 0.6f, 1f);
                 break;
             default:
                 result = EnumEnviroment.Desert;
-                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.desertAmbient, 0.3f, 0.6f, 1f);
                 break;
         }
         return result;
