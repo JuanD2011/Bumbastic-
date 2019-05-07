@@ -320,7 +320,6 @@ public class AudioManager : MonoBehaviour
     #region Get AudioSources.
     private AudioSource GetAudioSource(AudioType _audioType)
     {
-        Debug.Log(_audioType.ToString());
         for (int i = 0; i < audioSources.Count; i++)
         {
             switch (_audioType) 
@@ -334,7 +333,6 @@ public class AudioManager : MonoBehaviour
                 case AudioType.Ambient:
                     if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
                     {
-                        Debug.Log("Hol");
                         return audioSources[i];
                     }
                     break;

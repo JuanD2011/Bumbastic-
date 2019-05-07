@@ -15,9 +15,9 @@ public class Wagon : MonoBehaviour
 
     private void Start()
     {
+        m_Rigidbody = GetComponent<Rigidbody>();
         if (GameModeDataBase.IsCurrentFreeForAll())
         {
-            m_Rigidbody = GetComponent<Rigidbody>();
             colliders = GetComponentsInChildren<Collider>();
 
             foreach (Collider collider in colliders)
@@ -31,10 +31,13 @@ public class Wagon : MonoBehaviour
     {
         Player playerCollisioned = other.GetComponentInParent<Player>();
 
-        if (playerCollisioned != null)
+        if (playerCollisioned != null && playerCollisioned.CanMove)
         {
             if (m_Rigidbody.velocity != Vector3.zero)
             {
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit, 0.6f);
+                StartCoroutine(playerCollisioned.Stun(true, 2.2f));
+
                 if (playerCollisioned.transform.position.z > transform.position.z)
                 {
                     playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * Vector3.forward * pushForce, ForceMode.Impulse);
@@ -43,8 +46,6 @@ public class Wagon : MonoBehaviour
                 {
                     playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * -Vector3.forward * pushForce, ForceMode.Impulse);
                 }
-
-                StartCoroutine(playerCollisioned.Stun(true, 2.2f));
             }
         }
 
