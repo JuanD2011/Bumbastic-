@@ -67,6 +67,10 @@ public class PlayerMenu : MonoBehaviour
             Debug.Log("Back");
             Debug.Log(controls.bButton);
 
+            if (!ready)
+            {
+                OnBackButton?.Invoke(Id);//MenuUI hears it 
+            }
             if (MenuCanvas.isMatchmaking)
             {
                 if (ready)
@@ -75,7 +79,6 @@ public class PlayerMenu : MonoBehaviour
                     OnNotReady?.Invoke(id);//MenuManager hears it
                 }
             }
-            OnBackButton?.Invoke(Id);//MenuUI hears it
         }
 
         if (Input.GetKeyDown(controls.rightBumper))
