@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
 
     public void Throw()
     {
-        if (HasBomb)
+        if (HasBomb && CanMove)
         {
             Animator.SetTrigger("Throw");
             SetOverrideAnimator(false);

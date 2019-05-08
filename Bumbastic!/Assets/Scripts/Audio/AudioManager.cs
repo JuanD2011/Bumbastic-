@@ -401,17 +401,7 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        GameObject gameObject = Instantiate(audioSourceTemplate);
-        gameObject.name = string.Format("{0} AudioSource_{1}", _audioType.ToString(), audioSources.Count);
-        AudioSource audioSourceCreated = gameObject.GetComponent<AudioSource>();
-        audioSourceCreated.outputAudioMixerGroup = audioMixer.FindMatchingGroups(_audioType.ToString())[0];
-
-        if (audioSourceCreated != null)
-        {
-            audioSources.Add(audioSourceCreated);
-        }
-
-        return audioSourceCreated;
+        return null;
     }
     #endregion
 

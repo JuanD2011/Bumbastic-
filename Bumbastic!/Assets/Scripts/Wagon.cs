@@ -81,7 +81,7 @@ public class Wagon : MonoBehaviour
 
         if (m_Rigidbody.velocity == Vector3.zero)
         {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.rollingWagon, true, 0.7f);
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.rollingWagon, true, 1f);
             m_Rigidbody.AddForce(transform.forward * velocity, ForceMode.Impulse);
         }
     }
