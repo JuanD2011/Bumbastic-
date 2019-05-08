@@ -38,7 +38,6 @@ public class SkinSelector : MonoBehaviour
     {
         if (player - 1 == _playerId)
         {
-            Debug.Log("Previous");
             skinsData.skins[Position].choosed = false;
             int currentSkin = GetAvailableSkin(false);
             OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager
@@ -49,7 +48,6 @@ public class SkinSelector : MonoBehaviour
     {
         if (player - 1 == _playerId)
         {
-            Debug.Log("Next");
             skinsData.skins[Position].choosed = false;
             int currentSkin = GetAvailableSkin(true);
             OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager 
