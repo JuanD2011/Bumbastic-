@@ -170,6 +170,7 @@ public class MenuManager : MonoBehaviour
         texts[_id].text = "Press Start";
         countdown = false;
         timer = startTimer;
+        OnCountdown?.Invoke(false);//MenuUI hears it.
     }
 
     public void SaveData(int _id)
