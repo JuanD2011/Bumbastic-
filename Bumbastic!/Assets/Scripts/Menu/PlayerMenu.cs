@@ -52,10 +52,11 @@ public class PlayerMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(controls.startButton) || Input.GetKeyDown(controls.aButton))
         {
-            counter++;
-            if (MenuCanvas.isMatchmaking && counter >= 2)
+            Debug.Log(counter);
+            if (MenuCanvas.isMatchmaking)
             {
-                if (!ready)
+                counter++;
+                if (!ready && counter >= 2)
                 {
                     ready = true;
                     OnReady?.Invoke(Id);//MenuManager hears it
