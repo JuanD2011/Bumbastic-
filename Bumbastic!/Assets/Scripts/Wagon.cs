@@ -6,7 +6,7 @@ public class Wagon : MonoBehaviour
 {
     [SerializeField] float pushForce = 10f;
     [SerializeField] float velocity = 15f;
-    [SerializeField] float timeToRestart = 7f, timeToStart = 5f;
+    [SerializeField] float timeToStart = 5f;
     [SerializeField] float timeToLerpPosition = 0.3f;
 
     Rigidbody m_Rigidbody;
@@ -35,7 +35,7 @@ public class Wagon : MonoBehaviour
         {
             if (m_Rigidbody.velocity != Vector3.zero)
             {
-                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit);
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit, 1f);
                 StartCoroutine(playerCollisioned.Stun(true, 2.2f));
 
                 if (playerCollisioned.transform.position.z > transform.position.z)
@@ -53,6 +53,7 @@ public class Wagon : MonoBehaviour
         {
             if (other.tag == "Wagon")
             {
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.rollingWagon, false, 0.7f);
                 StartCoroutine(LerpPosition(timeToLerpPosition, transform.position, other.transform.position));
                 transform.rotation = other.transform.rotation;
                 m_Rigidbody.velocity = Vector3.zero;
@@ -76,12 +77,11 @@ public class Wagon : MonoBehaviour
 
     private IEnumerator InitWagon()
     {
-        WaitForSeconds waitToStart = new WaitForSeconds(timeToStart);
-
-        yield return waitToStart;
+        yield return new WaitForSeconds(timeToStart);
 
         if (m_Rigidbody.velocity == Vector3.zero)
         {
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.rollingWagon, true, 0.7f);
             m_Rigidbody.AddForce(transform.forward * velocity, ForceMode.Impulse);
         }
     }

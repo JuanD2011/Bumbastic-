@@ -16,7 +16,8 @@ public class AudioClips : ScriptableObject
     public AudioClip crow;
     public AudioClip powerUpBoxDropped;
     public AudioClip dropModule, anticipation;
-    public AudioClip stun, wagonHit;
+    public AudioClip stun;
+    public AudioClip wagonHit, rollingWagon;
     public AudioClip speedUP;
 
     [Header("Support")]
