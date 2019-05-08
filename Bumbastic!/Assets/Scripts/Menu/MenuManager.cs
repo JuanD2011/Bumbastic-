@@ -38,6 +38,7 @@ public class MenuManager : MonoBehaviour
     private bool countdown = false;
 
     private byte playersReady = 0;
+    private int maxPlayers = 0;
 
     List<PlayerMenu> players = new List<PlayerMenu>();
 
@@ -146,6 +147,7 @@ public class MenuManager : MonoBehaviour
             Players.Add(player);
         }
 
+        maxPlayers = _joysticks.Count;
         InputManager.inputManager.AssignController(_joysticks);
     }
 
@@ -153,7 +155,7 @@ public class MenuManager : MonoBehaviour
     {
         playersReady++;
         texts[_id].text = "Ready";
-        if (playersReady == inGame.maxPlayers)
+        if (playersReady == maxPlayers)
         {
             countdown = true;
             OnCountdown?.Invoke(true);//MenuUI hears it.

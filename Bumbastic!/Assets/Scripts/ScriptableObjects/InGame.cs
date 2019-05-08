@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class InGame : ScriptableObject
 {
     public const byte maxScore = 3;
-    public int maxPlayers;
     public Transform posDropPU;
 
     public static List<PlayerSettings> playerSettings = new List<PlayerSettings>();
