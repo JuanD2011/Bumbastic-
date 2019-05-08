@@ -32,6 +32,8 @@ public class PlayerMenu : MonoBehaviour
     [SerializeField]
     private GameObject avatar;
 
+    public static byte counter = 0;
+
     private void Awake()
     {
         ResetDel();
@@ -50,7 +52,8 @@ public class PlayerMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(controls.startButton) || Input.GetKeyDown(controls.aButton))
         {
-            if (MenuCanvas.isMatchmaking)
+            counter++;
+            if (MenuCanvas.isMatchmaking && counter >= 2)
             {
                 if (!ready)
                 {
