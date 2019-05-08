@@ -50,8 +50,6 @@ public class PlayerMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(controls.startButton) || Input.GetKeyDown(controls.aButton))
         {
-            OnStartButton?.Invoke(Id);
-
             if (MenuCanvas.isMatchmaking)
             {
                 if (!ready)
@@ -60,6 +58,7 @@ public class PlayerMenu : MonoBehaviour
                     OnReady?.Invoke(Id);//MenuManager hears it
                 }
             }
+            OnStartButton?.Invoke(Id);
         }
 
         if (Input.GetKeyDown(controls.bButton) || Input.GetKeyDown(KeyCode.Escape))
