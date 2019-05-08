@@ -254,6 +254,7 @@ public class Player : MonoBehaviour
 
     public void Stun(bool _stun)
     {
+        Animator.SetBool("CanMove", !_stun);
         if (_stun)
         {
             Animator.SetTrigger("Stun");
@@ -271,19 +272,20 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Stun(bool _animStun, float _duration)
     {
+        Animator.SetBool("CanMove", false);
         inputDirection = Vector2.zero;
         canMove = false;
 
         if (_animStun)
         {
             Animator.SetTrigger("Stun"); 
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, true, 0.6f);
         }
 
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, true, 0.6f);
-
         yield return new WaitForSeconds(_duration);
+        Animator.SetBool("CanMove", true);
 
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, false, 0.6f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, false, 0.6f); 
         canMove = true;
     }
 }
