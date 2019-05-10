@@ -35,10 +35,7 @@ public class InGameCanvas : Canvas
         {
             for (int j = 0; j < InGame.playerSettings[i].score; j++)
             {
-                if (!playerScores[i].Stars[j].enabled)
-                {
-                    playerScores[i].Stars[j].enabled = true; 
-                }
+                playerScores[i].Stars[j].color = Color.white;
             }
         }
     }
@@ -50,12 +47,6 @@ public class InGameCanvas : Canvas
             playerScores[i].InitComponents();
             playerScores[i].PlayerSkinSprite.enabled = true;
             playerScores[i].PlayerSkinSprite.sprite = InGame.playerSettings[i].skinSprite;
-            playerScores[i].Name.text = InGame.playerSettings[i].name;
-
-            for (int j = 0; j < InGame.playerSettings[i].score; j++)
-            {
-                playerScores[i].Stars[j].enabled = true;
-            }
         }
     }
 
