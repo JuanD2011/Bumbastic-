@@ -84,7 +84,7 @@ public class FreeForAllManager : HotPotatoManager
             if (KillsCounter[i] == maxKills)
             {
                 WinnerID = i;
-                InGame.playerSettings[i].score += 1;
+                InputManager.playerSettings[i].score += 1;
                 gameOver = true;
                 break;
             }

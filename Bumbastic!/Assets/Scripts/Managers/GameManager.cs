@@ -92,13 +92,13 @@ public abstract class GameManager : MonoBehaviour
 
     protected virtual void SpawnPlayers()
     {
-        for (int i = 0; i < InGame.playerSettings.Count; i++)
+        for (int i = 0; i < InputManager.playerSettings.Count; i++)
         {
             Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
             Players.Add(player);
-            player.Controls = InGame.playerSettings[i].controls;
-            player.Avatar = InGame.playerSettings[i].avatar;
-            player.PrefabName = InGame.playerSettings[i].name;
+            player.Controls = InputManager.playerSettings[i].controls;
+            player.Avatar = InputManager.playerSettings[i].avatar;
+            player.PrefabName = InputManager.playerSettings[i].name;
             player.Id = (byte)i;
             player.SpawnPoint = GetSpawnPoint();
             player.transform.position = player.SpawnPoint;
@@ -144,11 +144,11 @@ public abstract class GameManager : MonoBehaviour
             player.CanMove = false;
         }
 
-        OnGameModeOver?.Invoke();//InGameCanvas
+        OnGameModeOver?.Invoke();//InputManagerCanvas
 
-        for (int i = 0; i < InGame.playerSettings.Count; i++)
+        for (int i = 0; i < InputManager.playerSettings.Count; i++)
         {
-            if (InGame.playerSettings[i].score == InGame.maxScore)
+            if (InputManager.playerSettings[i].score == InGame.maxScore)
             {
                 OnGameOver?.Invoke();//InGameCanvas hears it.
                 return;

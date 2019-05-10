@@ -48,9 +48,6 @@ public class MenuManager : MonoBehaviour
     public delegate void SetCountdown(bool _bool);
     public SetCountdown OnCountdown;
 
-    public delegate void InputsDelegate(List<string> _players);
-    public InputsDelegate OnFirstPlayers;
-
     public List<PlayerMenu> Players { get => players; private set => players = value; }
 
     private void Awake()
@@ -121,10 +118,10 @@ public class MenuManager : MonoBehaviour
     private void StartGame()
     {
         countdown = false;
-        InGame.playerSettings.Clear();
+        InputManager.playerSettings.Clear();
         for (int i = 0; i < Players.Count; i++)
         {
-            InGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls, Players[i].SkinSprite, Players[i].Color));
+            InputManager.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls, Players[i].SkinSprite, Players[i].Color));
         }
         GameModeDataBase.currentGameMode = GetRandomGameMode();
         OnStartGame?.Invoke("GameMode");//MenuUI hears it.

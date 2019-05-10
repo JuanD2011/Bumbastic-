@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class InputManager : MonoBehaviour
 {
@@ -10,19 +11,22 @@ public class InputManager : MonoBehaviour
     private byte joystickNumber;
     private List<PlayerMenu> playerMenus = new List<PlayerMenu>();
 
+    public static List<PlayerSettings> playerSettings = new List<PlayerSettings>();
+
     private void Awake()
     {
         if (inputManager == null)
         {
             inputManager = this;
+            DontDestroyOnLoad(gameObject);
         }
+        else
+            Destroy(gameObject);
     }
 
     private void Start()
     {
         GetJoysticks();
-
-        MenuManager.menu.OnFirstPlayers += AssignController;
     }
 
     private void GetJoysticks()
@@ -97,7 +101,7 @@ public class InputManager : MonoBehaviour
     }
 }
 
-public struct Controls
+public class Controls
 {
     public string controllerName;
     public KeyCode aButton;
@@ -112,13 +116,13 @@ public struct Controls
     public string rjoystickVertical;
     public string rightAxisTrigger;
 
-    public Controls(byte _joystickNumber, string _controllerName) : this()
+    public Controls(byte _joystickNumber, string _controllerName)
     {
         switch (_joystickNumber)
         {
             case 0:
                 controllerName = _controllerName;
-                if (controllerName.Length == 33 || controllerName.Length == 32)
+                if (controllerName.Length == 33 || controllerName.Length == 32 || controllerName.Length == 23)
                 {
                     aButton = KeyCode.Joystick1Button0;
                     bButton = KeyCode.Joystick1Button1;
@@ -156,7 +160,7 @@ public struct Controls
 
             case 1:
                 controllerName = _controllerName;
-                if (controllerName.Length == 33 || controllerName.Length == 32)
+                if (controllerName.Length == 33 || controllerName.Length == 32 || controllerName.Length == 23)
                 {
                     aButton = KeyCode.Joystick2Button0;
                     bButton = KeyCode.Joystick2Button1;
@@ -193,7 +197,7 @@ public struct Controls
                 break;
             case 2:
                 controllerName = _controllerName;
-                if (controllerName.Length == 33 || controllerName.Length == 32)
+                if (controllerName.Length == 33 || controllerName.Length == 32 || controllerName.Length == 23)
                 {
                     aButton = KeyCode.Joystick3Button0;
                     bButton = KeyCode.Joystick3Button1;
@@ -230,7 +234,7 @@ public struct Controls
                 break;
             case 3:
                 controllerName = _controllerName;
-                if (controllerName.Length == 33 || controllerName.Length == 32)
+                if (controllerName.Length == 33 || controllerName.Length == 32 || controllerName.Length == 23)
                 {
                     aButton = KeyCode.Joystick4Button0;
                     bButton = KeyCode.Joystick4Button1;

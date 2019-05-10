@@ -31,9 +31,9 @@ public class InGameCanvas : Canvas
 
     private void UpdateScore()
     {
-        for (int i = 0; i < InGame.playerSettings.Count; i++)
+        for (int i = 0; i < InputManager.playerSettings.Count; i++)
         {
-            for (int j = 0; j < InGame.playerSettings[i].score; j++)
+            for (int j = 0; j < InputManager.playerSettings[i].score; j++)
             {
                 playerScores[i].Stars[j].color = Color.white;
             }
@@ -42,7 +42,7 @@ public class InGameCanvas : Canvas
 
     private void SetPlayersScore()
     {
-        for (int i = 0; i < InGame.playerSettings.Count; i++)
+        for (int i = 0; i < InputManager.playerSettings.Count; i++)
         {
             if (!playerScores[i].transform.parent.gameObject.activeInHierarchy)
             {
@@ -50,7 +50,7 @@ public class InGameCanvas : Canvas
             }
             playerScores[i].InitComponents();
             playerScores[i].PlayerSkinSprite.enabled = true;
-            playerScores[i].PlayerSkinSprite.sprite = InGame.playerSettings[i].skinSprite;
+            playerScores[i].PlayerSkinSprite.sprite = InputManager.playerSettings[i].skinSprite;
         }
     }
 
@@ -86,12 +86,12 @@ public class InGameCanvas : Canvas
         if (GameModeDataBase.IsCurrentHotPotato())
         {
             textWinner.text = string.Format("{0}", GameManager.Manager.Players[0].PrefabName);
-            playerSprite.sprite = InGame.playerSettings[GameManager.Manager.Players[0].Id].skinSprite;
+            playerSprite.sprite = InputManager.playerSettings[GameManager.Manager.Players[0].Id].skinSprite;
         }
         else if (GameModeDataBase.IsCurrentFreeForAll())
         {
-            textWinner.text = string.Format("{0}", InGame.playerSettings[FreeForAllManager.FreeForAll.WinnerID].name);
-            playerSprite.sprite = InGame.playerSettings[FreeForAllManager.FreeForAll.WinnerID].skinSprite;
+            textWinner.text = string.Format("{0}", InputManager.playerSettings[FreeForAllManager.FreeForAll.WinnerID].name);
+            playerSprite.sprite = InputManager.playerSettings[FreeForAllManager.FreeForAll.WinnerID].skinSprite;
         }
         else if (GameModeDataBase.IsCurrentBasesGame())
         {
