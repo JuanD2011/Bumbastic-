@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SkinSelector : MonoBehaviour
@@ -20,7 +21,7 @@ public class SkinSelector : MonoBehaviour
     private void Start()
     {
         PlayerMenu.OnLeftBumper += PreviousSkin;
-        PlayerMenu.OnRightBumper += NextSkin; 
+        PlayerMenu.OnRightBumper += NextSkin;
     }
 
     public void InitSkinSelector()

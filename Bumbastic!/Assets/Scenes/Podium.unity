@@ -526,6 +526,7 @@ MonoBehaviour:
   - {fileID: 1663551004}
   - {fileID: 1228823247}
   - {fileID: 1514014493}
+  - {fileID: 840595475}
   playerPrefab: {fileID: 63817899032751289, guid: f83502d98471cb04da5a707e5cc13688,
     type: 3}
 --- !u!114 &431491413
@@ -773,6 +774,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 970831179}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &840595474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 840595475}
+  m_Layer: 0
+  m_Name: SpawnPoint4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &840595475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840595474}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -5.29, y: 0.3, z: -5.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &856167797
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,7 +52,6 @@ public class PlayerMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(controls.startButton) || Input.GetKeyDown(controls.aButton))
         {
-            Debug.Log(counter);
             if (MenuCanvas.isMatchmaking)
             {
                 counter++;
@@ -86,18 +85,15 @@ public class PlayerMenu : MonoBehaviour
 
         if (Input.GetKeyDown(controls.rightBumper))
         {
-            OnRightBumper?.Invoke(Id);
+            if (Input.GetKeyDown(controls.leftBumper)){}
+            else
+                OnRightBumper?.Invoke(Id);
         }
-
-        if (Input.GetKeyDown(controls.leftBumper))
+        else if (Input.GetKeyDown(controls.leftBumper))
         {
-            OnLeftBumper?.Invoke(Id);
+            if (Input.GetKeyDown(controls.rightBumper)){}
+            else
+                OnLeftBumper?.Invoke(Id);
         }
-
-        //if (Input.GetKeyDown(controls.aButton))
-        //{
-        //    Debug.Log("A");
-        //    OnAcceptButton?.Invoke();
-        //}
     }
 }

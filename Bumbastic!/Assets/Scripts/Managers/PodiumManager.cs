@@ -24,27 +24,24 @@ public class PodiumManager : MonoBehaviour
     {
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
-            if (i < 3)
+            Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
+            player.Controls = InGame.playerSettings[i].controls;
+            player.Avatar = InGame.playerSettings[i].avatar;
+            player.PrefabName = InGame.playerSettings[i].name;
+            player.Id = (byte)i;
+            player.SpawnPoint = spawnPoints[i].position;
+            player.transform.position = player.SpawnPoint;
+            player.transform.rotation = new Quaternion(0, 180, 0, 0);
+            player.Initialize();
+            if (i == 0)
             {
-                Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
-                player.Controls = InGame.playerSettings[i].controls;
-                player.Avatar = InGame.playerSettings[i].avatar;
-                player.PrefabName = InGame.playerSettings[i].name;
-                player.Id = (byte)i;
-                player.SpawnPoint = spawnPoints[i].position;
-                player.transform.position = player.SpawnPoint;
-                player.transform.rotation = new Quaternion(0, 180, 0, 0);
-                player.Initialize();
-                if (i == 0)
-                {
-                    player.PodiumAnimation(true);
-                }
-                else
-                {
-                    player.PodiumAnimation(false);
-                }
-                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer, 1f);
+                player.PodiumAnimation(true);
             }
+            else
+            {
+                player.PodiumAnimation(false);
+            }
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer, 1f);
         }
     }
 }
