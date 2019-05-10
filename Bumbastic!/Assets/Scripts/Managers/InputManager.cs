@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using TMPro;
 
 public class InputManager : MonoBehaviour
 {
@@ -11,17 +10,12 @@ public class InputManager : MonoBehaviour
     private byte joystickNumber;
     private List<PlayerMenu> playerMenus = new List<PlayerMenu>();
 
-    public static List<PlayerSettings> playerSettings = new List<PlayerSettings>();
-
     private void Awake()
     {
         if (inputManager == null)
-        {
             inputManager = this;
-            DontDestroyOnLoad(gameObject);
-        }
         else
-            Destroy(gameObject);
+            Destroy(this);
     }
 
     private void Start()

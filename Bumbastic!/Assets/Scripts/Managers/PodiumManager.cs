@@ -11,8 +11,8 @@ public class PodiumManager : MonoBehaviour
 
     private void Awake()
     {
-        InputManager.playerSettings = InputManager.playerSettings.OrderBy(w => w.score).ToList();
-        InputManager.playerSettings.Reverse();
+        InGame.playerSettings = InGame.playerSettings.OrderBy(w => w.score).ToList();
+        InGame.playerSettings.Reverse();
     }
 
     private void Start()
@@ -22,14 +22,14 @@ public class PodiumManager : MonoBehaviour
 
     private void SpawnPlayers()
     {
-        for (int i = 0; i < InputManager.playerSettings.Count; i++)
+        for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             if (i < 3)
             {
                 Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
-                player.Controls = InputManager.playerSettings[i].controls;
-                player.Avatar = InputManager.playerSettings[i].avatar;
-                player.PrefabName = InputManager.playerSettings[i].name;
+                player.Controls = InGame.playerSettings[i].controls;
+                player.Avatar = InGame.playerSettings[i].avatar;
+                player.PrefabName = InGame.playerSettings[i].name;
                 player.Id = (byte)i;
                 player.SpawnPoint = spawnPoints[i].position;
                 player.transform.position = player.SpawnPoint;

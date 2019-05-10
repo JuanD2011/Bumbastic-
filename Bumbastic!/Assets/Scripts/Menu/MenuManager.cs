@@ -118,10 +118,10 @@ public class MenuManager : MonoBehaviour
     private void StartGame()
     {
         countdown = false;
-        InputManager.playerSettings.Clear();
+        InGame.playerSettings.Clear();
         for (int i = 0; i < Players.Count; i++)
         {
-            InputManager.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls, Players[i].SkinSprite, Players[i].Color));
+            InGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls, Players[i].SkinSprite, Players[i].Color));
         }
         GameModeDataBase.currentGameMode = GetRandomGameMode();
         OnStartGame?.Invoke("GameMode");//MenuUI hears it.

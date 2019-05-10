@@ -19,13 +19,13 @@ public class BasesGameManager : GameManager
 
     protected override void SpawnPlayers()
     {
-        for (int i = 0; i < InputManager.playerSettings.Count; i++)
+        for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
             Players.Add(player);
-            player.Controls = InputManager.playerSettings[i].controls;
-            player.Avatar = InputManager.playerSettings[i].avatar;
-            player.PrefabName = InputManager.playerSettings[i].name;
+            player.Controls = InGame.playerSettings[i].controls;
+            player.Avatar = InGame.playerSettings[i].avatar;
+            player.PrefabName = InGame.playerSettings[i].name;
             player.Id = (byte)i;
             player.SpawnPoint = SpawnPoints[i].transform.position;
             player.transform.position = player.SpawnPoint;
@@ -42,8 +42,8 @@ public class BasesGameManager : GameManager
 
         for (int i = 0; i < bases.Length; i++)
         {
-            bases[i].Renderer.material.SetColor("_Color", InputManager.playerSettings[i].color - (Color.white - baseInitColor));
-            bases[i].Renderer.material.SetTexture("_MainTex", InputManager.playerSettings[i].skinSprite.texture);
+            bases[i].Renderer.material.SetColor("_Color", InGame.playerSettings[i].color - (Color.white - baseInitColor));
+            bases[i].Renderer.material.SetTexture("_MainTex", InGame.playerSettings[i].skinSprite.texture);
         }
     }
 

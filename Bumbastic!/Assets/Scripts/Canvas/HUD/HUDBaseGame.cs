@@ -10,11 +10,11 @@
 
     protected override void SetFeatures()
     {
-        for (int i = 0; i < InputManager.playerSettings.Count; i++)
+        for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             skinSprites[i].gameObject.SetActive(true);
-            skinSprites[i].sprite = InputManager.playerSettings[i].skinSprite;
-            playerColors[i].color = InputManager.playerSettings[i].color;
+            skinSprites[i].sprite = InGame.playerSettings[i].skinSprite;
+            playerColors[i].color = InGame.playerSettings[i].color;
             points[i].text = BasesGameManager.basesGame.bases[i].LifePoints.ToString();
         }
     }
