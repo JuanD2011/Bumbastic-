@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -67,6 +66,14 @@ public class Player : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
         GameManager.Manager.Director.stopped += LetMove;
         Bomb.OnExplode += ResetPlayer;
+    }
+
+    public void PodiumAnimation(bool _win)
+    {
+        if (_win)
+            m_Animator.SetTrigger("Winner");
+        else
+            m_Animator.SetTrigger("Looser");
     }
 
     private void ResetPlayer()

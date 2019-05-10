@@ -2528,6 +2528,11 @@ PrefabInstance:
       propertyPath: playerScores.Array.data[3]
       value: 
       objectReference: {fileID: 6696146892659256823}
+    - target: {fileID: 9070038346549261092, guid: 896df41986b90174aaf0f926ca839393,
+        type: 3}
+      propertyPath: starsContainer
+      value: 
+      objectReference: {fileID: 6696146892659256827}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 896df41986b90174aaf0f926ca839393, type: 3}
 --- !u!114 &6696146892659256823 stripped
@@ -2578,3 +2583,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44d2f453b9ade544a407c8a2fd86fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6696146892659256827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3728943743379070017, guid: 896df41986b90174aaf0f926ca839393,
+    type: 3}
+  m_PrefabInstance: {fileID: 6696146892659256822}
+  m_PrefabAsset: {fileID: 0}

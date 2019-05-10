@@ -105,7 +105,6 @@ public class HotPotatoManager : GameManager
     /// <param name="_receiver"></param>
     public override void PassBomb(Player _receiver)
     {
-        Debug.Log("Transmitter:");
         if (BombHolder != null)
         {
             BombHolder.HasBomb = false;
@@ -127,7 +126,6 @@ public class HotPotatoManager : GameManager
     /// <param name="_transmitter"></param>
     public override void PassBomb(Player _receiver, Player _transmitter)
     {
-        Debug.Log("PTransmitter:" + _transmitter.Id);
         transmitter = _transmitter;
         _transmitter.HasBomb = false;
         _transmitter.Collider.enabled = true;

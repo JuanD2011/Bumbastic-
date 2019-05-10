@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 
 public class PodiumManager : MonoBehaviour
@@ -12,6 +13,10 @@ public class PodiumManager : MonoBehaviour
     {
         InputManager.playerSettings = InputManager.playerSettings.OrderBy(w => w.score).ToList();
         InputManager.playerSettings.Reverse();
+    }
+
+    private void Start()
+    {
         SpawnPlayers();
     }
 
@@ -30,8 +35,16 @@ public class PodiumManager : MonoBehaviour
                 player.transform.position = player.SpawnPoint;
                 player.transform.rotation = new Quaternion(0, 180, 0, 0);
                 player.Initialize();
+                if (i == 0)
+                {
+                    player.PodiumAnimation(true);
+                }
+                else
+                {
+                    player.PodiumAnimation(false);
+                }
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer, 1f);
             }
-            else break;
         }
     }
 }

@@ -90,7 +90,6 @@ public class Bomb : MonoBehaviour
         CameraShake.instance.OnShakeDuration?.Invoke(0.4f, 6f, 1.2f);
         RigidBody.isKinematic = false;
         OnExplode?.Invoke();//ParticleModification, GameManager, FloorManager hears it
-        Debug.Log("Boom");
     }
 
     private void OnCollisionEnter(Collision collision)
