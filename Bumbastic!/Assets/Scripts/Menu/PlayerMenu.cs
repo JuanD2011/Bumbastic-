@@ -85,15 +85,13 @@ public class PlayerMenu : MonoBehaviour
 
         if (Input.GetKeyDown(controls.rightBumper))
         {
-            if (Input.GetKeyDown(controls.leftBumper)){}
-            else
-                OnRightBumper?.Invoke(Id);
+            if (!Input.GetKeyDown(controls.leftBumper))
+                OnRightBumper?.Invoke(Id);//SkinSelector hears it.
         }
         else if (Input.GetKeyDown(controls.leftBumper))
         {
-            if (Input.GetKeyDown(controls.rightBumper)){}
-            else
-                OnLeftBumper?.Invoke(Id);
+            if (!Input.GetKeyDown(controls.rightBumper))
+                OnLeftBumper?.Invoke(Id);//SkinSelector hears it.
         }
     }
 }
