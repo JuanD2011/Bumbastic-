@@ -295,7 +295,7 @@ Material:
     - _SnowShadowColor: {r: 0.19999993, g: 0.19999993, b: 0.29999995, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Target: {r: 0.000000834465, g: -2.6636758, b: 4.6110053, a: 0}
+    - _Target: {r: -1.05553, g: 3.121034, b: -5.2318935, a: 0}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}

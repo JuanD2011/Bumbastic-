@@ -44,6 +44,10 @@ public class InGameCanvas : Canvas
     {
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
+            if (!playerScores[i].transform.parent.gameObject.activeInHierarchy)
+            {
+                playerScores[i].transform.parent.gameObject.SetActive(true); 
+            }
             playerScores[i].InitComponents();
             playerScores[i].PlayerSkinSprite.enabled = true;
             playerScores[i].PlayerSkinSprite.sprite = InGame.playerSettings[i].skinSprite;
