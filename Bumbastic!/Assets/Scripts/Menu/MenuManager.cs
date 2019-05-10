@@ -152,14 +152,10 @@ public class MenuManager : MonoBehaviour
     {
         playersReady++;
         texts[_id].text = "Ready";
-        if (playersReady == maxPlayers)
+        if (playersReady == maxPlayers && maxPlayers >= 2)
         {
             countdown = true;
             OnCountdown?.Invoke(true);//MenuUI hears it.
-        }
-        else
-        {
-            countdown = false;
         }
     }
 
