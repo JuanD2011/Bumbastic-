@@ -20,7 +20,7 @@ public class InGameCanvas : Canvas
     {
         base.Start();
 
-        GameManager.Manager.OnGameOver += () => _scene = "Menu";
+        GameManager.Manager.OnGameOver += () => _scene = "Podium";
 
         GameManager.Manager.OnGameModeOver += Winner;
         GameManager.Manager.OnGameModeOver += UpdateScore;
