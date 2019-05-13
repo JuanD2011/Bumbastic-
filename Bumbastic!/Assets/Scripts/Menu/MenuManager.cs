@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using XInputDotNetPure;
 
 public class MenuManager : MonoBehaviour
 {
@@ -121,7 +122,7 @@ public class MenuManager : MonoBehaviour
         InGame.playerSettings.Clear();
         for (int i = 0; i < Players.Count; i++)
         {
-            InGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls, Players[i].SkinSprite, Players[i].Color));
+            InGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls, Players[i].SkinSprite, Players[i].Color, (PlayerIndex)i));
         }
         GameModeDataBase.currentGameMode = GetRandomGameMode();
         OnStartGame?.Invoke("GameMode");//MenuUI hears it.
@@ -135,17 +136,17 @@ public class MenuManager : MonoBehaviour
         return result;
     }
 
-    public void InitializeFirstPlayers(List<string> _joysticks)
+    public void InitializeFirstPlayers(int _joysticks)
     {
-        for (int i = 0; i < _joysticks.Count; i++)
+        for (int i = 0; i < _joysticks; i++)
         {
             PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
             player.Id = (byte) i;
+            player.PlayerIndex = (PlayerIndex)i;
             Players.Add(player);
         }
 
-        maxPlayers = _joysticks.Count;
-        InputManager.inputManager.AssignController(_joysticks);
+        maxPlayers = _joysticks;
     }
 
     public void PlayersReady(byte _id)

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using XInputDotNetPure;
 
 public class PlayerSettings
 {
@@ -7,9 +8,10 @@ public class PlayerSettings
     public Controls controls;
     public Sprite skinSprite;
     public byte score;
-    public Color color;                     
+    public Color color;
+    public PlayerIndex playerIndex;
 
-    public PlayerSettings(string _name, GameObject _avatar, Controls _controls, Sprite _skinSprite, Color _color)
+    public PlayerSettings(string _name, GameObject _avatar, Controls _controls, Sprite _skinSprite, Color _color, PlayerIndex _index)
     {
         name = _name;
         avatar = _avatar;
@@ -17,5 +19,6 @@ public class PlayerSettings
         skinSprite = _skinSprite;
         score = 0;
         color = _color;
+        playerIndex = _index;
     }
 }

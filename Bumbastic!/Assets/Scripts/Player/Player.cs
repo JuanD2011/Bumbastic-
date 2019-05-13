@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
+using XInputDotNetPure;
 
 public class Player : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class Player : MonoBehaviour
     private Rigidbody m_Rigidbody;
     private Vector3 spawnPoint;
     private Controls controls;
+    private PlayerIndex playerIndex;
+    private GamePadState state, prevState;
 
     private Animator m_Animator;
     private AnimatorOverrideController animatorWNoBomb;
@@ -55,6 +58,7 @@ public class Player : MonoBehaviour
     public SphereCollider Collider { get => collider; private set => collider = value; }
     public Transform Catapult { get => catapult; private set => catapult = value; }
     public Rigidbody Rigidbody { get => m_Rigidbody; private set => m_Rigidbody = value; }
+    public PlayerIndex PlayerIndex { private get => playerIndex; set => playerIndex = value; }
 
     private void Start()
     {
@@ -101,28 +105,21 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        prevState = state;
+        state = GamePad.GetState(PlayerIndex);
+
         if (canMove)
         {
-            inputDirection = new Vector2(Input.GetAxis(Controls.ljoystickHorizontal), Input.GetAxis(Controls.ljoystickVertical));
-            inputAiming = new Vector2(Input.GetAxis(Controls.rjoystickHorizontal), Input.GetAxis(Controls.rjoystickVertical));
-            Move(); 
+            inputDirection = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
+            inputAiming = new Vector2(state.ThumbSticks.Right.Y, -state.ThumbSticks.Right.X);
+            Move();
         }
-        if (controls.rightButtonTrigger != KeyCode.None)
+        if (prevState.Triggers.Right <= 0.6f && state.Triggers.Right == 1.0f)
         {
-            if (Input.GetKeyDown(controls.rightButtonTrigger) && !throwing)
-            {
-                Throw();
-            }
-        }
-        else if (controls.rightAxisTrigger != "" && !throwing)
-        {
-            if (Input.GetAxis(controls.rightAxisTrigger) == 1f)
-            {
-                Throw();
-            }
+            Throw();
         }
 
-		if (Input.GetKeyDown(Controls.startButton))
+        if (prevState.Buttons.Start == ButtonState.Released && state.Buttons.Start == ButtonState.Pressed)
         {
             PlayerMenu.OnStartButton?.Invoke(Id);
         }
@@ -153,7 +150,9 @@ public class Player : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         HasBomb = false;
         Catapult = GetComponentInChildren<Bummie>().Catapult;
+        state = GamePad.GetState(PlayerIndex);
         SphereCollider[] colliders = GetComponentsInChildren<SphereCollider>();
+        
         foreach (SphereCollider sphere in colliders)
         {
             if (sphere.isTrigger)

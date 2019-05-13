@@ -102,6 +102,7 @@ public abstract class GameManager : MonoBehaviour
             player.Id = (byte)i;
             player.SpawnPoint = GetSpawnPoint();
             player.transform.position = player.SpawnPoint;
+            player.PlayerIndex = InGame.playerSettings[i].playerIndex;
             player.Initialize();
         }
 
@@ -152,7 +153,6 @@ public abstract class GameManager : MonoBehaviour
             {
                 OnGameOver?.Invoke();//InGameCanvas hears it.
                 return;
-                break;
             }
         }
 

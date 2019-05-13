@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using XInputDotNetPure;
 
 public class PlayerMenu : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class PlayerMenu : MonoBehaviour
     private bool ready = false;
     Sprite skinSprite;
     Color color;
+    private PlayerIndex playerIndex;
+    private GamePadState state;
+    private GamePadState prevState;
 
     public bool Ready { get => ready; }
     public Controls Controls { get => controls; set => controls = value; }
@@ -15,6 +19,7 @@ public class PlayerMenu : MonoBehaviour
     public string PrefabName { get => prefabName; set => prefabName = value; }
     public Sprite SkinSprite { get => skinSprite; set => skinSprite = value; }
     public Color Color { get => color; set => color = value; }
+    public PlayerIndex PlayerIndex { private get => playerIndex; set => playerIndex = value; }
 
     public delegate void ReadyDelegate(byte id);
     public static ReadyDelegate OnReady;
@@ -50,8 +55,12 @@ public class PlayerMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(controls.startButton) || Input.GetKeyDown(controls.aButton))
+        prevState = state;
+        state = GamePad.GetState(PlayerIndex);
+
+        if (prevState.Buttons.Start == ButtonState.Released && state.Buttons.Start == ButtonState.Pressed || prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
         {
+            Debug.Log("Start/A");
             if (MenuCanvas.isMatchmaking)
             {
                 counter++;
@@ -64,11 +73,9 @@ public class PlayerMenu : MonoBehaviour
             OnStartButton?.Invoke(Id);
         }
 
-        if (Input.GetKeyDown(controls.bButton) || Input.GetKeyDown(KeyCode.Escape))
+        if (prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed || Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Back");
-            Debug.Log(controls.bButton);
-
             if (!ready)
             {
                 OnBackButton?.Invoke(Id);//MenuUI hears it 
@@ -83,14 +90,14 @@ public class PlayerMenu : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(controls.rightBumper))
+        if (prevState.Buttons.RightShoulder == ButtonState.Released && state.Buttons.RightShoulder == ButtonState.Pressed)
         {
-            if (!Input.GetKeyDown(controls.leftBumper))
+            if (!(prevState.Buttons.LeftShoulder == ButtonState.Released && state.Buttons.LeftShoulder == ButtonState.Pressed))
                 OnRightBumper?.Invoke(Id);//SkinSelector hears it.
         }
-        else if (Input.GetKeyDown(controls.leftBumper))
+        else if (prevState.Buttons.LeftShoulder == ButtonState.Released && state.Buttons.LeftShoulder == ButtonState.Pressed)
         {
-            if (!Input.GetKeyDown(controls.rightBumper))
+            if (!(prevState.Buttons.RightShoulder == ButtonState.Released && state.Buttons.RightShoulder == ButtonState.Pressed))
                 OnLeftBumper?.Invoke(Id);//SkinSelector hears it.
         }
     }

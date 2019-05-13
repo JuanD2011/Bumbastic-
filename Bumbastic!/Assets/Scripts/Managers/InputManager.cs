@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using XInputDotNetPure;
+using System;
 
 public class InputManager : MonoBehaviour
 {
@@ -20,7 +22,26 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        GetJoysticks();
+        //GetJoysticks();
+        GetGamepads();
+    }
+
+    private void GetGamepads()
+    {
+        int activeJoysticks = 0;
+
+        for (int i = 0; i < 4; i++)
+        {
+            PlayerIndex testPlayerIndex = (PlayerIndex)i;
+            GamePadState testState = GamePad.GetState(testPlayerIndex);
+            if (testState.IsConnected)
+            {
+                Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+                activeJoysticks++;
+            }
+        }
+
+        MenuManager.menu.InitializeFirstPlayers(activeJoysticks);
     }
 
     private void GetJoysticks()
@@ -42,42 +63,42 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        MenuManager.menu.InitializeFirstPlayers(activeJoysticks);
+        //MenuManager.menu.InitializeFirstPlayers(activeJoysticks);
     }
 
     private void Update()
     {
-        if (Time.frameCount % 60 == 0)
-        {
-            joysticks = Input.GetJoystickNames();
+        //if (Time.frameCount % 60 == 0)
+        //{
+        //    joysticks = Input.GetJoystickNames();
 
-            if (joysticks.Length != joystickNumber)
-            {
-                for (int i = 0; i < joysticks.Length; ++i)
-                {
-                    if (!string.IsNullOrEmpty(joysticks[i]))
-                    {
-                        Debug.Log("Controller " + i + " is connected using: " + joysticks[i]);
-                        if (!activeJoysticks.Contains(joysticks[i]))
-                        {
-                            activeJoysticks.Add(joysticks[i]); 
-                            joystickNumber = (byte)joysticks.Length;
-                            UpdateControllers();
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("Controller: " + i + " is disconnected.");
-                        if (activeJoysticks.Contains(joysticks[i]))
-                        {
-                            activeJoysticks.Remove(joysticks[i]); 
-                            joystickNumber = (byte)joysticks.Length;
-                            UpdateControllers();
-                        }
-                    }
-                }
-            }
-        }
+        //    if (joysticks.Length != joystickNumber)
+        //    {
+        //        for (int i = 0; i < joysticks.Length; ++i)
+        //        {
+        //            if (!string.IsNullOrEmpty(joysticks[i]))
+        //            {
+        //                Debug.Log("Controller " + i + " is connected using: " + joysticks[i]);
+        //                if (!activeJoysticks.Contains(joysticks[i]))
+        //                {
+        //                    activeJoysticks.Add(joysticks[i]); 
+        //                    joystickNumber = (byte)joysticks.Length;
+        //                    UpdateControllers();
+        //                }
+        //            }
+        //            else
+        //            {
+        //                Debug.Log("Controller: " + i + " is disconnected.");
+        //                if (activeJoysticks.Contains(joysticks[i]))
+        //                {
+        //                    activeJoysticks.Remove(joysticks[i]); 
+        //                    joystickNumber = (byte)joysticks.Length;
+        //                    UpdateControllers();
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 
     public void AssignController(List<string> _joysticks)
