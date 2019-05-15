@@ -5632,7 +5632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
   m_JoinPlayersWithMissingDevices: 0
   m_JoinBehavior: 1
@@ -5656,8 +5656,10 @@ MonoBehaviour:
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
-    m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 0}
+    m_Reference: {fileID: 545590673974036233, guid: 980a3ac8a8e08ed479d8f06d4d1e4b46,
+      type: 3}
+  m_PlayerPrefab: {fileID: 6489573870341292119, guid: f36bde14ecd43834b99a7a979b3d2db1,
+    type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
