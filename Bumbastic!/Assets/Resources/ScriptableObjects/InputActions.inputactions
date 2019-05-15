@@ -161,6 +161,17 @@
                     "processors": "",
                     "interactions": "",
                     "bindings": []
+                },
+                {
+                    "name": "Start",
+                    "id": "fd9efb46-8286-47c3-a7ae-ece3b6f326b9",
+                    "expectedControlLayout": "",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "",
+                    "bindings": []
                 }
             ],
             "bindings": [
@@ -256,6 +267,30 @@
                     "processors": "",
                     "groups": "Xbox",
                     "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "df440f94-a254-4ca3-8844-c82ab6dd4332",
+                    "path": "<DualShockGamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PS4",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "830b597f-d5db-4eb5-bced-bca5f12a93e0",
+                    "path": "<XInputController>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false,
                     "modifiers": ""
