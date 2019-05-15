@@ -135,17 +135,17 @@ public class MenuManager : MonoBehaviour
         return result;
     }
 
-    public void InitializeFirstPlayers(List<string> _joysticks)
+    public void InitializeFirstPlayers(int _gamepadCount)
     {
-        for (int i = 0; i < _joysticks.Count; i++)
+        for (int i = 0; i < _gamepadCount; i++)
         {
             PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
             player.Id = (byte) i;
             Players.Add(player);
         }
 
-        maxPlayers = _joysticks.Count;
-        InputManager.inputManager.AssignController(_joysticks);
+        maxPlayers = _gamepadCount;
+        //InputManager.inputManager.AssignController(_joysticks);
     }
 
     public void PlayersReady(byte _id)

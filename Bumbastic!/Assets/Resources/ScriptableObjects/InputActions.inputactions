@@ -70,7 +70,7 @@
                     "path": "<HID::810-1 Joystick>/Stick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -118,7 +118,7 @@
                     "path": "<HID::810-1 Joystick>/z",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": true,
@@ -130,7 +130,7 @@
                     "path": "<HID::810-1 Joystick>/z",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": true,
@@ -142,7 +142,7 @@
                     "path": "<HID::810-1 Joystick>/rz",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": true,
@@ -154,7 +154,7 @@
                     "path": "<HID::810-1 Joystick>/rz",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": true,
@@ -190,7 +190,7 @@
                     "path": "<HID::810-1 Joystick>/button8",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -289,7 +289,7 @@
                     "path": "<HID::810-1 Joystick>/button5",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "LeftSkin",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -325,7 +325,7 @@
                     "path": "<HID::810-1 Joystick>/button6",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "RightSkin",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -361,7 +361,7 @@
                     "path": "<HID::810-1 Joystick>/button3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -397,7 +397,7 @@
                     "path": "<HID::810-1 Joystick>/button2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -433,7 +433,7 @@
                     "path": "<HID::810-1 Joystick>/button10",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "New control scheme;Generic1",
                     "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -468,16 +468,10 @@
             ]
         },
         {
-            "name": "New control scheme",
+            "name": "Generic1",
             "basedOn": "",
-            "bindingGroup": "New control scheme",
-            "devices": [
-                {
-                    "devicePath": "<Joystick>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
+            "bindingGroup": "Generic1",
+            "devices": []
         }
     ]
 }

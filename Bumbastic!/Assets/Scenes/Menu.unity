@@ -1008,7 +1008,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 71.232, y: -92.672005, z: -68.963005}
 --- !u!1 &122572830
 GameObject:
@@ -5612,6 +5612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 896563796}
   - component: {fileID: 896563795}
+  - component: {fileID: 896563797}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -5631,11 +5632,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_MaxPlayerCount: 4
   m_AllowJoining: 1
   m_JoinPlayersWithMissingDevices: 0
-  m_JoinBehavior: 1
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5684,6 +5685,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &896563797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896563794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c085309840f16b14598f0fd148bfce7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &898908880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13898,7 +13911,7 @@ PrefabInstance:
     - target: {fileID: 7115599055015156215, guid: 830032259995753438f5df21a0e062bb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7115599055015156215, guid: 830032259995753438f5df21a0e062bb,
         type: 3}

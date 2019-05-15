@@ -94,4 +94,63 @@ public class PlayerMenu : MonoBehaviour
         //        OnLeftBumper?.Invoke(Id);//SkinSelector hears it.
         //}
     }
+
+    public void OnSubmit()
+    {
+        Debug.Log("Submit");
+        if (MenuCanvas.isMatchmaking)
+        {
+            counter++;
+            if (!ready && counter >= 2)
+            {
+                ready = true;
+                OnReady?.Invoke(Id);//MenuManager hears it
+            }
+        }
+    }
+
+    public void OnStart()
+    {
+        Debug.Log("Submit");
+        if (MenuCanvas.isMatchmaking)
+        {
+            counter++;
+            if (!ready && counter >= 2)
+            {
+                ready = true;
+                OnReady?.Invoke(Id);//MenuManager hears it
+            }
+        }
+        OnStartButton?.Invoke(Id);
+    }
+
+    public void OnBack()
+    {
+        Debug.Log("Back");
+
+        if (!ready)
+        {
+            OnBackButton?.Invoke(Id);//MenuUI hears it 
+        }
+        if (MenuCanvas.isMatchmaking)
+        {
+            if (ready)
+            {
+                ready = false;
+                OnNotReady?.Invoke(id);//MenuManager hears it
+            }
+        }
+    }
+
+    public void OnLeftSkin()
+    {
+        Debug.Log("LB");
+        OnLeftBumper?.Invoke(Id);//SkinSelector hears it. 
+    }
+
+    public void OnRightSkin()
+    {
+        Debug.Log("RB");
+        OnRightBumper?.Invoke(Id);//SkinSelector hears it. 
+    }
 }
