@@ -52,6 +52,7 @@ public abstract class GameManager : MonoBehaviour
     protected virtual void Start()
     {
         InitAudio();
+        AudioManager.instance.PlayMusic(AudioManager.instance.audioClips.inGameMusic, 0.6f, 0.6f, 0.6f);
     }
 
     private void InitAudio()

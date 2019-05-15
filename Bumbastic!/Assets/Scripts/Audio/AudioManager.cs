@@ -43,8 +43,6 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayMusic(audioClips.inGameMusic, 0.6f, 1f, 2f);
-
         if (audioMutes != null)
         {
             foreach (AudioMute item in audioMutes)

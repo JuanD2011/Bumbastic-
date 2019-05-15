@@ -5,6 +5,7 @@ public class AudioClips : ScriptableObject
 {
     [Header("Music")]
     public AudioClip inGameMusic;
+    public AudioClip transitionMusic;
 
     [Header("Ambient")]
     public AudioClip desertAmbient, winterAmbient;

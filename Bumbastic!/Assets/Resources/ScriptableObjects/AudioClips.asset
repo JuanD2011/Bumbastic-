@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AudioClips
   m_EditorClassIdentifier: 
   inGameMusic: {fileID: 8300000, guid: d570d6c97858dd64b92cc16b234705e0, type: 3}
+  transitionMusic: {fileID: 8300000, guid: f394a85c02d05404f9009b3d67361b33, type: 3}
   desertAmbient: {fileID: 8300000, guid: bb88e939a5fc58b439b1234d56427dac, type: 3}
   winterAmbient: {fileID: 8300000, guid: 814822281ea5e454eb506c2e7b6099ce, type: 3}
   bomb: {fileID: 8300000, guid: 954ba09f760448547a16f4923a278dd8, type: 3}

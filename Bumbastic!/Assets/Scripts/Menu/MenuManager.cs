@@ -60,6 +60,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.audioClips.inGameMusic, 0.6f, 0.6f, 0.6f);
         timer = startTimer;
 
         PlayerMenu.OnReady += PlayersReady;
