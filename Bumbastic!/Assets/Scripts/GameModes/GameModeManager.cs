@@ -16,7 +16,7 @@ public class GameModeManager : MonoBehaviour
     private void Start()
     {
         Invoke("SceneToLoad", timeToLoad);
-        AudioManager.instance.PlayMusic(AudioManager.instance.audioClips.transitionMusic, 0.7f, 0.6f, 0.7f);
+        AudioManager.instance.PlayMusic(AudioManager.instance.audioClips.transitionMusic, 0.3f, 0.6f, 5f);
     }
 
     private void SceneToLoad()

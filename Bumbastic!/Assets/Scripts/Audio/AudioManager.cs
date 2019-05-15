@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
 
     AudioSource currentAudioSource;
 
+    [Header("ONLY FOR MENU SCENE")]
     [SerializeField] AudioMute[] audioMutes;
 
     public AudioSource CurrentAudioSource { get { return currentAudioSource; } }
