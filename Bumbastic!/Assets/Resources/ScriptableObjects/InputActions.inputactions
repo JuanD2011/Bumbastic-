@@ -66,6 +66,18 @@
                 },
                 {
                     "name": "",
+                    "id": "349a4aea-5b18-495d-b54c-18b4c2711773",
+                    "path": "<HID::810-1 Joystick>/Stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
                     "id": "2b6a7f9e-2968-48d1-aaa0-792a17191254",
                     "path": "<XInputController>/rightStick",
                     "interactions": "",
@@ -89,6 +101,66 @@
                     "modifiers": ""
                 },
                 {
+                    "name": "2D Vector",
+                    "id": "91290646-1e76-46ef-a558-cd9932e371c1",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": true,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "up",
+                    "id": "5cb8134c-6a6f-4dbc-a0b5-ae0a86e48cde",
+                    "path": "<HID::810-1 Joystick>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "down",
+                    "id": "a5246a95-2dd8-4889-91e5-1045ee366c1c",
+                    "path": "<HID::810-1 Joystick>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "left",
+                    "id": "07d864b9-43c3-40cc-914e-c5a3ec711286",
+                    "path": "<HID::810-1 Joystick>/rz",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "right",
+                    "id": "bf67e25f-5f9d-4411-926d-05386d6cdf1d",
+                    "path": "<HID::810-1 Joystick>/rz",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
                     "name": "",
                     "id": "97c5ac02-b2d1-40f3-a5ea-2f69c3e02684",
                     "path": "<XInputController>/rightTrigger",
@@ -107,6 +179,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PS4",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "51761b2c-8ef5-422d-9836-d5df27784c11",
+                    "path": "<HID::810-1 Joystick>/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
                     "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -201,6 +285,18 @@
                 },
                 {
                     "name": "",
+                    "id": "a152467e-18ed-4af0-a5ff-b9c9beca6a06",
+                    "path": "<HID::810-1 Joystick>/button5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "LeftSkin",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
                     "id": "1e53b4da-6b26-4a4d-8f9c-1b996f5ac5dc",
                     "path": "<DualShockGamepad>/rightShoulder",
                     "interactions": "",
@@ -218,6 +314,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox",
+                    "action": "RightSkin",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "244f8606-351c-43ae-baca-54d619ac78de",
+                    "path": "<HID::810-1 Joystick>/button6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
                     "action": "RightSkin",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -249,6 +357,18 @@
                 },
                 {
                     "name": "",
+                    "id": "773ceba7-b104-41c4-8c92-e137829e7b1c",
+                    "path": "<HID::810-1 Joystick>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
                     "id": "2c8fbc8b-1046-4bf6-8f04-51b77862ef67",
                     "path": "<DualShockGamepad>/buttonEast",
                     "interactions": "",
@@ -266,6 +386,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "011e7d03-66b0-4ccb-b09e-ff5ce448ffeb",
+                    "path": "<HID::810-1 Joystick>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
                     "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -294,6 +426,18 @@
                     "isComposite": false,
                     "isPartOfComposite": false,
                     "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "8853e82e-61ef-403e-9765-6598666de77c",
+                    "path": "<HID::810-1 Joystick>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
                 }
             ]
         }
@@ -318,6 +462,18 @@
             "devices": [
                 {
                     "devicePath": "<DualShockGamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "New control scheme",
+            "basedOn": "",
+            "bindingGroup": "New control scheme",
+            "devices": [
+                {
+                    "devicePath": "<Joystick>",
                     "isOptional": false,
                     "isOR": false
                 }
