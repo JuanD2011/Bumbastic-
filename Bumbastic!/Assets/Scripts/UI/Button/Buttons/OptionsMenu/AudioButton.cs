@@ -2,9 +2,9 @@
 {
     AudioMute audioMute;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         audioMute = GetComponent<AudioMute>();
     }
 

@@ -1,8 +1,8 @@
 ﻿public class OptionsButton : UIButtonBase
 {
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
     }
 
     protected override void OnButtonClicked(byte _id)

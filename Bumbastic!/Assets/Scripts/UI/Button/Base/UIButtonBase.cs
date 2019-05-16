@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public abstract class UIButtonBase : MonoBehaviour
 {
     protected bool interactuable = false;
 
-    protected virtual void Start()
+    Button m_Button;
+
+    public Button Button { get => m_Button; set => m_Button = value; }
+
+    protected virtual void Awake()
     {
+        Button = GetComponent<Button>();
         PlayerMenu.OnAcceptButton += OnButtonClicked;
     }
 
