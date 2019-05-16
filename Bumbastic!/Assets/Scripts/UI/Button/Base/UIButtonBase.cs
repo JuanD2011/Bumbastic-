@@ -25,7 +25,7 @@ public abstract class UIButtonBase : MonoBehaviour
         }
         else
         {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.buttonBack, 0.6f);
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.buttonBack, 0.5f);
         }
     }
 }

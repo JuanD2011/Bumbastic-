@@ -71,8 +71,10 @@ public class MenuCanvas : Canvas
     }
     #endregion
 
-    private void BackButton(byte _id)
+    public void BackButton(byte _id)
     {
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.buttonBack);
+
         AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
 
         if (stateInfo.IsName(animatorStateNames[0]))//Principal Menu
