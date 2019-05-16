@@ -36,7 +36,7 @@ public class PlayerMenu : MonoBehaviour
 
     private void Awake()
     {
-        ResetDel();
+        //ResetDel();
     }
 
     public static void ResetDel()
@@ -112,7 +112,7 @@ public class PlayerMenu : MonoBehaviour
 
     public void OnStart()
     {
-        Debug.Log("Submit");
+        Debug.Log("Start");
         if (MenuCanvas.isMatchmaking)
         {
             counter++;
