@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FreeForAll.unity
     guid: 657da944d515a4c498c9c61100433164
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BasesGame.unity
     guid: 26dc671b746297d42a08cba4689645a3
   - enabled: 1
