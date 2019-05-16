@@ -1561,6 +1561,7 @@ GameObject:
   - component: {fileID: 212707380}
   - component: {fileID: 212707379}
   - component: {fileID: 212707378}
+  - component: {fileID: 212707381}
   m_Layer: 5
   m_Name: ButtonPlay
   m_TagString: Untagged
@@ -1630,29 +1631,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 212707379}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 938795976}
-        m_MethodName: MatchmakingPanel
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: e3c3d6b5205e625479213ec54526372a, type: 2}
-        m_MethodName: SoundButton
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &212707379
@@ -1692,6 +1671,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212707376}
   m_CullTransparentMesh: 0
+--- !u!114 &212707381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212707376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0689cc8367db946aeeddb8eb938442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &219336459
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,6 +3129,7 @@ MonoBehaviour:
   countdownText: {fileID: 1066795180}
   playerMenuPrefab: {fileID: 6489573870341292119, guid: f36bde14ecd43834b99a7a979b3d2db1,
     type: 3}
+  menuCanvas: {fileID: 0}
 --- !u!114 &431491413
 MonoBehaviour:
   m_ObjectHideFlags: 0

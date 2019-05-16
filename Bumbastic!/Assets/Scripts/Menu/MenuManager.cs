@@ -50,6 +50,8 @@ public class MenuManager : MonoBehaviour
 
     public List<PlayerMenu> Players { get => players; private set => players = value; }
 
+    public MenuCanvas menuCanvas;
+
     private void Awake()
     {
         if (menu == null) menu = this;
