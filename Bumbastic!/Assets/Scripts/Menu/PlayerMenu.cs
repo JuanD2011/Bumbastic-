@@ -107,10 +107,7 @@ public class PlayerMenu : MonoBehaviour
                 OnReady?.Invoke(Id);//MenuManager hears it
             }
         }
-        else
-        {
-            OnAcceptButton?.Invoke(Id);
-        }
+        OnAcceptButton?.Invoke(Id);
     }
 
     public void OnStart()

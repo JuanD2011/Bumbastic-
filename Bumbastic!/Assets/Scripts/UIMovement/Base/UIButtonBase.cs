@@ -3,15 +3,20 @@ using UnityEngine.EventSystems;
 
 public abstract class UIButtonBase : MonoBehaviour
 {
-    private void Update()
+    private void Start()
     {
-        if (EventSystem.current.currentSelectedGameObject == gameObject)
+        PlayerMenu.OnAcceptButton += VerifyButtonClicked;
+    }
+
+    private void VerifyButtonClicked(byte _id)
+    {
+        if (EventSystem.current.currentSelectedGameObject == gameObject && gameObject.activeInHierarchy)
         {
-            PlayerMenu.OnAcceptButton += OnButtonClicked;
+            OnButtonClicked();
         }
     }
 
-    protected abstract void OnButtonClicked(byte _id);
+    protected abstract void OnButtonClicked();
 
     protected void ClickSound(bool _default)
     {
