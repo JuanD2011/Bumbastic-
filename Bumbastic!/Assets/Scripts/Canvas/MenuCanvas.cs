@@ -88,7 +88,7 @@ public class MenuCanvas : Canvas
         }
         else if (stateInfo.IsName(animatorStateNames[2]) || stateInfo.IsName(animatorStateNames[6]))//Matchmaking
         {
-            PlayerMenu.counter = 0;
+
             MatchmakingPanel(false);
             OnMatchmaking?.Invoke(false);//MenuCamManager hears it.
         }

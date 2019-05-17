@@ -17,12 +17,13 @@ public class InputManager : MonoBehaviour
             inputManager = this;
         else
             Destroy(this);
+
+        GetGamepads();
     }
 
     private void Start()
     {
         //GetJoysticks();
-        GetGamepads();
     }
 
     private void GetGamepads()

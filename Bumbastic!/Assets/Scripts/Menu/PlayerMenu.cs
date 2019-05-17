@@ -32,8 +32,6 @@ public class PlayerMenu : MonoBehaviour
     [SerializeField]
     private GameObject avatar;
 
-    public static byte counter = 0;
-
     private void Awake()
     {
         //ResetDel();
@@ -100,8 +98,7 @@ public class PlayerMenu : MonoBehaviour
         Debug.Log("Submit");
         if (MenuCanvas.isMatchmaking)
         {
-            counter++;
-            if (!ready && counter >= 2)
+            if (!ready)
             {
                 ready = true;
                 OnReady?.Invoke(Id);//MenuManager hears it
@@ -115,8 +112,7 @@ public class PlayerMenu : MonoBehaviour
         Debug.Log("Start");
         if (MenuCanvas.isMatchmaking)
         {
-            counter++;
-            if (!ready && counter >= 2)
+            if (!ready)
             {
                 ready = true;
                 OnReady?.Invoke(Id);//MenuManager hears it
