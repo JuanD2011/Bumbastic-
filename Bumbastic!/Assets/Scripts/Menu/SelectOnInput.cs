@@ -1,32 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class SelectOnInput : MonoBehaviour
 {
-    public EventSystem eventSystem;
     public GameObject selectedObject;
 
-    private bool buttonSelected;
+    private Button selectedButton;
 
-    private void Move()
+
+    private void Awake()
     {
-        if (buttonSelected == false)
-        {
-            eventSystem.SetSelectedGameObject(selectedObject);
-            buttonSelected = true;
-        }
+        selectedButton = selectedObject.GetComponent<Button>(); 
     }
 
-    void Update()
+    private void OnEnable()
     {
-        if (Input.GetAxisRaw("Vertical") != 0)
-        {
-            Move();
-        }
-    }
-
-    private void OnDisable()
-    {
-        buttonSelected = false;
+        EventSystem.current.SetSelectedGameObject(selectedObject);
+        selectedButton.OnSelect(null);
     }
 }

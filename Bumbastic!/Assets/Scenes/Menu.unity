@@ -670,8 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309ddd931bff21f4fb8c120379295900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 1424916019}
-  selectedObject: {fileID: 1622750966}
+  selectedObject: {fileID: 1784975042}
 --- !u!1 &84256970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,9 +1592,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 822781608}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -5110,9 +5109,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 212707378}
+    m_SelectOnDown: {fileID: 1773627477}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -5845,10 +5844,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 1
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1306935211}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
@@ -6757,7 +6756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.00000080957096, y: -374}
+  m_AnchoredPosition: {x: 0.00000080957096, y: -374.59998}
   m_SizeDelta: {x: 364.3, y: 749.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &995721727
@@ -7035,8 +7034,8 @@ RectTransform:
   m_Father: {fileID: 1066476516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.6523859}
-  m_AnchorMax: {x: 1, y: 0.9991992}
+  m_AnchorMin: {x: 0, y: 0.6531867}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7620,7 +7619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309ddd931bff21f4fb8c120379295900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 1424916019}
   selectedObject: {fileID: 2080928756}
 --- !u!1 &1125343970
 GameObject:
@@ -8445,7 +8443,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309ddd931bff21f4fb8c120379295900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 1424916019}
   selectedObject: {fileID: 1723043679}
 --- !u!1 &1223806352
 GameObject:
@@ -8657,11 +8654,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 1
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 906870381}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -9928,6 +9925,7 @@ GameObject:
   - component: {fileID: 1622750970}
   - component: {fileID: 1622750969}
   - component: {fileID: 1622750968}
+  - component: {fileID: 1622750971}
   m_Layer: 5
   m_Name: Scrollbar
   m_TagString: Untagged
@@ -9968,7 +9966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
+    m_Mode: 0
     m_SelectOnUp: {fileID: 1622750968}
     m_SelectOnDown: {fileID: 1622750968}
     m_SelectOnLeft: {fileID: 1784975044}
@@ -9997,7 +9995,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1062635633}
   m_HandleRect: {fileID: 1062635632}
   m_Direction: 2
-  m_Value: 0.998774
+  m_Value: 1
   m_Size: 0.34681332
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -10042,6 +10040,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622750966}
   m_CullTransparentMesh: 0
+--- !u!114 &1622750971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622750966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ea7f8e612ca5e4ca32643e216cd3e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1626775244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11181,8 +11191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
-    m_SelectOnUp: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 822781608}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -11315,7 +11325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -11809,7 +11819,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309ddd931bff21f4fb8c120379295900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 1424916019}
   selectedObject: {fileID: 212707376}
 --- !u!1 &1816825564
 GameObject:
@@ -11900,7 +11909,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309ddd931bff21f4fb8c120379295900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 1424916019}
   selectedObject: {fileID: 1306935209}
 --- !u!1001 &1823876942
 PrefabInstance:
@@ -13343,7 +13351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 2
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
