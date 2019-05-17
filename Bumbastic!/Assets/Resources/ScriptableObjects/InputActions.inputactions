@@ -80,7 +80,7 @@
                     "id": "349a4aea-5b18-495d-b54c-18b4c2711773",
                     "path": "<HID::810-1 Joystick>/Stick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "InvertVector2(invertX=false)",
                     "groups": "New control scheme;Generic1",
                     "action": "Move",
                     "isComposite": false,
@@ -113,7 +113,7 @@
                 },
                 {
                     "name": "2D Vector",
-                    "id": "91290646-1e76-46ef-a558-cd9932e371c1",
+                    "id": "0ff2310f-543b-42a4-adb1-d4489aa1f37e",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -124,48 +124,48 @@
                     "modifiers": ""
                 },
                 {
-                    "name": "up",
-                    "id": "5cb8134c-6a6f-4dbc-a0b5-ae0a86e48cde",
-                    "path": "<HID::810-1 Joystick>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "New control scheme;Generic1",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
-                },
-                {
-                    "name": "down",
-                    "id": "a5246a95-2dd8-4889-91e5-1045ee366c1c",
-                    "path": "<HID::810-1 Joystick>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "New control scheme;Generic1",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
-                },
-                {
-                    "name": "left",
-                    "id": "07d864b9-43c3-40cc-914e-c5a3ec711286",
+                    "name": "Up",
+                    "id": "31cbeb32-ef76-495f-9225-66b3a0fd7adf",
                     "path": "<HID::810-1 Joystick>/rz",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme;Generic1",
+                    "groups": "Generic1",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": true,
                     "modifiers": ""
                 },
                 {
-                    "name": "right",
-                    "id": "bf67e25f-5f9d-4411-926d-05386d6cdf1d",
+                    "name": "Down",
+                    "id": "58dec988-7824-48da-827d-ffc48f087228",
+                    "path": "<HID::810-1 Joystick>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic1",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "Left",
+                    "id": "402f614a-ad3a-4525-90a4-7a6ceff43c67",
                     "path": "<HID::810-1 Joystick>/rz",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme;Generic1",
+                    "groups": ";Generic1",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "Right",
+                    "id": "43909a3f-d773-4ad8-a517-e4271d744d12",
+                    "path": "<HID::810-1 Joystick>/rz",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic1",
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": true,
@@ -226,6 +226,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PS4",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "9891af09-bf13-45df-a22e-98c59845b070",
+                    "path": "<HID::810-1 Joystick>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic1",
                     "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -506,7 +518,13 @@
             "name": "Generic1",
             "basedOn": "",
             "bindingGroup": "Generic1",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<HID::810-1 Joystick>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
         }
     ]
 }

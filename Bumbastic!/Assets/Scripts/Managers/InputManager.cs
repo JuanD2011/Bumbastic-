@@ -27,8 +27,8 @@ public class InputManager : MonoBehaviour
     }
 
     private void GetGamepads()
-    {
-        int gamepadCount = Gamepad.all.Count;
+    { 
+        int gamepadCount = Gamepad.all.Count + (Joystick.all.Count / 4);
         MenuManager.menu.InitializeFirstPlayers(gamepadCount);
     }
 

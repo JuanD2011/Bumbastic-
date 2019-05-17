@@ -75,12 +75,12 @@ public class Player : MonoBehaviour
     public void OnMove(InputValue context)
     {
         inputDirection = context.Get<Vector2>();
-        Debug.Log(inputDirection);
     }
 
     public void OnAim(InputValue context)
     {
         inputAiming = context.Get<Vector2>();
+        Debug.Log(inputAiming);
     }
 
     public void OnThrow()
@@ -90,7 +90,6 @@ public class Player : MonoBehaviour
 
     public void OnStart()
     {
-        Debug.Log("S");
         PlayerMenu.OnStartButton?.Invoke(Id);
     }
 
