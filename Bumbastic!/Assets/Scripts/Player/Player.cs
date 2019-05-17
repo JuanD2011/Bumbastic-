@@ -80,7 +80,6 @@ public class Player : MonoBehaviour
     public void OnAim(InputValue context)
     {
         inputAiming = context.Get<Vector2>();
-        Debug.Log(inputAiming);
     }
 
     public void OnThrow()
