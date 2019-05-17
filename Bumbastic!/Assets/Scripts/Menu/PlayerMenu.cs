@@ -32,11 +32,9 @@ public class PlayerMenu : MonoBehaviour
     [SerializeField]
     private GameObject avatar;
 
-    public static byte counter = 0;
-
     private void Awake()
     {
-        ResetDel();
+        //ResetDel();
     }
 
     public static void ResetDel()
@@ -50,48 +48,106 @@ public class PlayerMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(controls.startButton) || Input.GetKeyDown(controls.aButton))
-        {
-            if (MenuCanvas.isMatchmaking)
-            {
-                counter++;
-                if (!ready && counter >= 2)
-                {
-                    ready = true;
-                    OnReady?.Invoke(Id);//MenuManager hears it
-                }
-            }
-            OnStartButton?.Invoke(Id);
-        }
+        //if (Input.GetKeyDown(controls.startButton) || Input.GetKeyDown(controls.aButton))
+        //{
+        //    if (MenuCanvas.isMatchmaking)
+        //    {
+        //        counter++;
+        //        if (!ready && counter >= 2)
+        //        {
+        //            ready = true;
+        //            OnReady?.Invoke(Id);//MenuManager hears it
+        //        }
+        //    }
+        //    OnStartButton?.Invoke(Id);
+        //}
 
-        if (Input.GetKeyDown(controls.bButton) || Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("Back");
-            Debug.Log(controls.bButton);
+        //if (Input.GetKeyDown(controls.bButton) || Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    Debug.Log("Back");
+        //    Debug.Log(controls.bButton);
 
+        //    if (!ready)
+        //    {
+        //        OnBackButton?.Invoke(Id);//MenuUI hears it 
+        //    }
+        //    if (MenuCanvas.isMatchmaking)
+        //    {
+        //        if (ready)
+        //        {
+        //            ready = false;
+        //            OnNotReady?.Invoke(id);//MenuManager hears it
+        //        }
+        //    }
+        //}
+
+        //if (Input.GetKeyDown(controls.rightBumper))
+        //{
+        //    if (!Input.GetKeyDown(controls.leftBumper))
+        //        OnRightBumper?.Invoke(Id);//SkinSelector hears it.
+        //}
+        //else if (Input.GetKeyDown(controls.leftBumper))
+        //{
+        //    if (!Input.GetKeyDown(controls.rightBumper))
+        //        OnLeftBumper?.Invoke(Id);//SkinSelector hears it.
+        //}
+    }
+
+    public void OnSubmit()
+    {
+        Debug.Log("Submit");
+        if (MenuCanvas.isMatchmaking)
+        {
             if (!ready)
             {
-                OnBackButton?.Invoke(Id);//MenuUI hears it 
-            }
-            if (MenuCanvas.isMatchmaking)
-            {
-                if (ready)
-                {
-                    ready = false;
-                    OnNotReady?.Invoke(id);//MenuManager hears it
-                }
+                ready = true;
+                OnReady?.Invoke(Id);//MenuManager hears it
             }
         }
+        OnAcceptButton?.Invoke(Id);
+    }
 
-        if (Input.GetKeyDown(controls.rightBumper))
+    public void OnStart()
+    {
+        Debug.Log("Start");
+        if (MenuCanvas.isMatchmaking)
         {
-            if (!Input.GetKeyDown(controls.leftBumper))
-                OnRightBumper?.Invoke(Id);//SkinSelector hears it.
+            if (!ready)
+            {
+                ready = true;
+                OnReady?.Invoke(Id);//MenuManager hears it
+            }
         }
-        else if (Input.GetKeyDown(controls.leftBumper))
+        OnStartButton?.Invoke(Id);
+    }
+
+    public void OnBack()
+    {
+        Debug.Log("Back");
+
+        if (!ready)
         {
-            if (!Input.GetKeyDown(controls.rightBumper))
-                OnLeftBumper?.Invoke(Id);//SkinSelector hears it.
+            OnBackButton?.Invoke(Id);//MenuUI hears it 
         }
+        if (MenuCanvas.isMatchmaking)
+        {
+            if (ready)
+            {
+                ready = false;
+                OnNotReady?.Invoke(id);//MenuManager hears it
+            }
+        }
+    }
+
+    public void OnLeftSkin()
+    {
+        Debug.Log("LB");
+        OnLeftBumper?.Invoke(Id);//SkinSelector hears it. 
+    }
+
+    public void OnRightSkin()
+    {
+        Debug.Log("RB");
+        OnRightBumper?.Invoke(Id);//SkinSelector hears it. 
     }
 }

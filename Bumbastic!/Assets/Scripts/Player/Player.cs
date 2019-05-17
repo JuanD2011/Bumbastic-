@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Experimental.Input;
+using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 
 public class Player : MonoBehaviour
 {
@@ -31,6 +33,8 @@ public class Player : MonoBehaviour
     private Rigidbody m_Rigidbody;
     private Vector3 spawnPoint;
     private Controls controls;
+
+    //[SerializeField]
 
     private Animator m_Animator;
     private AnimatorOverrideController animatorWNoBomb;
@@ -68,6 +72,28 @@ public class Player : MonoBehaviour
         Bomb.OnExplode += ResetPlayer;
     }
 
+    public void OnMove(InputValue context)
+    {
+        inputDirection = context.Get<Vector2>();
+    }
+
+    public void OnAim(InputValue context)
+    {
+        inputAiming = context.Get<Vector2>();
+        Debug.Log(inputAiming);
+    }
+
+    public void OnThrow()
+    {
+        Throw();
+    }
+
+    public void OnStart()
+    {
+        PlayerMenu.OnStartButton?.Invoke(Id);
+    }
+
+
     public void PodiumAnimation(bool _win)
     {
         if (_win)
@@ -101,49 +127,54 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (canMove)
-        {
-            inputDirection = new Vector2(Input.GetAxis(Controls.ljoystickHorizontal), Input.GetAxis(Controls.ljoystickVertical));
-            inputAiming = new Vector2(Input.GetAxis(Controls.rjoystickHorizontal), Input.GetAxis(Controls.rjoystickVertical));
-            Move(); 
-        }
-        if (controls.rightButtonTrigger != KeyCode.None)
-        {
-            if (Input.GetKeyDown(controls.rightButtonTrigger) && !throwing)
-            {
-                Throw();
-            }
-        }
-        else if (controls.rightAxisTrigger != "" && !throwing)
-        {
-            if (Input.GetAxis(controls.rightAxisTrigger) == 1f)
-            {
-                Throw();
-            }
-        }
+        Move();
 
-		if (Input.GetKeyDown(Controls.startButton))
-        {
-            PlayerMenu.OnStartButton?.Invoke(Id);
-        }
+        //if (canMove)
+        //{
+        //    inputDirection = new Vector2(Input.GetAxis(Controls.ljoystickHorizontal), Input.GetAxis(Controls.ljoystickVertical));
+        //    inputAiming = new Vector2(Input.GetAxis(Controls.rjoystickHorizontal), Input.GetAxis(Controls.rjoystickVertical));
+        //    Move(); 
+        //}
+        //if (controls.rightButtonTrigger != KeyCode.None)
+        //{
+        //    if (Input.GetKeyDown(controls.rightButtonTrigger) && !throwing)
+        //    {
+        //        Throw();
+        //    }
+        //}
+        //else if (controls.rightAxisTrigger != "" && !throwing)
+        //{
+        //    if (Input.GetAxis(controls.rightAxisTrigger) == 1f)
+        //    {
+        //        Throw();
+        //    }
+        //}
+
+		//if (Input.GetKeyDown(Controls.startButton))
+  //      {
+  //          PlayerMenu.OnStartButton?.Invoke(Id);
+  //      }
     }
 
 
     private void Move()
     {
-        inputDirection.Normalize();
-
-        if (inputDirection != Vector2.zero && !throwing)
+        if (canMove)
         {
-            targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
-            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
-        }
+            inputDirection.Normalize();
 
-        targetSpeed = ((speedPU) ? powerUpSpeed : moveSpeed) * inputDirection.magnitude; 
-        currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVel, speedSmooothTime);
-        transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
-        animationSpeedPercent = ((speedPU) ? 1 : 0.5f) * inputDirection.magnitude;
-        Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
+            if (inputDirection != Vector2.zero && !throwing)
+            {
+                targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
+                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
+            }
+
+            targetSpeed = ((speedPU) ? powerUpSpeed : moveSpeed) * inputDirection.magnitude;
+            currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVel, speedSmooothTime);
+            transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+            animationSpeedPercent = ((speedPU) ? 1 : 0.5f) * inputDirection.magnitude;
+            Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime); 
+        }
     }
 
     public void Initialize()
@@ -165,7 +196,7 @@ public class Player : MonoBehaviour
 
     public void Throw()
     {
-        if (HasBomb && CanMove)
+        if (HasBomb && CanMove && !throwing)
         {
             Animator.SetTrigger("Throw");
             SetOverrideAnimator(false);
@@ -180,7 +211,7 @@ public class Player : MonoBehaviour
         float elapsedTime = 0f;
 
         Quaternion initialRotation = transform.rotation;
-        Vector3 aiming = new Vector3(-InputAiming.normalized.y, 0, InputAiming.normalized.x);
+        Vector3 aiming = new Vector3(InputAiming.normalized.x, 0, InputAiming.normalized.y);
     
         while (elapsedTime < 0.15f)
         { 

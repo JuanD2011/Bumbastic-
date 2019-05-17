@@ -23,16 +23,4 @@ public class AudioClips : ScriptableObject
 
     [Header("Support")]
     public AudioClip crowdCheer;
-
-    /// <summary>
-    /// Method called by buttons
-    /// </summary>
-    /// <param name="_isBack"></param>
-    public void SoundButton(bool _isBack)
-    {
-        if (_isBack)
-            AudioManager.instance.PlaySFx(buttonBack);
-        else
-            AudioManager.instance.PlaySFx(buttonDefault);
-    }
 }

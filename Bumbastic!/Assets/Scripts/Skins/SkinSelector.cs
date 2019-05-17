@@ -37,21 +37,27 @@ public class SkinSelector : MonoBehaviour
     #region With Triggers
     public void PreviousSkin(byte _playerId)
     {
-        if (player - 1 == _playerId)
+        if (MenuCanvas.isMatchmaking)
         {
-            skinsData.skins[Position].choosed = false;
-            int currentSkin = GetAvailableSkin(false);
-            OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager
+            if (player - 1 == _playerId)
+            {
+                skinsData.skins[Position].choosed = false;
+                int currentSkin = GetAvailableSkin(false);
+                OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager
+            } 
         }
     }
 
     public void NextSkin(byte _playerId)
     {
-        if (player - 1 == _playerId)
+        if (MenuCanvas.isMatchmaking)
         {
-            skinsData.skins[Position].choosed = false;
-            int currentSkin = GetAvailableSkin(true);
-            OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager 
+            if (player - 1 == _playerId)
+            {
+                skinsData.skins[Position].choosed = false;
+                int currentSkin = GetAvailableSkin(true);
+                OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager 
+            } 
         }
     }
     #endregion

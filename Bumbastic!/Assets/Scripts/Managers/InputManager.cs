@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Experimental.Input;
 
 public class InputManager : MonoBehaviour
 {
@@ -16,11 +17,19 @@ public class InputManager : MonoBehaviour
             inputManager = this;
         else
             Destroy(this);
+
+        GetGamepads();
     }
 
     private void Start()
     {
-        GetJoysticks();
+        //GetJoysticks();
+    }
+
+    private void GetGamepads()
+    { 
+        int gamepadCount = Gamepad.all.Count + (Joystick.all.Count / 4);
+        MenuManager.menu.InitializeFirstPlayers(gamepadCount);
     }
 
     private void GetJoysticks()
@@ -42,7 +51,7 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        MenuManager.menu.InitializeFirstPlayers(activeJoysticks);
+        //MenuManager.menu.InitializeFirstPlayers(activeJoysticks);
     }
 
     private void Update()

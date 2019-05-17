@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class PodiumManager : MonoBehaviour
@@ -11,6 +10,7 @@ public class PodiumManager : MonoBehaviour
 
     private void Awake()
     {
+        PlayerMenu.ResetDel();
         InGame.playerSettings = InGame.playerSettings.OrderBy(w => w.score).ToList();
         InGame.playerSettings.Reverse();
     }

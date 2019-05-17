@@ -17,12 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FreeForAll.unity
     guid: 657da944d515a4c498c9c61100433164
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BasesGame.unity
     guid: 26dc671b746297d42a08cba4689645a3
   - enabled: 1
     path: Assets/Scenes/Podium.unity
     guid: 579394fd30efe784d95b7052a89a140a
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: d7e0dcc3f23802348b50384070208e51,
+    com.unity.input.settings: {fileID: 11400000, guid: d239b8bd92cb03d4a9d49351a5fb9230,
       type: 2}
