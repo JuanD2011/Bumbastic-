@@ -11,6 +11,8 @@ public class AudioClips : ScriptableObject
     public AudioClip desertAmbient, winterAmbient;
 
     [Header("SFx")]
+    public AudioClip bumba, go;
+    public AudioClip cLose, cWin, cTransmitter, cStun;
     public AudioClip bomb, confettiBomb;
     public AudioClip bombThrow, bombReception;
     public AudioClip buttonDefault, buttonBack, buttonSelection;

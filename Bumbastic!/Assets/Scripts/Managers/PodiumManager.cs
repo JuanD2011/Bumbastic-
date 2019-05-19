@@ -1,10 +1,13 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class PodiumManager : MonoBehaviour
 {
     [SerializeField] Transform[] spawnPoints;
     [SerializeField] GameObject playerPrefab;
+    [SerializeField] GameObject rainParticle;
+    [SerializeField] float timeToNextPlayer = 3f;
 
     protected GameObject PlayerPrefab { get => playerPrefab; private set => playerPrefab = value; }
 
@@ -17,11 +20,12 @@ public class PodiumManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnPlayers();
+        StartCoroutine(SpawnPlayers());
     }
 
-    private void SpawnPlayers()
+    private IEnumerator SpawnPlayers()
     {
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer, 1f);
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
@@ -37,11 +41,15 @@ public class PodiumManager : MonoBehaviour
             {
                 player.PodiumAnimation(true);
             }
+            else if (i == InGame.playerSettings.Count - 1)
+            {
+                rainParticle.SetActive(true);
+            }
             else
             {
                 player.PodiumAnimation(false);
             }
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer, 1f);
+            yield return new WaitForSeconds(timeToNextPlayer);
         }
     }
 }
