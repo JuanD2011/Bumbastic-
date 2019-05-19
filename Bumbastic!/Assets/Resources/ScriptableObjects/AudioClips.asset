@@ -16,6 +16,15 @@ MonoBehaviour:
   transitionMusic: {fileID: 8300000, guid: f394a85c02d05404f9009b3d67361b33, type: 3}
   desertAmbient: {fileID: 8300000, guid: bb88e939a5fc58b439b1234d56427dac, type: 3}
   winterAmbient: {fileID: 8300000, guid: 814822281ea5e454eb506c2e7b6099ce, type: 3}
+  bumba: {fileID: 8300000, guid: 1c7c4a663cfedf84b9ac98758482d032, type: 3}
+  go: {fileID: 8300000, guid: 3f5c46ee34d8f624ebfb39d0e1a206ce, type: 3}
+  mrBumbasticIs: {fileID: 0}
+  cLose: {fileID: 8300000, guid: 482578a630eb9964294e6c00bbd52304, type: 3}
+  cWin: {fileID: 8300000, guid: db965d481695f004b8fb0a0bc02b7684, type: 3}
+  cTransmitter: {fileID: 8300000, guid: 5ff234d7e54127f4ebc04382d5a0f92d, type: 3}
+  cStun: {fileID: 8300000, guid: d16dbaa73c7bc54428858e40664a7c20, type: 3}
+  cThrow: {fileID: 8300000, guid: f01ee7a4d1da5d0478ed402543ea3cb2, type: 3}
+  cSpeedUP: {fileID: 8300000, guid: a287d0f4c471a8d4693d6731749e3612, type: 3}
   bomb: {fileID: 8300000, guid: 954ba09f760448547a16f4923a278dd8, type: 3}
   confettiBomb: {fileID: 8300000, guid: 70d1587c54a681d47a4bb879ff046cd7, type: 3}
   bombThrow: {fileID: 8300000, guid: 9245f1c61e7dd9d478159b55d09f16f4, type: 3}

@@ -486,6 +486,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 63817899032751289, guid: f83502d98471cb04da5a707e5cc13688,
     type: 3}
   rainParticle: {fileID: 2123874939}
+  timeToNextPlayer: 3
 --- !u!320 &431491412
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -497,7 +498,7 @@ PlayableDirector:
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 02b3ba05ae723dc4ea651eb9efc141c0, type: 2}
   m_InitialState: 1
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:

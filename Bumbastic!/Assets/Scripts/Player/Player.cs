@@ -96,9 +96,15 @@ public class Player : MonoBehaviour
     public void PodiumAnimation(bool _win)
     {
         if (_win)
+        {
             m_Animator.SetTrigger("Winner");
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cWin, 1f);
+        }
         else
+        {
             m_Animator.SetTrigger("Looser");
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cLose, 1f);
+        }
     }
 
     private void ResetPlayer()
@@ -237,6 +243,7 @@ public class Player : MonoBehaviour
             HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombThrow, 0.7f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cThrow, 0.7f);
 
         HasBomb = false;
         throwing = false;
@@ -297,6 +304,7 @@ public class Player : MonoBehaviour
             Animator.SetTrigger("Stun");
         }
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, _stun, 0.6f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 0.7f);
         canMove = !_stun;
     }
 
@@ -317,6 +325,7 @@ public class Player : MonoBehaviour
         {
             Animator.SetTrigger("Stun"); 
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, true, 0.6f);
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 0.7f);
         }
 
         yield return new WaitForSeconds(_duration);

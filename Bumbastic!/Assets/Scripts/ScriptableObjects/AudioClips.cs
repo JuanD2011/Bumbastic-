@@ -12,7 +12,7 @@ public class AudioClips : ScriptableObject
 
     [Header("SFx")]
     public AudioClip bumba, go, mrBumbasticIs;
-    public AudioClip cLose, cWin, cTransmitter, cStun;
+    public AudioClip cLose, cWin, cTransmitter, cStun, cThrow, cSpeedUP;
     public AudioClip bomb, confettiBomb;
     public AudioClip bombThrow, bombReception;
     public AudioClip buttonDefault, buttonBack, buttonSelection;

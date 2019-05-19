@@ -9,6 +9,7 @@ public class Velocity : PowerUp
     {
         base.Start();
         Duration = 5f;
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cSpeedUP, 0.7f);
         StartCoroutine(InitSpeedUP());
         speedUpParticle.GetComponent<SpeedUpParticle>().OnComplete += OnComplete;
     }

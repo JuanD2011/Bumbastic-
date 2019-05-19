@@ -117,6 +117,13 @@ public class HotPotatoManager : GameManager
         Bomb.RigidBody.isKinematic = true;
         Bomb.transform.position = _receiver.Catapult.position;
         Bomb.transform.SetParent(_receiver.Catapult.transform);
+
+        float probTosound = Random.Range(0f, 1f);
+
+        if (probTosound < 0.33f)
+        {
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
+        }
     }
 
     /// <summary>
@@ -136,6 +143,13 @@ public class HotPotatoManager : GameManager
         Bomb.transform.position = _receiver.Catapult.position;
         Bomb.transform.SetParent(_receiver.Catapult);
         StartCoroutine(_receiver.Stun(false, 1f));
+
+        float probTosound = Random.Range(0f, 1f);
+
+        if (probTosound < 0.33f)
+        {
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
+        }
     }
 
     public override void PassBomb()
