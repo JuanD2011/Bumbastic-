@@ -25,6 +25,7 @@ public class PodiumManager : MonoBehaviour
 
     private IEnumerator SpawnPlayers()
     {
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.mrBumbasticIs, 0.7f);
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer, 1f);
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
@@ -40,13 +41,16 @@ public class PodiumManager : MonoBehaviour
             if (i == 0)
             {
                 player.PodiumAnimation(true);
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cWin, 0.7f);
             }
             else if (i == InGame.playerSettings.Count - 1)
             {
                 rainParticle.SetActive(true);
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cLose, 0.7f);
             }
             else
             {
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cLose, 0.7f);
                 player.PodiumAnimation(false);
             }
             yield return new WaitForSeconds(timeToNextPlayer);
