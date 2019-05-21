@@ -50,3 +50,10 @@ MonoBehaviour:
     prefab: {fileID: 1885799808, guid: d3ad895f063e4fb4eb7295075a623885, type: 3}
     choosed: 0
     skinSprite: {fileID: 21300000, guid: 66e582198088cfc4ca274b4d1ccad82e, type: 3}
+  - name: UnderCloak
+    description: 
+    value: 0
+    prefab: {fileID: 3248004708075083927, guid: 2d3e51ea9206ca144b78e2c95c50786c,
+      type: 3}
+    choosed: 0
+    skinSprite: {fileID: 21300000, guid: 66e582198088cfc4ca274b4d1ccad82e, type: 3}

@@ -82,6 +82,7 @@ public class HotPotatoManager : GameManager
                 Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 1, 0), Quaternion.identity);
                 bummies.RemoveAt(i);
             }
+            Bomb.gameObject.SetActive(true);
             Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 1, 0);
             Bomb.Timer = Random.Range(minTime -= 3f, maxTime -= 3f);
             Bomb.Exploded = false;
@@ -90,7 +91,6 @@ public class HotPotatoManager : GameManager
                 Bomb.RigidBody.velocity = Vector3.zero;
             }
             Bomb.transform.rotation = Quaternion.identity;
-            Bomb.gameObject.SetActive(true);
         }
         else if (Players.Count == 1)
         {
