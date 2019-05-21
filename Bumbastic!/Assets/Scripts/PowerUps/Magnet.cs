@@ -19,7 +19,6 @@ public class Magnet : PowerUp
     IEnumerator LerpBomb()
     {
         HotPotatoManager.HotPotato.Bomb.transform.SetParent(null);
-        HotPotatoManager.HotPotato.Bomb.Collider.enabled = true;
         player.Stun(true);
         float elapsedTime = 0f;
 

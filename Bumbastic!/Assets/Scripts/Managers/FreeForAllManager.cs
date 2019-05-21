@@ -98,7 +98,7 @@ public class FreeForAllManager : HotPotatoManager
             {
                 random = Random.Range(0, Players.Count);
             }
-            Bomb.Collider.enabled = true;
+
             Bomb.transform.position = Players[random].transform.position + new Vector3(0, 2, 0);
             Bomb.Timer = Random.Range(minTime, maxTime);
             Bomb.Exploded = false;
