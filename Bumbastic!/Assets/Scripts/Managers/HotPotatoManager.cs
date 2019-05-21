@@ -115,6 +115,7 @@ public class HotPotatoManager : GameManager
         _receiver.Collider.enabled = false;
         BombHolder = _receiver;
         Bomb.RigidBody.isKinematic = true;
+        Bomb.Collider.enabled = false;
         Bomb.transform.position = _receiver.Catapult.position;
         Bomb.transform.SetParent(_receiver.Catapult.transform);
 
@@ -140,6 +141,7 @@ public class HotPotatoManager : GameManager
         _receiver.Collider.enabled = false;
         BombHolder = _receiver;
         Bomb.RigidBody.isKinematic = true;
+        Bomb.Collider.enabled = false;
         Bomb.transform.position = _receiver.Catapult.position;
         Bomb.transform.SetParent(_receiver.Catapult);
         StartCoroutine(_receiver.Stun(false, 1f));
@@ -157,6 +159,7 @@ public class HotPotatoManager : GameManager
         BombHolder.HasBomb = true;
         BombHolder.SetOverrideAnimator(true);
         Bomb.RigidBody.isKinematic = true;
+        Bomb.Collider.enabled = false;
         Bomb.transform.position = BombHolder.Catapult.position;
         Bomb.transform.SetParent(BombHolder.Catapult);
     }

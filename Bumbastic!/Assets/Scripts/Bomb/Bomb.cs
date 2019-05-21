@@ -10,11 +10,13 @@ public class Bomb : MonoBehaviour
 
     private float timer;
     private Rigidbody m_rigidBody;
+    private Collider m_Collider;
 
     public float Timer { get => timer; set => timer = value; }
     public Rigidbody RigidBody { get => m_rigidBody; set => m_rigidBody = value; }
     public bool Exploded { get => exploded; set => exploded = value; }
     public bool CanCount { get => canCount; private set => canCount = value; }
+    public Collider Collider { get => m_Collider; private set => m_Collider = value; }
 
     private Animator m_Animator;
 
@@ -34,6 +36,7 @@ public class Bomb : MonoBehaviour
     {
         m_rigidBody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
+        Collider = GetComponent<Collider>();
     }
 
     private void OnEnable()
