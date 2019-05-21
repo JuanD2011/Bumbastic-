@@ -30,10 +30,6 @@ public class Bomb : MonoBehaviour
     private void Awake()
     {
         OnExplode = null;
-    }
-
-    private void Start()
-    {
         m_rigidBody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider>();
@@ -92,6 +88,7 @@ public class Bomb : MonoBehaviour
         transform.SetParent(null);
         CameraShake.instance.OnShakeDuration?.Invoke(0.4f, 6f, 1.2f);
         RigidBody.isKinematic = false;
+        Collider.enabled = true;
         OnExplode?.Invoke();//ParticleModification, GameManager, FloorManager hears it
     }
 

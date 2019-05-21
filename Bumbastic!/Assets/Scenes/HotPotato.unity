@@ -1157,6 +1157,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 3628763504567345097, guid: 786b8c6ef3f631c4488b231982dcc8a3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.03
+      objectReference: {fileID: 0}
     - target: {fileID: 691604942803257578, guid: 786b8c6ef3f631c4488b231982dcc8a3,
         type: 3}
       propertyPath: m_Enabled
@@ -2971,37 +2976,37 @@ PrefabInstance:
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000003509595
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 41.358234
+      value: 19.41
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -42.07727
+      value: -27.329998
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.37869906
+      value: -0.2808338
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000003859803
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000015793326
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9255199
+      value: -0.95975643
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
@@ -3026,7 +3031,7 @@ PrefabInstance:
     - target: {fileID: 923785380156859825, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: orthographic size
-      value: 2
+      value: 11.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2024eca52763444cad8502853114798, type: 3}

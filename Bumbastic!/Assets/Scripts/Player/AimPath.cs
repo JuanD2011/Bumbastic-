@@ -10,12 +10,19 @@ public class AimPath : MonoBehaviour
 
     Vector2 aimNormalized;
 
+    bool canAim = false;
+
     void Start()
     {
         m_Player = GetComponentInParent<Player>();
         m_LineRenderer = GetComponent<LineRenderer>();
 
         SetPositionKeys();
+
+        if (GameModeDataBase.IsCurrentBasesGame() || GameModeDataBase.IsCurrentFreeForAll() || GameModeDataBase.IsCurrentHotPotato())
+            canAim = true;
+        else
+            canAim = false;
     }
 
     private void SetPositionKeys()
@@ -25,22 +32,25 @@ public class AimPath : MonoBehaviour
 
     private void Update()
     {
-        aimNormalized = m_Player.InputAiming.normalized;
-        if (aimNormalized != Vector2.zero)
+        if (canAim)
         {
-            if (!m_LineRenderer.enabled)
+            aimNormalized = m_Player.InputAiming.normalized;
+            if (aimNormalized != Vector2.zero)
             {
-                m_LineRenderer.enabled = true;
+                if (!m_LineRenderer.enabled)
+                {
+                    m_LineRenderer.enabled = true;
+                }
+                targetRotation = Mathf.Atan2(aimNormalized.x, aimNormalized.y) * Mathf.Rad2Deg;
+                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, m_Player.TurnSmooth);
             }
-            targetRotation = Mathf.Atan2(aimNormalized.x, aimNormalized.y) * Mathf.Rad2Deg;
-            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, m_Player.TurnSmooth);
-        }
-        else
-        {
-            if (m_LineRenderer.enabled)
+            else
             {
-                m_LineRenderer.enabled = false;
-            }
+                if (m_LineRenderer.enabled)
+                {
+                    m_LineRenderer.enabled = false;
+                }
+            } 
         }
     }
 }
