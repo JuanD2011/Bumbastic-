@@ -305,7 +305,7 @@ public class Player : MonoBehaviour
             Animator.SetTrigger("Stun");
         }
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, _stun, 0.6f);
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 0.7f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 1f);
         canMove = !_stun;
     }
 
@@ -326,7 +326,7 @@ public class Player : MonoBehaviour
         {
             Animator.SetTrigger("Stun"); 
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, true, 0.6f);
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 0.7f);
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 1f);
         }
 
         yield return new WaitForSeconds(_duration);
