@@ -43,7 +43,7 @@ public class PodiumManager : MonoBehaviour
                 player.PodiumAnimation(true);
                 AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cWin, 0.7f);
             }
-            else if (i == InGame.playerSettings.Count - 1)
+            else if (i == 3)
             {
                 rainParticle.SetActive(true);
                 AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cLose, 0.7f);
