@@ -40,18 +40,19 @@ public class PodiumManager : MonoBehaviour
             player.Initialize();
             if (i == 0)
             {
-                player.PodiumAnimation(true);
+                player.PodiumAnimation(0);
                 AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cWin, 0.7f);
             }
             else if (i == 3)
             {
                 rainParticle.SetActive(true);
+                player.PodiumAnimation(2);
                 AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cLose, 0.7f);
             }
             else
             {
                 AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cLose, 0.7f);
-                player.PodiumAnimation(false);
+                player.PodiumAnimation(1);
             }
             yield return new WaitForSeconds(timeToNextPlayer);
         }

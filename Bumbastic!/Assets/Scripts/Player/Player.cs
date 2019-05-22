@@ -93,17 +93,20 @@ public class Player : MonoBehaviour
     }
 
 
-    public void PodiumAnimation(bool _win)
+    public void PodiumAnimation(int _podiumState)
     {
-        if (_win)
+        m_Animator.SetInteger("PodiumState", _podiumState);
+        switch (_podiumState)
         {
-            m_Animator.SetTrigger("Winner");
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cWin, 1f);
-        }
-        else
-        {
-            m_Animator.SetTrigger("Looser");
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cLose, 1f);
+            case 0:
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cWin, 1f);
+                break;
+            case 1:
+            case 2:
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cLose, 1f);
+                break;
+            default:
+                break;
         }
     }
 
