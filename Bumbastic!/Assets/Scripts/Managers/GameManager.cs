@@ -184,4 +184,9 @@ public abstract class GameManager : MonoBehaviour
     public abstract void PassBomb(Player _receiver);
 
     public abstract void PassBomb(Player _receiver, Player _transmitter);
+
+    protected virtual void OnDisable()
+    {
+        PlayerMenu.ResetDel();
+    }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AimPath : MonoBehaviour
 {
@@ -10,19 +9,12 @@ public class AimPath : MonoBehaviour
 
     Vector2 aimNormalized;
 
-    bool canAim = false;
-
     void Start()
     {
         m_Player = GetComponentInParent<Player>();
         m_LineRenderer = GetComponent<LineRenderer>();
 
         SetPositionKeys();
-
-        if (GameModeDataBase.IsCurrentBasesGame() || GameModeDataBase.IsCurrentFreeForAll() || GameModeDataBase.IsCurrentHotPotato())
-            canAim = true;
-        else
-            canAim = false;
     }
 
     private void SetPositionKeys()
@@ -32,7 +24,7 @@ public class AimPath : MonoBehaviour
 
     private void Update()
     {
-        if (canAim)
+        if (m_Player.CanMove)
         {
             aimNormalized = m_Player.InputAiming.normalized;
             if (aimNormalized != Vector2.zero)
@@ -51,6 +43,13 @@ public class AimPath : MonoBehaviour
                     m_LineRenderer.enabled = false;
                 }
             } 
+        }
+        else
+        {
+            if (m_LineRenderer.enabled)
+            {
+                m_LineRenderer.enabled = false;
+            }
         }
     }
 }

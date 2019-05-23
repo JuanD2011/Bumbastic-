@@ -36,6 +36,7 @@ public class MenuManager : MonoBehaviour
     private GameObject playerMenuPrefab;
 
     private bool countdown = false;
+    bool go = false;
 
     private byte playersReady = 0;
     private int maxPlayers = 0;
@@ -97,16 +98,17 @@ public class MenuManager : MonoBehaviour
         {
             timer -= Time.deltaTime;
 
-            countdownText.text = string.Format("{0}", Mathf.RoundToInt(timer));
-
-            if (Mathf.RoundToInt(timer) == 0)
+            if (Mathf.RoundToInt(timer) <= 0)
             {
-                if (countdownText.text != "Go!")
+                if (!go)
                 {
-                    countdownText.text = string.Format("Go!");
-                    //AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.go, 0.8f);
+                    AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.go, 1f);
+                    countdownText.text = "Go!";
+                    go = true;
                 }
             }
+            else
+                countdownText.text = string.Format("{0}", Mathf.RoundToInt(timer));
 
             if (timer <= 0f)
             {
@@ -115,13 +117,14 @@ public class MenuManager : MonoBehaviour
                     countdownText.text = "";
                 }
                 StartGame();
+                countdown = false;
             }
         }
     }
 
     private void StartGame()
     {
-        countdown = false;
+        print("Start game");
         InGame.playerSettings.Clear();
         for (int i = 0; i < Players.Count; i++)
         {
@@ -147,7 +150,6 @@ public class MenuManager : MonoBehaviour
             player.Id = (byte) i;
             Players.Add(player);
         }
-
         maxPlayers = _gamepadCount;
         //InputManager.inputManager.AssignController(_joysticks);
     }

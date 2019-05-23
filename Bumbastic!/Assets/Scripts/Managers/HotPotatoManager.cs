@@ -163,4 +163,9 @@ public class HotPotatoManager : GameManager
         Bomb.transform.position = BombHolder.Catapult.position;
         Bomb.transform.SetParent(BombHolder.Catapult);
     }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+    }
 }

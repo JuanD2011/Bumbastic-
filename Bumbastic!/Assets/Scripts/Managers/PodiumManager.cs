@@ -56,4 +56,9 @@ public class PodiumManager : MonoBehaviour
             yield return new WaitForSeconds(timeToNextPlayer);
         }
     }
+
+    private void OnDisable()
+    {
+        PlayerMenu.ResetDel();
+    }
 }

@@ -126,4 +126,9 @@ public class FreeForAllManager : HotPotatoManager
         base.PassBomb(_receiver, _transmitter);
         if (!Bomb.Exploded) timesBombPlayed++;
     }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+    }
 }

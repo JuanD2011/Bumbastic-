@@ -187,7 +187,6 @@ public class Player : MonoBehaviour
 
     public void Initialize()
     {
-        PlayerMenu.ResetDel();
         player = Instantiate(avatar, transform.position, transform.rotation);
         player.transform.SetParent(transform);
         Animator = GetComponentInChildren<Animator>();

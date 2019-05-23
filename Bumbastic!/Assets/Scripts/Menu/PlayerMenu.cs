@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerMenu : MonoBehaviour
 {
@@ -35,6 +36,16 @@ public class PlayerMenu : MonoBehaviour
     private void Start()
     {
         MenuCanvas.OnMatchmaking += OnResetStatus;
+        Init();
+    }
+
+    private void Init()
+    {
+        if (ready)
+        {
+            ready = false;
+            OnNotReady?.Invoke(Id);
+        }
     }
 
     private void OnResetStatus(bool _canActive)
@@ -49,18 +60,15 @@ public class PlayerMenu : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        ResetDel();
-    }
-
     public static void ResetDel()
     {
-        OnBackButton = null;
-        OnAcceptButton = null;
-        OnStartButton = null;
-        OnLeftBumper = null;
-        OnRightBumper = null;
+        if (OnBackButton != null) { OnBackButton = null; }
+        if (OnStartButton != null) { OnStartButton = null; }
+        if (OnAcceptButton != null) { OnAcceptButton = null; }
+        if (OnLeftBumper != null) { OnLeftBumper = null; }
+        if (OnRightBumper != null) { OnRightBumper = null; }
+        if (OnReady != null) { OnReady = null; }
+        if (OnNotReady != null) { OnNotReady = null; }
     }
 
     public void OnSubmit()
