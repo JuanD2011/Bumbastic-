@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Experimental.Input;
 
 public class PlayerMenu : MonoBehaviour
 {
@@ -63,7 +64,6 @@ public class PlayerMenu : MonoBehaviour
 
     public void OnSubmit()
     {
-        Debug.Log("Submit");
         if (MenuCanvas.isMatchmaking)
         {
             if (!ready)
@@ -77,7 +77,6 @@ public class PlayerMenu : MonoBehaviour
 
     public void OnStart()
     {
-        Debug.Log("Start");
         if (MenuCanvas.isMatchmaking)
         {
             if (!ready)
@@ -91,8 +90,6 @@ public class PlayerMenu : MonoBehaviour
 
     public void OnBack()
     {
-        Debug.Log("Back");
-
         if (!ready)
         {
             OnBackButton?.Invoke(Id);//MenuUI hears it 
@@ -109,13 +106,17 @@ public class PlayerMenu : MonoBehaviour
 
     public void OnLeftSkin()
     {
-        Debug.Log("LB");
-        OnLeftBumper?.Invoke(Id);//SkinSelector hears it. 
+        if (!Gamepad.current.rightShoulder.wasPressedThisFrame)
+        {
+            OnLeftBumper?.Invoke(Id);//SkinSelector hears it.  
+        }
     }
 
     public void OnRightSkin()
     {
-        Debug.Log("RB");
-        OnRightBumper?.Invoke(Id);//SkinSelector hears it. 
+        if (!Gamepad.current.leftShoulder.wasPressedThisFrame)
+        {
+            OnRightBumper?.Invoke(Id);//SkinSelector hears it.  
+        }
     }
 }

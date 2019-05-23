@@ -35,6 +35,10 @@ public abstract class GameManager : MonoBehaviour
     public delegate void GameStateDelegate();
     public event GameStateDelegate OnGameModeOver;
     public event GameStateDelegate OnGameOver;
+    protected Shader defaultShader;
+
+    [SerializeField]
+    protected Shader bombHolderShader;
 
     protected virtual void Awake()
     {
@@ -46,6 +50,7 @@ public abstract class GameManager : MonoBehaviour
         Players = new List<Player>();
         Director = GetComponent<PlayableDirector>();
         SpawnPlayers();
+        defaultShader = Players[0].GetComponentInChildren<SkinnedMeshRenderer>().material.shader;
     }
 
     protected virtual void Start()

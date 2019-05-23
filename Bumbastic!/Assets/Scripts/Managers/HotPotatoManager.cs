@@ -105,14 +105,27 @@ public class HotPotatoManager : GameManager
     /// <param name="_receiver"></param>
     public override void PassBomb(Player _receiver)
     {
+        SkinnedMeshRenderer[] transmitterRenderer;
+        SkinnedMeshRenderer[] receiverRenderer;
+
         if (BombHolder != null)
         {
             BombHolder.HasBomb = false;
             BombHolder.Collider.enabled = true;
             transmitter = BombHolder;
+            transmitterRenderer = transmitter.GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (Renderer renderer in transmitterRenderer)
+            {
+                renderer.material.shader = defaultShader;
+            }
         }
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
+        receiverRenderer = _receiver.GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (Renderer renderer in receiverRenderer)
+        {
+            renderer.material.shader = bombHolderShader;
+        }
         BombHolder = _receiver;
         Bomb.RigidBody.isKinematic = true;
         Bomb.Collider.enabled = false;
@@ -134,11 +147,24 @@ public class HotPotatoManager : GameManager
     /// <param name="_transmitter"></param>
     public override void PassBomb(Player _receiver, Player _transmitter)
     {
+        SkinnedMeshRenderer[] transmitterRenderer;
+        SkinnedMeshRenderer[] receiverRenderer;
+
         transmitter = _transmitter;
         _transmitter.HasBomb = false;
         _transmitter.Collider.enabled = true;
+        transmitterRenderer = transmitter.GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (Renderer renderer in transmitterRenderer)
+        {
+            renderer.material.shader = defaultShader;
+        }
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
+        receiverRenderer = _receiver.GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (Renderer renderer in receiverRenderer)
+        {
+            renderer.material.shader = bombHolderShader;
+        }
         BombHolder = _receiver;
         Bomb.RigidBody.isKinematic = true;
         Bomb.Collider.enabled = false;

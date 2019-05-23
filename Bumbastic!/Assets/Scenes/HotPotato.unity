@@ -353,6 +353,7 @@ MonoBehaviour:
   speedUpParticleSystem: {fileID: 7379601420566035011, guid: c91d992a0904ade42aa34b1a01e0815f,
     type: 3}
   floor: {fileID: 1981395067}
+  bombHolderShader: {fileID: 4800000, guid: 15ca7014bd1d317459a39a206f6bff05, type: 3}
   bomb: {fileID: 1429717419}
   confettiBomb: {fileID: 8979841836204213343, guid: 2c7fdaf6443d0b04997420f96c9aa4af,
     type: 3}
