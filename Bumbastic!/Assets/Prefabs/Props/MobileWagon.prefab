@@ -136,9 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fddae92a26a14d2468c9c48acee5c113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 40
+  pushForce: 10
   velocity: 10
-  timeToRestart: 7
   timeToStart: 5
   timeToLerpPosition: 0.3
 --- !u!1 &1807510488731799245
