@@ -248,7 +248,12 @@ public class Player : MonoBehaviour
             HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombThrow, 0.7f);
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cThrow, 0.7f);
+        float prob = Random.Range(0f, 1f);
+
+        if (prob < 0.33f)
+        {
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cThrow, 0.7f); 
+        }
 
         HasBomb = false;
         throwing = false;

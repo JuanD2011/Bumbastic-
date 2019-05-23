@@ -32,6 +32,23 @@ public class PlayerMenu : MonoBehaviour
     [SerializeField]
     private GameObject avatar;
 
+    private void Start()
+    {
+        MenuCanvas.OnMatchmaking += OnResetStatus;
+    }
+
+    private void OnResetStatus(bool _canActive)
+    {
+        if (!_canActive)
+        {
+            if (ready)
+            {
+                ready = false;
+                OnNotReady?.Invoke(Id); 
+            }
+        }
+    }
+
     private void OnDisable()
     {
         ResetDel();
