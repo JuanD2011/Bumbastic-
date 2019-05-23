@@ -142,7 +142,7 @@ public class AudioManager : MonoBehaviour
         {
             if (!IsClipPlaying(_clipToPlay))
             {
-                currentAudioSource = GetAudioSource(AudioType.SFx);
+                currentAudioSource = GetEmptyAudioSource(AudioType.SFx);
 
                 if (currentAudioSource != null && _clipToPlay != null)
                 {
@@ -324,11 +324,6 @@ public class AudioManager : MonoBehaviour
             switch (_audioType) 
             {
                 case AudioType.Music:
-                    if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
-                    {
-                        return audioSources[i];
-                    }
-                    break;
                 case AudioType.Ambient:
                     if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
                     {
@@ -362,6 +357,52 @@ public class AudioManager : MonoBehaviour
         return audioSourceCreated;
     }
 
+    private AudioSource GetEmptyAudioSource(AudioType _audioType)
+    {
+        for (int i = 0; i < audioSources.Count; i++)
+        {
+            switch (_audioType)
+            {
+                case AudioType.Music:
+                case AudioType.Ambient:
+                    if (audioSources[i].clip == null)
+                    {
+                        if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                        {
+                            return audioSources[i];
+                        } 
+                    }
+                    break;
+                case AudioType.SFx:
+                    if (audioSources[i].volume == 1 && audioSources[i].pitch == 1)
+                    {
+                        if (audioSources[i].clip == null)
+                        {
+                            if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                            {
+                                return audioSources[i];
+                            } 
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        GameObject gameObject = Instantiate(audioSourceTemplate);
+        gameObject.name = string.Format("{0} AudioSource_{1}", _audioType.ToString(), audioSources.Count);
+        AudioSource audioSourceCreated = gameObject.GetComponent<AudioSource>();
+        audioSourceCreated.outputAudioMixerGroup = audioMixer.FindMatchingGroups(_audioType.ToString())[0];
+
+        if (audioSourceCreated != null)
+        {
+            audioSources.Add(audioSourceCreated);
+        }
+
+        return audioSourceCreated;
+    }
+
     private AudioSource GetAudioSourceLooping(AudioType _audioType, AudioClip _clipPlaying)
     {
         for (int i = 0; i < audioSources.Count; i++)
@@ -369,30 +410,14 @@ public class AudioManager : MonoBehaviour
             switch (_audioType)
             {
                 case AudioType.Music:
-                    if (audioSources[i].loop && audioSources[i].clip == _clipPlaying)
-                    {
-                        if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
-                        {
-                            return audioSources[i];
-                        } 
-                    }
-                    break;
                 case AudioType.Ambient:
-                    if (audioSources[i].loop && audioSources[i].clip == _clipPlaying)
-                    {
-                        if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[1])
-                        {
-                            return audioSources[i];
-                        } 
-                    }
-                    break;
                 case AudioType.SFx:
                     if (audioSources[i].loop && audioSources[i].clip == _clipPlaying)
                     {
                         if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
                         {
                             return audioSources[i];
-                        }
+                        } 
                     }
                     break;
                 default:
