@@ -21,7 +21,7 @@ public class SkinSelector : MonoBehaviour
     private void Start()
     {
         PlayerMenu.OnLeftBumper += PreviousSkin;
-        PlayerMenu.OnRightBumper += NextSkin;
+        PlayerMenu.OnRightBumper += NextSkin;  
     }
 
     public void InitSkinSelector()
@@ -39,11 +39,14 @@ public class SkinSelector : MonoBehaviour
     {
         if (MenuCanvas.isMatchmaking)
         {
-            if (player - 1 == _playerId)
+            if (!MenuManager.menu.Players[_playerId].Ready)
             {
-                skinsData.skins[Position].choosed = false;
-                int currentSkin = GetAvailableSkin(false);
-                OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager
+                if (player - 1 == _playerId)
+                {
+                    skinsData.skins[Position].choosed = false;
+                    int currentSkin = GetAvailableSkin(false);
+                    OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager
+                } 
             } 
         }
     }
@@ -52,12 +55,15 @@ public class SkinSelector : MonoBehaviour
     {
         if (MenuCanvas.isMatchmaking)
         {
-            if (player - 1 == _playerId)
+            if (!MenuManager.menu.Players[_playerId].Ready)
             {
-                skinsData.skins[Position].choosed = false;
-                int currentSkin = GetAvailableSkin(true);
-                OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager 
-            } 
+                if (player - 1 == _playerId)
+                {
+                    skinsData.skins[Position].choosed = false;
+                    int currentSkin = GetAvailableSkin(true);
+                    OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager 
+                }  
+            }
         }
     }
     #endregion

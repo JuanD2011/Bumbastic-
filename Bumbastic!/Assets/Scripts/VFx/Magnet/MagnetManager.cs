@@ -74,7 +74,7 @@ public class MagnetManager : ParticleModication
     {
         Vector3 initBombPos = bomb.transform.position;
 
-        wavePositions[0] = player.Catapult.transform.position;
+        wavePositions[0] = player.transform.position;
         wavePositions[1] = bomb.transform.position;
         wave.SetPositions(wavePositions);
 
@@ -82,10 +82,10 @@ public class MagnetManager : ParticleModication
 
         while (distance >= 2f)
         {
-            wavePositions[0] = player.Catapult.position;
+            wavePositions[0] = player.transform.position;
             wavePositions[1] = bomb.transform.position;
             wave.SetPositions(wavePositions);
-            distance = Mathf.Abs(Vector3.Distance(player.Catapult.transform.position, bomb.transform.position));
+            distance = Mathf.Abs(Vector3.Distance(player.transform.position, bomb.transform.position));
             yield return null;
         }
 

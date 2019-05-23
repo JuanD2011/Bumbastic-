@@ -929,37 +929,37 @@ PrefabInstance:
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000003509595
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 41.358234
+      value: 19.41
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -42.07727
+      value: -27.329998
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.37869906
+      value: -0.2808338
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000003859803
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000015793326
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9255199
+      value: -0.95975643
       objectReference: {fileID: 0}
     - target: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
         type: 3}
@@ -984,7 +984,7 @@ PrefabInstance:
     - target: {fileID: 923785380156859825, guid: c2024eca52763444cad8502853114798,
         type: 3}
       propertyPath: orthographic size
-      value: 2
+      value: 11.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2024eca52763444cad8502853114798, type: 3}
@@ -2405,7 +2405,7 @@ MonoBehaviour:
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 2
-  m_GroupFramingSize: 0.001
+  m_GroupFramingSize: 0.2
   m_MaxDollyIn: 5000
   m_MaxDollyOut: 5000
   m_MinimumDistance: 1
@@ -2413,7 +2413,7 @@ MonoBehaviour:
   m_MinimumFOV: 3
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 2
-  m_MaximumOrthoSize: 25
+  m_MaximumOrthoSize: 30
 --- !u!114 &1830473647
 MonoBehaviour:
   m_ObjectHideFlags: 3

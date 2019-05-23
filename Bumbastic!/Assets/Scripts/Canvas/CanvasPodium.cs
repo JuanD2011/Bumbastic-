@@ -5,7 +5,6 @@ public class CanvasPodium : Canvas
     protected override void Awake()
     {
         base.Awake();
-        PlayerMenu.ResetDel();
     }
 
     protected override void Start()

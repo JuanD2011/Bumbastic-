@@ -32,9 +32,9 @@ public class PlayerMenu : MonoBehaviour
     [SerializeField]
     private GameObject avatar;
 
-    private void Awake()
+    private void OnDisable()
     {
-        //ResetDel();
+        ResetDel();
     }
 
     public static void ResetDel()
@@ -44,53 +44,6 @@ public class PlayerMenu : MonoBehaviour
         OnStartButton = null;
         OnLeftBumper = null;
         OnRightBumper = null;
-    }
-
-    private void Update()
-    {
-        //if (Input.GetKeyDown(controls.startButton) || Input.GetKeyDown(controls.aButton))
-        //{
-        //    if (MenuCanvas.isMatchmaking)
-        //    {
-        //        counter++;
-        //        if (!ready && counter >= 2)
-        //        {
-        //            ready = true;
-        //            OnReady?.Invoke(Id);//MenuManager hears it
-        //        }
-        //    }
-        //    OnStartButton?.Invoke(Id);
-        //}
-
-        //if (Input.GetKeyDown(controls.bButton) || Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    Debug.Log("Back");
-        //    Debug.Log(controls.bButton);
-
-        //    if (!ready)
-        //    {
-        //        OnBackButton?.Invoke(Id);//MenuUI hears it 
-        //    }
-        //    if (MenuCanvas.isMatchmaking)
-        //    {
-        //        if (ready)
-        //        {
-        //            ready = false;
-        //            OnNotReady?.Invoke(id);//MenuManager hears it
-        //        }
-        //    }
-        //}
-
-        //if (Input.GetKeyDown(controls.rightBumper))
-        //{
-        //    if (!Input.GetKeyDown(controls.leftBumper))
-        //        OnRightBumper?.Invoke(Id);//SkinSelector hears it.
-        //}
-        //else if (Input.GetKeyDown(controls.leftBumper))
-        //{
-        //    if (!Input.GetKeyDown(controls.rightBumper))
-        //        OnLeftBumper?.Invoke(Id);//SkinSelector hears it.
-        //}
     }
 
     public void OnSubmit()

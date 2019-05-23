@@ -19,20 +19,23 @@ public class Magnet : PowerUp
     IEnumerator LerpBomb()
     {
         HotPotatoManager.HotPotato.Bomb.transform.SetParent(null);
-        HotPotatoManager.HotPotato.Bomb.Collider.enabled = true;
         player.Stun(true);
         float elapsedTime = 0f;
 
         Vector3 initBombPos = HotPotatoManager.HotPotato.Bomb.transform.position;
 
-        while (HotPotatoManager.HotPotato.Bomb.transform.parent == null)
+        float normalizedTime = 0f;
+
+        while (normalizedTime < 0.9)
         {
+            HotPotatoManager.HotPotato.Bomb.transform.position = Vector3.Lerp(initBombPos, player.transform.position, normalizedTime);
+            normalizedTime = elapsedTime / lerpDuration;
             elapsedTime += Time.deltaTime;
-            HotPotatoManager.HotPotato.Bomb.transform.position = Vector3.Lerp(initBombPos, player.Catapult.position, elapsedTime / lerpDuration);
             yield return null;
         }
-        Destroy(magnetManager);
+        HotPotatoManager.HotPotato.PassBomb(player);
         player.Stun(false);
+        Destroy(magnetManager);
         Destroy(this);
     }
 }
