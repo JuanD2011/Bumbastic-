@@ -135,38 +135,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Move();
-
-        //if (canMove)
-        //{
-        //    inputDirection = new Vector2(Input.GetAxis(Controls.ljoystickHorizontal), Input.GetAxis(Controls.ljoystickVertical));
-        //    inputAiming = new Vector2(Input.GetAxis(Controls.rjoystickHorizontal), Input.GetAxis(Controls.rjoystickVertical));
-        //    Move(); 
-        //}
-        //if (controls.rightButtonTrigger != KeyCode.None)
-        //{
-        //    if (Input.GetKeyDown(controls.rightButtonTrigger) && !throwing)
-        //    {
-        //        Throw();
-        //    }
-        //}
-        //else if (controls.rightAxisTrigger != "" && !throwing)
-        //{
-        //    if (Input.GetAxis(controls.rightAxisTrigger) == 1f)
-        //    {
-        //        Throw();
-        //    }
-        //}
-
-		//if (Input.GetKeyDown(Controls.startButton))
-  //      {
-  //          PlayerMenu.OnStartButton?.Invoke(Id);
-  //      }
-    }
-
-
-    private void Move()
-    {
         if (canMove)
         {
             inputDirection.Normalize();
@@ -179,9 +147,18 @@ public class Player : MonoBehaviour
 
             targetSpeed = ((speedPU) ? powerUpSpeed : moveSpeed) * inputDirection.magnitude;
             currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVel, speedSmooothTime);
-            transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
             animationSpeedPercent = ((speedPU) ? 1 : 0.5f) * inputDirection.magnitude;
-            Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime); 
+            Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
+        }
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (canMove)
+        {
+            //transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+            Rigidbody.MovePosition(transform.position + transform.forward * currentSpeed * Time.deltaTime);
         }
     }
 

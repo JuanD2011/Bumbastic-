@@ -135,8 +135,6 @@ public abstract class GameManager : MonoBehaviour
 
     protected void GameOver()
     {
-        Debug.Log("Game Over");
-
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer);
 
         foreach (Player player in Players)

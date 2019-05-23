@@ -105,4 +105,9 @@ public class MenuCanvas : Canvas
             Countdown(false);
         }
     }
+
+    private void OnDisable()
+    {
+        isMatchmaking = false;
+    }
 }

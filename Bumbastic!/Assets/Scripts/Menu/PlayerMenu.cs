@@ -36,16 +36,6 @@ public class PlayerMenu : MonoBehaviour
     private void Start()
     {
         MenuCanvas.OnMatchmaking += OnResetStatus;
-        Init();
-    }
-
-    private void Init()
-    {
-        if (ready)
-        {
-            ready = false;
-            OnNotReady?.Invoke(Id);
-        }
     }
 
     private void OnResetStatus(bool _canActive)

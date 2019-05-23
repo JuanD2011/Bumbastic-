@@ -11,8 +11,15 @@
 
         if (interactuable)
         {
-            MenuManager.menu.menuCanvas.MatchmakingPanel(true);
-            ClickSound(true); 
+            if (MenuManager.menu.Players.Count > 1)
+            {
+                MenuManager.menu.menuCanvas.MatchmakingPanel(true);
+                ClickSound(true);
+            }
+            else
+            {
+                print("You need more players");
+            }
         }
     }
 }

@@ -124,7 +124,6 @@ public class MenuManager : MonoBehaviour
 
     private void StartGame()
     {
-        print("Start game");
         InGame.playerSettings.Clear();
         for (int i = 0; i < Players.Count; i++)
         {
