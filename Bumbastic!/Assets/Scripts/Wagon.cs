@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class Wagon : MonoBehaviour
 {
-    [SerializeField] float pushForce = 10f;
+    [SerializeField] float pushForce = 2f;
     [SerializeField] float velocity = 15f;
     [SerializeField] float timeToStart = 5f;
     [SerializeField] float timeToLerpPosition = 0.3f;
@@ -37,15 +37,7 @@ public class Wagon : MonoBehaviour
             {
                 AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit, 1f);
                 StartCoroutine(playerCollisioned.Stun(true, 2.2f));
-
-                if (playerCollisioned.transform.position.z > transform.position.z)
-                {
-                    playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * Vector3.forward * pushForce, ForceMode.Impulse);
-                }
-                else
-                {
-                    playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * -Vector3.forward * pushForce, ForceMode.Impulse);
-                }
+                playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * -Vector3.forward * pushForce, ForceMode.Impulse);
             }
         }
 
