@@ -23,7 +23,7 @@ MonoBehaviour:
   cWin: {fileID: 8300000, guid: db965d481695f004b8fb0a0bc02b7684, type: 3}
   cTransmitter: {fileID: 8300000, guid: 5ff234d7e54127f4ebc04382d5a0f92d, type: 3}
   cStun: {fileID: 8300000, guid: d16dbaa73c7bc54428858e40664a7c20, type: 3}
-  cThrow: {fileID: 8300000, guid: f01ee7a4d1da5d0478ed402543ea3cb2, type: 3}
+  cThrow: {fileID: 8300000, guid: b676c6fa2015fd349b00f26b5e112d41, type: 3}
   cSpeedUP: {fileID: 8300000, guid: a287d0f4c471a8d4693d6731749e3612, type: 3}
   bomb: {fileID: 8300000, guid: 954ba09f760448547a16f4923a278dd8, type: 3}
   confettiBomb: {fileID: 8300000, guid: 70d1587c54a681d47a4bb879ff046cd7, type: 3}
