@@ -1744,7 +1744,7 @@ GameObject:
   - component: {fileID: 8080638501874639310}
   - component: {fileID: 7908840531538725165}
   - component: {fileID: 5938413588063300451}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SkinJason
   m_TagString: Untagged
   m_Icon: {fileID: 0}
