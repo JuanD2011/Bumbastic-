@@ -18,6 +18,7 @@
             }
             else
             {
+                // TODO implement a text in canvas where it tells you to connect at least one more gamepad.
                 print("You need more players");
             }
         }
