@@ -102,7 +102,7 @@ public class MenuManager : MonoBehaviour
             {
                 if (!go)
                 {
-                    AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.go, 1f);
+                    //AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.go, 1f);
                     countdownText.text = "Go!";
                     go = true;
                 }

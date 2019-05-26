@@ -24,7 +24,7 @@ public class AimPath : MonoBehaviour
 
     private void Update()
     {
-        if (m_Player.CanMove)
+        if (m_Player.CanMove && m_Player.HasBomb)
         {
             aimNormalized = m_Player.InputAiming.normalized;
             if (aimNormalized != Vector2.zero)
