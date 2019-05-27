@@ -46,9 +46,13 @@ public class Bomb : MonoBehaviour
         animationCurve.AddKey(timer, 1f);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         RigidBody.AddForce(-Vector3.up * gravity);
+    }
+
+    private void Update()
+    {
 
         m_Animator.speed = animationCurve.Evaluate(t) * speed;
 

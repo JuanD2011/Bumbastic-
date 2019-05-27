@@ -211,7 +211,6 @@ public class Player : MonoBehaviour
 
         HotPotatoManager.HotPotato.Bomb.transform.parent = null;
         HotPotatoManager.HotPotato.Bomb.RigidBody.isKinematic = false;
-        HotPotatoManager.HotPotato.Bomb.Collider.enabled = true;
 
         if (_InputAiming != Vector2.zero)
         {         
@@ -231,6 +230,7 @@ public class Player : MonoBehaviour
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cThrow, 0.7f); 
         }
 
+        HotPotatoManager.HotPotato.Bomb.Collider.enabled = true;
         HasBomb = false;
         throwing = false;
     }
