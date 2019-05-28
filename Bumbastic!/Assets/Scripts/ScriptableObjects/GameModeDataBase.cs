@@ -35,6 +35,12 @@ public class GameModeDataBase : ScriptableObject
     {
         int random = Random.Range(0, gameModes.Length);
 
+        if (currentGameMode == null)
+        {
+            currentGameMode = gameModes[random];
+            return;
+        }
+
         if (gameModes.Length > 1)
         {
             do
