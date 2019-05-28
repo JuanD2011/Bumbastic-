@@ -8,7 +8,7 @@ public class GameModeDataBase : ScriptableObject
 
     public static bool IsCurrentFreeForAll()
     {
-        if (currentGameMode.gameModeType == GameModeType.FreeForAll)
+        if (currentGameMode.GameModeType == GameModeType.FreeForAll)
         {
             return true;
         }
@@ -16,7 +16,7 @@ public class GameModeDataBase : ScriptableObject
     }
     public static bool IsCurrentHotPotato()
     {
-        if (currentGameMode.gameModeType == GameModeType.HotPotato)
+        if (currentGameMode.GameModeType == GameModeType.HotPotato)
         {
             return true;
         }
@@ -24,7 +24,7 @@ public class GameModeDataBase : ScriptableObject
     }
     public static bool IsCurrentBasesGame()
     {
-        if (currentGameMode.gameModeType == GameModeType.BasesGame)
+        if (currentGameMode.GameModeType == GameModeType.BasesGame)
         {
             return true;
         }

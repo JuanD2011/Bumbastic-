@@ -29,11 +29,11 @@ public class GameModeCanvas : MonoBehaviour
 
     private void CreateBackgrounds()
     {
-        for (int i = 0; i < GameModeDataBase.currentGameMode.gameModeBackgrounds.Length; i++)
+        for (int i = 0; i < GameModeDataBase.currentGameMode.GameModeBackgrounds.Length; i++)
         {
             GameObject bgTemplateClon = Instantiate(bgTemplate, bgImageContainer.transform);
             bgTemplateClon.name = string.Format("background {0}", i);
-            bgTemplateClon.GetComponent<Image>().sprite = GameModeDataBase.currentGameMode.gameModeBackgrounds[i];
+            bgTemplateClon.GetComponent<Image>().sprite = GameModeDataBase.currentGameMode.GameModeBackgrounds[i];
 
             if (i > 0)
             {
@@ -53,8 +53,8 @@ public class GameModeCanvas : MonoBehaviour
 
         if (GameModeDataBase.currentGameMode != null)
         {
-            gameModeName.text = GameModeDataBase.currentGameMode.name;
-            gamemodeDescription.text = GameModeDataBase.currentGameMode.description; 
+            gameModeName.text = GameModeDataBase.currentGameMode.Name;
+            gamemodeDescription.text = GameModeDataBase.currentGameMode.Description; 
         }
     }
 

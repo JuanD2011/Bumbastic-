@@ -21,6 +21,6 @@ public class GameModeManager : MonoBehaviour
 
     private void SceneToLoad()
     {
-        StartCoroutine(OnLoadScene?.Invoke(GameModeDataBase.currentGameMode.gameModeType.ToString()));
+        StartCoroutine(OnLoadScene?.Invoke(GameModeDataBase.currentGameMode.GameModeType.ToString()));
     }
 }

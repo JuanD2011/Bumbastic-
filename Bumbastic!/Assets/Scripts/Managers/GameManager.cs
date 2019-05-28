@@ -171,7 +171,7 @@ public abstract class GameManager : MonoBehaviour
             {
                 random = Random.Range(0, gameMode.gameModes.Length);
             }
-            while (GameModeDataBase.currentGameMode.gameModeType == gameMode.gameModes[random].gameModeType);
+            while (GameModeDataBase.currentGameMode.GameModeType == gameMode.gameModes[random].GameModeType);
 
             GameModeDataBase.currentGameMode = gameMode.gameModes[random];
         }
