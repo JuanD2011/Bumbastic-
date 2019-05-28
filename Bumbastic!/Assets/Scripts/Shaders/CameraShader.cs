@@ -3,7 +3,7 @@
 [ExecuteInEditMode]
 public class CameraShader : MonoBehaviour
 {
-    [SerializeField] Shader shader;
+    [SerializeField] Shader shader = null;
 
     [Range(-1, 2)]
     [SerializeField] float contrast = 0f;
@@ -27,12 +27,6 @@ public class CameraShader : MonoBehaviour
 
     private void Start()
     {
-        if (!SystemInfo.supportsImageEffects)
-        {
-            enabled = false;
-            return;
-        }
-
         if (!shader || !shader.isSupported)
         {
             enabled = false;

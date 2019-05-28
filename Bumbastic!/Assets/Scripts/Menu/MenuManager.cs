@@ -11,29 +11,29 @@ public class MenuManager : MonoBehaviour
     private InGame inGame;
 
     [SerializeField]
-    private GameModeDataBase gameMode;
+    private GameModeDataBase gameMode = null;
 
     [SerializeField]
-    Settings settings;
+    Settings settings = null;
 
     [SerializeField]
     private float startTimer = 5f;
     private float timer;
 
     [SerializeField]
-    private TextMeshProUGUI[] texts;
+    private TextMeshProUGUI[] texts = new TextMeshProUGUI[0];
 
     [SerializeField]
-    private TextMeshProUGUI[] playersIDs;
+    private TextMeshProUGUI[] playersIDs = new TextMeshProUGUI[0];
 
     [SerializeField]
-    private Image[] playerColors;
+    private Image[] playerColors = new Image[0];
 
     [SerializeField]
-    private TextMeshProUGUI countdownText;
+    private TextMeshProUGUI countdownText = null;
 
     [SerializeField]
-    private GameObject playerMenuPrefab;
+    private GameObject playerMenuPrefab = null;
 
     private bool countdown = false;
     bool go = false;

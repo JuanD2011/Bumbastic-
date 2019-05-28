@@ -4,8 +4,8 @@ public class EnivormentLight : MonoBehaviour
 {
     new Light light;
 
-    [SerializeField] Color[] colors;
-    [SerializeField] float[] colorTemperature;
+    [SerializeField] Color[] colors = new Color[0];
+    [SerializeField] float[] colorTemperature = new float[0];
 
     private void Start()
     {

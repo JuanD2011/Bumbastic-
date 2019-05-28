@@ -4,21 +4,21 @@ using UnityEngine;
 public class FloorManager : MonoBehaviour
 {
     [SerializeField]
-    Material plane;
+    Material plane = null;
 
-    [SerializeField] GameObject[] propsModule, propsModuleWinter;
+    [SerializeField] GameObject[] propsModule = null, propsModuleWinter = null;
     
     [SerializeField]
-	Transform[] colliders;
+	Transform[] colliders = new Transform[0];
 
 	[SerializeField]
-	float dropTime, dropInterval, anticipationTime;
+	float dropTime = 0f, dropInterval = 0f, anticipationTime = 0f;
 
 	[SerializeField]
-	Gradient colorAnticipation;
+	Gradient colorAnticipation = null;
 	
 	[SerializeField]
-	float floorOffset = 0.07f;
+	private float floorOffset = 0.07f;
 	
 	[SerializeField]
 	Vector3 propsPos = new Vector3(0, 0.5f, 0);

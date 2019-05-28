@@ -4,7 +4,7 @@ using TMPro;
 
 public class HUDFreeForAll : MonoBehaviour
 {
-    [SerializeField] GameObject[] playerHUD;
+    [SerializeField] GameObject[] playerHUD = new GameObject[0];
 
     protected Image[] skinSprites;
     protected Image[] playerColors;

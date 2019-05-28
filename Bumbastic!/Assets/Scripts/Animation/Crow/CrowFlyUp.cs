@@ -2,10 +2,10 @@
 
 public class CrowFlyUp : StateMachineBehaviour
 {
-    [SerializeField] float timeToUp;
+    [SerializeField] float timeToUp = 0f;
     float distance;
     Vector3 target;
-    [SerializeField] InGame inGame;
+    [SerializeField] InGame inGame = null;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateinfo, int layerindex)

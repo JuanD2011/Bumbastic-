@@ -2,8 +2,8 @@
 
 public class CrowDropPU : StateMachineBehaviour
 {
-    [SerializeField] float timeToDrop;
-    [SerializeField] InGame inGame;
+    [SerializeField] float timeToDrop = 0f;
+    [SerializeField] InGame inGame = null;
     float distance;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state

@@ -2,14 +2,14 @@
 
 public class MenuCamManager : MonoBehaviour
 {
-    [SerializeField] Transform axis;
-    [SerializeField] GameObject principalCamera;
-    [SerializeField] GameObject matchmakingCamera;
+    [SerializeField] Transform axis = null;
+    [SerializeField] GameObject principalCamera = null;
+    [SerializeField] GameObject matchmakingCamera = null;
 
     float elapsedTime = 0f;
 
-    [SerializeField] float angularVel;
-    [SerializeField] float amplitude;
+    [SerializeField] float angularVel = 0f;
+    [SerializeField] float amplitude = 0f;
 
     private void Start()
     {

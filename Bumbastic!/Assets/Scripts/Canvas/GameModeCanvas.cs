@@ -5,11 +5,11 @@ using System.Collections;
 
 public class GameModeCanvas : MonoBehaviour
 {
-    [SerializeField] GameObject bgImageContainer;
-    [SerializeField] GameObject bgTemplate;
+    [SerializeField] GameObject bgImageContainer = null;
+    [SerializeField] GameObject bgTemplate = null;
 
-    [SerializeField] Color[] colors;
-    [SerializeField] TextMeshProUGUI gameModeName, gamemodeDescription;
+    [SerializeField] Color[] colors = new Color[0];
+    [SerializeField] TextMeshProUGUI gameModeName = null, gamemodeDescription = null;
     [SerializeField] float timeToChangebg = 4f, alphaImage = 0.6f, fadeOut = 1f, fadeIn = 1f;
 
     Image[] backgroundImages;

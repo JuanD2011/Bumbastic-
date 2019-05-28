@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class InGameCanvas : Canvas
 {
-    [SerializeField] TextMeshProUGUI textWinner;
-    [SerializeField] Image playerSprite;
-    [SerializeField] PlayerScore[] playerScores;
+    [SerializeField] TextMeshProUGUI textWinner = null;
+    [SerializeField] Image playerSprite = null;
+    [SerializeField] PlayerScore[] playerScores = new PlayerScore[0];
 
     bool isEndPanelActive = false;
     private string _scene = "GameMode";

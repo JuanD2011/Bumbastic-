@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Wick : MonoBehaviour
 {
-    [SerializeField] Transform particles;
-    [SerializeField] Transform[] points;
+    [SerializeField] Transform particles = null;
+    [SerializeField] Transform[] points = new Transform[0];
 
-    Bomb bomb;
+    private Bomb bomb;
 
-    Renderer renderer;
+    private new Renderer renderer;
 
     private void Start()
     {

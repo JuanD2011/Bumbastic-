@@ -3,14 +3,14 @@ using TMPro;
 
 public class SkinManager : MonoBehaviour
 {
-    [SerializeField] Skins skinsData;
+    [SerializeField] Skins skinsData = null;
 
-    [SerializeField] SkinSelector[] skinSelectors;
+    [SerializeField] SkinSelector[] skinSelectors = new SkinSelector[0];
 
-    [SerializeField] TextMeshProUGUI[] skinNames;
+    [SerializeField] TextMeshProUGUI[] skinNames = new TextMeshProUGUI[0];
 
     [SerializeField]
-    private GameObject[] spawnPoints;
+    private GameObject[] spawnPoints = new GameObject[0];
 
     public delegate void DelSkinManager(bool _CanActive);
     public static DelSkinManager OnSkinsSet;

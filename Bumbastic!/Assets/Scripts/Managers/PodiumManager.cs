@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PodiumManager : MonoBehaviour
 {
-    [SerializeField] Transform[] spawnPoints;
+    [SerializeField] Transform[] spawnPoints = new Transform[0];
     [SerializeField] GameObject playerPrefab;
-    [SerializeField] GameObject rainParticle;
+    [SerializeField] GameObject rainParticle = null;
     [SerializeField] float timeToNextPlayer = 3f;
 
     protected GameObject PlayerPrefab { get => playerPrefab; private set => playerPrefab = value; }

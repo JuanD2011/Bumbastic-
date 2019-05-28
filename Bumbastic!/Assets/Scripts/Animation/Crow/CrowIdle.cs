@@ -2,9 +2,9 @@
 
 public class CrowIdle : StateMachineBehaviour
 {
-    [SerializeField] float flyingVel;
-    [SerializeField] InGame inGame;
-    [SerializeField] AnimatorOverrideController animatorOverrideController;
+    [SerializeField] float flyingVel = 0f;
+    [SerializeField] InGame inGame = null;
+    [SerializeField] AnimatorOverrideController animatorOverrideController = null;
     AnimatorOverrideController original;
 
     float t = 0f;

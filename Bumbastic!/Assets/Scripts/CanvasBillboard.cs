@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CanvasBillboard : MonoBehaviour
 {
-    [SerializeField] Settings settings;
+    [SerializeField] Settings settings = null;
 
     Player player;
 

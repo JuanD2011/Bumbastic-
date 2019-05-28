@@ -5,7 +5,7 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] Slider slider;
+    [SerializeField] Slider slider = null;
 
     private void Start()
     {

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class SkinSelector : MonoBehaviour
 {
-    [SerializeField] Skins skinsData;
+    [SerializeField] Skins skinsData = null;
     [SerializeField] int player = 0;
     int position = 0;
 
@@ -97,7 +97,6 @@ public class SkinSelector : MonoBehaviour
                 if (!skinsData.skins[i].choosed)
                 {
                     return Position = i;
-                    break;
                 }
             }
         }
@@ -112,7 +111,6 @@ public class SkinSelector : MonoBehaviour
                 if (!skinsData.skins[i].choosed)
                 {
                     return Position = i;
-                    break;
                 }
             }
         }

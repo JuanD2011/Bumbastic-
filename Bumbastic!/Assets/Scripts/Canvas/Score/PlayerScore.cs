@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerScore : MonoBehaviour
 {
-    [SerializeField] GameObject starsContainer;
+    [SerializeField] GameObject starsContainer = null;
     Image[] m_Stars;
     Image playerSkinSprite;
 

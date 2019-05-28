@@ -18,7 +18,7 @@ public abstract class GameManager : MonoBehaviour
     public EnumEnviroment Enviroment { get => enviroment; private set => enviroment = value; }
 
     [SerializeField]
-    GameModeDataBase gameMode;
+    GameModeDataBase gameMode = null;
 
     private EnumEnviroment enviroment = EnumEnviroment.Desert;
 
@@ -155,7 +155,6 @@ public abstract class GameManager : MonoBehaviour
             {
                 OnGameOver?.Invoke();//InGameCanvas hears it.
                 return;
-                break;
             }
         }
 

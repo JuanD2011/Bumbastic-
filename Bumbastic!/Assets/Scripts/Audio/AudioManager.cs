@@ -22,15 +22,15 @@ public class AudioManager : MonoBehaviour
     [Range(3, 10)]
     [SerializeField] int audioSourcesAmount = 3;
 
-    [SerializeField] GameObject audioSourceTemplate;
-    [SerializeField] AudioMixer audioMixer;
+    [SerializeField] GameObject audioSourceTemplate = null;
+    [SerializeField] AudioMixer audioMixer = null;
 
     List<AudioSource> audioSources;
 
     AudioSource currentAudioSource;
 
     [Header("ONLY FOR MENU SCENE")]
-    [SerializeField] AudioMute[] audioMutes;
+    [SerializeField] AudioMute[] audioMutes = new AudioMute[2];
 
     public AudioSource CurrentAudioSource { get { return currentAudioSource; } }
 
@@ -438,7 +438,6 @@ public class AudioManager : MonoBehaviour
             if (audioSources[i].clip == _clipToSearch)
             {
                 return result = true;
-                break;
             }
         }
 

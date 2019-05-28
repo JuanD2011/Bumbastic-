@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     #region Movement
     private float targetRotation;
     protected float speedSmooothTime = 0.075f, animationSpeedPercent;
-    [SerializeField] float moveSpeed, turnSmooth, powerUpSpeed;
+    [SerializeField] float moveSpeed = 0f, turnSmooth = 0f, powerUpSpeed = 0f;
     float turnSmoothVel, currentSpeed, speedSmoothVel, targetSpeed;
 
     private Vector2 inputDirection;
@@ -26,10 +26,10 @@ public class Player : MonoBehaviour
     private GameObject avatar;
 
     [SerializeField]
-    private float throwForce;
+    private float throwForce = 0f;
 
     private GameObject player;
-    private SphereCollider collider;
+    private new SphereCollider collider;
     private Rigidbody m_Rigidbody;
     private Vector3 spawnPoint;
     private Controls controls;
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     private Animator m_Animator;
     private AnimatorOverrideController animatorWNoBomb;
-    [SerializeField] AnimatorOverrideController animatorWBomb;
+    [SerializeField] AnimatorOverrideController animatorWBomb = null;
 
     private bool hasBomb;
 

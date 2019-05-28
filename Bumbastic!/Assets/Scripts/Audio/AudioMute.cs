@@ -6,16 +6,16 @@ public class AudioMute : MonoBehaviour
 {
     public AudioType mType;
 
-    [SerializeField] AudioMixer audioMixer;
-    [SerializeField] Settings settings;
+    [SerializeField] AudioMixer audioMixer = null;
+    [SerializeField] Settings settings = null;
 
     float volume;
     float mutedVolume = -80f; //Volume for the group that is going to be muted
 
     [SerializeField] Color disabledColor = new Color(1f, 0.3f, 0.3f);
     [SerializeField] Color enableColor = new Color();
-    [SerializeField] Image image;
-    [SerializeField] Slider mVolumeSlider;
+    [SerializeField] Image image = null;
+    [SerializeField] Slider mVolumeSlider = null;
 
     public void Init()
     {

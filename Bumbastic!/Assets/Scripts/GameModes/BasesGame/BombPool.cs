@@ -5,7 +5,7 @@ public class BombPool : MonoBehaviour
 {
     public static BombPool instance;
 
-    [SerializeField] GameObject bombTemplate;
+    [SerializeField] GameObject bombTemplate = null;
 
     [Header("Bombs to instantiate")]
     [Range(2, 10)]
@@ -41,7 +41,6 @@ public class BombPool : MonoBehaviour
             if (!bombsInGame[i].gameObject.activeInHierarchy)
             {
                 return result = bombsInGame[i];
-                break;
             }
         }
 

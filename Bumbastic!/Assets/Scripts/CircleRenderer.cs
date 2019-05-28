@@ -2,14 +2,13 @@
 
 public class CircleRenderer : MonoBehaviour
 {
-    [SerializeField] Settings settings;
+    [SerializeField] Settings settings = null;
 
     [SerializeField] int vertexCount = 40;
     [SerializeField] float lineWidth = 0.2f;
-    [SerializeField] float radius;
-    [SerializeField] bool circleFillScreen;
+    [SerializeField] float radius = 0f;
 
-    private LineRenderer mLineRenderer;
+    private LineRenderer mLineRenderer = null;
     private Player player;
 
     private void Start()
@@ -45,12 +44,6 @@ public class CircleRenderer : MonoBehaviour
         if (!mLineRenderer.enabled)
             mLineRenderer.enabled = true;
         mLineRenderer.widthMultiplier = lineWidth;
-
-        if (circleFillScreen)
-        {
-            radius = Vector3.Distance(Camera.main.ScreenToWorldPoint(new Vector3(0f, Camera.main.pixelRect.yMax, 0f)),
-                Camera.main.ScreenToWorldPoint(new Vector3(0f, Camera.main.pixelRect.yMin, 0f))) * 0.5f - lineWidth;
-        }
 
         float deltaTheta = (2f * Mathf.PI) / vertexCount;
         float theta = 0f;
