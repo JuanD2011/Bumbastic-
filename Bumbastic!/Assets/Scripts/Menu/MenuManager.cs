@@ -129,16 +129,8 @@ public class MenuManager : MonoBehaviour
         {
             InGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls, Players[i].SkinSprite, Players[i].Color));
         }
-        GameModeDataBase.currentGameMode = GetRandomGameMode();
+        gameMode.GetNextGameMode();
         OnStartGame?.Invoke("GameMode");//MenuUI hears it.
-    }
-
-    private GameMode GetRandomGameMode()
-    {
-        GameMode result;
-        int random = Random.Range(0, gameMode.gameModes.Length);
-        result = gameMode.gameModes[random];
-        return result;
     }
 
     public void InitializeFirstPlayers(int _gamepadCount)

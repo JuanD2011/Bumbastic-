@@ -158,27 +158,7 @@ public abstract class GameManager : MonoBehaviour
             }
         }
 
-        GetNextGameMode();
-    }
-
-    private void GetNextGameMode()
-    {
-        int random = Random.Range(0, gameMode.gameModes.Length);
-
-        if (gameMode.gameModes.Length > 1)
-        {
-            do
-            {
-                random = Random.Range(0, gameMode.gameModes.Length);
-            }
-            while (GameModeDataBase.currentGameMode.GameModeType == gameMode.gameModes[random].GameModeType);
-
-            GameModeDataBase.currentGameMode = gameMode.gameModes[random];
-        }
-        else
-        {
-            GameModeDataBase.currentGameMode = gameMode.gameModes[random];
-        }
+        gameMode.GetNextGameMode();
     }
 
     public abstract void PassBomb();

@@ -30,4 +30,24 @@ public class GameModeDataBase : ScriptableObject
         }
         return false;
     }
+
+    public void GetNextGameMode()
+    {
+        int random = Random.Range(0, gameModes.Length);
+
+        if (gameModes.Length > 1)
+        {
+            do
+            {
+                random = Random.Range(0, gameModes.Length);
+            }
+            while (currentGameMode.GameModeType == gameModes[random].GameModeType);
+
+            currentGameMode = gameModes[random];
+        }
+        else
+        {
+            currentGameMode = gameModes[random];
+        }
+    }
 }
