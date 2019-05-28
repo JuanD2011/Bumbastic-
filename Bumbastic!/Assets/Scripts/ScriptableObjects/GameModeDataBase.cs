@@ -4,7 +4,7 @@
 public class GameModeDataBase : ScriptableObject
 {
     public GameMode[] gameModes = new GameMode[1];
-    public static GameMode currentGameMode;
+    public static GameMode currentGameMode = null;
 
     public static bool IsCurrentFreeForAll()
     {
