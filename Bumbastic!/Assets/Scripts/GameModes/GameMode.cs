@@ -14,7 +14,7 @@ public class GameMode
     public string Description { get => description; private set => description = value; }
     public GameModeType GameModeType { get => gameModeType; private set => gameModeType = value; }
     public Sprite[] GameModeBackgrounds { get => gameModeBackgrounds; private set => gameModeBackgrounds = value; }
-    public VideoClip VideoClip { get => VideoClip; private set => VideoClip = value; }
+    public VideoClip VideoClip { get => videoClip; private set => videoClip = value; }
 
     public GameMode(string _name, string _description, GameModeType _gameModeType, Sprite[] _gameModeBackgrounds, VideoClip _videoClip)
     {
@@ -24,7 +24,6 @@ public class GameMode
         GameModeBackgrounds = _gameModeBackgrounds;
         VideoClip = _videoClip;
     }
-
 }
 
 public enum GameModeType
