@@ -127,7 +127,7 @@ public class MenuManager : MonoBehaviour
         InGame.playerSettings.Clear();
         for (int i = 0; i < Players.Count; i++)
         {
-            InGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].Controls, Players[i].SkinSprite, Players[i].Color));
+            InGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].SkinSprite, Players[i].Color));
         }
         gameMode.GetNextGameMode();
         OnStartGame?.Invoke("GameMode");//MenuUI hears it.

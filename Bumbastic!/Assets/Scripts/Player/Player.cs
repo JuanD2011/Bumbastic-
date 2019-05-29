@@ -32,9 +32,6 @@ public class Player : MonoBehaviour
     private new SphereCollider collider;
     private Rigidbody m_Rigidbody;
     private Vector3 spawnPoint;
-    private Controls controls;
-
-    //[SerializeField]
 
     private Animator m_Animator;
     private AnimatorOverrideController animatorWNoBomb;
@@ -50,7 +47,6 @@ public class Player : MonoBehaviour
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
     public bool HasBomb { get => hasBomb; set => hasBomb = value; }
     public Vector2 InputAiming { get => inputAiming; private set => inputAiming = value; }
-    public Controls Controls { private get => controls; set => controls = value; }
     public GameObject Avatar { get => avatar; set => avatar = value; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
     public byte Id { get => id; set => id = value; }

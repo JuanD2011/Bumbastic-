@@ -23,7 +23,6 @@ public class BasesGameManager : GameManager
         {
             Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
             Players.Add(player);
-            player.Controls = InGame.playerSettings[i].controls;
             player.Avatar = InGame.playerSettings[i].avatar;
             player.PrefabName = InGame.playerSettings[i].name;
             player.Id = (byte)i;

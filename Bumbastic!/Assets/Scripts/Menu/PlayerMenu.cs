@@ -11,7 +11,6 @@ public class PlayerMenu : MonoBehaviour
     Color color;
 
     public bool Ready { get => ready; }
-    public Controls Controls { get => controls; set => controls = value; }
     public GameObject Avatar { get => avatar; set => avatar = value; }
     public byte Id { get => id; set => id = value; }
     public string PrefabName { get => prefabName; set => prefabName = value; }
@@ -28,8 +27,6 @@ public class PlayerMenu : MonoBehaviour
     public static ButtonsDelegate OnStartButton;
     public static ButtonsDelegate OnLeftBumper;
     public static ButtonsDelegate OnRightBumper;
-
-    private Controls controls;
 
     [SerializeField]
     private GameObject avatar;

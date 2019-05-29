@@ -29,7 +29,6 @@ public class PodiumManager : MonoBehaviour
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
-            player.Controls = InGame.playerSettings[i].controls;
             player.Avatar = InGame.playerSettings[i].avatar;
             player.PrefabName = InGame.playerSettings[i].name;
             player.Id = (byte)i;
