@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class MenuManager : MonoBehaviour
 {
@@ -69,28 +70,11 @@ public class MenuManager : MonoBehaviour
         PlayerMenu.OnReady += PlayersReady;
         PlayerMenu.OnNotReady += PlayerNotReady;
         SkinManager.OnSkinsSet += SetUpMatchMaking;
+        InputManager.inputManager.OnDeviceAdded += AddNewPlayer;
 
         SetPlayersColor();
     }
 
-    private void SetPlayersColor()
-    {
-        for (int i = 0; i < Players.Count; i++)
-        {
-            Players[i].Color = settings.playersColor[i];
-            playerColors[i].color = Players[i].Color;
-        }
-    }
-
-    private void SetUpMatchMaking(bool _canActive)
-    {
-        for (int i = 0; i < Players.Count; i++)
-        {
-            playerColors[i].enabled = _canActive;
-            playersIDs[i].enabled = _canActive;
-            texts[i].enabled = _canActive;
-        }
-    }
 
     void Update()
     {
@@ -119,6 +103,33 @@ public class MenuManager : MonoBehaviour
                 StartGame();
                 countdown = false;
             }
+        }
+    }
+
+    private void AddNewPlayer()
+    {
+        PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
+        player.Id = (byte)Players.Count;
+        Players.Add(player);
+        maxPlayers = Players.Count;
+    }
+
+    private void SetPlayersColor()
+    {
+        for (int i = 0; i < Players.Count; i++)
+        {
+            Players[i].Color = settings.playersColor[i];
+            playerColors[i].color = Players[i].Color;
+        }
+    }
+
+    private void SetUpMatchMaking(bool _canActive)
+    {
+        for (int i = 0; i < Players.Count; i++)
+        {
+            playerColors[i].enabled = _canActive;
+            playersIDs[i].enabled = _canActive;
+            texts[i].enabled = _canActive;
         }
     }
 

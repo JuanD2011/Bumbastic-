@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Experimental.Input;
+using System;
 
 public class InputManager : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class InputManager : MonoBehaviour
     private byte joystickNumber;
     private List<PlayerMenu> playerMenus = new List<PlayerMenu>();
 
+    public delegate void DeviceChange();
+    public event DeviceChange OnDeviceDisconnected;
+    public event DeviceChange OnDeviceReconnected;
+    public event DeviceChange OnDeviceAdded;
+
     private void Awake()
     {
         if (inputManager == null)
@@ -19,6 +25,35 @@ public class InputManager : MonoBehaviour
             Destroy(this);
 
         GetGamepads();
+
+        InputSystem.onDeviceChange += UpdateGamepadState;
+    }
+
+    private void UpdateGamepadState(InputDevice _device, InputDeviceChange _change)
+    {
+        if (Application.isPlaying)
+        {
+            switch (_change)
+            {
+                case InputDeviceChange.Added:
+                    OnDeviceAdded?.Invoke();
+                    Debug.Log("Device added with id: " + (_device.id - 10));
+                    break;
+                case InputDeviceChange.Removed:
+                    //Device completely removed
+                    break;
+                case InputDeviceChange.Disconnected:
+                    Debug.Log("Device disconnected with id: " + (_device.id - 10));
+                    OnDeviceDisconnected?.Invoke();
+                    break;
+                case InputDeviceChange.Reconnected:
+                    Debug.Log("Device reconnected with id: " + (_device.id - 10));
+                    OnDeviceReconnected?.Invoke();
+                    break;
+                default:
+                    break;
+            }   
+        }
     }
 
     private void GetGamepads()

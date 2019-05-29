@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
 
     private bool throwing;
 
+    private Gamepad gamepad;
+
     public bool CanMove { get => canMove; set => canMove = value; }
     public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
     public bool HasBomb { get => hasBomb; set => hasBomb = value; }
@@ -66,6 +68,7 @@ public class Player : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
         GameManager.Manager.Director.stopped += LetMove;
         Bomb.OnExplode += ResetPlayer;
+        gamepad = (Gamepad)GetComponent<PlayerInput>().devices[0];
     }
 
     public void OnMove(InputValue context)
@@ -87,7 +90,6 @@ public class Player : MonoBehaviour
     {
         PlayerMenu.OnStartButton?.Invoke(Id);
     }
-
 
     public void PodiumAnimation(int _podiumState)
     {
@@ -207,6 +209,7 @@ public class Player : MonoBehaviour
 
         HotPotatoManager.HotPotato.Bomb.transform.parent = null;
         HotPotatoManager.HotPotato.Bomb.RigidBody.isKinematic = false;
+        HotPotatoManager.HotPotato.Bomb.Collider.enabled = true;
 
         if (_InputAiming != Vector2.zero)
         {         
@@ -226,7 +229,6 @@ public class Player : MonoBehaviour
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cThrow, 0.7f); 
         }
 
-        HotPotatoManager.HotPotato.Bomb.Collider.enabled = true;
         HasBomb = false;
         throwing = false;
     }
@@ -299,6 +301,7 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Stun(bool _animStun, float _duration)
     {
+        StartCoroutine(Rumble(0.4f, 0.4f));
         Animator.SetBool("CanMove", false);
         inputDirection = Vector2.zero;
         canMove = false;
@@ -315,5 +318,12 @@ public class Player : MonoBehaviour
 
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, false, 0.6f); 
         canMove = true;
+    }
+
+    public IEnumerator Rumble(float _leftSpeed, float _rightSpeed, float duration)
+    {
+        gamepad.SetMotorSpeeds(_leftSpeed, _rightSpeed);
+        yield return new WaitForSeconds(1f);
+        gamepad.SetMotorSpeeds(0f, 0f);
     }
 }

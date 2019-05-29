@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Experimental.Input;
+using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 
 public class PlayerMenu : MonoBehaviour
 {
