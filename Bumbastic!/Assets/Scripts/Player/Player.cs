@@ -301,7 +301,7 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Stun(bool _animStun, float _duration)
     {
-        StartCoroutine(Rumble(0.4f, 0.4f));
+        StartCoroutine(Rumble(0.4f, 0.4f, 0.4f));
         Animator.SetBool("CanMove", false);
         inputDirection = Vector2.zero;
         canMove = false;
@@ -320,10 +320,10 @@ public class Player : MonoBehaviour
         canMove = true;
     }
 
-    public IEnumerator Rumble(float _leftSpeed, float _rightSpeed, float duration)
+    public IEnumerator Rumble(float _leftSpeed, float _rightSpeed, float _duration)
     {
         gamepad.SetMotorSpeeds(_leftSpeed, _rightSpeed);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_duration);
         gamepad.SetMotorSpeeds(0f, 0f);
     }
 }
