@@ -301,7 +301,7 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Stun(bool _animStun, float _duration)
     {
-        StartCoroutine(Rumble(0.4f, 0.4f, 0.4f));
+        StartCoroutine(Rumble(0.4f, 0.4f, 0.1f));
         Animator.SetBool("CanMove", false);
         inputDirection = Vector2.zero;
         canMove = false;
