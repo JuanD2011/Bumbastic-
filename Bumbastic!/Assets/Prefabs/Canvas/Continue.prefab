@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1964859815515146251}
   - component: {fileID: 1964859815515146249}
   - component: {fileID: 1964859815515146248}
+  - component: {fileID: 4558908283869898416}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -159,6 +160,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4558908283869898416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964859815515146250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e99bd1a5d505eb4e80ddfc539f6cfd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextId: Continue
 --- !u!1 &1964859815896601305
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +184,7 @@ GameObject:
   - component: {fileID: 1964859815896601302}
   - component: {fileID: 1964859815896601300}
   - component: {fileID: 1964859815896601303}
+  - component: {fileID: 4281056634029267678}
   m_Layer: 5
   m_Name: TextMeshPro Press
   m_TagString: Untagged
@@ -317,6 +332,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4281056634029267678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964859815896601305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e99bd1a5d505eb4e80ddfc539f6cfd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextId: Press
 --- !u!1 &1964859817027199768
 GameObject:
   m_ObjectHideFlags: 0

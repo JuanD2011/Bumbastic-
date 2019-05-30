@@ -3,14 +3,16 @@ using TMPro;
 
 public class TextTranslation : MonoBehaviour
 {
-    [SerializeField] string TextId = "";
+    [SerializeField] string textID = "";
     TextMeshProUGUI text = null;
+
+    public string TextID { get => textID; set => textID = value; }
 
     void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
         if (text != null)
-            text.text = Translation.Fields[TextId];
+            text.text = Translation.Fields[TextID];
 
         Translation.OnLoadedLanguage += UpdateText;
     }
@@ -18,6 +20,6 @@ public class TextTranslation : MonoBehaviour
     private void UpdateText()
     {
         if (text != null)
-            text.text = Translation.Fields[TextId];
+            text.text = Translation.Fields[TextID];
     }
 }

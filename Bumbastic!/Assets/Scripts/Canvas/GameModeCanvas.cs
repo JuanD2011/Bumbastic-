@@ -12,6 +12,10 @@ public class GameModeCanvas : MonoBehaviour
     [SerializeField] TextMeshProUGUI gameModeName = null, gamemodeDescription = null;
     [SerializeField] float timeToChangebg = 4f, alphaImage = 0.6f, fadeOut = 1f, fadeIn = 1f;
 
+    [SerializeField] TextTranslation[] gamemodeInfo = new TextTranslation[2];
+
+    string[] keysForTranslation = { "HotPotato", "HotPotatoDes", "FreeForAll", "FreeForAllDes" };
+
     Image[] backgroundImages;
 
     int imageCount = 0;
@@ -53,8 +57,18 @@ public class GameModeCanvas : MonoBehaviour
 
         if (GameModeDataBase.currentGameMode != null)
         {
-            gameModeName.text = GameModeDataBase.currentGameMode.Name;
-            gamemodeDescription.text = GameModeDataBase.currentGameMode.Description; 
+            if (GameModeDataBase.IsCurrentHotPotato())
+            {
+                gamemodeInfo[0].TextID = keysForTranslation[0];
+                gamemodeInfo[1].TextID = keysForTranslation[1];
+            }
+            else if (GameModeDataBase.IsCurrentFreeForAll())
+            {
+                gamemodeInfo[0].TextID = keysForTranslation[2];
+                gamemodeInfo[1].TextID = keysForTranslation[3];
+            }//TODO Implement translation for bases gamemode.
+            //gameModeName.text = GameModeDataBase.currentGameMode.Name;
+            //gamemodeDescription.text = GameModeDataBase.currentGameMode.Description;   
         }
     }
 
