@@ -13,7 +13,6 @@ public class TextTranslation : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
         if (text != null)
             text.text = Translation.Fields[TextID];
-
         Translation.OnLoadedLanguage += UpdateText;
     }
 
