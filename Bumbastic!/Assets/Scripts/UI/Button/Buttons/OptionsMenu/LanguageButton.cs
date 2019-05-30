@@ -28,13 +28,13 @@ public class LanguageButton : UIButtonBase
         if (interactuable)
         {
             ChangeLanguage();
+            ClickSound(true);
         }
     }
 
     public void ChangeLanguage()
     {
         Translation.ChangeLanguage();
-        ClickSound(true);
         SetFeatures();
     }
 
