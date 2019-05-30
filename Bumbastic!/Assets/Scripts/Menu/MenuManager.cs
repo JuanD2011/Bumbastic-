@@ -60,6 +60,13 @@ public class MenuManager : MonoBehaviour
         else Destroy(this);
 
         Memento.LoadData();
+        SetLanguage();
+    }
+
+    private void SetLanguage()
+    {
+        Translation.currentLanguageId = settings.languageID;
+        Translation.LoadLanguage(Translation.idToLanguage[Translation.currentLanguageId]);
     }
 
     void Start()

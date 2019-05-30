@@ -1,0 +1,16 @@
+Play=Jugar
+Options=Opciones
+Exit=Salir
+Music=Música
+SFx=Efectos
+Credits=Créditos
+Back=Atrás
+Quit=¿Estás seguro que deseas salir?
+No=No!
+Yes=Si
+P1=J1
+P2=J2
+P3=J3
+P4=J4
+Start=Presiona Start
+Loading=Cargando...

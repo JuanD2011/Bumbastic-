@@ -1,0 +1,16 @@
+Play=Play
+Options=Options
+Exit=Exit
+Music=Music
+SFx=SFx
+Credits=Credits
+Back=Back
+Quit=Are you sure you want to quit?
+No=No!
+Yes=Yes
+P1=P1
+P2=P2
+P3=P3
+P4=P4
+Start=Press Start
+Loading=Loading...
