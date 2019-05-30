@@ -2503,7 +2503,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Mr. Bumbastic is...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e7d293bfa0cefce40862d5a43993fada, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 825bc5a92075817428dbfa9e0a081be4, type: 2}
   m_sharedMaterial: {fileID: 21464315619692120, guid: e7d293bfa0cefce40862d5a43993fada,
     type: 2}
   m_fontSharedMaterials: []
@@ -2582,7 +2582,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -2614,7 +2614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e99bd1a5d505eb4e80ddfc539f6cfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextId: Mr.
+  textID: Mr.
 --- !u!1 &1895124070
 GameObject:
   m_ObjectHideFlags: 0
