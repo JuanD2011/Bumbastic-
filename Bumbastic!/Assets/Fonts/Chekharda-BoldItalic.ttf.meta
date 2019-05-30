@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c46492f237dda08499f980743ba9d98e
+guid: 68ba84c7894c03440abf22250536abd6
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: BadaBoom BB
+  fontName: Chekharda
   fontNames:
-  - BadaBoom BB
+  - Chekharda
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
