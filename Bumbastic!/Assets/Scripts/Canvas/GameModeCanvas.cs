@@ -23,11 +23,11 @@ public class GameModeCanvas : MonoBehaviour
     private void Awake()
     {
         CreateBackgrounds();
+        InitCanvas();
     }
 
     private void Start()
     {
-        InitCanvas();
         StartCoroutine(FirstImage(fadeIn, alphaImage));
     }
 
