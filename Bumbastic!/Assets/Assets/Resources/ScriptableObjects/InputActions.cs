@@ -492,7 +492,7 @@ public class InputActions : IInputActionCollection
                     ""name"": """",
                     ""id"": ""9e23b6df-7ca3-429b-bc42-93e09f609adc"",
                     ""path"": ""<DualShockGamepad>/buttonSouth"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""PS4"",
                     ""action"": ""Submit"",
