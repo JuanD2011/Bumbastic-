@@ -136,7 +136,7 @@ public class HotPotatoManager : GameManager
         Bomb.Collider.enabled = false;
         Bomb.transform.position = _receiver.Catapult.position;
         Bomb.transform.SetParent(_receiver.Catapult.transform);
-        StartCoroutine(_receiver.Rumble(0.1f, 0.1f, 0.2f));
+        StartCoroutine(_receiver.Rumble(0.2f, 0.2f, 0.2f));
 
         float probTosound = Random.Range(0f, 1f);
 
@@ -177,7 +177,7 @@ public class HotPotatoManager : GameManager
         Bomb.transform.position = _receiver.Catapult.position;
         Bomb.transform.SetParent(_receiver.Catapult);
         StartCoroutine(_receiver.Stun(false, 1f));
-        StartCoroutine(_receiver.Rumble(0.1f, 0.1f, 0.2f));
+        StartCoroutine(_receiver.Rumble(0.2f, 0.2f, 0.2f));
 
         float probTosound = Random.Range(0f, 1f);
 
@@ -195,7 +195,7 @@ public class HotPotatoManager : GameManager
         Bomb.Collider.enabled = false;
         Bomb.transform.position = BombHolder.Catapult.position;
         Bomb.transform.SetParent(BombHolder.Catapult);
-        StartCoroutine(BombHolder.Rumble(0.1f, 0.1f, 0.2f));
+        StartCoroutine(BombHolder.Rumble(0.2f, 0.2f, 0.2f));
     }
 
     protected override void OnDisable()

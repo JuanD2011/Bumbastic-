@@ -52,6 +52,11 @@ public class FreeForAllManager : HotPotatoManager
 
     protected override void OnBombExplode()
     {
+        foreach (Player player in Players)
+        {
+            StartCoroutine(player.Rumble(0.8f, 0.8f, 1f));
+        }
+
         lastPlayerGiven = BombHolder;
         Bomb.RigidBody.isKinematic = true;
         BombHolder.transform.position = BombHolder.SpawnPoint;
