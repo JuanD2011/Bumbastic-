@@ -507,8 +507,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e7d293bfa0cefce40862d5a43993fada, type: 2}
-  m_sharedMaterial: {fileID: 21464315619692120, guid: e7d293bfa0cefce40862d5a43993fada,
+  m_fontAsset: {fileID: 11400000, guid: 825bc5a92075817428dbfa9e0a081be4, type: 2}
+  m_sharedMaterial: {fileID: -2619605337549384724, guid: 825bc5a92075817428dbfa9e0a081be4,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1077,7 +1077,6 @@ MonoBehaviour:
   vertexCount: 30
   lineWidth: 0.6
   radius: 1
-  circleFillScreen: 0
 --- !u!1 &8825396758616326447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,6 +1088,7 @@ GameObject:
   - component: {fileID: 5136738008274191560}
   - component: {fileID: 1540888655478903083}
   - component: {fileID: 8726615914123786527}
+  - component: {fileID: 3353400044599840411}
   m_Layer: 0
   m_Name: TextMeshPro Text
   m_TagString: Untagged
@@ -1146,8 +1146,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e7d293bfa0cefce40862d5a43993fada, type: 2}
-  m_sharedMaterial: {fileID: 21464315619692120, guid: e7d293bfa0cefce40862d5a43993fada,
+  m_fontAsset: {fileID: 11400000, guid: 825bc5a92075817428dbfa9e0a081be4, type: 2}
+  m_sharedMaterial: {fileID: -2619605337549384724, guid: 825bc5a92075817428dbfa9e0a081be4,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1237,6 +1237,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3353400044599840411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8825396758616326447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e99bd1a5d505eb4e80ddfc539f6cfd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textID: Player
 --- !u!1001 &5455035014781824205
 PrefabInstance:
   m_ObjectHideFlags: 0

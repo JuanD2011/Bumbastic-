@@ -78,6 +78,7 @@ public class MenuManager : MonoBehaviour
         PlayerMenu.OnNotReady += PlayerNotReady;
         SkinManager.OnSkinsSet += SetUpMatchMaking;
         InputManager.inputManager.OnDeviceAdded += AddNewPlayer;
+        InputManager.inputManager.OnDeviceAdded += SetPlayersColor;
 
         SetPlayersColor();
     }
