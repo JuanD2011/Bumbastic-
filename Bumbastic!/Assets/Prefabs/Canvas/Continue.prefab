@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -91, y: 29.45}
-  m_SizeDelta: {x: 160.15, y: 58.9}
+  m_AnchoredPosition: {x: -124.15, y: 29.45}
+  m_SizeDelta: {x: 214.83, y: 58.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1964859815515146249
 CanvasRenderer:
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_text: to continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 825bc5a92075817428dbfa9e0a081be4, type: 2}
-  m_sharedMaterial: {fileID: 21464315619692120, guid: e7d293bfa0cefce40862d5a43993fada,
+  m_sharedMaterial: {fileID: -2619605337549384724, guid: 825bc5a92075817428dbfa9e0a081be4,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -96,11 +96,11 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 35
+  m_fontSize: 37.55
   m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 10
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -208,8 +208,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -47.635002, y: -0.0000007748604}
-  m_SizeDelta: {x: 95.27, y: 50}
+  m_AnchoredPosition: {x: -65.01, y: -0.0000007748604}
+  m_SizeDelta: {x: 102.3, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1964859815896601300
 CanvasRenderer:
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_text: Press
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 825bc5a92075817428dbfa9e0a081be4, type: 2}
-  m_sharedMaterial: {fileID: 21464315619692120, guid: e7d293bfa0cefce40862d5a43993fada,
+  m_sharedMaterial: {fileID: -2619605337549384724, guid: 825bc5a92075817428dbfa9e0a081be4,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 35
+  m_fontSize: 37.75
   m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 1
