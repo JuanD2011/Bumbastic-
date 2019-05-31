@@ -21,4 +21,4 @@ Mr.=Mr. Bumbastic es...
 HotPotato=Papa caliente
 HotPotatoDes=Evita la bomba. Si te explota, ¡quedas fuera!
 FreeForAll=Todos contra todos
-FreeForAllDes=Emplea la bomba para explotar tus enemigos, consigue 3 puntos para ganar
+FreeForAllDes=Utiliza la bomba para explotar tus enemigos, consigue 3 puntos para ganar

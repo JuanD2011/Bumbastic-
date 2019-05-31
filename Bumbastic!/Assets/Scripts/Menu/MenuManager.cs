@@ -94,7 +94,20 @@ public class MenuManager : MonoBehaviour
                 if (!go)
                 {
                     //AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.go, 1f);
-                    countdownText.text = "Go!";
+                    switch (Translation.GetCurrentLanguage())
+                    {
+                        case Languages.en:
+                            countdownText.text = "Go!";
+                            break;
+                        case Languages.es:
+                            countdownText.text = "¡Vamos!";
+                            break;
+                        case Languages.unknown:
+                            countdownText.text = "Go!";
+                            break;
+                        default:
+                            break;
+                    }
                     go = true;
                 }
             }
@@ -166,7 +179,22 @@ public class MenuManager : MonoBehaviour
     public void PlayersReady(byte _id)
     {
         playersReady++;
-        texts[_id].text = "Ready";
+
+        switch (Translation.GetCurrentLanguage())
+        {
+            case Languages.en:
+                texts[_id].text = "Ready"; 
+                break;
+            case Languages.es:
+                texts[_id].text = "¡Listo!"; 
+                break;
+            case Languages.unknown:
+                texts[_id].text = "Ready"; 
+                break;
+            default:
+                break;
+        }
+
         if (playersReady == maxPlayers && maxPlayers >= 2)
         {
             countdown = true;
@@ -177,7 +205,6 @@ public class MenuManager : MonoBehaviour
     public void PlayerNotReady(byte _id)
     {
         playersReady--;
-        texts[_id].text = "Press Start";
         countdown = false;
         timer = startTimer;
         OnCountdown?.Invoke(false);//MenuUI hears it.
