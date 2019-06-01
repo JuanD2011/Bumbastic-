@@ -2,7 +2,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System;
 
 public class MenuManager : MonoBehaviour
 {
@@ -206,6 +205,20 @@ public class MenuManager : MonoBehaviour
     public void PlayerNotReady(byte _id)
     {
         playersReady--;
+        switch (Translation.GetCurrentLanguage())
+        {
+            case Languages.en:
+                texts[_id].text = "Press Start";
+                break;
+            case Languages.es:
+                texts[_id].text = "Presiona Start";
+                break;
+            case Languages.unknown:
+                texts[_id].text = "Press Start";
+                break;
+            default:
+                break;
+        }
         countdown = false;
         timer = startTimer;
         OnCountdown?.Invoke(false);//MenuUI hears it.

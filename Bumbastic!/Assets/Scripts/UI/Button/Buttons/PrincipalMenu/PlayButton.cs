@@ -11,16 +11,8 @@
 
         if (interactuable)
         {
-            if (MenuManager.menu.Players.Count > 1)
-            {
-                MenuManager.menu.menuCanvas.MatchmakingPanel(true);
-                ClickSound(true);
-            }
-            else
-            {
-                // TODO implement a text in canvas where it tells you to connect at least one more gamepad.
-                print("You need more players");
-            }
+            MenuManager.menu.menuCanvas.MatchmakingPanel(true);
+            ClickSound(true);
         }
     }
 }
