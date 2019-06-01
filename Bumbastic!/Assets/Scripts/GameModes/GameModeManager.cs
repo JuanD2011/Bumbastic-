@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameModeManager : MonoBehaviour
 {
-    [SerializeField] float timeToLoad = 8f;
+    [SerializeField] float timeToLoad = 10f;
 
     public delegate IEnumerator DelCanvasGameMode(string _sceneToLoad);
     public static DelCanvasGameMode OnLoadScene;
@@ -15,7 +15,10 @@ public class GameModeManager : MonoBehaviour
 
     private void Start()
     {
-        Invoke("SceneToLoad", timeToLoad);
+        if (!GameModeCanvas.WillShowGamepad)
+            Invoke("SceneToLoad", timeToLoad); 
+        else
+            Invoke("SceneToLoad", timeToLoad + 5f); 
         AudioManager.instance.PlayMusic(AudioManager.instance.audioClips.transitionMusic, 0.3f, 0.6f, 5f);
     }
 

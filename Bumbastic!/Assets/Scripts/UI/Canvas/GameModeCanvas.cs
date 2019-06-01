@@ -8,9 +8,8 @@ public class GameModeCanvas : MonoBehaviour
     [SerializeField] GameObject bgImageContainer = null;
     [SerializeField] GameObject bgTemplate = null;
 
-    [SerializeField] Color[] colors = new Color[0];
     [SerializeField] TextMeshProUGUI gameModeName = null, gamemodeDescription = null;
-    [SerializeField] float timeToChangebg = 4f, alphaImage = 0.6f, fadeOut = 1f, fadeIn = 1f;
+    [SerializeField] float timeToChangebg = 1f, alphaImage = 0.6f, alphaImageOut = 0.1f, fadeOut = 1f, fadeIn = 1f;
 
     [SerializeField] TextTranslation[] gamemodeInfo = new TextTranslation[2];
 
@@ -20,18 +19,36 @@ public class GameModeCanvas : MonoBehaviour
 
     int imageCount = 0;
 
+    static bool willShowGamepad = true;
+    [SerializeField] Image gamepad;
+
+    public static bool WillShowGamepad { get => willShowGamepad; private set => willShowGamepad = value; }
+
     private void Awake()
     {
-        CreateBackgrounds();
-        InitCanvas();
+        if (WillShowGamepad)
+        {
+            StartCoroutine(SetGamepad()); 
+        }
+        SetBackgrounds();
+        SetGamemodeInformation();
     }
 
-    private void Start()
+    private IEnumerator SetGamepad()
     {
-        StartCoroutine(FirstImage(fadeIn, alphaImage));
+        gamepad.enabled = true;
+
+        yield return new WaitForSeconds(5f);
+
+        gamepad.CrossFadeAlpha(0f, 0.6f, false);
+
+        yield return new WaitUntil(() => gamepad.canvasRenderer.GetAlpha() == 0f);
+
+        gamepad.enabled = false;
+        WillShowGamepad = false;
     }
 
-    private void CreateBackgrounds()
+    private void SetBackgrounds()
     {
         for (int i = 0; i < GameModeDataBase.currentGameMode.GameModeBackgrounds.Length; i++)
         {
@@ -44,17 +61,18 @@ public class GameModeCanvas : MonoBehaviour
                 bgTemplateClon.SetActive(false);
             }
         }
-    }
 
-    private void InitCanvas()
-    {
         backgroundImages = bgImageContainer.GetComponentsInChildren<Image>(true);
 
         foreach (Image background in backgroundImages)
         {
-            background.color = colors[0];
+            background.canvasRenderer.SetAlpha(alphaImageOut);
         }
+        StartCoroutine(FirstImage());
+    }
 
+    private void SetGamemodeInformation()
+    {
         if (GameModeDataBase.currentGameMode != null)
         {
             if (GameModeDataBase.IsCurrentHotPotato())
@@ -66,39 +84,31 @@ public class GameModeCanvas : MonoBehaviour
             {
                 gamemodeInfo[0].TextID = keysForTranslation[2];
                 gamemodeInfo[1].TextID = keysForTranslation[3];
-            }//TODO Implement translation for bases gamemode.
-            //gameModeName.text = GameModeDataBase.currentGameMode.Name;
-            //gamemodeDescription.text = GameModeDataBase.currentGameMode.Description;   
+            }
+            else if (GameModeDataBase.IsCurrentBasesGame())
+            {
+                //TODO Implement translation for bases gamemode.
+            }
         }
     }
 
-    IEnumerator FirstImage(float _fadeIn, float _alphaImage)
+    IEnumerator FirstImage()
     {
-        float elapsedTime = 0f;
-        while (elapsedTime < _fadeIn)
-        {
-            backgroundImages[imageCount].color = Color.Lerp(colors[0], colors[1], elapsedTime / _fadeIn);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        StartCoroutine(ChangeBackgroundImages(timeToChangebg, fadeOut, fadeIn, alphaImage));
+        backgroundImages[imageCount].CrossFadeAlpha(alphaImage, fadeIn, false);
+        yield return new WaitUntil(() => backgroundImages[imageCount].canvasRenderer.GetAlpha() == alphaImage);
+        StartCoroutine(ChangeBackgroundImages());
     }
 
-    IEnumerator ChangeBackgroundImages(float _timeToChange, float _fadeOut, float _fadeIn, float _alphaImage)
+    IEnumerator ChangeBackgroundImages()
     {
-        WaitForSeconds waitForSeconds = new WaitForSeconds(_timeToChange);
-        float elapsedTime = 0f;
+        yield return new WaitForSeconds(timeToChangebg);
 
-        yield return waitForSeconds;
+        backgroundImages[imageCount].CrossFadeAlpha(alphaImageOut, fadeOut, false);
 
-        while (elapsedTime < _fadeOut)
-        {
-            backgroundImages[imageCount].color = Color.Lerp(colors[1], colors[0], elapsedTime / _fadeOut);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitUntil(() => backgroundImages[imageCount].canvasRenderer.GetAlpha() == alphaImageOut);
 
         backgroundImages[imageCount].gameObject.SetActive(false);
+        backgroundImages[imageCount].canvasRenderer.SetAlpha(alphaImageOut);
 
         if (imageCount != backgroundImages.Length - 1)
         {
@@ -110,15 +120,10 @@ public class GameModeCanvas : MonoBehaviour
         }
 
         backgroundImages[imageCount].gameObject.SetActive(true);
-        elapsedTime = 0f;
+        backgroundImages[imageCount].CrossFadeAlpha(alphaImage, fadeIn, false);
 
-        while (elapsedTime < _fadeIn)
-        {
-            backgroundImages[imageCount].color = Color.Lerp(colors[0], colors[1], elapsedTime / _fadeIn);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitUntil(() => backgroundImages[imageCount].canvasRenderer.GetAlpha() == alphaImage);
 
-        StartCoroutine(ChangeBackgroundImages(timeToChangebg, fadeOut, fadeIn, alphaImage));
+        StartCoroutine(ChangeBackgroundImages());
     }
 }
