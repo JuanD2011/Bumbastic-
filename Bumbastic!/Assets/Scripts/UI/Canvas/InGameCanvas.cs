@@ -30,7 +30,7 @@ public class InGameCanvas : Canvas
     }
 
     /// <summary>
-    /// This is executed in timeline animation
+    /// This is executed throught timeline animation
     /// </summary>
     public void PlayBumbaSound()
     {
