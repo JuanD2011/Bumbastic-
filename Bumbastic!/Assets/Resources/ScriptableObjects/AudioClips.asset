@@ -16,7 +16,7 @@ MonoBehaviour:
   transitionMusic: {fileID: 8300000, guid: f394a85c02d05404f9009b3d67361b33, type: 3}
   desertAmbient: {fileID: 8300000, guid: bb88e939a5fc58b439b1234d56427dac, type: 3}
   winterAmbient: {fileID: 8300000, guid: 814822281ea5e454eb506c2e7b6099ce, type: 3}
-  bumba: {fileID: 8300000, guid: 1c7c4a663cfedf84b9ac98758482d032, type: 3}
+  bumba: {fileID: 8300000, guid: 849088292b151f84cb2bd0e7aeaecacd, type: 3}
   go: {fileID: 8300000, guid: 3f5c46ee34d8f624ebfb39d0e1a206ce, type: 3}
   mrBumbasticIs: {fileID: 0}
   cLose: {fileID: 8300000, guid: 482578a630eb9964294e6c00bbd52304, type: 3}

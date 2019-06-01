@@ -12,7 +12,6 @@ P1=J1
 P2=J2
 P3=J3
 P4=J4
-Player=J
 Start=Presiona Start
 Loading=Cargando...
 Winner=El ganador es...

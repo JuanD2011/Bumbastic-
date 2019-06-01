@@ -29,6 +29,14 @@ public class InGameCanvas : Canvas
         SetPlayersScore();
     }
 
+    /// <summary>
+    /// This is executed in timeline animation
+    /// </summary>
+    public void PlayBumbaSound()
+    {
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bumba, 1f);
+    }
+
     private void UpdateScore()
     {
         for (int i = 0; i < InGame.playerSettings.Count; i++)
@@ -95,7 +103,7 @@ public class InGameCanvas : Canvas
         }
         else if (GameModeDataBase.IsCurrentBasesGame())
         {
-
+            //TODO show the information of the winner in bases gamemode.
         }
     }
 }

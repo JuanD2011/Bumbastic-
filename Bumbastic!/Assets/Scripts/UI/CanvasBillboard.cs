@@ -17,7 +17,20 @@ public class CanvasBillboard : MonoBehaviour
         playersText = GetComponentsInChildren<TextMeshProUGUI>();
         playerColor = GetComponentInChildren<Image>();
 
-        playersText[0].text += string.Format("{0}", player.Id + 1);
+        switch (Translation.GetCurrentLanguage())
+        {
+            case Languages.en:
+                playersText[0].text = string.Format("P{0}", player.Id + 1);
+                break;
+            case Languages.es:
+                playersText[0].text = string.Format("J{0}", player.Id + 1);
+                break;
+            case Languages.unknown:
+                playersText[0].text = string.Format("P{0}", player.Id + 1);
+                break;
+            default:
+                break;
+        }
         playerColor.color = settings.playersColor[player.Id];
         playersText[1].text = string.Format("{0}", player.PrefabName);
     }
