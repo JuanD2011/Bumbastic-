@@ -10,40 +10,50 @@ public class GameModeCanvas : MonoBehaviour
     [SerializeField] float timeToChangebg = 1f, alphaImage = 0.6f, alphaImageOut = 0.1f, fadeOut = 1f, fadeIn = 1f;
 
     [SerializeField] TextTranslation[] gamemodeInfo = new TextTranslation[2];
-
     string[] keysForTranslation = { "HotPotato", "HotPotatoDes", "FreeForAll", "FreeForAllDes" };
 
     Image[] backgroundImages = new Image[0];
 
-    int imageCount = 0;
-
-    static bool willShowGamepad = true;
     [SerializeField] Image gamepad = null;
 
-    public static bool WillShowGamepad { get => willShowGamepad; private set => willShowGamepad = value; }
+    static bool showedIntstructions = false;
+    private bool canContinueInstructions = false;
+
+    int imageCount = 0;
+
+    Animator m_Animator = null;
+
+    public static bool ShowedInstructions { get => showedIntstructions; private set => showedIntstructions = value; }
 
     private void Awake()
     {
-        if (WillShowGamepad)
+        m_Animator = GetComponent<Animator>();
+
+        if (!ShowedInstructions)
         {
-            StartCoroutine(SetGamepad()); 
+            m_Animator.SetBool("ShowInstructions", true);
         }
         SetBackgrounds();
         SetGamemodeInformation();
+
+        PlayerMenu.OnStartButton += SetGamepad;
     }
 
-    private IEnumerator SetGamepad()
+    /// <summary>
+    /// This is called by animation clip 
+    /// </summary>
+    public void OnInstructionsComplete()
     {
-        gamepad.enabled = true;
+        canContinueInstructions = true;
+    }
 
-        yield return new WaitForSeconds(5f);
-
-        gamepad.CrossFadeAlpha(0f, 0.6f, false);
-
-        yield return new WaitUntil(() => gamepad.canvasRenderer.GetAlpha() == 0f);
-
-        gamepad.enabled = false;
-        WillShowGamepad = false;
+    private void SetGamepad(byte _id)
+    {
+        if (canContinueInstructions)
+        {
+            m_Animator.SetBool("ShowInstructions", false);
+            showedIntstructions = true;
+        }
     }
 
     private void SetBackgrounds()

@@ -10,7 +10,7 @@ public class GameModeManager : MonoBehaviour
 
     private void Start()
     {
-        if (!GameModeCanvas.WillShowGamepad)
+        if (GameModeCanvas.ShowedInstructions)
             Invoke("SceneToLoad", timeToLoad); 
         else
             Invoke("SceneToLoad", timeToLoad + 5f); 
@@ -25,5 +25,6 @@ public class GameModeManager : MonoBehaviour
     private void OnDisable()
     {
         onLoadScene = null;
+        PlayerMenu.ResetDel();
     }
 }

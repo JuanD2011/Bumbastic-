@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Wick : MonoBehaviour
@@ -9,12 +8,12 @@ public class Wick : MonoBehaviour
 
     private Bomb bomb;
 
-    private new Renderer renderer;
+    private Renderer m_Renderer;
 
     private void Start()
     {
         bomb = GetComponentInParent<Bomb>();
-        renderer = GetComponent<Renderer>();
+        m_Renderer = GetComponent<Renderer>();
 
         StartCoroutine(WickMovement());
         Bomb.onExplode += ResetWick;
@@ -41,7 +40,7 @@ public class Wick : MonoBehaviour
             {
                 float distance = Vector3.Distance(points[currentPoint].position, particles.position);
                 particles.position = Vector3.MoveTowards(particles.position, points[currentPoint].position, (Time.deltaTime * distance) / timePerPoint);
-                renderer.material.SetFloat("_Factor", elapsedTime / bomb.Timer);
+                m_Renderer.material.SetFloat("_Factor", elapsedTime / bomb.Timer);
 
                 if (distance < 0.1f && currentPoint < points.Length - 1)
                 {
