@@ -25,7 +25,7 @@ public class CrowRotation : MonoBehaviour
     IEnumerator CrowSound()
     {
         yield return new WaitForSeconds(Random.Range(10, 15f));
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crow);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crow, 0.8f);
         StartCoroutine(CrowSound());
     }
 }

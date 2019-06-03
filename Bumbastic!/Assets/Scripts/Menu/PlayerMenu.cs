@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Experimental.Input;
-using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 
 public class PlayerMenu : MonoBehaviour
 {
@@ -34,7 +32,7 @@ public class PlayerMenu : MonoBehaviour
 
     private void Start()
     {
-        MenuCanvas.OnMatchmaking += OnResetStatus;
+        MenuCanvas.onMatchmaking += OnResetStatus;
     }
 
     private void OnResetStatus(bool _canActive)

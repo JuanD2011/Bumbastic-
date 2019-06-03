@@ -17,7 +17,7 @@ public class Wick : MonoBehaviour
         renderer = GetComponent<Renderer>();
 
         StartCoroutine(WickMovement());
-        Bomb.OnExplode += ResetWick;
+        Bomb.onExplode += ResetWick;
     }
 
     private void ResetWick()

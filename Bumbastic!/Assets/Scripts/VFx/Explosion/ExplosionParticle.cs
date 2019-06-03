@@ -9,7 +9,7 @@ public class ExplosionParticle : ParticleModication
     protected override void Start()
     {
         base.Start();
-        Bomb.OnExplode += Execute;
+        Bomb.onExplode += Execute;
     }
 
     protected override void Execute()

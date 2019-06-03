@@ -36,7 +36,7 @@ public class HotPotatoManager : GameManager
     protected override void Start()
     {
         base.Start();
-        Bomb.OnExplode += OnBombExplode;
+        Bomb.onExplode += OnBombExplode;
     }
 
     protected virtual void Update()

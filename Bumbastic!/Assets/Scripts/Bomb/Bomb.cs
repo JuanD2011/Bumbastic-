@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Animator))]
@@ -23,13 +24,12 @@ public class Bomb : MonoBehaviour
     private AnimationCurve animationCurve = new AnimationCurve();
     private float speed = 4f;
 
-    public delegate void BombDelegate();
-    public static BombDelegate OnExplode;
+    public static Action onExplode;
     private float gravity = 16f;
 
     private void Awake()
     {
-        OnExplode = null;
+        onExplode = null;
         m_rigidBody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider>();
@@ -87,13 +87,13 @@ public class Bomb : MonoBehaviour
         Exploded = true;
         if (AudioManager.instance != null)
         {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bomb);
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bomb, 0.7f);
         }
         transform.SetParent(null);
         CameraShake.instance.OnShakeDuration?.Invoke(0.4f, 6f, 1.2f);
         RigidBody.isKinematic = false;
         Collider.enabled = true;
-        OnExplode?.Invoke();//ParticleModification, GameManager, FloorManager hears it
+        onExplode?.Invoke();//ParticleModification, GameManager, FloorManager hears it
     }
 
     private void OnCollisionEnter(Collision collision)

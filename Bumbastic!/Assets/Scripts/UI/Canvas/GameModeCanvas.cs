@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -8,19 +7,18 @@ public class GameModeCanvas : MonoBehaviour
     [SerializeField] GameObject bgImageContainer = null;
     [SerializeField] GameObject bgTemplate = null;
 
-    [SerializeField] TextMeshProUGUI gameModeName = null, gamemodeDescription = null;
     [SerializeField] float timeToChangebg = 1f, alphaImage = 0.6f, alphaImageOut = 0.1f, fadeOut = 1f, fadeIn = 1f;
 
     [SerializeField] TextTranslation[] gamemodeInfo = new TextTranslation[2];
 
     string[] keysForTranslation = { "HotPotato", "HotPotatoDes", "FreeForAll", "FreeForAllDes" };
 
-    Image[] backgroundImages;
+    Image[] backgroundImages = new Image[0];
 
     int imageCount = 0;
 
     static bool willShowGamepad = true;
-    [SerializeField] Image gamepad;
+    [SerializeField] Image gamepad = null;
 
     public static bool WillShowGamepad { get => willShowGamepad; private set => willShowGamepad = value; }
 

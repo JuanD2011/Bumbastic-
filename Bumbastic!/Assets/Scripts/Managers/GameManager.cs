@@ -139,7 +139,7 @@ public abstract class GameManager : MonoBehaviour
 
     protected void GameOver()
     {
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer, 0.6f);
 
         foreach (Player player in Players)
         {

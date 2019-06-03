@@ -101,16 +101,6 @@ public class AudioManager : MonoBehaviour
     }
 
     #region SFx methods.
-    public void PlaySFx(AudioClip _clipToPlay)
-    {
-        currentAudioSource = GetAudioSource(AudioType.SFx);
-
-        if (currentAudioSource != null && _clipToPlay != null)
-        {
-            currentAudioSource.PlayOneShot(_clipToPlay);
-        }
-    }
-
     public void PlaySFx(AudioClip _clipToPlay, float _volume)
     {
         currentAudioSource = GetAudioSource(AudioType.SFx);
@@ -407,24 +397,14 @@ public class AudioManager : MonoBehaviour
     {
         for (int i = 0; i < audioSources.Count; i++)
         {
-            switch (_audioType)
+            if (audioSources[i].loop && audioSources[i].clip == _clipPlaying)
             {
-                case AudioType.Music:
-                case AudioType.Ambient:
-                case AudioType.SFx:
-                    if (audioSources[i].loop && audioSources[i].clip == _clipPlaying)
-                    {
-                        if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
-                        {
-                            return audioSources[i];
-                        } 
-                    }
-                    break;
-                default:
-                    break;
+                if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
+                {
+                    return audioSources[i];
+                } 
             }
         }
-
         return null;
     }
     #endregion

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class MenuCanvas : Canvas
 {
@@ -6,15 +7,13 @@ public class MenuCanvas : Canvas
 
     [SerializeField] string levelToLoad;
 
-    public delegate void DelMenuCanvas(bool _canActive);
-    public static DelMenuCanvas OnMatchmaking;
+    public static Action<bool> onMatchmaking;
 
     public static bool isMatchmaking = false;
 
     protected override void Awake()
     {
         base.Awake();
-        OnMatchmaking = null;
     }
 
     protected override void Start()
@@ -52,7 +51,7 @@ public class MenuCanvas : Canvas
     {
         isMatchmaking = _bool;
         m_Animator.SetBool("Play",_bool);
-        OnMatchmaking?.Invoke(_bool);//MenuCamManager, SkinManager, SkinSelector
+        onMatchmaking?.Invoke(_bool);//MenuCamManager, SkinManager, SkinSelector
     }
 
     public void ConfigurationPanel(bool _bool)
@@ -73,7 +72,7 @@ public class MenuCanvas : Canvas
 
     public void BackButton(byte _id)
     {
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.buttonBack);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.buttonBack, 0.6f);
 
         AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
 
@@ -90,7 +89,7 @@ public class MenuCanvas : Canvas
         {
 
             MatchmakingPanel(false);
-            OnMatchmaking?.Invoke(false);//MenuCamManager hears it.
+            onMatchmaking?.Invoke(false);//MenuCamManager hears it.
         }
         else if (stateInfo.IsName(animatorStateNames[3]))//Credits
         {
@@ -109,5 +108,6 @@ public class MenuCanvas : Canvas
     private void OnDisable()
     {
         isMatchmaking = false;
+        onMatchmaking = null;
     }
 }

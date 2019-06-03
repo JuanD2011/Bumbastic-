@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
 
         Rigidbody = GetComponent<Rigidbody>();
         GameManager.Manager.Director.stopped += LetMove;
-        Bomb.OnExplode += ResetPlayer;
+        Bomb.onExplode += ResetPlayer;
         gamepad = (Gamepad)GetComponent<PlayerInput>().devices[0];
     }
 

@@ -183,13 +183,13 @@ public class MenuManager : MonoBehaviour
         switch (Translation.GetCurrentLanguage())
         {
             case Languages.en:
-                texts[_id].text = "Ready"; 
+                texts[_id].text = "Ready!"; 
                 break;
             case Languages.es:
                 texts[_id].text = "¡Listo!"; 
                 break;
             case Languages.unknown:
-                texts[_id].text = "Ready"; 
+                texts[_id].text = "Ready!"; 
                 break;
             default:
                 break;
