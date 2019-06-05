@@ -22,8 +22,11 @@ public class HotPotatoManager : GameManager
 
     protected List<Player> bummies = new List<Player>();
 
+    private System.Action onBombArmed = null;
+
     public Player BombHolder { get => bombHolder; protected set => bombHolder = value; }
     public Bomb Bomb { get => bomb; private set => bomb = value; }
+    public System.Action OnBombArmed { get => onBombArmed; set => onBombArmed = value; }
 
     protected override void Awake()
     {
@@ -96,6 +99,7 @@ public class HotPotatoManager : GameManager
                 Bomb.RigidBody.velocity = Vector3.zero;
             }
             Bomb.transform.rotation = Quaternion.identity;
+            OnBombArmed?.Invoke();//Bomb hears it.
         }
         else if (Players.Count == 1)
         {

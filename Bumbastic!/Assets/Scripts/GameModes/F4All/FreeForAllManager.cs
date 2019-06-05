@@ -113,6 +113,7 @@ public class FreeForAllManager : HotPotatoManager
             }
             Bomb.transform.rotation = Quaternion.identity;
             Bomb.gameObject.SetActive(true);
+            OnBombArmed?.Invoke();//Bomb hears it.
         }
         else
         {

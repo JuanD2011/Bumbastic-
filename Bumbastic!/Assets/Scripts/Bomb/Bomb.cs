@@ -2,7 +2,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Animator))]
 public class Bomb : MonoBehaviour
 {
     private float t = 0f;
@@ -22,7 +21,7 @@ public class Bomb : MonoBehaviour
     private Animator m_Animator;
 
     private AnimationCurve animationCurve = new AnimationCurve();
-    private float speed = 4f;
+    [SerializeField] private float speed = 4f;
 
     public static Action onExplode;
     private float gravity = 16f;
@@ -33,11 +32,8 @@ public class Bomb : MonoBehaviour
         m_rigidBody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider>();
-    }
 
-    private void OnEnable()
-    {
-        SetAnimationKeys();
+        HotPotatoManager.HotPotato.OnBombArmed += SetAnimationKeys;
     }
 
     private void SetAnimationKeys()
@@ -53,7 +49,6 @@ public class Bomb : MonoBehaviour
 
     private void Update()
     {
-
         m_Animator.speed = animationCurve.Evaluate(t) * speed;
 
         if (!Exploded)
