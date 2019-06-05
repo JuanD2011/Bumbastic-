@@ -3,7 +3,7 @@ using TMPro;
 
 public class SkinManager : MonoBehaviour
 {
-    [SerializeField] Skins skinsData = null;
+    [SerializeField] SkinsDatabase skinsData = null;
 
     [SerializeField] SkinSelector[] skinSelectors = new SkinSelector[0];
 

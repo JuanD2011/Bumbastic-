@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     private bool hasBomb;
 
     private Transform catapult;
+    private SkinnedMeshRenderer[] avatarSkinnedMeshRenderers = new SkinnedMeshRenderer[0];
 
     private bool throwing;
 
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
     public SphereCollider Collider { get => collider; private set => collider = value; }
     public Transform Catapult { get => catapult; private set => catapult = value; }
     public Rigidbody Rigidbody { get => m_Rigidbody; private set => m_Rigidbody = value; }
+    public SkinnedMeshRenderer[] AvatarSkinnedMeshRenderers { get => avatarSkinnedMeshRenderers; set => avatarSkinnedMeshRenderers = value; }
 
     private void Start()
     {
@@ -164,17 +166,29 @@ public class Player : MonoBehaviour
     {
         player = Instantiate(avatar, transform.position, transform.rotation);
         player.transform.SetParent(transform);
-        Animator = GetComponentInChildren<Animator>();
-        HasBomb = false;
-        Catapult = GetComponentInChildren<Bummie>().Catapult;
-        SphereCollider[] colliders = GetComponentsInChildren<SphereCollider>();
-        foreach (SphereCollider sphere in colliders)
+
+        Bummie cBummie = GetComponentInChildren<Bummie>();
+
+        if (cBummie != null)
+        {
+            Animator = cBummie.Animator;
+            Catapult = cBummie.Catapult;
+            AvatarSkinnedMeshRenderers = cBummie.SkinnedMeshRenderers;
+        }
+        else
+        {
+            Debug.LogError("Bummie component was not found");
+        }
+
+        foreach (SphereCollider sphere in cBummie.SphereColliders)
         {
             if (sphere.isTrigger)
             {
                 collider = sphere;
             }
         }
+
+        HasBomb = false;
     }
 
     public void Throw()
@@ -183,18 +197,20 @@ public class Player : MonoBehaviour
         {
             Animator.SetTrigger("Throw");
             SetOverrideAnimator(false);
-            StartCoroutine(SyncThrowAnim(InputAiming));
+            StartCoroutine(SyncThrowAnim());
         }
     }
 
-    IEnumerator SyncThrowAnim(Vector2 _InputAiming)
+    IEnumerator SyncThrowAnim()
     {
         throwing = true;
         
         float elapsedTime = 0f;
 
         Quaternion initialRotation = transform.rotation;
-        Vector3 aiming = new Vector3(InputAiming.normalized.x, 0, InputAiming.normalized.y);
+
+        InputAiming.Normalize();
+        Vector3 aiming = new Vector3(InputAiming.x, 0, InputAiming.y);
     
         while (elapsedTime < 0.15f)
         { 
@@ -211,8 +227,8 @@ public class Player : MonoBehaviour
         HotPotatoManager.HotPotato.Bomb.RigidBody.isKinematic = false;
         HotPotatoManager.HotPotato.Bomb.Collider.enabled = true;
 
-        if (_InputAiming != Vector2.zero)
-        {         
+        if (InputAiming != Vector2.zero)
+        {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
             HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
@@ -222,6 +238,7 @@ public class Player : MonoBehaviour
             HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombThrow, 0.7f);
+
         float prob = Random.Range(0f, 1f);
 
         if (prob < 0.33f)

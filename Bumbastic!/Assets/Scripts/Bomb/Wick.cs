@@ -31,6 +31,7 @@ public class Wick : MonoBehaviour
         float elapsedTime = 0f;
         timePerPoint = bomb.Timer / (points.Length - 1);
         particles.position = points[0].position;
+        m_Renderer.material.SetFloat("_Factor", 0f);
 
         yield return new WaitUntil(() => !bomb.Exploded);
 

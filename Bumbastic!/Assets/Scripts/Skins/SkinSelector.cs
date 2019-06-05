@@ -1,10 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class SkinSelector : MonoBehaviour
 {
-    [SerializeField] Skins skinsData = null;
+    [SerializeField] SkinsDatabase skinsData = null;
     [SerializeField] int player = 0;
     int position = 0;
 

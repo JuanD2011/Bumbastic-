@@ -3825,3 +3825,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catapult: {fileID: 1704208723568406424}
+  skinnedMeshRenderers:
+  - {fileID: 5570047603777480197}

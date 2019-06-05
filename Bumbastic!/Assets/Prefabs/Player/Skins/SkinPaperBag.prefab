@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catapult: {fileID: 1940344634}
+  skinnedMeshRenderers:
+  - {fileID: 638725102086131574}
+  - {fileID: 3981315427860505550}
 --- !u!1 &1940344633
 GameObject:
   m_ObjectHideFlags: 0

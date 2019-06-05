@@ -46,11 +46,9 @@ public abstract class GameManager : MonoBehaviour
         else Destroy(this);
 
         Enviroment = GetRandomEnviroment();
-
-        Players = new List<Player>();
         Director = GetComponent<PlayableDirector>();
+
         SpawnPlayers();
-        defaultShader = Players[0].GetComponentInChildren<SkinnedMeshRenderer>().material.shader;
     }
 
     protected virtual void Start()
@@ -97,6 +95,8 @@ public abstract class GameManager : MonoBehaviour
 
     protected virtual void SpawnPlayers()
     {
+        Players = new List<Player>();
+
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
@@ -109,6 +109,7 @@ public abstract class GameManager : MonoBehaviour
             player.Initialize();
         }
 
+        defaultShader = Players[0].AvatarSkinnedMeshRenderers[0].material.shader;
         GiveBombs();
     }
 
