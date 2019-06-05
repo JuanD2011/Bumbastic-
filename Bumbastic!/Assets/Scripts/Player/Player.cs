@@ -80,7 +80,8 @@ public class Player : MonoBehaviour
 
     public void OnAim(InputValue context)
     {
-        inputAiming = context.Get<Vector2>();
+        InputAiming = context.Get<Vector2>();
+        InputAiming.Normalize();
     }
 
     public void OnThrow()
@@ -209,7 +210,6 @@ public class Player : MonoBehaviour
 
         Quaternion initialRotation = transform.rotation;
 
-        InputAiming.Normalize();
         Vector3 aiming = new Vector3(InputAiming.x, 0, InputAiming.y);
     
         while (elapsedTime < 0.15f)
