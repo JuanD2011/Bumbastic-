@@ -4,6 +4,7 @@ using System.Collections;
 
 public class GameModeCanvas : MonoBehaviour
 {
+    [SerializeField] GameModeManager gameModeManager = null;
     [SerializeField] GameObject bgImageContainer = null;
     [SerializeField] GameObject bgTemplate = null;
 
@@ -53,6 +54,7 @@ public class GameModeCanvas : MonoBehaviour
         {
             m_Animator.SetBool("ShowInstructions", false);
             showedIntstructions = true;
+            gameModeManager.LoadScene();
         }
     }
 

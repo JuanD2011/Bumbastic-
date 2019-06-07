@@ -564,16 +564,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1223245951}
     m_Modifications:
-    - target: {fileID: 1964859815515146250, guid: 2590f53b3202110408dd8ea179ba21f5,
-        type: 3}
-      propertyPath: m_Name
-      value: Continue
-      objectReference: {fileID: 0}
-    - target: {fileID: 1964859815515146250, guid: 2590f53b3202110408dd8ea179ba21f5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1964859815515146251, guid: 2590f53b3202110408dd8ea179ba21f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -678,6 +668,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964859815515146250, guid: 2590f53b3202110408dd8ea179ba21f5,
+        type: 3}
+      propertyPath: m_Name
+      value: Continue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964859815515146250, guid: 2590f53b3202110408dd8ea179ba21f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2590f53b3202110408dd8ea179ba21f5, type: 3}
@@ -1567,6 +1567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 698940dbb58338940ba538f61aa8847f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameModeManager: {fileID: 903703934}
   bgImageContainer: {fileID: 515448442}
   bgTemplate: {fileID: 794269055688692903, guid: 75dd02b11051ec344928b4a18998281f,
     type: 3}

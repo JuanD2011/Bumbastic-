@@ -11,10 +11,15 @@ public class GameModeManager : MonoBehaviour
     private void Start()
     {
         if (GameModeCanvas.ShowedInstructions)
-            Invoke("SceneToLoad", timeToLoad); 
-        else
-            Invoke("SceneToLoad", timeToLoad + 5f); 
+        {
+            LoadScene();
+        }
         AudioManager.instance.PlayMusic(AudioManager.instance.audioClips.transitionMusic, 0.3f, 0.6f, 5f);
+    }
+
+    public void LoadScene()
+    {
+        Invoke("SceneToLoad", timeToLoad);
     }
 
     private void SceneToLoad()
