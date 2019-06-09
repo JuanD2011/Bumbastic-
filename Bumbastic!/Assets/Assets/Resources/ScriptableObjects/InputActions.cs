@@ -102,6 +102,66 @@ public class InputActions : IInputActionCollection
                     ""modifiers"": """"
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""014f7596-10bb-48ed-8d7e-d750036dfcea"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""44b17965-07da-4e78-a46f-abeb201affac"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""f02391d8-cdf8-4a1c-bf04-a5dc2341543a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""81c8b961-dd0a-4efb-81a4-7980fcc30db7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""2bbcf6ef-2094-4801-9a7b-3b9c22f7a996"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true,
+                    ""modifiers"": """"
+                },
+                {
                     ""name"": """",
                     ""id"": ""2b6a7f9e-2968-48d1-aaa0-792a17191254"",
                     ""path"": ""<XInputController>/rightStick"",
@@ -223,6 +283,18 @@ public class InputActions : IInputActionCollection
                 },
                 {
                     ""name"": """",
+                    ""id"": ""89510731-ac74-42e1-8bfe-03c0abce1ccd"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
                     ""id"": ""15b86e6e-f872-4b96-afc8-6022275b307f"",
                     ""path"": ""<XInputController>/start"",
                     ""interactions"": """",
@@ -252,6 +324,30 @@ public class InputActions : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Generic1"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36279981-1618-42ca-83ba-add9efda64ef"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5922bc1-9074-4f93-9df6-95e4a5365acb"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
                     ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false,
@@ -526,6 +622,30 @@ public class InputActions : IInputActionCollection
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7a4adc0a-c88c-4187-8251-1e1843f75170"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25829fbb-73d6-4953-95e2-c14aa40f1898"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2c8fbc8b-1046-4bf6-8f04-51b77862ef67"",
                     ""path"": ""<DualShockGamepad>/buttonEast"",
                     ""interactions"": """",
@@ -555,6 +675,18 @@ public class InputActions : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""New control scheme;Generic1"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d45eb88-af4b-4b0d-9451-820184bd9ebb"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false,
@@ -595,6 +727,30 @@ public class InputActions : IInputActionCollection
                     ""isComposite"": false,
                     ""isPartOfComposite"": false,
                     ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""317fc811-cc5a-444c-bb03-985e3b8b6e93"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9e00623-2741-4e9a-b577-5a1e88b0061e"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
                 }
             ]
         }
@@ -631,6 +787,23 @@ public class InputActions : IInputActionCollection
             ""devices"": [
                 {
                     ""devicePath"": ""<HID::810-1 Joystick>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""MK"",
+            ""basedOn"": """",
+            ""bindingGroup"": ""MK"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -849,6 +1022,15 @@ public class InputActions : IInputActionCollection
         {
             if (m_Generic1SchemeIndex == -1) m_Generic1SchemeIndex = asset.GetControlSchemeIndex("Generic1");
             return asset.controlSchemes[m_Generic1SchemeIndex];
+        }
+    }
+    private int m_MKSchemeIndex = -1;
+    public InputControlScheme MKScheme
+    {
+        get
+        {
+            if (m_MKSchemeIndex == -1) m_MKSchemeIndex = asset.GetControlSchemeIndex("MK");
+            return asset.controlSchemes[m_MKSchemeIndex];
         }
     }
     public interface IGameActions
