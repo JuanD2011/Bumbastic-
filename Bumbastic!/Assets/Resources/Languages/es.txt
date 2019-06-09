@@ -22,3 +22,7 @@ HotPotato=Papa caliente
 HotPotatoDes=Evita la bomba. Si te explota, ¡quedas fuera!
 FreeForAll=Todos contra todos
 FreeForAllDes=Utiliza la bomba para explotar tus enemigos, consigue 3 puntos para ganar
+Controls=Controles
+Move=Mover
+Aim=Apuntar
+Throw=Lanzar
