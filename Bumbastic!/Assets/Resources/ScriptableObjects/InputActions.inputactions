@@ -399,6 +399,28 @@
                     "processors": "",
                     "interactions": "",
                     "bindings": []
+                },
+                {
+                    "name": "ScrollUp",
+                    "id": "bbcc7bc3-788a-4bec-923d-c3dbbf5466df",
+                    "expectedControlLayout": "",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "",
+                    "bindings": []
+                },
+                {
+                    "name": "ScrollDown",
+                    "id": "656683b6-aa0a-41cf-ae1b-7d715d68c71e",
+                    "expectedControlLayout": "",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "",
+                    "bindings": []
                 }
             ],
             "bindings": [
@@ -488,6 +510,18 @@
                 },
                 {
                     "name": "",
+                    "id": "2a7a6f61-e57c-4163-89fc-87b9292c4b49",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MK",
+                    "action": "LeftSkin",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
                     "id": "1e53b4da-6b26-4a4d-8f9c-1b996f5ac5dc",
                     "path": "<DualShockGamepad>/rightShoulder",
                     "interactions": "",
@@ -565,6 +599,18 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Xbox",
+                    "action": "RightSkin",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "606100ff-1949-4db5-8b24-aa8cdc0bc6dd",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MK",
                     "action": "RightSkin",
                     "isComposite": false,
                     "isPartOfComposite": false,
@@ -734,6 +780,54 @@
                     "processors": "",
                     "groups": "MK",
                     "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "1cbad20e-77f6-4423-b7ea-61990bc57ab1",
+                    "path": "<DualShockGamepad>/rightStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS4",
+                    "action": "ScrollUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "88d051da-dafc-4d33-b462-d30d0e6d6830",
+                    "path": "<XInputController>/rightStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "ScrollUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "60897808-1772-41e8-88c5-5ed24c143e8c",
+                    "path": "<XInputController>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "ScrollDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "7d659c0d-b7da-4833-a2ca-1288c80cced3",
+                    "path": "<DualShockGamepad>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS4",
+                    "action": "ScrollDown",
                     "isComposite": false,
                     "isPartOfComposite": false,
                     "modifiers": ""

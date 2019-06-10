@@ -413,6 +413,28 @@ public class InputActions : IInputActionCollection
                     ""processors"": """",
                     ""interactions"": """",
                     ""bindings"": []
+                },
+                {
+                    ""name"": ""ScrollUp"",
+                    ""id"": ""bbcc7bc3-788a-4bec-923d-c3dbbf5466df"",
+                    ""expectedControlLayout"": """",
+                    ""continuous"": false,
+                    ""passThrough"": false,
+                    ""initialStateCheck"": false,
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""bindings"": []
+                },
+                {
+                    ""name"": ""ScrollDown"",
+                    ""id"": ""656683b6-aa0a-41cf-ae1b-7d715d68c71e"",
+                    ""expectedControlLayout"": """",
+                    ""continuous"": false,
+                    ""passThrough"": false,
+                    ""initialStateCheck"": false,
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""bindings"": []
                 }
             ],
             ""bindings"": [
@@ -502,6 +524,18 @@ public class InputActions : IInputActionCollection
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2a7a6f61-e57c-4163-89fc-87b9292c4b49"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
+                    ""action"": ""LeftSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1e53b4da-6b26-4a4d-8f9c-1b996f5ac5dc"",
                     ""path"": ""<DualShockGamepad>/rightShoulder"",
                     ""interactions"": """",
@@ -579,6 +613,18 @@ public class InputActions : IInputActionCollection
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
+                    ""action"": ""RightSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""606100ff-1949-4db5-8b24-aa8cdc0bc6dd"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MK"",
                     ""action"": ""RightSkin"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false,
@@ -751,6 +797,54 @@ public class InputActions : IInputActionCollection
                     ""isComposite"": false,
                     ""isPartOfComposite"": false,
                     ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1cbad20e-77f6-4423-b7ea-61990bc57ab1"",
+                    ""path"": ""<DualShockGamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4"",
+                    ""action"": ""ScrollUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88d051da-dafc-4d33-b462-d30d0e6d6830"",
+                    ""path"": ""<XInputController>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""ScrollUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60897808-1772-41e8-88c5-5ed24c143e8c"",
+                    ""path"": ""<XInputController>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""ScrollDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d659c0d-b7da-4833-a2ca-1288c80cced3"",
+                    ""path"": ""<DualShockGamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4"",
+                    ""action"": ""ScrollDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
                 }
             ]
         }
@@ -824,6 +918,8 @@ public class InputActions : IInputActionCollection
         m_Menu_Submit = m_Menu.GetAction("Submit");
         m_Menu_Back = m_Menu.GetAction("Back");
         m_Menu_Start = m_Menu.GetAction("Start");
+        m_Menu_ScrollUp = m_Menu.GetAction("ScrollUp");
+        m_Menu_ScrollDown = m_Menu.GetAction("ScrollDown");
     }
     ~InputActions()
     {
@@ -934,6 +1030,8 @@ public class InputActions : IInputActionCollection
     private InputAction m_Menu_Submit;
     private InputAction m_Menu_Back;
     private InputAction m_Menu_Start;
+    private InputAction m_Menu_ScrollUp;
+    private InputAction m_Menu_ScrollDown;
     public struct MenuActions
     {
         private InputActions m_Wrapper;
@@ -943,6 +1041,8 @@ public class InputActions : IInputActionCollection
         public InputAction @Submit { get { return m_Wrapper.m_Menu_Submit; } }
         public InputAction @Back { get { return m_Wrapper.m_Menu_Back; } }
         public InputAction @Start { get { return m_Wrapper.m_Menu_Start; } }
+        public InputAction @ScrollUp { get { return m_Wrapper.m_Menu_ScrollUp; } }
+        public InputAction @ScrollDown { get { return m_Wrapper.m_Menu_ScrollDown; } }
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -968,6 +1068,12 @@ public class InputActions : IInputActionCollection
                 Start.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnStart;
                 Start.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnStart;
                 Start.cancelled -= m_Wrapper.m_MenuActionsCallbackInterface.OnStart;
+                ScrollUp.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnScrollUp;
+                ScrollUp.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnScrollUp;
+                ScrollUp.cancelled -= m_Wrapper.m_MenuActionsCallbackInterface.OnScrollUp;
+                ScrollDown.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnScrollDown;
+                ScrollDown.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnScrollDown;
+                ScrollDown.cancelled -= m_Wrapper.m_MenuActionsCallbackInterface.OnScrollDown;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -987,6 +1093,12 @@ public class InputActions : IInputActionCollection
                 Start.started += instance.OnStart;
                 Start.performed += instance.OnStart;
                 Start.cancelled += instance.OnStart;
+                ScrollUp.started += instance.OnScrollUp;
+                ScrollUp.performed += instance.OnScrollUp;
+                ScrollUp.cancelled += instance.OnScrollUp;
+                ScrollDown.started += instance.OnScrollDown;
+                ScrollDown.performed += instance.OnScrollDown;
+                ScrollDown.cancelled += instance.OnScrollDown;
             }
         }
     }
@@ -1047,5 +1159,7 @@ public class InputActions : IInputActionCollection
         void OnSubmit(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
+        void OnScrollUp(InputAction.CallbackContext context);
+        void OnScrollDown(InputAction.CallbackContext context);
     }
 }
