@@ -8,21 +8,28 @@ public class BombSpawner : MonoBehaviour
 
     Collider spawner;
 
-    Bomb bombToSpawn;
+    Bomb bombToSpawn = null;
+
+    BombPool m_bombPool = null;
 
     private void Start()
     {
         spawner = GetComponent<Collider>();
+        m_bombPool = GetComponent<BombPool>();
 
         InvokeRepeating("SpawnBomb", timeToSpawnBomb, timeToSpawnBomb);
     }
 
     private void SpawnBomb()
     {
-        bombToSpawn = BombPool.instance.GetAvailableBomb();
-        bombToSpawn.gameObject.SetActive(true);
-        bombToSpawn.transform.position = spawner.GetPointInVolume();
-        bombToSpawn.RigidBody.AddForce(GetRandomVector() * force, ForceMode.Impulse);
+        bombToSpawn = m_bombPool.GetAvailableBomb();
+
+        if (bombToSpawn != null)
+        {
+            bombToSpawn.gameObject.SetActive(true);
+            bombToSpawn.transform.position = spawner.GetPointInVolume();
+            bombToSpawn.RigidBody.AddForce(GetRandomVector() * force, ForceMode.Impulse);   
+        }
     }
 
     private Vector3 GetRandomVector()

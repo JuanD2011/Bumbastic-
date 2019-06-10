@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
 public class Base : MonoBehaviour
 {
     [SerializeField] byte lifePoints = 3;

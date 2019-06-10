@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class BombPool : MonoBehaviour
 {
-    public static BombPool instance;
-
     [SerializeField] GameObject bombTemplate = null;
 
     [Header("Bombs to instantiate")]
@@ -15,9 +13,6 @@ public class BombPool : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) instance = this;
-        else Destroy(this);
-
         CreateBombs();
     }
 
@@ -34,7 +29,7 @@ public class BombPool : MonoBehaviour
 
     public Bomb GetAvailableBomb()
     {
-        Bomb result;
+        Bomb result = null;
 
         for (int i = 0; i < bombsInGame.Count; i++)
         {
@@ -43,11 +38,6 @@ public class BombPool : MonoBehaviour
                 return result = bombsInGame[i];
             }
         }
-
-        GameObject bombGO = Instantiate(bombTemplate, Vector3.zero, Quaternion.identity);
-        result = bombGO.GetComponent<Bomb>();
-        bombsInGame.Add(result);
-        bombGO.name = string.Format("{0} bomb", bombsInGame.Count - 1);
 
         return result;
     }

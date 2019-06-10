@@ -6,7 +6,6 @@ public class BasesGameManager : GameManager
 
     public Base[] bases;
 
-
     protected override void Awake()
     {
         if (basesGame == null) basesGame = this;
@@ -42,7 +41,7 @@ public class BasesGameManager : GameManager
         for (int i = 0; i < bases.Length; i++)
         {
             bases[i].Renderer.material.SetColor("_Color", InGame.playerSettings[i].color - (Color.white - baseInitColor));
-            bases[i].Renderer.material.SetTexture("_MainTex", InGame.playerSettings[i].skinSprite.texture);
+            //bases[i].Renderer.material.SetTexture("_MainTex", InGame.playerSettings[i].skinSprite.texture);
         }
     }
 
