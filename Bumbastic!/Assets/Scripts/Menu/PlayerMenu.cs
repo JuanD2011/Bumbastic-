@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Experimental.Input;
+using UnityEngine.Experimental.Input.Plugins.PlayerInput;
 
 public class PlayerMenu : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class PlayerMenu : MonoBehaviour
     public static ButtonsDelegate OnStartButton;
     public static ButtonsDelegate OnLeftBumper;
     public static ButtonsDelegate OnRightBumper;
+
+    public static System.Action<float> onScrolling;
 
     [SerializeField]
     private GameObject avatar;
@@ -56,6 +59,7 @@ public class PlayerMenu : MonoBehaviour
         if (OnRightBumper != null) { OnRightBumper = null; }
         if (OnReady != null) { OnReady = null; }
         if (OnNotReady != null) { OnNotReady = null; }
+        if (onScrolling != null) { onScrolling = null; }
     }
 
     public void OnSubmit()
@@ -69,6 +73,11 @@ public class PlayerMenu : MonoBehaviour
             }
         }
         OnAcceptButton?.Invoke(Id);
+    }
+
+    public void OnScrolling(InputValue context)
+    {
+        onScrolling?.Invoke(context.Get<Vector2>().normalized.y);
     }
 
     public void OnStart()

@@ -259,7 +259,7 @@ MonoBehaviour:
   mType: 1
   audioMixer: {fileID: 24100000, guid: 1d2552f71ff182f43bf6a2aaab3cd88b, type: 2}
   settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
-  disabledColor: {r: 1, g: 0.6933962, b: 0.6933962, a: 1}
+  disabledColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   enableColor: {r: 1, g: 1, b: 1, a: 1}
   image: {fileID: 19280373}
   mVolumeSlider: {fileID: 1798044995}
@@ -10061,6 +10061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ea7f8e612ca5e4ca32643e216cd3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: 0.4
 --- !u!1001 &1626775244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11114,7 +11115,7 @@ MonoBehaviour:
   mType: 0
   audioMixer: {fileID: 24100000, guid: 1d2552f71ff182f43bf6a2aaab3cd88b, type: 2}
   settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
-  disabledColor: {r: 1, g: 0.6933962, b: 0.6933962, a: 1}
+  disabledColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   enableColor: {r: 1, g: 1, b: 1, a: 1}
   image: {fileID: 1723043682}
   mVolumeSlider: {fileID: 992015038}
