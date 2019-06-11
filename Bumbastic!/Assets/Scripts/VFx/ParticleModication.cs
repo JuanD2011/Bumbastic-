@@ -55,5 +55,5 @@ public abstract class ParticleModication : MonoBehaviour
         RealTime = MainModules[0].duration + startLifetime;
 	}
 
-    protected abstract void Execute();
+    public abstract void Execute();
 }

@@ -9,12 +9,10 @@ public class ExplosionParticle : ParticleModication
     protected override void Start()
     {
         base.Start();
-        Bomb.onExplode += Execute;
     }
 
-    protected override void Execute()
+    public override void Execute()
     {
-
         if (Light != null)
         {
             if (modifyAudio)

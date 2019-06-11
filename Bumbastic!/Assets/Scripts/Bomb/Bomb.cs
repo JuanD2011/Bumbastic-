@@ -19,6 +19,8 @@ public class Bomb : MonoBehaviour
     private float gravity = 16f;
     protected float elapsedTime = 0f;
 
+    protected ParticleModication cParticleModification = null;
+
     public static Action onExplode;
 
     public float Timer { get => timer; set => timer = value; }
@@ -30,6 +32,7 @@ public class Bomb : MonoBehaviour
     protected virtual void Awake()
     {
         onExplode = null;
+        cParticleModification = GetComponentInChildren<ParticleModication>();
         m_rigidBody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider>();
@@ -92,7 +95,8 @@ public class Bomb : MonoBehaviour
         CameraShake.instance.OnShakeDuration?.Invoke(0.4f, 6f, 1.2f);
         RigidBody.isKinematic = false;
         Collider.enabled = true;
-        onExplode?.Invoke();//ParticleModification, GameManager, FloorManager hears it
+        cParticleModification.Execute();
+        onExplode?.Invoke();//GameManager, FloorManager hears it
     }
 
     private void OnCollisionEnter(Collision collision)

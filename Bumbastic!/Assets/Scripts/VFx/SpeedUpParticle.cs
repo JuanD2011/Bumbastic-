@@ -22,7 +22,7 @@ public class SpeedUpParticle : ParticleModication
         Execute();
     }
 
-    protected override void Execute()
+    public override void Execute()
     {
         StartCoroutine(SpeedUp());
     }

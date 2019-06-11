@@ -47,7 +47,7 @@ public static class SpawnerExtensions
     public static Vector3 GetPointInVolume(this Collider collider)
     {
         Vector3 result = Vector3.zero;
-        result = new Vector3(Random.Range(collider.bounds.min.x, collider.bounds.max.x), collider.transform.position.y, 0F);
+        result = new Vector3(Random.Range(collider.bounds.min.x, collider.bounds.max.x), 0f, 0F);
 
         return result;
     }

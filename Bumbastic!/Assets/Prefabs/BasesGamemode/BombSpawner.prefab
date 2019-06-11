@@ -1168,7 +1168,7 @@ GameObject:
   - component: {fileID: 4704712723779447321}
   - component: {fileID: 4704712723779447322}
   - component: {fileID: 4704712723779447323}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BombSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1257,7 +1257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b56d8194efbde40af29866578c74c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 5
+  force: 10
   timeToSpawnBomb: 10
   xRandom: 0.3
   zRandom: 0.3

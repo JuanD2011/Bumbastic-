@@ -29,7 +29,7 @@ public class MagnetManager : ParticleModication
         Execute();
     }
 
-    protected override void Execute()
+    public override void Execute()
     {
         foreach (ParticleSystem particleSystem in ParticleSystems)
         {
