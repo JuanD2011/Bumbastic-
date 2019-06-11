@@ -6,7 +6,7 @@ public abstract class GameManager : MonoBehaviour
 {
     public static GameManager Manager;
 
-    protected List<Player> players;
+    protected List<Player> players = new List<Player>();
 
     [SerializeField]
     private List<Transform> spawnPoints;
@@ -27,18 +27,16 @@ public abstract class GameManager : MonoBehaviour
 
     protected PlayableDirector director;
 
-    public PowerUp powerUp;
-    public GameObject magnetParticleSystem;
-    public GameObject speedUpParticleSystem;
+    [SerializeField]
+    protected Shader bombHolderShader;
+
     public GameObject floor;
 
     public delegate void GameStateDelegate();
     public event GameStateDelegate OnGameModeOver;
     public event GameStateDelegate OnGameOver;
-    protected Shader defaultShader;
 
-    [SerializeField]
-    protected Shader bombHolderShader;
+    protected Shader defaultShader;
 
     protected virtual void Awake()
     {
@@ -47,6 +45,7 @@ public abstract class GameManager : MonoBehaviour
 
         Enviroment = GetRandomEnviroment();
         Director = GetComponent<PlayableDirector>();
+        Director.Play();
 
         SpawnPlayers();
     }
@@ -95,8 +94,6 @@ public abstract class GameManager : MonoBehaviour
 
     protected virtual void SpawnPlayers()
     {
-        Players = new List<Player>();
-
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             Player player = Instantiate(PlayerPrefab).GetComponent<Player>();
@@ -160,8 +157,6 @@ public abstract class GameManager : MonoBehaviour
 
         gameMode.GetNextGameMode();
     }
-
-    public abstract void PassBomb();
 
     public abstract void PassBomb(Player _receiver);
 

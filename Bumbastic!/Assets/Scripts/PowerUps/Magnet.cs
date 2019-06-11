@@ -11,7 +11,7 @@ public class Magnet : PowerUp
     {
         base.Start();
 
-        magnetManager = Instantiate(GameManager.Manager.magnetParticleSystem, transform.position, Quaternion.identity, player.transform);
+        magnetManager = Instantiate(HotPotatoManager.HotPotato.MagnetParticleSystem, transform.position, Quaternion.identity, player.transform);
 
         StartCoroutine(LerpBomb());
     }

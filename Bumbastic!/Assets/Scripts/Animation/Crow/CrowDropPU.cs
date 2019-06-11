@@ -21,12 +21,12 @@ public class CrowDropPU : StateMachineBehaviour
         animator.transform.position = Vector3.MoveTowards(animator.transform.position, inGame.posDropPU.position, (Time.deltaTime * distance)/timeToDrop);
         if (animator.transform.position == inGame.posDropPU.position)
         {
-            if (GameManager.Manager.powerUp.transform.parent != null)
-            {               
-                GameManager.Manager.powerUp.transform.eulerAngles = Vector3.zero;
-                GameManager.Manager.powerUp.transform.position = inGame.posDropPU.position;
-                GameManager.Manager.powerUp.Collider.enabled = true;
-                GameManager.Manager.powerUp.transform.parent = null;
+            if (HotPotatoManager.HotPotato.PowerUp.transform.parent != null)
+            {
+                HotPotatoManager.HotPotato.PowerUp.transform.eulerAngles = Vector3.zero;
+                HotPotatoManager.HotPotato.PowerUp.transform.position = inGame.posDropPU.position;
+                HotPotatoManager.HotPotato.PowerUp.Collider.enabled = true;
+                HotPotatoManager.HotPotato.PowerUp.transform.parent = null;
                 AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBoxDropped, 0.6f);
             }
 

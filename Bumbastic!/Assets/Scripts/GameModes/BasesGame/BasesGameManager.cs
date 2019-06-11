@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class BasesGameManager : GameManager
 {
@@ -29,35 +30,40 @@ public class BasesGameManager : GameManager
             player.transform.position = player.SpawnPoint;
             player.Initialize();
         }
-
-        GiveBombs();
     }
 
     private void SetBasesColor()
     {
-        Color baseInitColor;
-        baseInitColor = bases[0].Renderer.material.GetColor("_Color");
-
-        for (int i = 0; i < bases.Length; i++)
-        {
-            bases[i].Renderer.material.SetColor("_Color", InGame.playerSettings[i].color - (Color.white - baseInitColor));
-            //bases[i].Renderer.material.SetTexture("_MainTex", InGame.playerSettings[i].skinSprite.texture);
-        }
-    }
-
-    public override void PassBomb()
-    {
-        return;
+        //TODO implement color to the "Hair" of the base.
     }
 
     public override void PassBomb(Player _receiver)
     {
-        return;
+        _receiver.HasBomb = true;
+        _receiver.Collider.enabled = false;
+
+        foreach (Renderer renderer in _receiver.AvatarSkinnedMeshRenderers)
+        {
+            renderer.material.shader = bombHolderShader;
+        }
+
+        //Bomb.RigidBody.velocity = Vector2.zero;
+        //Bomb.RigidBody.isKinematic = true;
+        //Bomb.Collider.enabled = false;
+        //Bomb.transform.position = _receiver.Catapult.position;
+        //Bomb.transform.SetParent(_receiver.Catapult.transform);
+        StartCoroutine(_receiver.Rumble(0.2f, 0.2f, 0.2f));
+
+        float probTosound = Random.Range(0f, 1f);
+
+        if (probTosound < 0.33f)
+        {
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
+        }
     }
 
     public override void PassBomb(Player _receiver, Player _transmitter)
     {
-        return;
     }
 
     protected override void GiveBombs()

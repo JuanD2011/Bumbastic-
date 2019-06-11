@@ -16,7 +16,7 @@ public class Velocity : PowerUp
 
     IEnumerator InitSpeedUP()
     {
-        speedUpParticle = Instantiate(GameManager.Manager.speedUpParticleSystem, transform.position, Quaternion.identity, player.transform);
+        speedUpParticle = Instantiate(HotPotatoManager.HotPotato.SpeedUpParticleSystem, transform.position, Quaternion.identity, player.transform);
         player.speedPU = true;
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.speedUP, 0.7f);
         yield return new WaitForSeconds(Duration);

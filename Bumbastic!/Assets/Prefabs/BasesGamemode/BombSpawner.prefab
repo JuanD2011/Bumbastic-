@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b587c759974b5d94d90632f33a206d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombTemplate: {fileID: 6708685767058008684, guid: 786b8c6ef3f631c4488b231982dcc8a3,
+  bombTemplate: {fileID: 3457498352943306539, guid: b78d0786b2f9cb54da86cdf3d1419afb,
     type: 3}
   bombsInScene: 5
 --- !u!114 &4704712723779447323

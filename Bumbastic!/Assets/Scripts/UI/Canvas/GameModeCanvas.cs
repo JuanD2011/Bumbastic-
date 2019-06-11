@@ -11,7 +11,7 @@ public class GameModeCanvas : MonoBehaviour
     [SerializeField] float timeToChangebg = 1f, alphaImage = 0.6f, alphaImageOut = 0.1f, fadeOut = 1f, fadeIn = 1f;
 
     [SerializeField] TextTranslation[] gamemodeInfo = new TextTranslation[2];
-    string[] keysForTranslation = { "HotPotato", "HotPotatoDes", "FreeForAll", "FreeForAllDes" };
+    string[] keysForTranslation = { "HotPotato", "HotPotatoDes", "FreeForAll", "FreeForAllDes", "Bases", "BasesDes" };
 
     Image[] backgroundImages = new Image[0];
 
@@ -97,7 +97,8 @@ public class GameModeCanvas : MonoBehaviour
             }
             else if (GameModeDataBase.IsCurrentBasesGame())
             {
-                //TODO Implement translation for bases gamemode.
+                gamemodeInfo[0].TextID = keysForTranslation[4];
+                gamemodeInfo[1].TextID = keysForTranslation[5];
             }
         }
     }

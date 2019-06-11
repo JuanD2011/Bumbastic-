@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5380614723806942371}
   - component: {fileID: 5380614723804646593}
   - component: {fileID: 5380614723804646592}
+  - component: {fileID: 5244868464265297197}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -107,3 +108,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifePoints: 3
   id: 0
+--- !u!136 &5244868464265297197
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380614723804678755}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.1358452
+  m_Height: 7.123008
+  m_Direction: 1
+  m_Center: {x: 0.1226373, y: 3.407768, z: 2.6059706}

@@ -4,7 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Bomb : MonoBehaviour
 {
-    private float t = 0f;
+    [SerializeField] protected float speed = 4f;
+
     private bool exploded = false;
     bool canCount = false;
 
@@ -12,44 +13,43 @@ public class Bomb : MonoBehaviour
     private Rigidbody m_rigidBody;
     private Collider m_Collider;
 
+    protected Animator m_Animator;
+    protected AnimationCurve animationCurve = new AnimationCurve();
+
+    private float gravity = 16f;
+    protected float elapsedTime = 0f;
+
+    public static Action onExplode;
+
     public float Timer { get => timer; set => timer = value; }
     public Rigidbody RigidBody { get => m_rigidBody; set => m_rigidBody = value; }
     public bool Exploded { get => exploded; set => exploded = value; }
-    public bool CanCount { get => canCount; private set => canCount = value; }
+    public bool CanCount { get => canCount; protected set => canCount = value; }
     public Collider Collider { get => m_Collider; private set => m_Collider = value; }
 
-    private Animator m_Animator;
-
-    private AnimationCurve animationCurve = new AnimationCurve();
-    [SerializeField] private float speed = 4f;
-
-    public static Action onExplode;
-    private float gravity = 16f;
-
-    private void Awake()
+    protected virtual void Awake()
     {
         onExplode = null;
         m_rigidBody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider>();
-
         HotPotatoManager.HotPotato.OnBombArmed += SetAnimationKeys;
     }
 
-    private void SetAnimationKeys()
+    protected void SetAnimationKeys()
     {
         animationCurve.AddKey(0, 0f);
         animationCurve.AddKey(timer, 1f);
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         RigidBody.AddForce(-Vector3.up * gravity);
     }
 
     private void Update()
     {
-        m_Animator.speed = animationCurve.Evaluate(t) * speed;
+        m_Animator.speed = animationCurve.Evaluate(elapsedTime) * speed;
 
         if (!Exploded)
         {
@@ -59,7 +59,7 @@ public class Bomb : MonoBehaviour
                 {
                     canCount = true;
                 }
-                t += Time.deltaTime;
+                elapsedTime += Time.deltaTime;
             }
             else
             {
@@ -70,15 +70,15 @@ public class Bomb : MonoBehaviour
             }
         }
 
-        if (t > Timer && !Exploded)
+        if (elapsedTime > Timer && !Exploded)
         {
             Explode();
         }
     }
 
-    void Explode()
+    protected void Explode()
     {
-        t = 0;
+        elapsedTime = 0;
         Exploded = true;
         if (AudioManager.instance != null)
         {
@@ -95,7 +95,7 @@ public class Bomb : MonoBehaviour
     {
         if (collision.transform.CompareTag("Floor") && !Exploded && transform.parent == null)
         {
-            GameManager.Manager.PassBomb();
-        }
+            HotPotatoManager.HotPotato.PassBomb(); 
+        } 
     }
 }
