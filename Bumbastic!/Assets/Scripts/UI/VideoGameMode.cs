@@ -8,7 +8,7 @@ public class VideoGameMode : MonoBehaviour
     RawImage rawImage;
     VideoPlayer videoPlayer;
 
-    void Start()
+    void Awake()
     {
         rawImage = GetComponent<RawImage>();
         videoPlayer = GetComponent<VideoPlayer>();

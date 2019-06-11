@@ -33,7 +33,11 @@ public class Bomb : MonoBehaviour
         m_rigidBody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider>();
-        HotPotatoManager.HotPotato.OnBombArmed += SetAnimationKeys;
+
+        if (HotPotatoManager.HotPotato != null)
+        {
+            HotPotatoManager.HotPotato.OnBombArmed += SetAnimationKeys; 
+        }
     }
 
     protected void SetAnimationKeys()

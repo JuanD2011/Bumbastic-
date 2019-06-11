@@ -24,7 +24,7 @@ public class HotPotatoManager : GameManager
     [SerializeField] GameObject speedUpParticleSystem;
 
     protected bool cooldown;
-    protected float time = 0;
+    protected float time = 0f;
 
     protected List<Player> bummies = new List<Player>();
 

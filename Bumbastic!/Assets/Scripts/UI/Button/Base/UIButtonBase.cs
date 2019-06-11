@@ -13,11 +13,12 @@ public abstract class UIButtonBase : MonoBehaviour
     protected virtual void Awake()
     {
         Button = GetComponent<Button>();
-        PlayerMenu.OnAcceptButton += OnButtonClicked;
+        PlayerMenu.OnAcceptButton += OnButtonClicked; 
     }
 
     protected virtual void OnButtonClicked(byte _id)
     {
+        if (EventSystem.current == null) return;
         if (EventSystem.current.currentSelectedGameObject != gameObject || !gameObject.activeInHierarchy)
             interactuable = false;
         else interactuable = true;

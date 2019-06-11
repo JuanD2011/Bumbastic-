@@ -15,8 +15,6 @@ public class GameModeCanvas : MonoBehaviour
 
     Image[] backgroundImages = new Image[0];
 
-    [SerializeField] Image gamepad = null;
-
     static bool showedIntstructions = false;
     private bool canContinueInstructions = false;
 
