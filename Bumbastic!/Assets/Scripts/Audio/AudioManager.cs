@@ -117,7 +117,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="_clipToPlay"></param>
     /// <param name="_play"></param>
     /// <param name="_volume"></param>
-    public void PlaySFx(AudioClip _clipToPlay, bool _play, float _volume)
+    public void PlaySFx(AudioClip _clipToPlay, float _volume, bool _play)
     {
         if (!_play)
         {

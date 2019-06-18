@@ -158,9 +158,9 @@ public abstract class GameManager : MonoBehaviour
         gameMode.GetNextGameMode();
     }
 
-    public abstract void PassBomb(Player _receiver);
+    public abstract void PassBomb(Player _receiver, Bomb _Bomb);
 
-    public abstract void PassBomb(Player _receiver, Player _transmitter);
+    public abstract void PassBomb(Player _receiver, Player _transmitter, Bomb _Bomb);
 
     protected virtual void OnDisable()
     {

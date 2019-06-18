@@ -223,19 +223,21 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
-        HotPotatoManager.HotPotato.Bomb.transform.parent = null;
-        HotPotatoManager.HotPotato.Bomb.RigidBody.isKinematic = false;
-        HotPotatoManager.HotPotato.Bomb.Collider.enabled = true;
+        Bomb tmpBomb = Catapult.GetComponentInChildren<Bomb>();
+
+        tmpBomb.transform.parent = null;
+        tmpBomb.RigidBody.isKinematic = false;
+        tmpBomb.Collider.enabled = true;
 
         if (InputAiming != Vector2.zero)
         {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
-            HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+            tmpBomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         else
         {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * transform.forward;
-            HotPotatoManager.HotPotato.Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+            tmpBomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
         }
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombThrow, 0.7f);
 
@@ -248,6 +250,7 @@ public class Player : MonoBehaviour
 
         HasBomb = false;
         throwing = false;
+        Collider.enabled = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -278,9 +281,17 @@ public class Player : MonoBehaviour
         Player collisionedPlayer = other.GetComponentInParent<Player>();
         Bomb collisionedBomb = other.GetComponent<Bomb>();
 
+        if (collisionedBomb != null)
+        {
+            if (collisionedBomb.transform.parent != null)
+            {
+                print("DEDEdedede");
+            } 
+        }
+
         if (collisionedBomb != null && collisionedBomb.transform.parent == null)
         {
-            GameManager.Manager.PassBomb(this);
+            GameManager.Manager.PassBomb(this, collisionedBomb);
             Animator.SetTrigger("Reception");
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombReception, 0.6f);
             SetOverrideAnimator(true);
@@ -289,7 +300,7 @@ public class Player : MonoBehaviour
         {
             if (collisionedPlayer.HasBomb && collisionedPlayer.CanMove)
             {
-                GameManager.Manager.PassBomb(this, collisionedPlayer);
+                GameManager.Manager.PassBomb(this, collisionedPlayer, collisionedPlayer.Catapult.GetComponentInChildren<Bomb>());
                 Animator.SetTrigger("Reception");
                 collisionedPlayer.SetOverrideAnimator(false);
                 SetOverrideAnimator(true);
@@ -304,7 +315,7 @@ public class Player : MonoBehaviour
         {
             Animator.SetTrigger("Stun");
         }
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, _stun, 0.6f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, 0.6f, _stun);
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 1f);
         canMove = !_stun;
     }
@@ -326,14 +337,14 @@ public class Player : MonoBehaviour
         if (_animStun)
         {
             Animator.SetTrigger("Stun"); 
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, true, 0.6f);
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, 0.6f, true);
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 1f);
         }
 
         yield return new WaitForSeconds(_duration);
         Animator.SetBool("CanMove", true);
 
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, false, 0.6f); 
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, 0.6f, false); 
         canMove = true;
     }
 

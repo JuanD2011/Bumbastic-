@@ -117,7 +117,7 @@ public class HotPotatoManager : GameManager
     /// Pass bomb to the player that the bomb touch
     /// </summary>
     /// <param name="_receiver"></param>
-    public override void PassBomb(Player _receiver)
+    public override void PassBomb(Player _receiver, Bomb _Bomb)
     {
         if (BombHolder != null)
         {
@@ -160,7 +160,7 @@ public class HotPotatoManager : GameManager
     /// </summary>
     /// <param name="_receiver"></param>
     /// <param name="_transmitter"></param>
-    public override void PassBomb(Player _receiver, Player _transmitter)
+    public override void PassBomb(Player _receiver, Player _transmitter, Bomb _Bomb)
     {
         transmitter = _transmitter;
         _transmitter.HasBomb = false;

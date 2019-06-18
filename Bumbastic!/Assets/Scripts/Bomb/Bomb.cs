@@ -101,6 +101,8 @@ public class Bomb : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (GameModeDataBase.IsCurrentBasesGame()) return;
+
         if (collision.transform.CompareTag("Floor") && !Exploded && transform.parent == null)
         {
             HotPotatoManager.HotPotato.PassBomb(); 

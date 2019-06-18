@@ -45,7 +45,7 @@ public class Wagon : MonoBehaviour
         {
             if (other.tag == "Wagon")
             {
-                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.rollingWagon, false, 0.7f);
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.rollingWagon, 0.7f, false);
                 StartCoroutine(LerpPosition(timeToLerpPosition, transform.position, other.transform.position));
                 transform.rotation = other.transform.rotation;
                 m_Rigidbody.velocity = Vector3.zero;
@@ -73,7 +73,7 @@ public class Wagon : MonoBehaviour
 
         if (m_Rigidbody.velocity == Vector3.zero)
         {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.rollingWagon, true, 1f);
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.rollingWagon, 1f, true);
             m_Rigidbody.AddForce(transform.forward * velocity, ForceMode.Impulse);
         }
     }
