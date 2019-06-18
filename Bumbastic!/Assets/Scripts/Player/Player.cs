@@ -223,6 +223,8 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
+        Collider.enabled = true;
+
         Bomb tmpBomb = Catapult.GetComponentInChildren<Bomb>();
 
         tmpBomb.transform.parent = null;
@@ -250,7 +252,6 @@ public class Player : MonoBehaviour
 
         HasBomb = false;
         throwing = false;
-        Collider.enabled = true;
     }
 
     private void OnCollisionEnter(Collision collision)
