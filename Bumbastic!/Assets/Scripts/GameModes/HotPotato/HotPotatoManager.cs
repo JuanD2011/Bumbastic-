@@ -127,7 +127,7 @@ public class HotPotatoManager : GameManager
 
             foreach (Renderer renderer in transmitter.AvatarSkinnedMeshRenderers)
             {
-                renderer.material.shader = defaultShader;
+                renderer.material.shader = DefaultShader;
             }
         }
 
@@ -168,7 +168,7 @@ public class HotPotatoManager : GameManager
 
         foreach (Renderer renderer in _transmitter.AvatarSkinnedMeshRenderers)
         {
-            renderer.material.shader = defaultShader;
+            renderer.material.shader = DefaultShader;
         }
 
         _receiver.HasBomb = true;
@@ -199,6 +199,7 @@ public class HotPotatoManager : GameManager
     public virtual void PassBomb()
     {
         BombHolder.HasBomb = true;
+        BombHolder.Collider.enabled = false;
         BombHolder.SetOverrideAnimator(true);
         Bomb.RigidBody.velocity = Vector2.zero;
         Bomb.RigidBody.isKinematic = true;

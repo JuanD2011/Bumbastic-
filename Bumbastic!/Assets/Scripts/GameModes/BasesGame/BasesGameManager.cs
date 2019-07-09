@@ -67,7 +67,7 @@ public class BasesGameManager : GameManager
 
         foreach (Renderer renderer in _transmitter.AvatarSkinnedMeshRenderers)
         {
-            renderer.material.shader = defaultShader;
+            renderer.material.shader = DefaultShader;
         }
 
         _receiver.HasBomb = true;

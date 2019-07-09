@@ -11,12 +11,6 @@ public abstract class GameManager : MonoBehaviour
     [SerializeField]
     private List<Transform> spawnPoints;
 
-    public PlayableDirector Director { get => director; protected set => director = value; }
-    public List<Player> Players { get => players; protected set => players = value; }
-    protected List<Transform> SpawnPoints { get => spawnPoints; private set => spawnPoints = value; }
-    protected GameObject PlayerPrefab { get => playerPrefab; private set => playerPrefab = value; }
-    public EnumEnviroment Enviroment { get => enviroment; private set => enviroment = value; }
-
     [SerializeField]
     GameModeDataBase gameMode = null;
 
@@ -36,7 +30,14 @@ public abstract class GameManager : MonoBehaviour
     public event GameStateDelegate OnGameModeOver;
     public event GameStateDelegate OnGameOver;
 
-    protected Shader defaultShader;
+    private Shader defaultShader;
+
+    public PlayableDirector Director { get => director; protected set => director = value; }
+    public List<Player> Players { get => players; protected set => players = value; }
+    protected List<Transform> SpawnPoints { get => spawnPoints; private set => spawnPoints = value; }
+    protected GameObject PlayerPrefab { get => playerPrefab; private set => playerPrefab = value; }
+    public EnumEnviroment Enviroment { get => enviroment; private set => enviroment = value; }
+    public Shader DefaultShader { get => defaultShader; private set => defaultShader = value; }
 
     protected virtual void Awake()
     {
@@ -106,7 +107,7 @@ public abstract class GameManager : MonoBehaviour
             player.Initialize();
         }
 
-        defaultShader = Players[0].AvatarSkinnedMeshRenderers[0].material.shader;
+        DefaultShader = Players[0].AvatarSkinnedMeshRenderers[0].material.shader;
         GiveBombs();
     }
 

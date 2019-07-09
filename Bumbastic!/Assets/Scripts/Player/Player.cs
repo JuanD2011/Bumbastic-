@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     private SkinnedMeshRenderer[] avatarSkinnedMeshRenderers = new SkinnedMeshRenderer[0];
 
     private bool throwing;
+    Bomb m_Bomb = null;
 
     private Gamepad gamepad;
 
@@ -113,8 +114,14 @@ public class Player : MonoBehaviour
 
     private void ResetPlayer()
     {
+        HasBomb = false;
+        throwing = false;
+        StopAllCoroutines();
+        foreach (SkinnedMeshRenderer skinnedMeshRenderer in AvatarSkinnedMeshRenderers)
+        {
+            skinnedMeshRenderer.material.shader = GameManager.Manager.DefaultShader;
+        }
         m_Animator.runtimeAnimatorController = animatorWNoBomb;
-        hasBomb = false;
     }
 
     public void SetOverrideAnimator(bool _hasBomb)
@@ -158,7 +165,6 @@ public class Player : MonoBehaviour
     {
         if (canMove)
         {
-            //transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
             Rigidbody.MovePosition(transform.position + transform.forward * currentSpeed * Time.deltaTime);
         }
     }
@@ -194,16 +200,19 @@ public class Player : MonoBehaviour
 
     public void Throw()
     {
+        m_Bomb = Catapult.GetComponentInChildren<Bomb>();
+
         if (HasBomb && CanMove && !throwing)
         {
-            Animator.SetTrigger("Throw");
             SetOverrideAnimator(false);
-            StartCoroutine(SyncThrowAnim());
+            StopCoroutine(SyncThrowAnim());
+            if (m_Bomb != null) StartCoroutine(SyncThrowAnim());
         }
     }
 
     IEnumerator SyncThrowAnim()
     {
+        Animator.SetTrigger("Throw");
         throwing = true;
         
         float elapsedTime = 0f;
@@ -211,6 +220,7 @@ public class Player : MonoBehaviour
         Quaternion initialRotation = transform.rotation;
 
         Vector3 aiming = new Vector3(InputAiming.x, 0, InputAiming.y);
+
     
         while (elapsedTime < 0.15f)
         { 
@@ -223,32 +233,31 @@ public class Player : MonoBehaviour
             yield return null;
         }
 
-        Collider.enabled = true;
+        yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"));
+        yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.35f);
 
-        Bomb tmpBomb = Catapult.GetComponentInChildren<Bomb>();
-
-        tmpBomb.transform.parent = null;
-        tmpBomb.RigidBody.isKinematic = false;
-        tmpBomb.Collider.enabled = true;
+        m_Bomb.RigidBody.isKinematic = false;
+        m_Bomb.transform.SetParent(null);
 
         if (InputAiming != Vector2.zero)
         {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
-            tmpBomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+            if (Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"))
+               m_Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse); 
         }
         else
         {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * transform.forward;
-            tmpBomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+            if (Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"))
+                m_Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse); 
         }
+
+        m_Bomb.Collider.enabled = true;
+
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombThrow, 0.7f);
 
         float prob = Random.Range(0f, 1f);
-
-        if (prob < 0.33f)
-        {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cThrow, 0.7f); 
-        }
+        if (prob < 0.33f) AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cThrow, 0.7f);
 
         HasBomb = false;
         throwing = false;
@@ -281,14 +290,6 @@ public class Player : MonoBehaviour
     {
         Player collisionedPlayer = other.GetComponentInParent<Player>();
         Bomb collisionedBomb = other.GetComponent<Bomb>();
-
-        if (collisionedBomb != null)
-        {
-            if (collisionedBomb.transform.parent != null)
-            {
-                print("DEDEdedede");
-            } 
-        }
 
         if (collisionedBomb != null && collisionedBomb.transform.parent == null)
         {
