@@ -21,14 +21,15 @@ public abstract class GameManager : MonoBehaviour
 
     protected PlayableDirector director;
 
+    public const byte numberToReachDash = 3;
+
     [SerializeField]
     protected Shader bombHolderShader;
 
     public GameObject floor;
 
-    public delegate void GameStateDelegate();
-    public event GameStateDelegate OnGameModeOver;
-    public event GameStateDelegate OnGameOver;
+    public event System.Action OnGameModeOver = null, OnGameOver = null;
+    public System.Action<Player> OnCorrectPassBomb = null;
 
     private Shader defaultShader;
 

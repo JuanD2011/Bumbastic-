@@ -19,6 +19,10 @@ public class Player : MonoBehaviour
     public bool speedPU;
     private bool canMove = false;
 
+    byte dashCount = 0;
+    bool canDash = false;
+    [SerializeField] float dashForce = 30f;
+
     private byte id;
     string prefabName;
 
@@ -70,8 +74,18 @@ public class Player : MonoBehaviour
 
         Rigidbody = GetComponent<Rigidbody>();
         GameManager.Manager.Director.stopped += LetMove;
+        GameManager.Manager.OnCorrectPassBomb += IncreaseDashCounter;
         Bomb.onExplode += ResetPlayer;
         gamepad = (Gamepad)GetComponent<PlayerInput>().devices[0];
+    }
+
+    private void IncreaseDashCounter(Player _player)
+    {
+        if (_player != this) return;
+
+        dashCount = (dashCount <= GameManager.numberToReachDash) ? dashCount += 1 : dashCount = 0;
+
+        if (dashCount == GameManager.numberToReachDash) canDash = true;
     }
 
     public void OnMove(InputValue context)
@@ -208,6 +222,11 @@ public class Player : MonoBehaviour
             StopCoroutine(SyncThrowAnim());
             if (m_Bomb != null) StartCoroutine(SyncThrowAnim());
         }
+    }
+
+    private void Dash()
+    {
+        Rigidbody.AddForce(transform.forward * dashForce, ForceMode.Impulse);
     }
 
     IEnumerator SyncThrowAnim()
