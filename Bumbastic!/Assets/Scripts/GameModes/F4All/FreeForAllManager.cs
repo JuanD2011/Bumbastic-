@@ -67,7 +67,7 @@ public class FreeForAllManager : HotPotatoManager
             {
                 BombHolder = null;
                 KillsCounter[transmitter.Id] += 1;
-                OnPlayerKilled?.Invoke(transmitter.Id);//HUDFreeForAll hears it.
+                OnPlayerKilled?.Invoke(transmitter.Id);
                 transmitter = null;
             } 
         }
