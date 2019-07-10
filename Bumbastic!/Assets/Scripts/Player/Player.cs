@@ -21,7 +21,8 @@ public class Player : MonoBehaviour
 
     byte dashCount = 0;
     bool canDash = false;
-    [SerializeField] float dashForce = 30f;
+    [SerializeField] float dashForce = 7f;
+    public event System.Action<Player> OnDashExecuted = null;
 
     private byte id;
     string prefabName;
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour
     public Transform Catapult { get => catapult; private set => catapult = value; }
     public Rigidbody Rigidbody { get => m_Rigidbody; private set => m_Rigidbody = value; }
     public SkinnedMeshRenderer[] AvatarSkinnedMeshRenderers { get => avatarSkinnedMeshRenderers; set => avatarSkinnedMeshRenderers = value; }
+    public byte DashCount { get => dashCount; private set => dashCount = value; }
 
     private void Start()
     {
@@ -83,9 +85,9 @@ public class Player : MonoBehaviour
     {
         if (_player != this) return;
 
-        dashCount = (dashCount <= GameManager.numberToReachDash) ? dashCount += 1 : dashCount = 0;
+        DashCount = (DashCount <= GameManager.numberToReachDash) ? DashCount += 1 : DashCount = GameManager.numberToReachDash;
 
-        if (dashCount == GameManager.numberToReachDash) canDash = true;
+        if (DashCount == GameManager.numberToReachDash) canDash = true;
     }
 
     public void OnMove(InputValue context)
@@ -102,6 +104,11 @@ public class Player : MonoBehaviour
     public void OnThrow()
     {
         Throw();
+    }
+
+    public void OnDash()
+    {
+        Dash();
     }
 
     public void OnStart()
@@ -226,7 +233,13 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
-        Rigidbody.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+        if (canDash)
+        {
+            Rigidbody.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+            canDash = false;
+            dashCount = 0;
+            OnDashExecuted?.Invoke(this);
+        }
     }
 
     IEnumerator SyncThrowAnim()

@@ -62,6 +62,17 @@ public class InputActions : IInputActionCollection
                     ""processors"": """",
                     ""interactions"": """",
                     ""bindings"": []
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""id"": ""392ae0e4-87b9-4222-812e-dff28ddb3bda"",
+                    ""expectedControlLayout"": """",
+                    ""continuous"": false,
+                    ""passThrough"": false,
+                    ""initialStateCheck"": false,
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""bindings"": []
                 }
             ],
             ""bindings"": [
@@ -349,6 +360,18 @@ public class InputActions : IInputActionCollection
                     ""processors"": """",
                     ""groups"": ""MK"",
                     ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3e6e6db-c8e3-4976-a184-1c7180de1dff"",
+                    ""path"": ""<DualShockGamepad>/leftTrigger"",
+                    ""interactions"": ""Press(pressPoint=1)"",
+                    ""processors"": """",
+                    ""groups"": ""PS4"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false,
                     ""modifiers"": """"
@@ -840,6 +863,7 @@ public class InputActions : IInputActionCollection
         m_Game_Aim = m_Game.GetAction("Aim");
         m_Game_Throw = m_Game.GetAction("Throw");
         m_Game_Start = m_Game.GetAction("Start");
+        m_Game_Dash = m_Game.GetAction("Dash");
         // Menu
         m_Menu = asset.GetActionMap("Menu");
         m_Menu_LeftSkin = m_Menu.GetAction("LeftSkin");
@@ -894,6 +918,7 @@ public class InputActions : IInputActionCollection
     private InputAction m_Game_Aim;
     private InputAction m_Game_Throw;
     private InputAction m_Game_Start;
+    private InputAction m_Game_Dash;
     public struct GameActions
     {
         private InputActions m_Wrapper;
@@ -902,6 +927,7 @@ public class InputActions : IInputActionCollection
         public InputAction @Aim { get { return m_Wrapper.m_Game_Aim; } }
         public InputAction @Throw { get { return m_Wrapper.m_Game_Throw; } }
         public InputAction @Start { get { return m_Wrapper.m_Game_Start; } }
+        public InputAction @Dash { get { return m_Wrapper.m_Game_Dash; } }
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -924,6 +950,9 @@ public class InputActions : IInputActionCollection
                 Start.started -= m_Wrapper.m_GameActionsCallbackInterface.OnStart;
                 Start.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnStart;
                 Start.cancelled -= m_Wrapper.m_GameActionsCallbackInterface.OnStart;
+                Dash.started -= m_Wrapper.m_GameActionsCallbackInterface.OnDash;
+                Dash.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnDash;
+                Dash.cancelled -= m_Wrapper.m_GameActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -940,6 +969,9 @@ public class InputActions : IInputActionCollection
                 Start.started += instance.OnStart;
                 Start.performed += instance.OnStart;
                 Start.cancelled += instance.OnStart;
+                Dash.started += instance.OnDash;
+                Dash.performed += instance.OnDash;
+                Dash.cancelled += instance.OnDash;
             }
         }
     }
@@ -1071,6 +1103,7 @@ public class InputActions : IInputActionCollection
         void OnAim(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

@@ -438,6 +438,7 @@ MonoBehaviour:
   turnSmooth: 0.15
   powerUpSpeed: 7
   speedPU: 0
+  dashForce: 12
   avatar: {fileID: 6652167441946210589, guid: 4091fa549d9f78348a4b000f77346b83, type: 3}
   throwForce: 30
   animatorWBomb: {fileID: 22100000, guid: 5ce99b798e6c77f4e9138315b4cfb5c0, type: 2}

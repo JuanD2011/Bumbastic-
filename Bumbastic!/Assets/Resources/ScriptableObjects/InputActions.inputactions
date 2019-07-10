@@ -48,6 +48,17 @@
                     "processors": "",
                     "interactions": "",
                     "bindings": []
+                },
+                {
+                    "name": "Dash",
+                    "id": "392ae0e4-87b9-4222-812e-dff28ddb3bda",
+                    "expectedControlLayout": "",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "",
+                    "bindings": []
                 }
             ],
             "bindings": [
@@ -335,6 +346,18 @@
                     "processors": "",
                     "groups": "MK",
                     "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "e3e6e6db-c8e3-4976-a184-1c7180de1dff",
+                    "path": "<DualShockGamepad>/leftTrigger",
+                    "interactions": "Press(pressPoint=1)",
+                    "processors": "",
+                    "groups": "PS4",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false,
                     "modifiers": ""

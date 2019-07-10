@@ -9,13 +9,17 @@ public class CanvasBillboard : MonoBehaviour
     Player player;
 
     TextMeshProUGUI[] playersText;
-    Image playerColor;
+    Image playerColor = null;
+    Slider dashCountSlider = null;
+
+    float valueToIncrease = 0f;
 
     private void Start()
     {
         player = GetComponentInParent<Player>();
         playersText = GetComponentsInChildren<TextMeshProUGUI>();
         playerColor = GetComponentInChildren<Image>();
+        dashCountSlider = GetComponentInChildren<Slider>();
 
         switch (Translation.GetCurrentLanguage())
         {
@@ -33,6 +37,18 @@ public class CanvasBillboard : MonoBehaviour
         }
         playerColor.color = settings.playersColor[player.Id];
         playersText[1].text = string.Format("{0}", player.PrefabName);
+
+        valueToIncrease = dashCountSlider.maxValue / GameManager.numberToReachDash;
+
+        GameManager.Manager.OnCorrectPassBomb += UpdateDashCounter;
+        player.OnDashExecuted += UpdateDashCounter;
+    }
+
+    private void UpdateDashCounter(Player _player)
+    {
+        if (_player != player) return;
+
+        dashCountSlider.value = valueToIncrease * player.DashCount;
     }
 
     private void Update()
