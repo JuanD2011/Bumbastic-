@@ -22,6 +22,7 @@ public class AudioClips : ScriptableObject
     public AudioClip stun;
     public AudioClip wagonHit, rollingWagon;
     public AudioClip speedUP;
+    public AudioClip dash = null;
 
     [Header("Support")]
     public AudioClip crowdCheer;

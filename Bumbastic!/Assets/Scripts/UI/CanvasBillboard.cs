@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class CanvasBillboard : MonoBehaviour
 {
@@ -48,7 +49,20 @@ public class CanvasBillboard : MonoBehaviour
     {
         if (_player != player) return;
 
-        dashCountSlider.value = valueToIncrease * player.DashCount;
+        if (gameObject.activeInHierarchy) StartCoroutine(LerpSlider());
+    }
+
+    IEnumerator LerpSlider()
+    {
+        float time = 0.15f, elapsedTime = 0f;
+        float initValue = dashCountSlider.value;
+
+        while (dashCountSlider.value != valueToIncrease * player.DashCount)
+        {
+            dashCountSlider.value = Mathf.Lerp(initValue, valueToIncrease * player.DashCount, elapsedTime / time);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
 
     private void Update()

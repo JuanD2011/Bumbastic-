@@ -238,6 +238,7 @@ public class Player : MonoBehaviour
             Rigidbody.AddForce(transform.forward * dashForce, ForceMode.Impulse);
             canDash = false;
             dashCount = 0;
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dash, 1f);
             OnDashExecuted?.Invoke(this);
         }
     }
