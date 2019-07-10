@@ -40,5 +40,5 @@ MonoBehaviour:
   wagonHit: {fileID: 8300000, guid: c842e5a90375cc64893a19406337971c, type: 3}
   rollingWagon: {fileID: 8300000, guid: 1fe14afa923203942aa3412413b08d5c, type: 3}
   speedUP: {fileID: 8300000, guid: 8a2d0eb387c50ec4ab26092c4b6e8b92, type: 3}
-  dash: {fileID: 8300000, guid: 8e8440f0941191149aca7d5468068828, type: 3}
+  dash: {fileID: 8300000, guid: fbbb8fd23e71a7c429048e1b70b30d6e, type: 3}
   crowdCheer: {fileID: 8300000, guid: bc7ec1150bac68d4da6fae14b5536132, type: 3}

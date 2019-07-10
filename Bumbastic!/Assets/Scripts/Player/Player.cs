@@ -233,7 +233,7 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
-        if (canDash)
+        if (canDash && CanMove)
         {
             Rigidbody.AddForce(transform.forward * dashForce, ForceMode.Impulse);
             canDash = false;
