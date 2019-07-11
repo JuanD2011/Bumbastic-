@@ -7,6 +7,8 @@ public class CanvasBillboard : MonoBehaviour
 {
     [SerializeField] Settings settings = null;
 
+    [SerializeField] ParticleSystem uIParticleSystem = null;
+
     Player player;
 
     TextMeshProUGUI[] playersText;
@@ -15,13 +17,16 @@ public class CanvasBillboard : MonoBehaviour
 
     float valueToIncrease = 0f;
 
-    private void Start()
+    private void Awake()
     {
         player = GetComponentInParent<Player>();
         playersText = GetComponentsInChildren<TextMeshProUGUI>();
         playerColor = GetComponentInChildren<Image>();
         dashCountSlider = GetComponentInChildren<Slider>();
+    }
 
+    private void Start()
+    {
         switch (Translation.GetCurrentLanguage())
         {
             case Languages.en:
@@ -48,8 +53,14 @@ public class CanvasBillboard : MonoBehaviour
     private void UpdateDashCounter(Player _player)
     {
         if (_player != player) return;
+        if (!gameObject.activeInHierarchy) return;
 
-        if (gameObject.activeInHierarchy) StartCoroutine(LerpSlider());
+        StartCoroutine(LerpSlider());
+
+        if (_player.DashCount == GameManager.numberToReachDash)
+            if (!uIParticleSystem.isPlaying) uIParticleSystem.Play();
+        else if (_player.DashCount == 0)
+            uIParticleSystem.Stop();
     }
 
     IEnumerator LerpSlider()
