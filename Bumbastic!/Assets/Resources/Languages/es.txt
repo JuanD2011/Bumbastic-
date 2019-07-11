@@ -28,3 +28,4 @@ Controls=Controles
 Move=Mover
 Aim=Apuntar
 Throw=Lanzar
+Dash=Dash

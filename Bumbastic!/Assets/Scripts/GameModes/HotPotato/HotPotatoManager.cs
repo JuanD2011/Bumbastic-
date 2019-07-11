@@ -119,7 +119,7 @@ public class HotPotatoManager : GameManager
     /// <param name="_receiver"></param>
     public override void PassBomb(Player _receiver, Bomb _Bomb)
     {
-        OnCorrectPassBomb?.Invoke(BombHolder);
+        OnCorrectPassBomb?.Invoke(BombHolder);  
 
         if (BombHolder != null)
         {

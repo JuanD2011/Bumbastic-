@@ -83,7 +83,9 @@ public class Player : MonoBehaviour
 
     private void IncreaseDashCounter(Player _player)
     {
-        if (_player != this) return;
+        if (_player != this || _player == null) return;
+
+        Debug.Log(_player.Avatar.name);
 
         DashCount = (DashCount <= GameManager.numberToReachDash) ? DashCount += 1 : DashCount = GameManager.numberToReachDash;
 
@@ -321,10 +323,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Player collisionedPlayer = other.GetComponentInParent<Player>();
         Bomb collisionedBomb = other.GetComponent<Bomb>();
+        Player collisionedPlayer = other.GetComponentInParent<Player>();
 
-        if (collisionedBomb != null && collisionedBomb.transform.parent == null)
+        if (collisionedBomb != null)
         {
             GameManager.Manager.PassBomb(this, collisionedBomb);
             Animator.SetTrigger("Reception");

@@ -85,18 +85,18 @@ public class Bomb : MonoBehaviour
 
     protected void Explode()
     {
+        transform.SetParent(null);
         elapsedTime = 0;
         Exploded = true;
         if (AudioManager.instance != null)
         {
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bomb, 0.7f);
         }
-        transform.SetParent(null);
         CameraShake.instance.OnShakeDuration?.Invoke(0.4f, 6f, 1.2f);
         RigidBody.isKinematic = false;
-        Collider.enabled = true;
+        Collider.enabled = false;
         cParticleModification.Execute();
-        onExplode?.Invoke();//GameManager, FloorManager hears it
+        onExplode?.Invoke();
     }
 
     private void OnCollisionEnter(Collision collision)

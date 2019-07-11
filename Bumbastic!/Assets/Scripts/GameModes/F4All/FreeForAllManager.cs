@@ -65,12 +65,13 @@ public class FreeForAllManager : HotPotatoManager
         {
             if (timesBombPlayed > 1 && BombHolder.Id != transmitter.Id)
             {
-                BombHolder = null;
                 KillsCounter[transmitter.Id] += 1;
                 OnPlayerKilled?.Invoke(transmitter.Id);
                 transmitter = null;
-            } 
+            }
         }
+
+        BombHolder = null;
 
         timesBombPlayed = 0;
 
@@ -107,10 +108,7 @@ public class FreeForAllManager : HotPotatoManager
             Bomb.transform.position = Players[random].transform.position + new Vector3(0, 2, 0);
             Bomb.Timer = Random.Range(minTime, maxTime);
             Bomb.Exploded = false;
-            if (Bomb.RigidBody != null)
-            {
-                Bomb.RigidBody.velocity = Vector3.zero;
-            }
+            Bomb.RigidBody.velocity = Vector3.zero;
             Bomb.transform.rotation = Quaternion.identity;
             Bomb.gameObject.SetActive(true);
             OnBombArmed?.Invoke();//Bomb hears it.
