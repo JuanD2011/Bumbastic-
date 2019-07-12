@@ -45,7 +45,6 @@ public class Player : MonoBehaviour
     private bool hasBomb;
 
     private Transform catapult;
-    private SkinnedMeshRenderer[] avatarSkinnedMeshRenderers = new SkinnedMeshRenderer[0];
 
     private bool throwing;
     Bomb m_Bomb = null;
@@ -64,7 +63,6 @@ public class Player : MonoBehaviour
     public SphereCollider Collider { get => collider; private set => collider = value; }
     public Transform Catapult { get => catapult; private set => catapult = value; }
     public Rigidbody Rigidbody { get => m_Rigidbody; private set => m_Rigidbody = value; }
-    public SkinnedMeshRenderer[] AvatarSkinnedMeshRenderers { get => avatarSkinnedMeshRenderers; set => avatarSkinnedMeshRenderers = value; }
     public byte DashCount { get => dashCount; private set => dashCount = value; }
 
     private void Start()
@@ -138,10 +136,6 @@ public class Player : MonoBehaviour
         HasBomb = false;
         throwing = false;
         StopAllCoroutines();
-        foreach (SkinnedMeshRenderer skinnedMeshRenderer in AvatarSkinnedMeshRenderers)
-        {
-            skinnedMeshRenderer.material.shader = GameManager.Manager.DefaultShader;
-        }
         m_Animator.runtimeAnimatorController = animatorWNoBomb;
     }
 
@@ -201,7 +195,6 @@ public class Player : MonoBehaviour
         {
             Animator = cBummie.Animator;
             Catapult = cBummie.Catapult;
-            AvatarSkinnedMeshRenderers = cBummie.SkinnedMeshRenderers;
         }
         else
         {

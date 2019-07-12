@@ -64,3 +64,10 @@ MonoBehaviour:
       type: 3}
     choosed: 0
     skinSprite: {fileID: 21300000, guid: 0a0976af26845ef40ae53a11f35c247f, type: 3}
+  - name: Bummity
+    description: 
+    value: 0
+    prefab: {fileID: 1573317317432640023, guid: 26c23c8fe9fa8c04a9b592b1b22126b3,
+      type: 3}
+    choosed: 0
+    skinSprite: {fileID: 21300000, guid: 0a0976af26845ef40ae53a11f35c247f, type: 3}

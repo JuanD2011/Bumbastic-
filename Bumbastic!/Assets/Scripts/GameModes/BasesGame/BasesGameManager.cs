@@ -41,11 +41,6 @@ public class BasesGameManager : GameManager
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
 
-        foreach (Renderer renderer in _receiver.AvatarSkinnedMeshRenderers)
-        {
-            renderer.material.shader = bombHolderShader;
-        }
-
         _Bomb.RigidBody.isKinematic = true;
         _Bomb.Collider.enabled = false;
         _Bomb.transform.position = _receiver.Catapult.position;
@@ -65,18 +60,8 @@ public class BasesGameManager : GameManager
         _transmitter.HasBomb = false;
         _transmitter.Collider.enabled = true;
 
-        foreach (Renderer renderer in _transmitter.AvatarSkinnedMeshRenderers)
-        {
-            renderer.material.shader = DefaultShader;
-        }
-
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
-
-        foreach (Renderer renderer in _receiver.AvatarSkinnedMeshRenderers)
-        {
-            renderer.material.shader = bombHolderShader;
-        }
 
         _Bomb.RigidBody.velocity = Vector2.zero;
         _Bomb.RigidBody.isKinematic = true;

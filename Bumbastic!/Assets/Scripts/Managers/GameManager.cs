@@ -23,22 +23,16 @@ public abstract class GameManager : MonoBehaviour
 
     public const byte numberToReachDash = 3;
 
-    [SerializeField]
-    protected Shader bombHolderShader;
-
     public GameObject floor;
 
     public event System.Action OnGameModeOver = null, OnGameOver = null;
     public System.Action<Player> OnCorrectPassBomb = null;
-
-    private Shader defaultShader;
 
     public PlayableDirector Director { get => director; protected set => director = value; }
     public List<Player> Players { get => players; protected set => players = value; }
     protected List<Transform> SpawnPoints { get => spawnPoints; private set => spawnPoints = value; }
     protected GameObject PlayerPrefab { get => playerPrefab; private set => playerPrefab = value; }
     public EnumEnviroment Enviroment { get => enviroment; private set => enviroment = value; }
-    public Shader DefaultShader { get => defaultShader; private set => defaultShader = value; }
 
     protected virtual void Awake()
     {
@@ -107,8 +101,6 @@ public abstract class GameManager : MonoBehaviour
             player.transform.position = player.SpawnPoint;
             player.Initialize();
         }
-
-        DefaultShader = Players[0].AvatarSkinnedMeshRenderers[0].material.shader;
         GiveBombs();
     }
 

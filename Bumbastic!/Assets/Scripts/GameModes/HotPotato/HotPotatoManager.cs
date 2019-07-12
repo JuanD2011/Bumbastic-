@@ -126,20 +126,10 @@ public class HotPotatoManager : GameManager
             BombHolder.HasBomb = false;
             BombHolder.Collider.enabled = true;
             transmitter = BombHolder;
-
-            foreach (Renderer renderer in transmitter.AvatarSkinnedMeshRenderers)
-            {
-                renderer.material.shader = DefaultShader;
-            }
         }
 
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
-
-        foreach (Renderer renderer in _receiver.AvatarSkinnedMeshRenderers)
-        {
-            renderer.material.shader = bombHolderShader;
-        }
 
         BombHolder = _receiver;
         Bomb.RigidBody.velocity = Vector2.zero;
@@ -167,21 +157,12 @@ public class HotPotatoManager : GameManager
         OnCorrectPassBomb?.Invoke(_transmitter);
 
         transmitter = _transmitter;
+
         _transmitter.HasBomb = false;
         _transmitter.Collider.enabled = true;
 
-        foreach (Renderer renderer in _transmitter.AvatarSkinnedMeshRenderers)
-        {
-            renderer.material.shader = DefaultShader;
-        }
-
         _receiver.HasBomb = true;
         _receiver.Collider.enabled = false;
-
-        foreach (Renderer renderer in _receiver.AvatarSkinnedMeshRenderers)
-        {
-            renderer.material.shader = bombHolderShader;
-        }
 
         BombHolder = _receiver;
         Bomb.RigidBody.velocity = Vector2.zero;
