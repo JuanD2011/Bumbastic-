@@ -85,8 +85,6 @@ public class Player : MonoBehaviour
     {
         if (_player != this || _player == null) return;
 
-        Debug.Log(_player.Avatar.name);
-
         DashCount = (DashCount <= GameManager.numberToReachDash) ? DashCount += 1 : DashCount = GameManager.numberToReachDash;
 
         if (DashCount == GameManager.numberToReachDash) canDash = true;

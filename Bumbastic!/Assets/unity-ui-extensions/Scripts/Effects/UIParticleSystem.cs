@@ -288,47 +288,47 @@ namespace UnityEngine.UI.Extensions
             }
         }
 
-    //    void Update()
-    //    {
-    //        if (!fixedTime && Application.isPlaying)
-    //        {
-    //            pSystem.Simulate(Time.unscaledDeltaTime, false, false, true);
-    //            SetAllDirty();
+        void Update()
+        {
+            if (!fixedTime && Application.isPlaying)
+            {
+                pSystem.Simulate(Time.unscaledDeltaTime, false, false, true);
+                SetAllDirty();
 
-    //            if ((currentMaterial != null && currentTexture != currentMaterial.mainTexture) ||
-    //                (material != null && currentMaterial != null && material.shader != currentMaterial.shader))
-    //            {
-    //                pSystem = null;
-    //                Initialize();
-    //            }
-    //        }
-    //    }
+                if ((currentMaterial != null && currentTexture != currentMaterial.mainTexture) ||
+                    (material != null && currentMaterial != null && material.shader != currentMaterial.shader))
+                {
+                    pSystem = null;
+                    Initialize();
+                } 
+            }
+        }
 
-    //    void LateUpdate()
-    //    {
-    //        if (!Application.isPlaying)
-    //        {
-    //            SetAllDirty();
-    //        }
-    //        else
-    //        {
-    //            if (fixedTime)
-    //            {
-    //                pSystem.Simulate(Time.unscaledDeltaTime, false, false, true);
-    //                SetAllDirty();
-    //                if ((currentMaterial != null && currentTexture != currentMaterial.mainTexture) ||
-    //                    (material != null && currentMaterial != null && material.shader != currentMaterial.shader))
-    //                {
-    //                    pSystem = null;
-    //                    Initialize();
-    //                }
-    //            }
-    //        }
-    //        if (material == currentMaterial)
-    //            return;
-    //        pSystem = null;
-    //        Initialize();
-    //    }
+        //void LateUpdate()
+        //{
+        //    if (!Application.isPlaying)
+        //    {
+        //        SetAllDirty();
+        //    }
+        //    else
+        //    {
+        //        if (fixedTime)
+        //        {
+        //            pSystem.Simulate(Time.unscaledDeltaTime, false, false, true);
+        //            SetAllDirty();
+        //            if ((currentMaterial != null && currentTexture != currentMaterial.mainTexture) ||
+        //                (material != null && currentMaterial != null && material.shader != currentMaterial.shader))
+        //            {
+        //                pSystem = null;
+        //                Initialize();
+        //            }
+        //        }
+        //    }
+        //    if (material == currentMaterial)
+        //        return;
+        //    pSystem = null;
+        //    Initialize();
+        //}
     }
 #endif
 }

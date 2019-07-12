@@ -58,9 +58,9 @@ public class CanvasBillboard : MonoBehaviour
         StartCoroutine(LerpSlider());
 
         if (_player.DashCount == GameManager.numberToReachDash)
-            if (!uIParticleSystem.isPlaying) uIParticleSystem.Play();
+            uIParticleSystem.gameObject.SetActive(true);
         else if (_player.DashCount == 0)
-            uIParticleSystem.Stop();
+            uIParticleSystem.gameObject.SetActive(false);
     }
 
     IEnumerator LerpSlider()
