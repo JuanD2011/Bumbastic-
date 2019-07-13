@@ -4,7 +4,6 @@
 
 namespace UnityEngine.UI.Extensions
 {
-#if UNITY_5_3_OR_NEWER
     [ExecuteInEditMode]
     [RequireComponent(typeof(CanvasRenderer), typeof(ParticleSystem))]
     [AddComponentMenu("UI/Effects/Extensions/UIParticleSystem")]
@@ -27,9 +26,7 @@ namespace UnityEngine.UI.Extensions
 
         private Texture currentTexture;
 
-#if UNITY_5_5_OR_NEWER
         private ParticleSystem.MainModule mainModule;
-#endif
 
         public override Texture mainTexture
         {
@@ -55,16 +52,11 @@ namespace UnityEngine.UI.Extensions
                     return false;
                 }
 
-#if UNITY_5_5_OR_NEWER
                 mainModule = pSystem.main;
                 if (pSystem.main.maxParticles > 14000)
                 {
                     mainModule.maxParticles = 14000;
                 }
-#else
-                    if (pSystem.maxParticles > 14000)
-                        pSystem.maxParticles = 14000;
-#endif
 
                 pRenderer = pSystem.GetComponent<ParticleSystemRenderer>();
                 if (pRenderer != null)
@@ -85,21 +77,13 @@ namespace UnityEngine.UI.Extensions
                 }
                 material = currentMaterial;
                 // automatically set scaling
-#if UNITY_5_5_OR_NEWER
                 mainModule.scalingMode = ParticleSystemScalingMode.Hierarchy;
-#else
-                    pSystem.scalingMode = ParticleSystemScalingMode.Hierarchy;
-#endif
 
                 particles = null;
             }
-#if UNITY_5_5_OR_NEWER
+
             if (particles == null)
                 particles = new ParticleSystem.Particle[pSystem.main.maxParticles];
-#else
-                if (particles == null)
-                    particles = new ParticleSystem.Particle[pSystem.maxParticles];
-#endif
 
             imageUV = new Vector4(0, 0, 1, 1);
 
@@ -154,30 +138,20 @@ namespace UnityEngine.UI.Extensions
                 ParticleSystem.Particle particle = particles[i];
 
                 // get particle properties
-#if UNITY_5_5_OR_NEWER
                 Vector2 position = (mainModule.simulationSpace == ParticleSystemSimulationSpace.Local ? particle.position : _transform.InverseTransformPoint(particle.position));
-#else
-                    Vector2 position = (pSystem.simulationSpace == ParticleSystemSimulationSpace.Local ? particle.position : _transform.InverseTransformPoint(particle.position));
-#endif
                 float rotation = -particle.rotation * Mathf.Deg2Rad;
                 float rotation90 = rotation + Mathf.PI / 2;
                 Color32 color = particle.GetCurrentColor(pSystem);
                 float size = particle.GetCurrentSize(pSystem) * 0.5f;
 
                 // apply scale
-#if UNITY_5_5_OR_NEWER
                 if (mainModule.scalingMode == ParticleSystemScalingMode.Shape)
                     position /= canvas.scaleFactor;
-#else
-                    if (pSystem.scalingMode == ParticleSystemScalingMode.Shape)
-                        position /= canvas.scaleFactor;
-#endif
 
                 // apply texture sheet animation
                 Vector4 particleUV = imageUV;
                 if (textureSheetAnimation.enabled)
                 {
-#if UNITY_5_5_OR_NEWER
                     float frameProgress = 1 - (particle.remainingLifetime / particle.startLifetime);
 
                     if (textureSheetAnimation.frameOverTime.curveMin != null)
@@ -192,10 +166,6 @@ namespace UnityEngine.UI.Extensions
                     {
                         frameProgress = textureSheetAnimation.frameOverTime.constant - (particle.remainingLifetime / particle.startLifetime);
                     }
-#else
-                    float frameProgress = 1 - (particle.lifetime / particle.startLifetime);
-#endif
-
                     frameProgress = Mathf.Repeat(frameProgress * textureSheetAnimation.cycleCount, 1);
                     int frame = 0;
 
@@ -303,32 +273,5 @@ namespace UnityEngine.UI.Extensions
                 } 
             }
         }
-
-        //void LateUpdate()
-        //{
-        //    if (!Application.isPlaying)
-        //    {
-        //        SetAllDirty();
-        //    }
-        //    else
-        //    {
-        //        if (fixedTime)
-        //        {
-        //            pSystem.Simulate(Time.unscaledDeltaTime, false, false, true);
-        //            SetAllDirty();
-        //            if ((currentMaterial != null && currentTexture != currentMaterial.mainTexture) ||
-        //                (material != null && currentMaterial != null && material.shader != currentMaterial.shader))
-        //            {
-        //                pSystem = null;
-        //                Initialize();
-        //            }
-        //        }
-        //    }
-        //    if (material == currentMaterial)
-        //        return;
-        //    pSystem = null;
-        //    Initialize();
-        //}
     }
-#endif
 }
