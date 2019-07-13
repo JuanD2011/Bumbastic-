@@ -219,7 +219,7 @@ public class Player : MonoBehaviour
         if (HasBomb && CanMove && !throwing)
         {
             SetOverrideAnimator(false);
-            StopCoroutine(SyncThrowAnim());
+            StopCoroutine("SyncThrowAnim");
             if (m_Bomb != null) StartCoroutine(SyncThrowAnim());
         }
     }
@@ -262,8 +262,9 @@ public class Player : MonoBehaviour
         yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"));
         yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.35f);
 
-        m_Bomb.RigidBody.isKinematic = false;
-        m_Bomb.transform.SetParent(null);
+        if (m_Bomb == null) StopCoroutine("SyncThrowAnim");
+            m_Bomb.RigidBody.isKinematic = false;
+            m_Bomb.transform.SetParent(null); 
 
         if (InputAiming != Vector2.zero)
         {

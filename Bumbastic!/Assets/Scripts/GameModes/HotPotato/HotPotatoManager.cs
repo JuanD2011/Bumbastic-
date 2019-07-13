@@ -96,6 +96,7 @@ public class HotPotatoManager : GameManager
                 bummies.RemoveAt(i);
             }
             Bomb.gameObject.SetActive(true);
+            Bomb.Collider.enabled = true;
             Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 1, 0);
             Bomb.Timer = Random.Range(minTime -= 3f, maxTime -= 3f);
             Bomb.Exploded = false;
@@ -104,6 +105,7 @@ public class HotPotatoManager : GameManager
                 Bomb.RigidBody.velocity = Vector3.zero;
             }
             Bomb.transform.rotation = Quaternion.identity;
+            Director.Play();
             OnBombArmed?.Invoke();//Bomb hears it.
         }
         else if (Players.Count == 1)
