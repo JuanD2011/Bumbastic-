@@ -9,9 +9,6 @@ namespace UnityEngine.UI.Extensions
     [AddComponentMenu("UI/Effects/Extensions/UIParticleSystem")]
     public class UIParticleSystem : MaskableGraphic
     {
-        [Tooltip("Having this enabled run the system in LateUpdate rather than in Update making it faster but less precise (more clunky)")]
-        public bool fixedTime = true;
-
         private Transform _transform;
         private ParticleSystem pSystem;
         private ParticleSystem.Particle[] particles;
@@ -260,18 +257,15 @@ namespace UnityEngine.UI.Extensions
 
         void Update()
         {
-            if (!fixedTime && Application.isPlaying)
-            {
-                pSystem.Simulate(Time.unscaledDeltaTime, false, false, true);
-                SetAllDirty();
+            pSystem.Simulate(Time.unscaledDeltaTime, false, false, true);
+            SetAllDirty();
 
-                if ((currentMaterial != null && currentTexture != currentMaterial.mainTexture) ||
-                    (material != null && currentMaterial != null && material.shader != currentMaterial.shader))
-                {
-                    pSystem = null;
-                    Initialize();
-                } 
-            }
+            if ((currentMaterial != null && currentTexture != currentMaterial.mainTexture) ||
+                (material != null && currentMaterial != null && material.shader != currentMaterial.shader))
+            {
+                pSystem = null;
+                Initialize();
+            } 
         }
     }
 }
