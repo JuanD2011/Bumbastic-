@@ -263,20 +263,26 @@ public class Player : MonoBehaviour
         yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.35f);
 
         if (m_Bomb == null) StopCoroutine("SyncThrowAnim");
-            m_Bomb.RigidBody.isKinematic = false;
-            m_Bomb.transform.SetParent(null); 
 
         if (InputAiming != Vector2.zero)
         {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
             if (Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"))
-               m_Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse); 
+            {
+                m_Bomb.RigidBody.isKinematic = false;
+                m_Bomb.transform.SetParent(null); 
+                m_Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse); 
+            }
         }
         else
         {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * transform.forward;
             if (Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"))
-                m_Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse); 
+            {
+                m_Bomb.RigidBody.isKinematic = false;
+                m_Bomb.transform.SetParent(null);
+                m_Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+            }
         }
 
         m_Bomb.Collider.enabled = true;

@@ -4,6 +4,7 @@ public class ConfettiBomb : MonoBehaviour
 {
     private ParticleSystem m_Particle;
     private Renderer m_Renderer;
+    [SerializeField] GameObject wick = null;
 
     void Start()
     {
@@ -14,6 +15,7 @@ public class ConfettiBomb : MonoBehaviour
 
     private void Bum()
     {
+        wick.SetActive(false);
         m_Renderer.enabled = false;
         GetComponent<Collider>().enabled = false;
         m_Particle.Play();
