@@ -78,6 +78,7 @@ public class HotPotatoManager : GameManager
         foreach (Player player in Players)
         {
             player.transform.position = player.SpawnPoint;
+            player.Animator.SetFloat("speed", 0f);
             player.CanMove = false;
         }
 
