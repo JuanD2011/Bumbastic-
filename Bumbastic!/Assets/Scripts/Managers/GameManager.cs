@@ -11,6 +11,8 @@ public abstract class GameManager : MonoBehaviour
     [SerializeField]
     private List<Transform> spawnPoints;
 
+    public const byte maximunDashLevel = 3;
+
     [SerializeField]
     GameModeDataBase gameMode = null;
 
@@ -20,8 +22,6 @@ public abstract class GameManager : MonoBehaviour
     GameObject playerPrefab;
 
     protected PlayableDirector director;
-
-    public const byte numberToReachDash = 3;
 
     public GameObject floor;
 
@@ -119,7 +119,7 @@ public abstract class GameManager : MonoBehaviour
         List<Player> bummies = new List<Player>(Players);
         List<Player> randomBummies = new List<Player>();
 
-        while (bummies.Count >= 0)
+        while (bummies.Count > 0)
         {
             int rand = Random.Range(0, bummies.Count);
             randomBummies.Add(bummies[rand]);

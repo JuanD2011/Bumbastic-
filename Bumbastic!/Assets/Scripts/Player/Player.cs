@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
     private bool canMove = false;
 
     byte dashCount = 0;
-    bool canDash = false;
     [SerializeField] float dashForce = 7f;
     public event System.Action<Player> OnDashExecuted = null;
 
@@ -83,9 +82,7 @@ public class Player : MonoBehaviour
     {
         if (_player != this || _player == null) return;
 
-        DashCount = (DashCount <= GameManager.numberToReachDash) ? DashCount += 1 : DashCount = GameManager.numberToReachDash;
-
-        if (DashCount == GameManager.numberToReachDash) canDash = true;
+        DashCount = (DashCount <= GameManager.maximunDashLevel) ? DashCount += 1 : DashCount = GameManager.maximunDashLevel;
     }
 
     public void OnMove(InputValue context)
@@ -226,10 +223,24 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
-        if (canDash && CanMove)
+        if (dashCount == 0) return;
+
+        if (CanMove)
         {
-            Rigidbody.AddForce(transform.forward * dashForce, ForceMode.Impulse);
-            canDash = false;
+            switch (dashCount)
+            {
+                case 1:
+                    Rigidbody.AddForce(transform.forward * dashForce * 0.6f, ForceMode.Impulse);
+                    break;
+                case 2:
+                    Rigidbody.AddForce(transform.forward * dashForce * 0.8f, ForceMode.Impulse);
+                    break;
+                case 3:
+                    Rigidbody.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+                    break;
+                default:
+                    break;
+            }
             dashCount = 0;
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dash, 1f);
             OnDashExecuted?.Invoke(this);

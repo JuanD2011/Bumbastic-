@@ -44,7 +44,7 @@ public class CanvasBillboard : MonoBehaviour
         playerColor.color = settings.playersColor[player.Id];
         playersText[1].text = string.Format("{0}", player.PrefabName);
 
-        valueToIncrease = dashCountSlider.maxValue / GameManager.numberToReachDash;
+        valueToIncrease = dashCountSlider.maxValue / GameManager.maximunDashLevel;
 
         GameManager.Manager.OnCorrectPassBomb += UpdateDashCounter;
         player.OnDashExecuted += UpdateDashCounter;
@@ -52,15 +52,14 @@ public class CanvasBillboard : MonoBehaviour
 
     private void UpdateDashCounter(Player _player)
     {
-        if (_player != player) return;
-        if (!gameObject.activeInHierarchy) return;
+        if (_player != player || !gameObject.activeInHierarchy) return;
 
         StartCoroutine(LerpSlider());
 
-        if (_player.DashCount == GameManager.numberToReachDash)
-            uIParticleSystem.gameObject.SetActive(true);
-        else if (_player.DashCount == 0)
-            uIParticleSystem.gameObject.SetActive(false);
+        //if (_player.DashCount == GameManager.numberToReachDash)
+        //    uIParticleSystem.gameObject.SetActive(true);
+        //else if (_player.DashCount == 0)
+        //    uIParticleSystem.gameObject.SetActive(false);
     }
 
     IEnumerator LerpSlider()
