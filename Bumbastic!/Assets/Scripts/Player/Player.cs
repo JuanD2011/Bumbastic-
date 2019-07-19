@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Experimental.Input;
-using UnityEngine.Experimental.Input.Plugins.PlayerInput;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Plugins.PlayerInput;
 
 public class Player : MonoBehaviour
 {
