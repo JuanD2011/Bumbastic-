@@ -4,8 +4,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Input;
-using UnityEngine.Experimental.Input.Utilities;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 
 public class InputActions : IInputActionCollection
 {
@@ -885,44 +885,54 @@ public class InputActions : IInputActionCollection
         m_Menu_Start = m_Menu.GetAction("Start");
         m_Menu_Scrolling = m_Menu.GetAction("Scrolling");
     }
+
     ~InputActions()
     {
         UnityEngine.Object.Destroy(asset);
     }
+
     public InputBinding? bindingMask
     {
         get => asset.bindingMask;
         set => asset.bindingMask = value;
     }
+
     public ReadOnlyArray<InputDevice>? devices
     {
         get => asset.devices;
         set => asset.devices = value;
     }
+
     public ReadOnlyArray<InputControlScheme> controlSchemes
     {
         get => asset.controlSchemes;
     }
+
     public bool Contains(InputAction action)
     {
         return asset.Contains(action);
     }
+
     public IEnumerator<InputAction> GetEnumerator()
     {
         return asset.GetEnumerator();
     }
+
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
     }
+
     public void Enable()
     {
         asset.Enable();
     }
+
     public void Disable()
     {
         asset.Disable();
     }
+
     // Game
     private InputActionMap m_Game;
     private IGameActions m_GameActionsCallbackInterface;
@@ -952,38 +962,38 @@ public class InputActions : IInputActionCollection
             {
                 Move.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
                 Move.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
-                Move.cancelled -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
+                Move.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
                 Aim.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAim;
                 Aim.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAim;
-                Aim.cancelled -= m_Wrapper.m_GameActionsCallbackInterface.OnAim;
+                Aim.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAim;
                 Throw.started -= m_Wrapper.m_GameActionsCallbackInterface.OnThrow;
                 Throw.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnThrow;
-                Throw.cancelled -= m_Wrapper.m_GameActionsCallbackInterface.OnThrow;
+                Throw.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnThrow;
                 Start.started -= m_Wrapper.m_GameActionsCallbackInterface.OnStart;
                 Start.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnStart;
-                Start.cancelled -= m_Wrapper.m_GameActionsCallbackInterface.OnStart;
+                Start.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnStart;
                 Dash.started -= m_Wrapper.m_GameActionsCallbackInterface.OnDash;
                 Dash.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnDash;
-                Dash.cancelled -= m_Wrapper.m_GameActionsCallbackInterface.OnDash;
+                Dash.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
             {
                 Move.started += instance.OnMove;
                 Move.performed += instance.OnMove;
-                Move.cancelled += instance.OnMove;
+                Move.canceled += instance.OnMove;
                 Aim.started += instance.OnAim;
                 Aim.performed += instance.OnAim;
-                Aim.cancelled += instance.OnAim;
+                Aim.canceled += instance.OnAim;
                 Throw.started += instance.OnThrow;
                 Throw.performed += instance.OnThrow;
-                Throw.cancelled += instance.OnThrow;
+                Throw.canceled += instance.OnThrow;
                 Start.started += instance.OnStart;
                 Start.performed += instance.OnStart;
-                Start.cancelled += instance.OnStart;
+                Start.canceled += instance.OnStart;
                 Dash.started += instance.OnDash;
                 Dash.performed += instance.OnDash;
-                Dash.cancelled += instance.OnDash;
+                Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -994,6 +1004,7 @@ public class InputActions : IInputActionCollection
             return new GameActions(this);
         }
     }
+
     // Menu
     private InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
@@ -1025,44 +1036,44 @@ public class InputActions : IInputActionCollection
             {
                 LeftSkin.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnLeftSkin;
                 LeftSkin.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnLeftSkin;
-                LeftSkin.cancelled -= m_Wrapper.m_MenuActionsCallbackInterface.OnLeftSkin;
+                LeftSkin.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnLeftSkin;
                 RightSkin.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnRightSkin;
                 RightSkin.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnRightSkin;
-                RightSkin.cancelled -= m_Wrapper.m_MenuActionsCallbackInterface.OnRightSkin;
+                RightSkin.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnRightSkin;
                 Submit.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnSubmit;
                 Submit.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnSubmit;
-                Submit.cancelled -= m_Wrapper.m_MenuActionsCallbackInterface.OnSubmit;
+                Submit.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnSubmit;
                 Back.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnBack;
                 Back.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnBack;
-                Back.cancelled -= m_Wrapper.m_MenuActionsCallbackInterface.OnBack;
+                Back.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnBack;
                 Start.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnStart;
                 Start.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnStart;
-                Start.cancelled -= m_Wrapper.m_MenuActionsCallbackInterface.OnStart;
+                Start.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnStart;
                 Scrolling.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnScrolling;
                 Scrolling.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnScrolling;
-                Scrolling.cancelled -= m_Wrapper.m_MenuActionsCallbackInterface.OnScrolling;
+                Scrolling.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnScrolling;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
             {
                 LeftSkin.started += instance.OnLeftSkin;
                 LeftSkin.performed += instance.OnLeftSkin;
-                LeftSkin.cancelled += instance.OnLeftSkin;
+                LeftSkin.canceled += instance.OnLeftSkin;
                 RightSkin.started += instance.OnRightSkin;
                 RightSkin.performed += instance.OnRightSkin;
-                RightSkin.cancelled += instance.OnRightSkin;
+                RightSkin.canceled += instance.OnRightSkin;
                 Submit.started += instance.OnSubmit;
                 Submit.performed += instance.OnSubmit;
-                Submit.cancelled += instance.OnSubmit;
+                Submit.canceled += instance.OnSubmit;
                 Back.started += instance.OnBack;
                 Back.performed += instance.OnBack;
-                Back.cancelled += instance.OnBack;
+                Back.canceled += instance.OnBack;
                 Start.started += instance.OnStart;
                 Start.performed += instance.OnStart;
-                Start.cancelled += instance.OnStart;
+                Start.canceled += instance.OnStart;
                 Scrolling.started += instance.OnScrolling;
                 Scrolling.performed += instance.OnScrolling;
-                Scrolling.cancelled += instance.OnScrolling;
+                Scrolling.canceled += instance.OnScrolling;
             }
         }
     }
