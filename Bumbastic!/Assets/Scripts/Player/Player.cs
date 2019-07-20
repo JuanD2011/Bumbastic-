@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     public byte DashCount { get; private set; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
 
+    public static event Action<Player, Bomb> OnCatchBomb;
+
     private void Start()
     {
         if (animatorWNoBomb == null)
@@ -185,7 +187,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     private void FixedUpdate()
     {
         if (CanMove)
@@ -297,7 +298,7 @@ public class Player : MonoBehaviour
         PowerUp powerUpCollisioned = collision.gameObject.GetComponent<PowerUp>();
         Player otherPlayer = collision.gameObject.GetComponentInParent<Player>();
 
-        if (otherPlayer == null)
+        if (otherPlayer != null)
         {
             if (powerUpCollisioned != null && GetComponent<PowerUp>() == null)
             {
@@ -313,29 +314,40 @@ public class Player : MonoBehaviour
                 collision.gameObject.SetActive(false);
             } 
         }
-    }
+    }    
 
     private void OnTriggerEnter(Collider other)
     {
-        Bomb collisionedBomb = other.GetComponent<Bomb>();
-        Player collisionedPlayer = other.GetComponentInParent<Player>();
+        Bomb bomb = other.GetComponent<Bomb>();
 
-        if (collisionedBomb != null)
+        if (bomb != null)
         {
-            GameManager.Manager.PassBomb(this, collisionedBomb);
-            Animator.SetTrigger("Reception");
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombReception, 0.6f);
-            SetOverrideAnimator(true);
+            CatchBomb(bomb);
         }
-        else if (collisionedPlayer != null)
+    }
+
+    public void CatchBomb(Bomb _bomb)
+    {
+        OnCatchBomb?.Invoke(this, _bomb);
+        HasBomb = true;
+        Collider.enabled = false;
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombReception, 0.6f);
+        Animator.SetTrigger("Reception");
+        SetOverrideAnimator(true);
+
+        _bomb.RigidBody.velocity = Vector3.zero;
+        _bomb.RigidBody.isKinematic = true;
+        _bomb.Collider.enabled = false;
+        _bomb.transform.position = Catapult.position;
+        _bomb.transform.SetParent(Catapult);
+        StartCoroutine(Stun(false, 1f));
+        StartCoroutine(Rumble(0.2f, 0.2f, 0.2f));
+
+        float probTosound = UnityEngine.Random.Range(0f, 1f);
+
+        if (probTosound < 0.2f)
         {
-            if (collisionedPlayer.HasBomb && collisionedPlayer.CanMove)
-            {
-                GameManager.Manager.PassBomb(this, collisionedPlayer, collisionedPlayer.Catapult.GetComponentInChildren<Bomb>());
-                Animator.SetTrigger("Reception");
-                collisionedPlayer.SetOverrideAnimator(false);
-                SetOverrideAnimator(true);
-            }
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
         }
     }
 

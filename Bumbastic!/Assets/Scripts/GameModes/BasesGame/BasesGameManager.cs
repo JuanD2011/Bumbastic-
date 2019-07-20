@@ -36,51 +36,13 @@ public class BasesGameManager : GameManager
         //TODO implement color to the "Hair" of the base.
     }
 
-    public override void PassBomb(Player _receiver, Bomb _Bomb)
-    {
-        _receiver.HasBomb = true;
-        _receiver.Collider.enabled = false;
-
-        _Bomb.RigidBody.isKinematic = true;
-        _Bomb.Collider.enabled = false;
-        _Bomb.transform.position = _receiver.Catapult.position;
-        _Bomb.transform.SetParent(_receiver.Catapult.transform);
-        StartCoroutine(_receiver.Rumble(0.2f, 0.2f, 0.2f));
-
-        float probTosound = Random.Range(0f, 1f);
-
-        if (probTosound < 0.33f)
-        {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
-        }
-    }
-
-    public override void PassBomb(Player _receiver, Player _transmitter, Bomb _Bomb)
-    {
-        _transmitter.HasBomb = false;
-        _transmitter.Collider.enabled = true;
-
-        _receiver.HasBomb = true;
-        _receiver.Collider.enabled = false;
-
-        _Bomb.RigidBody.velocity = Vector2.zero;
-        _Bomb.RigidBody.isKinematic = true;
-        _Bomb.Collider.enabled = false;
-        _Bomb.transform.position = _receiver.Catapult.position;
-        _Bomb.transform.SetParent(_receiver.Catapult);
-        StartCoroutine(_receiver.Stun(false, 1f));
-        StartCoroutine(_receiver.Rumble(0.2f, 0.2f, 0.2f));
-
-        float probTosound = Random.Range(0f, 1f);
-
-        if (probTosound < 0.33f)
-        {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
-        }
-    }
-
     protected override void GiveBombs()
     {
         return;
+    }
+
+    protected override void ReturnBomb(Bomb _bomb)
+    {
+        //TODO Return bomb to launcher
     }
 }

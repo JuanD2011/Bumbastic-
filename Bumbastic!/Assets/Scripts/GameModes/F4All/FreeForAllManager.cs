@@ -119,15 +119,9 @@ public class FreeForAllManager : HotPotatoManager
         }
     }
 
-    public override void PassBomb(Player _receiver, Bomb _Bomb)
+    protected override void BombHolderChange(Player _player, Bomb _bomb)
     {
-        base.PassBomb(_receiver, _Bomb);
-        if (!Bomb.Exploded) timesBombPlayed++;
-    }
-
-    public override void PassBomb(Player _receiver, Player _transmitter, Bomb _Bomb)
-    {
-        base.PassBomb(_receiver, _transmitter, _Bomb);
+        base.BombHolderChange(_player, _bomb);
         if (!Bomb.Exploded) timesBombPlayed++;
     }
 

@@ -21,7 +21,8 @@ public class Bomb : MonoBehaviour
 
     protected ParticleModication cParticleModification = null;
 
-    public static Action onExplode;
+    public static event Action onExplode;
+    public static event Action<Bomb> OnFloorCollision;
 
     public float Timer { get => timer; set => timer = value; }
     public Rigidbody RigidBody { get => m_rigidBody; set => m_rigidBody = value; }
@@ -105,7 +106,7 @@ public class Bomb : MonoBehaviour
 
         if (collision.transform.CompareTag("Floor") && !Exploded && transform.parent == null)
         {
-            HotPotatoManager.HotPotato.PassBomb(); 
+            OnFloorCollision?.Invoke(this);
         } 
     }
 }
