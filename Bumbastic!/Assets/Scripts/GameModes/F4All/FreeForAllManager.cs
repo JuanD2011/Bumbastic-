@@ -4,8 +4,6 @@ public class FreeForAllManager : HotPotatoManager
 {
     public static FreeForAllManager FreeForAll;
 
-    private bool gameOver;
-
     [SerializeField]
     private byte maxKills = 3;
 
@@ -33,33 +31,24 @@ public class FreeForAllManager : HotPotatoManager
     protected override void Start()
     {
         base.Start();
-        KillsCounter = new byte[players.Count];
+        KillsCounter = new byte[Players.Count];
     }
 
     protected override void Update()
     {
-        if (cooldown)
-        {
-            time += Time.deltaTime;
-            if (time > 1)
-            {
-                cooldown = false;
-                time = 0;
-                GiveBomb();
-            }
-        }
+        base.Update();
     }
 
     protected override void OnBombExplode()
     {
+        lastPlayerGiven = BombHolder;
+        Bomb.RigidBody.isKinematic = true;
+        BombHolder.transform.position = BombHolder.SpawnPoint;
+
         foreach (Player player in Players)
         {
             StartCoroutine(player.Rumble(0.8f, 0.8f, 1f));
         }
-
-        lastPlayerGiven = BombHolder;
-        Bomb.RigidBody.isKinematic = true;
-        BombHolder.transform.position = BombHolder.SpawnPoint;
 
         if (transmitter != null)
         {
@@ -67,6 +56,15 @@ public class FreeForAllManager : HotPotatoManager
             {
                 KillsCounter[transmitter.Id] += 1;
                 OnPlayerKilled?.Invoke(transmitter.Id);
+
+                if (killsCounter[transmitter.Id] == maxKills)
+                {
+                    WinnerID = transmitter.Id;
+                    InGame.playerSettings[WinnerID].score += 1;
+                    GameOver();
+                    return;
+                }
+
                 transmitter = null;
             }
         }
@@ -83,40 +81,23 @@ public class FreeForAllManager : HotPotatoManager
         cooldown = true;
     }
 
-    protected void GiveBomb()
+    protected override void GiveBombs()
     {
-        for (byte i = 0; i < killsCounter.Length; i++)
+        int random = Random.Range(0, Players.Count);
+
+        while (Players[random] == lastPlayerGiven)
         {
-            if (KillsCounter[i] == maxKills)
-            {
-                WinnerID = i;
-                InGame.playerSettings[i].score += 1;
-                gameOver = true;
-                break;
-            }
+            random = Random.Range(0, Players.Count);
         }
 
-        if (!gameOver)
-        {
-            int random = Random.Range(0, Players.Count);
-
-            while (Players[random] == lastPlayerGiven)
-            {
-                random = Random.Range(0, Players.Count);
-            }
-            Bomb.Collider.enabled = true;
-            Bomb.transform.position = Players[random].transform.position + new Vector3(0, 2, 0);
-            Bomb.Timer = Random.Range(minTime, maxTime);
-            Bomb.Exploded = false;
-            Bomb.RigidBody.velocity = Vector3.zero;
-            Bomb.transform.rotation = Quaternion.identity;
-            Bomb.gameObject.SetActive(true);
-            OnBombArmed?.Invoke();//Bomb hears it.
-        }
-        else
-        {
-            GameOver();
-        }
+        Bomb.gameObject.SetActive(true);
+        Bomb.Collider.enabled = true;
+        Bomb.transform.position = Players[random].transform.position + new Vector3(0, 2, 0);
+        Bomb.Timer = Random.Range(minTime, maxTime);
+        Bomb.Exploded = false;
+        Bomb.RigidBody.velocity = Vector3.zero;
+        Bomb.transform.rotation = Quaternion.identity;
+        Bomb.SetAnimationKeys();
     }
 
     public override void PassBomb(Player _receiver, Bomb _Bomb)

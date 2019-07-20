@@ -21,7 +21,9 @@ public class Bomb : MonoBehaviour
 
     protected ParticleModication cParticleModification = null;
 
-    public static Action onExplode;
+    public static Action OnExplode;
+
+    public static Action<float> OnArmed;
 
     public float Timer { get => timer; set => timer = value; }
     public Rigidbody RigidBody { get => m_rigidBody; set => m_rigidBody = value; }
@@ -31,22 +33,18 @@ public class Bomb : MonoBehaviour
 
     protected virtual void Awake()
     {
-        onExplode = null;
         cParticleModification = GetComponentInChildren<ParticleModication>();
         m_rigidBody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider>();
-
-        if (HotPotatoManager.HotPotato != null)
-        {
-            HotPotatoManager.HotPotato.OnBombArmed += SetAnimationKeys; 
-        }
     }
 
-    protected void SetAnimationKeys()
+    public void SetAnimationKeys()
     {
+        Debug.Log(timer);
         animationCurve.AddKey(0, 0f);
         animationCurve.AddKey(timer, 1f);
+        OnArmed?.Invoke(Timer);
     }
 
     protected virtual void FixedUpdate()
@@ -85,18 +83,15 @@ public class Bomb : MonoBehaviour
 
     protected void Explode()
     {
+        OnExplode?.Invoke();
         transform.SetParent(null);
         elapsedTime = 0;
         Exploded = true;
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bomb, 0.7f);
-        }
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bomb, 0.7f);
         CameraShake.instance.OnShakeDuration?.Invoke(0.4f, 6f, 1.2f);
         RigidBody.isKinematic = false;
         Collider.enabled = false;
         cParticleModification.Execute();
-        onExplode?.Invoke();
     }
 
     private void OnCollisionEnter(Collision collision)

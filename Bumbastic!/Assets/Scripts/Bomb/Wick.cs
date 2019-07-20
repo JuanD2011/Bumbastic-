@@ -15,12 +15,14 @@ public class Wick : MonoBehaviour
         bomb = GetComponentInParent<Bomb>();
         m_Renderer = GetComponent<Renderer>();
 
-        StartCoroutine(WickMovement());
-        Bomb.onExplode += ResetWick;
+        ResetWick();
+
+        Bomb.OnExplode += ResetWick;
     }
 
     private void ResetWick()
     {
+        if (!gameObject.activeInHierarchy) return;
         StartCoroutine(WickMovement());
     }
 
@@ -29,11 +31,11 @@ public class Wick : MonoBehaviour
         int currentPoint = 0;
         float timePerPoint;
         float elapsedTime = 0f;
-        timePerPoint = bomb.Timer / (points.Length - 1);
         particles.position = points[0].position;
         m_Renderer.material.SetFloat("_Factor", 0f);
-
+        yield return new WaitUntil(() => bomb.Timer != 0f);
         yield return new WaitUntil(() => !bomb.Exploded);
+        timePerPoint = bomb.Timer / (points.Length - 1);
 
         while (!bomb.Exploded)
         {

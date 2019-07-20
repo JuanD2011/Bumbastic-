@@ -300,6 +300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8417629254790585299, guid: c2024eca52763444cad8502853114798, type: 3}
+    - {fileID: 1346376019694625737, guid: c2024eca52763444cad8502853114798, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c2024eca52763444cad8502853114798, type: 3}
 --- !u!1001 &299122475
 PrefabInstance:
@@ -547,7 +548,6 @@ MonoBehaviour:
   gameMode: {fileID: 11400000, guid: 2c753694f5b545d4b97c4adb9986a284, type: 2}
   playerPrefab: {fileID: 63817899032751289, guid: f83502d98471cb04da5a707e5cc13688,
     type: 3}
-  bombHolderShader: {fileID: 4800000, guid: 15ca7014bd1d317459a39a206f6bff05, type: 3}
   floor: {fileID: 1981395067}
   bases:
   - {fileID: 5380614722433496260}

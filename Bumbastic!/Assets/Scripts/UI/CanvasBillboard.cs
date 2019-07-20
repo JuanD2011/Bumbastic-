@@ -7,8 +7,6 @@ public class CanvasBillboard : MonoBehaviour
 {
     [SerializeField] Settings settings = null;
 
-    [SerializeField] ParticleSystem uIParticleSystem = null;
-
     Player player;
 
     TextMeshProUGUI[] playersText;

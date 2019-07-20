@@ -101,10 +101,7 @@ public abstract class GameManager : MonoBehaviour
             player.transform.position = player.SpawnPoint;
             player.Initialize();
         }
-        GiveBombs();
     }
-
-    protected abstract void GiveBombs();
 
     public Vector3 GetSpawnPoint()
     {
@@ -138,13 +135,13 @@ public abstract class GameManager : MonoBehaviour
             player.CanMove = false;
         }
 
-        OnGameModeOver?.Invoke();//InGameCanvas
+        OnGameModeOver?.Invoke();
 
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
             if (InGame.playerSettings[i].score == InGame.maxScore)
             {
-                OnGameOver?.Invoke();//InGameCanvas hears it.
+                OnGameOver?.Invoke();
                 return;
             }
         }
@@ -159,5 +156,6 @@ public abstract class GameManager : MonoBehaviour
     protected virtual void OnDisable()
     {
         PlayerMenu.ResetDel();
+        Bomb.OnExplode = null;
     }
 }

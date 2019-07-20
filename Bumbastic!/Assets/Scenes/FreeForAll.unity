@@ -416,18 +416,17 @@ MonoBehaviour:
   gameMode: {fileID: 11400000, guid: 2c753694f5b545d4b97c4adb9986a284, type: 2}
   playerPrefab: {fileID: 63817899032751289, guid: f83502d98471cb04da5a707e5cc13688,
     type: 3}
-  powerUp: {fileID: 1169578613}
-  magnetParticleSystem: {fileID: 6569818202052991651, guid: 0e8e4defdde8c224fa7a7ccd7abe821c,
-    type: 3}
-  speedUpParticleSystem: {fileID: 7379601420566035011, guid: c91d992a0904ade42aa34b1a01e0815f,
-    type: 3}
   floor: {fileID: 1981395067}
-  bombHolderShader: {fileID: 4800000, guid: 15ca7014bd1d317459a39a206f6bff05, type: 3}
   bomb: {fileID: 1429717419}
   confettiBomb: {fileID: 8979841836204213343, guid: 2c7fdaf6443d0b04997420f96c9aa4af,
     type: 3}
   minTime: 10
   maxTime: 15
+  powerUp: {fileID: 1169578613}
+  magnetParticleSystem: {fileID: 6569818202052991651, guid: 0e8e4defdde8c224fa7a7ccd7abe821c,
+    type: 3}
+  speedUpParticleSystem: {fileID: 7379601420566035011, guid: c91d992a0904ade42aa34b1a01e0815f,
+    type: 3}
   maxKills: 3
 --- !u!4 &490962512
 Transform:
@@ -1058,81 +1057,14 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 11.8
       objectReference: {fileID: 0}
+    - target: {fileID: 923785380156859825, guid: c2024eca52763444cad8502853114798,
+        type: 3}
+      propertyPath: far clip plane
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8417629254790585299, guid: c2024eca52763444cad8502853114798, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c2024eca52763444cad8502853114798, type: 3}
---- !u!1 &1122217380 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 923785380156859827, guid: c2024eca52763444cad8502853114798,
-    type: 3}
-  m_PrefabInstance: {fileID: 1122217379}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1122217381 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 923785380156859824, guid: c2024eca52763444cad8502853114798,
-    type: 3}
-  m_PrefabInstance: {fileID: 1122217379}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1122217382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122217380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1122217381}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 1
-  antialiasingMode: 2
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!114 &1169578613 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2077235624929507412, guid: c4030b046145e6e45b6f51cc48026bb7,

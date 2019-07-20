@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
         GameManager.Manager.Director.stopped += LetMove;
         GameManager.Manager.OnCorrectPassBomb += IncreaseDashCounter;
-        Bomb.onExplode += ResetPlayer;
+        Bomb.OnExplode += ResetPlayer;
         gamepad = (Gamepad)GetComponent<PlayerInput>().devices[0];
     }
 

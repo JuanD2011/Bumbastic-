@@ -23,16 +23,13 @@ public class HotPotatoManager : GameManager
     [SerializeField] GameObject magnetParticleSystem;
     [SerializeField] GameObject speedUpParticleSystem;
 
-    protected bool cooldown;
+    protected bool cooldown = true;
     protected float time = 0f;
 
     protected List<Player> bummies = new List<Player>();
 
-    private System.Action onBombArmed = null;
-
     public Player BombHolder { get => bombHolder; protected set => bombHolder = value; }
     public Bomb Bomb { get => bomb; private set => bomb = value; }
-    public System.Action OnBombArmed { get => onBombArmed; set => onBombArmed = value; }
     public PowerUp PowerUp { get => powerUp; set => powerUp = value; }
     public GameObject MagnetParticleSystem { get => magnetParticleSystem; set => magnetParticleSystem = value; }
     public GameObject SpeedUpParticleSystem { get => speedUpParticleSystem; set => speedUpParticleSystem = value; }
@@ -48,20 +45,20 @@ public class HotPotatoManager : GameManager
     protected override void Start()
     {
         base.Start();
-        Bomb.onExplode += OnBombExplode;
+        Bomb.OnExplode += OnBombExplode;
     }
 
     protected virtual void Update()
     {
         if (cooldown)
         {
-            time += Time.deltaTime;
-            if (time > 1)
+            if (time > 1f)
             {
                 cooldown = false;
-                time = 0;
+                time = 0f;
                 GiveBombs();
             }
+            time += Time.deltaTime;
         }
     }
 
@@ -82,38 +79,34 @@ public class HotPotatoManager : GameManager
             player.CanMove = false;
         }
 
-        cooldown = true;
-    }
-
-    protected override void GiveBombs()
-    {
-        if (Players.Count > 1)
-        {
-            bummies = RandomizeBummieList();
-
-            for (int i = 0; i < bummies.Count; i++)
-            {
-                Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                bummies.RemoveAt(i);
-            }
-            Bomb.gameObject.SetActive(true);
-            Bomb.Collider.enabled = true;
-            Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 1, 0);
-            Bomb.Timer = Random.Range(minTime -= 3f, maxTime -= 3f);
-            Bomb.Exploded = false;
-            if (Bomb.RigidBody != null)
-            {
-                Bomb.RigidBody.velocity = Vector3.zero;
-            }
-            Bomb.transform.rotation = Quaternion.identity;
-            Director.Play();
-            OnBombArmed?.Invoke();//Bomb hears it.
-        }
-        else if (Players.Count == 1)
+        if (Players.Count == 1)
         {
             InGame.playerSettings[Players[0].Id].score += 1;
             GameOver();
+            return;
         }
+
+        cooldown = true;
+    }
+
+    protected virtual void GiveBombs()
+    {
+        bummies = RandomizeBummieList();
+
+        for (int i = 0; i < bummies.Count; i++)
+        {
+            Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            bummies.RemoveAt(i);
+        }
+        Bomb.gameObject.SetActive(true);
+        Bomb.Collider.enabled = true;
+        Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 1, 0);
+        Bomb.Timer = Random.Range(minTime -= 3f, maxTime -= 3f);
+        Bomb.Exploded = false;
+        Bomb.RigidBody.velocity = Vector3.zero;
+        Bomb.transform.rotation = Quaternion.identity;
+        Bomb.SetAnimationKeys();
+        Director.Play();
     }
 
     /// <summary>

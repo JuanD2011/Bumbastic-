@@ -54,7 +54,7 @@ public class FloorManager : MonoBehaviour
         if (GameModeDataBase.IsCurrentHotPotato())
         {
             InitRings();
-            Bomb.onExplode += MapDrop;
+            Bomb.OnExplode += MapDrop;
         }
     }
 

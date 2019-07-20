@@ -78,9 +78,4 @@ public class BasesGameManager : GameManager
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
         }
     }
-
-    protected override void GiveBombs()
-    {
-        return;
-    }
 }
