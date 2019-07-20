@@ -28,6 +28,8 @@ public class HotPotatoManager : GameManager
 
     protected List<Player> bummies = new List<Player>();
 
+    public event System.Action<Player> OnBombHolderChanged = null;
+
     public Player BombHolder { get => bombHolder; protected set => bombHolder = value; }
     public Bomb Bomb { get => bomb; private set => bomb = value; }
     public PowerUp PowerUp { get => powerUp; set => powerUp = value; }
@@ -115,7 +117,8 @@ public class HotPotatoManager : GameManager
     /// <param name="_receiver"></param>
     public override void PassBomb(Player _receiver, Bomb _Bomb)
     {
-        OnCorrectPassBomb?.Invoke(BombHolder);  
+        OnCorrectPassBomb?.Invoke(BombHolder);
+        OnBombHolderChanged?.Invoke(_receiver);
 
         if (BombHolder != null)
         {
@@ -151,6 +154,7 @@ public class HotPotatoManager : GameManager
     public override void PassBomb(Player _receiver, Player _transmitter, Bomb _Bomb)
     {
         OnCorrectPassBomb?.Invoke(_transmitter);
+        OnBombHolderChanged?.Invoke(_receiver);
 
         transmitter = _transmitter;
 

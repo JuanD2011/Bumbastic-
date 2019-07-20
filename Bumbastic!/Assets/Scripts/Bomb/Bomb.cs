@@ -41,7 +41,6 @@ public class Bomb : MonoBehaviour
 
     public void SetAnimationKeys()
     {
-        Debug.Log(timer);
         animationCurve.AddKey(0, 0f);
         animationCurve.AddKey(timer, 1f);
         OnArmed?.Invoke(Timer);

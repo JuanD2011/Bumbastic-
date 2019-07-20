@@ -4,8 +4,8 @@ using UnityEngine.Rendering.PostProcessing;
 public class VignetteEffect : MonoBehaviour
 {
     [SerializeField] PostProcessProfile postProcessing = null;
-    [SerializeField] Color exploding;
-    [SerializeField] float maxVelocity = 6f;
+    [SerializeField] Color exploding = Color.black;
+    [SerializeField] float maxVelocity = 11f;
 
     Vignette vignette;
 
@@ -39,7 +39,7 @@ public class VignetteEffect : MonoBehaviour
     {
         if (canCount)
         {
-            intensity.value = 0.2f * Mathf.Sin(maxVelocity * (elapsedTime / bombTime)) + 0.2f;
+            intensity.value = 0.2f * Mathf.Sin(maxVelocity * (elapsedTime / bombTime) * elapsedTime) + 0.2f;
             vignette.intensity.value = intensity.value;
             elapsedTime += Time.deltaTime; 
         }
