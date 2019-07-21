@@ -48,6 +48,8 @@ public class HotPotatoManager : GameManager
     {
         base.Start();
         Bomb.OnExplode += OnBombExplode;
+        Player.OnCatchBomb += BombHolderChange;
+        Bomb.OnFloorCollision += ReturnBomb;
     }
 
     protected virtual void Update()
@@ -111,91 +113,36 @@ public class HotPotatoManager : GameManager
         Director.Play();
     }
 
-    /// <summary>
-    /// Pass bomb to the player that the bomb touch
-    /// </summary>
-    /// <param name="_receiver"></param>
-    public override void PassBomb(Player _receiver, Bomb _Bomb)
+    protected virtual void BombHolderChange(Player _player, Bomb _bomb)
     {
         OnCorrectPassBomb?.Invoke(BombHolder);
-        OnBombHolderChanged?.Invoke(_receiver);
 
         if (BombHolder != null)
         {
             BombHolder.HasBomb = false;
             BombHolder.Collider.enabled = true;
-            transmitter = BombHolder;
         }
 
-        _receiver.HasBomb = true;
-        _receiver.Collider.enabled = false;
-
-        BombHolder = _receiver;
-        Bomb.RigidBody.velocity = Vector2.zero;
-        Bomb.RigidBody.isKinematic = true;
-        Bomb.Collider.enabled = false;
-        Bomb.transform.position = _receiver.Catapult.position;
-        Bomb.transform.SetParent(_receiver.Catapult.transform);
-        StartCoroutine(_receiver.Rumble(0.2f, 0.2f, 0.2f));
-
-        float probTosound = Random.Range(0f, 1f);
-
-        if (probTosound < 0.33f)
-        {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
-        }
+        BombHolder = _player;
     }
 
-    /// <summary>
-    /// Pass bomb between players when one touch another
-    /// </summary>
-    /// <param name="_receiver"></param>
-    /// <param name="_transmitter"></param>
-    public override void PassBomb(Player _receiver, Player _transmitter, Bomb _Bomb)
-    {
-        OnCorrectPassBomb?.Invoke(_transmitter);
-        OnBombHolderChanged?.Invoke(_receiver);
-
-        transmitter = _transmitter;
-
-        _transmitter.HasBomb = false;
-        _transmitter.Collider.enabled = true;
-
-        _receiver.HasBomb = true;
-        _receiver.Collider.enabled = false;
-
-        BombHolder = _receiver;
-        Bomb.RigidBody.velocity = Vector2.zero;
-        Bomb.RigidBody.isKinematic = true;
-        Bomb.Collider.enabled = false;
-        Bomb.transform.position = _receiver.Catapult.position;
-        Bomb.transform.SetParent(_receiver.Catapult);
-        StartCoroutine(_receiver.Stun(false, 1f));
-        StartCoroutine(_receiver.Rumble(0.2f, 0.2f, 0.2f));
-
-        float probTosound = Random.Range(0f, 1f);
-
-        if (probTosound < 0.33f)
-        {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
-        }
-    }
-
-    public virtual void PassBomb()
+    protected override void ReturnBomb(Bomb _bomb)
     {
         BombHolder.HasBomb = true;
         BombHolder.Collider.enabled = false;
         BombHolder.SetOverrideAnimator(true);
-        Bomb.RigidBody.velocity = Vector2.zero;
-        Bomb.RigidBody.isKinematic = true;
-        Bomb.Collider.enabled = false;
-        Bomb.transform.position = BombHolder.Catapult.position;
-        Bomb.transform.SetParent(BombHolder.Catapult);
+        _bomb.RigidBody.velocity = Vector3.zero;
+        _bomb.RigidBody.isKinematic = true;
+        _bomb.Collider.enabled = false;
+        _bomb.transform.position = BombHolder.Catapult.position;
+        _bomb.transform.SetParent(BombHolder.Catapult);
         StartCoroutine(BombHolder.Rumble(0.2f, 0.2f, 0.2f));
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
+        Player.OnCatchBomb -= BombHolderChange;
+        Bomb.OnFloorCollision -= ReturnBomb;
     }
 }
