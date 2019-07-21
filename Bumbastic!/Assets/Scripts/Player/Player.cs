@@ -297,24 +297,22 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         PowerUp powerUpCollisioned = collision.gameObject.GetComponent<PowerUp>();
-        Player otherPlayer = collision.gameObject.GetComponentInParent<Player>();
 
-        if (otherPlayer != null)
+        if (powerUpCollisioned != null)
         {
-            if (powerUpCollisioned != null && GetComponent<PowerUp>() == null)
+            if (powerUpCollisioned.transform.GetComponent<Player>() != null) return;
+
+            if (!HasBomb)
             {
-                if (!HasBomb)
-                {
-                    IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
-                    powerUp.PickPowerUp(this);
-                }
-                else
-                {
-                    gameObject.AddComponent<Velocity>();
-                }
-                collision.gameObject.SetActive(false);
-            } 
-        }
+                IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
+                powerUp.PickPowerUp(this);
+            }
+            else
+            {
+                gameObject.AddComponent<Velocity>();
+            }
+            collision.gameObject.SetActive(false);
+        } 
     }    
 
     private void OnTriggerEnter(Collider other)
