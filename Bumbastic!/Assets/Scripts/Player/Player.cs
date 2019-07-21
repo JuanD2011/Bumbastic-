@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 
     public bool speedPU;
 
+    [SerializeField] float penaltyOnPassBomb = 1f;
+
     [SerializeField] float dashForce = 7f;
     public event Action<Player> OnDashExecuted = null;
 
@@ -31,7 +33,6 @@ public class Player : MonoBehaviour
     [SerializeField] AnimatorOverrideController animatorWBomb = null;
 
     private bool throwing;
-    Bomb m_Bomb = null;
 
     private Gamepad gamepad;
 
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
     public Rigidbody Rigidbody { get; private set; }
     public byte DashCount { get; private set; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
+    public Bomb Bomb { get; set; } = null;
 
     public static event Action<Player, Bomb> OnCatchBomb;
 
@@ -197,13 +199,13 @@ public class Player : MonoBehaviour
 
     public void Throw()
     {
-        m_Bomb = Catapult.GetComponentInChildren<Bomb>();
+        Bomb = Catapult.GetComponentInChildren<Bomb>();
 
         if (HasBomb && CanMove && !throwing)
         {
             SetOverrideAnimator(false);
             StopCoroutine("SyncThrowAnim");
-            if (m_Bomb != null) StartCoroutine(SyncThrowAnim());
+            if (Bomb != null) StartCoroutine(SyncThrowAnim());
         }
     }
 
@@ -235,7 +237,7 @@ public class Player : MonoBehaviour
 
     IEnumerator SyncThrowAnim()
     {
-        m_Bomb.Thrower = this;
+        Bomb.Thrower = this;
         Animator.SetTrigger("Throw");
         throwing = true;
         
@@ -260,16 +262,16 @@ public class Player : MonoBehaviour
         yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"));
         yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.35f);
 
-        if (m_Bomb == null) StopCoroutine("SyncThrowAnim");
+        if (Bomb == null) StopCoroutine("SyncThrowAnim");
 
         if (InputAiming != Vector2.zero)
         {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
             if (Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"))
             {
-                m_Bomb.RigidBody.isKinematic = false;
-                m_Bomb.transform.SetParent(null); 
-                m_Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse); 
+                Bomb.RigidBody.isKinematic = false;
+                Bomb.transform.SetParent(null); 
+                Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse); 
             }
         }
         else
@@ -277,13 +279,13 @@ public class Player : MonoBehaviour
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * transform.forward;
             if (Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"))
             {
-                m_Bomb.RigidBody.isKinematic = false;
-                m_Bomb.transform.SetParent(null);
-                m_Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+                Bomb.RigidBody.isKinematic = false;
+                Bomb.transform.SetParent(null);
+                Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
             }
         }
 
-        m_Bomb.Collider.enabled = true;
+        Bomb.Collider.enabled = true;
 
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombThrow, 0.7f);
 
@@ -318,6 +320,17 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Bomb bomb = other.GetComponent<Bomb>();
+        Player player = other.GetComponentInParent<Player>();
+
+        if (player != null)
+        {
+            if (player.HasBomb && player.CanMove)
+            {
+                player.HasBomb = false;
+                CatchBomb(player.Bomb);
+                StartCoroutine(Stun(false, penaltyOnPassBomb));
+            }
+        }
 
         if (bomb != null)
         {
@@ -334,12 +347,13 @@ public class Player : MonoBehaviour
         Animator.SetTrigger("Reception");
         SetOverrideAnimator(true);
 
+        Bomb = _bomb;
         _bomb.RigidBody.velocity = Vector3.zero;
         _bomb.RigidBody.isKinematic = true;
         _bomb.Collider.enabled = false;
         _bomb.transform.position = Catapult.position;
         _bomb.transform.SetParent(Catapult);
-        StartCoroutine(Stun(false, 1f));
+        
         StartCoroutine(Rumble(0.2f, 0.2f, 0.2f));
 
         float probTosound = UnityEngine.Random.Range(0f, 1f);
