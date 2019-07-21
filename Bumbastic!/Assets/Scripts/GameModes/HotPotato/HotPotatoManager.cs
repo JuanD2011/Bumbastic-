@@ -56,7 +56,7 @@ public class HotPotatoManager : GameManager
     {
         if (cooldown)
         {
-            if (time > 1f)
+            if (time >= 0.5f)
             {
                 cooldown = false;
                 time = 0f;
@@ -99,12 +99,12 @@ public class HotPotatoManager : GameManager
 
         for (int i = 0; i < bummies.Count; i++)
         {
-            Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
             bummies.RemoveAt(i);
         }
         Bomb.gameObject.SetActive(true);
         Bomb.Collider.enabled = true;
-        Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 1, 0);
+        Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 2.5f, 0);
         Bomb.Timer = Random.Range(minTime -= 3f, maxTime -= 3f);
         Bomb.Exploded = false;
         Bomb.RigidBody.velocity = Vector3.zero;
@@ -124,6 +124,7 @@ public class HotPotatoManager : GameManager
         }
 
         BombHolder = _player;
+        OnBombHolderChanged?.Invoke(BombHolder);
     }
 
     protected override void ReturnBomb(Bomb _bomb)

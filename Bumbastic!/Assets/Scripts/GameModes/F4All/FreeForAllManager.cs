@@ -17,8 +17,7 @@ public class FreeForAllManager : HotPotatoManager
     public byte[] KillsCounter { get => killsCounter; private set => killsCounter = value; }
     public byte WinnerID { get => winnerID; private set => winnerID = value; }
 
-    public delegate void DelFreeForAll(byte _killerID);
-    public event DelFreeForAll OnPlayerKilled;
+    public event System.Action<byte> OnPlayerKilled;
 
     protected override void Awake()
     {
@@ -54,6 +53,7 @@ public class FreeForAllManager : HotPotatoManager
         {
             if (timesBombPlayed > 1 && BombHolder.Id != transmitter.Id)
             {
+                Debug.Log("dsdsd");
                 KillsCounter[transmitter.Id] += 1;
                 OnPlayerKilled?.Invoke(transmitter.Id);
 
@@ -92,7 +92,7 @@ public class FreeForAllManager : HotPotatoManager
 
         Bomb.gameObject.SetActive(true);
         Bomb.Collider.enabled = true;
-        Bomb.transform.position = Players[random].transform.position + new Vector3(0, 2, 0);
+        Bomb.transform.position = Players[random].transform.position + new Vector3(0, 2.5f, 0);
         Bomb.Timer = Random.Range(minTime, maxTime);
         Bomb.Exploded = false;
         Bomb.RigidBody.velocity = Vector3.zero;

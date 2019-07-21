@@ -3,13 +3,19 @@
 public class ConfettiBomb : MonoBehaviour
 {
     private ParticleSystem m_Particle;
+    Rigidbody m_Rigidbody = null;
     private Renderer m_Renderer;
     [SerializeField] GameObject wick = null;
 
-    void Start()
+    private void Awake()
     {
+        m_Rigidbody = GetComponent<Rigidbody>();
         m_Particle = GetComponentInChildren<ParticleSystem>();
         m_Renderer = GetComponent<Renderer>();
+    }
+
+    void Start()
+    {
         Invoke("Bum", 2f);
     }
 
@@ -30,8 +36,10 @@ public class ConfettiBomb : MonoBehaviour
         {
             if (transform.parent == null)
             {
+                player.Animator.SetTrigger("Reception");
                 transform.position = player.Catapult.position;
-                transform.SetParent(player.Catapult);  
+                transform.SetParent(player.Catapult);
+                m_Rigidbody.isKinematic = true;
             }
         }
     }

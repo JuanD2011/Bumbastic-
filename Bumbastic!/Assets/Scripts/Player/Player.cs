@@ -327,6 +327,7 @@ public class Player : MonoBehaviour
             if (player.HasBomb && player.CanMove)
             {
                 player.HasBomb = false;
+                player.SetOverrideAnimator(false);
                 CatchBomb(player.Bomb);
                 StartCoroutine(Stun(false, penaltyOnPassBomb));
             }
