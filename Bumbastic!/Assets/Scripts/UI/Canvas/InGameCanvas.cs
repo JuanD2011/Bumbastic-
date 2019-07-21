@@ -91,15 +91,10 @@ public class InGameCanvas : Canvas
         isEndPanelActive = true;
         m_Animator.SetTrigger("isGameOver");
 
-        if (GameModeDataBase.IsCurrentHotPotato())
+        if (GameModeDataBase.IsCurrentHotPotato() || GameModeDataBase.IsCurrentFreeForAll())
         {
             textWinner.text = string.Format("{0}", GameManager.Manager.Players[0].PrefabName);
             playerSprite.sprite = InGame.playerSettings[GameManager.Manager.Players[0].Id].skinSprite;
-        }
-        else if (GameModeDataBase.IsCurrentFreeForAll())
-        {
-            textWinner.text = string.Format("{0}", InGame.playerSettings[FreeForAllManager.FreeForAll.WinnerID].name);
-            playerSprite.sprite = InGame.playerSettings[FreeForAllManager.FreeForAll.WinnerID].skinSprite;
         }
         else if (GameModeDataBase.IsCurrentBasesGame())
         {

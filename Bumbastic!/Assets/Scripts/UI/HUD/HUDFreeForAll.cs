@@ -39,12 +39,12 @@ public class HUDFreeForAll : MonoBehaviour
             skinSprites[i].gameObject.SetActive(true);
             skinSprites[i].sprite = InGame.playerSettings[i].skinSprite;
             playerColors[i].color = InGame.playerSettings[i].color;
-            points[i].text = 0.ToString();
+            points[i].text = FreeForAllManager.FreeForAll.LifePoints[i].ToString();
         }
     }
 
     protected virtual void UpdateScore(byte _playerID)
     {
-        points[_playerID].text = string.Format("{0}", FreeForAllManager.FreeForAll.KillsCounter[_playerID]);
+        points[_playerID].text = string.Format("{0}", FreeForAllManager.FreeForAll.LifePoints[_playerID]);
     }
 }

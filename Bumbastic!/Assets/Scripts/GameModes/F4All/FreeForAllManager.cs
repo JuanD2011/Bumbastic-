@@ -4,18 +4,9 @@ public class FreeForAllManager : HotPotatoManager
 {
     public static FreeForAllManager FreeForAll;
 
-    [SerializeField]
-    private byte maxKills = 3;
+    readonly byte maxLifePoints = 3;
 
-    byte[] killsCounter;
-    byte winnerID = 0;
-
-    private Player lastPlayerGiven;
-
-    private byte timesBombPlayed = 0;
-
-    public byte[] KillsCounter { get => killsCounter; private set => killsCounter = value; }
-    public byte WinnerID { get => winnerID; private set => winnerID = value; }
+    public byte[] LifePoints { get; private set; }
 
     public event System.Action<byte> OnPlayerKilled;
 
@@ -30,7 +21,13 @@ public class FreeForAllManager : HotPotatoManager
     protected override void Start()
     {
         base.Start();
-        KillsCounter = new byte[Players.Count];
+
+        LifePoints = new byte[Players.Count];
+
+        for (int i = 0; i < Players.Count; i++)
+        {
+            LifePoints[i] = maxLifePoints;
+        }
     }
 
     protected override void Update()
@@ -40,7 +37,6 @@ public class FreeForAllManager : HotPotatoManager
 
     protected override void OnBombExplode()
     {
-        lastPlayerGiven = BombHolder;
         Bomb.RigidBody.isKinematic = true;
         BombHolder.transform.position = BombHolder.SpawnPoint;
 
@@ -49,50 +45,38 @@ public class FreeForAllManager : HotPotatoManager
             StartCoroutine(player.Rumble(0.8f, 0.8f, 1f));
         }
 
-        if (transmitter != null)
+        if (LifePoints[BombHolder.Id] > 1)
         {
-            if (timesBombPlayed > 1 && BombHolder.Id != transmitter.Id)
-            {
-                Debug.Log("dsdsd");
-                KillsCounter[transmitter.Id] += 1;
-                OnPlayerKilled?.Invoke(transmitter.Id);
-
-                if (killsCounter[transmitter.Id] == maxKills)
-                {
-                    WinnerID = transmitter.Id;
-                    InGame.playerSettings[WinnerID].score += 1;
-                    GameOver();
-                    return;
-                }
-
-                transmitter = null;
-            }
+            LifePoints[BombHolder.Id] -= 1;
+            OnPlayerKilled?.Invoke(BombHolder.Id);
+        }
+        else
+        {
+            Players.Remove(BombHolder);
+            BombHolder.gameObject.SetActive(false);
         }
 
-        BombHolder = null;
-
-        timesBombPlayed = 0;
+        if (Players.Count == 1)
+        {
+            InGame.playerSettings[Players[0].Id].score += 1;
+            GameOver();
+            return;
+        }
 
         foreach (Player player in Players)
         {
             player.Collider.enabled = true;
         }
         
+        BombHolder = null;
         cooldown = true;
     }
 
     protected override void GiveBombs()
     {
-        int random = Random.Range(0, Players.Count);
-
-        while (Players[random] == lastPlayerGiven)
-        {
-            random = Random.Range(0, Players.Count);
-        }
-
         Bomb.gameObject.SetActive(true);
         Bomb.Collider.enabled = true;
-        Bomb.transform.position = Players[random].transform.position + new Vector3(0, 2.5f, 0);
+        Bomb.transform.position = Players[Random.Range(0, Players.Count)].transform.position + new Vector3(0, 2.5f, 0);
         Bomb.Timer = Random.Range(minTime, maxTime);
         Bomb.Exploded = false;
         Bomb.RigidBody.velocity = Vector3.zero;
@@ -103,7 +87,6 @@ public class FreeForAllManager : HotPotatoManager
     protected override void BombHolderChange(Player _player, Bomb _bomb)
     {
         base.BombHolderChange(_player, _bomb);
-        if (!Bomb.Exploded) timesBombPlayed++;
     }
 
     protected override void OnDisable()
