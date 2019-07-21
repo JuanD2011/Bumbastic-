@@ -6,13 +6,6 @@ public class Bomb : MonoBehaviour
 {
     [SerializeField] protected float speed = 4f;
 
-    private bool exploded = false;
-    bool canCount = false;
-
-    private float timer;
-    private Rigidbody m_rigidBody;
-    private Collider m_Collider;
-
     protected Animator m_Animator;
     protected AnimationCurve animationCurve = new AnimationCurve();
 
@@ -21,20 +14,21 @@ public class Bomb : MonoBehaviour
 
     protected ParticleModication cParticleModification = null;
 
+    public float Timer { get; set; } = 0f;
+    public Rigidbody RigidBody { get; set; } = null;
+    public bool Exploded { get; set; }
+    public bool CanCount { get; protected set; }
+    public Collider Collider { get; private set; }
+    public Player Thrower { get; set; }
+
     public static event Action onExplode;
     public static event Action<Bomb> OnFloorCollision;
-
-    public float Timer { get => timer; set => timer = value; }
-    public Rigidbody RigidBody { get => m_rigidBody; set => m_rigidBody = value; }
-    public bool Exploded { get => exploded; set => exploded = value; }
-    public bool CanCount { get => canCount; protected set => canCount = value; }
-    public Collider Collider { get => m_Collider; private set => m_Collider = value; }
 
     protected virtual void Awake()
     {
         onExplode = null;
         cParticleModification = GetComponentInChildren<ParticleModication>();
-        m_rigidBody = GetComponent<Rigidbody>();
+        RigidBody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
         Collider = GetComponent<Collider>();
 
@@ -47,7 +41,7 @@ public class Bomb : MonoBehaviour
     protected void SetAnimationKeys()
     {
         animationCurve.AddKey(0, 0f);
-        animationCurve.AddKey(timer, 1f);
+        animationCurve.AddKey(Timer, 1f);
     }
 
     protected virtual void FixedUpdate()
@@ -63,17 +57,17 @@ public class Bomb : MonoBehaviour
         {
             if (transform.parent != null)
             {
-                if (!canCount)
+                if (!CanCount)
                 {
-                    canCount = true;
+                    CanCount = true;
                 }
                 elapsedTime += Time.deltaTime;
             }
             else
             {
-                if (canCount)
+                if (CanCount)
                 {
-                    canCount = false; 
+                    CanCount = false; 
                 }
             }
         }

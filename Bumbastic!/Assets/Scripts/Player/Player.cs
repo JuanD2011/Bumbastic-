@@ -235,6 +235,7 @@ public class Player : MonoBehaviour
 
     IEnumerator SyncThrowAnim()
     {
+        m_Bomb.Thrower = this;
         Animator.SetTrigger("Throw");
         throwing = true;
         
