@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.InputSystem;
@@ -9,66 +10,54 @@ public class Player : MonoBehaviour
     #region Movement
     private float targetRotation;
     protected float speedSmooothTime = 0.075f, animationSpeedPercent;
-    [SerializeField] float moveSpeed = 0f, turnSmooth = 0f, powerUpSpeed = 0f;
-    float turnSmoothVel, currentSpeed, speedSmoothVel, targetSpeed;
+    [SerializeField]
+    private float moveSpeed = 0f, turnSmooth = 0.15f, powerUpSpeed = 0f;
+    private float turnSmoothVel, currentSpeed, speedSmoothVel, targetSpeed;
 
     private Vector2 inputDirection;
-    private Vector2 inputAiming;
     #endregion
 
     public bool speedPU;
-    private bool canMove = false;
 
-    byte dashCount = 0;
+    [SerializeField] float penaltyOnPassBomb = 1f;
+
     [SerializeField] float dashForce = 7f;
-    public event System.Action<Player> OnDashExecuted = null;
-
-    private byte id;
-    string prefabName;
-
-    [SerializeField]
-    private GameObject avatar;
+    public event Action<Player> OnDashExecuted = null;
 
     [SerializeField]
     private float throwForce = 0f;
 
     private GameObject player;
-    private new SphereCollider collider;
-    private Rigidbody m_Rigidbody;
-    private Vector3 spawnPoint;
 
-    private Animator m_Animator;
     private AnimatorOverrideController animatorWNoBomb;
     [SerializeField] AnimatorOverrideController animatorWBomb = null;
 
-    private bool hasBomb;
-
-    private Transform catapult;
-
     private bool throwing;
-    Bomb m_Bomb = null;
 
     private Gamepad gamepad;
 
-    public bool CanMove { get => canMove; set => canMove = value; }
-    public Vector3 SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
-    public bool HasBomb { get => hasBomb; set => hasBomb = value; }
-    public Vector2 InputAiming { get => inputAiming; private set => inputAiming = value; }
-    public GameObject Avatar { get => avatar; set => avatar = value; }
+    public bool CanMove { get; set; } = false;
+    public Vector3 SpawnPoint { get; set; }
+    public bool HasBomb { get; set; }
+    public Vector2 InputAiming { get; private set; }
+    public GameObject Avatar { get; set; }
+    public byte Id { get; set; }
+    public Animator Animator { get; set; }
+    public string PrefabName { get; set; }
+    public SphereCollider Collider { get; private set; }
+    public Transform Catapult { get; private set; }
+    public Rigidbody Rigidbody { get; private set; }
+    public byte DashCount { get; private set; }
     public float TurnSmooth { get => turnSmooth; private set => turnSmooth = value; }
-    public byte Id { get => id; set => id = value; }
-    public Animator Animator { get => m_Animator; set => m_Animator = value; }
-    public string PrefabName { get => prefabName; set => prefabName = value; }
-    public SphereCollider Collider { get => collider; private set => collider = value; }
-    public Transform Catapult { get => catapult; private set => catapult = value; }
-    public Rigidbody Rigidbody { get => m_Rigidbody; private set => m_Rigidbody = value; }
-    public byte DashCount { get => dashCount; private set => dashCount = value; }
+    public Bomb Bomb { get; set; } = null;
+
+    public static event Action<Player, Bomb> OnCatchBomb;
 
     private void Start()
     {
         if (animatorWNoBomb == null)
         {
-            animatorWNoBomb = new AnimatorOverrideController(m_Animator.runtimeAnimatorController);
+            animatorWNoBomb = new AnimatorOverrideController(Animator.runtimeAnimatorController);
         }
 
         Rigidbody = GetComponent<Rigidbody>();
@@ -76,6 +65,34 @@ public class Player : MonoBehaviour
         GameManager.Manager.OnCorrectPassBomb += IncreaseDashCounter;
         Bomb.OnExplode += ResetPlayer;
         gamepad = (Gamepad)GetComponent<PlayerInput>().devices[0];
+    }
+
+    public void Initialize()
+    {
+        player = Instantiate(Avatar, transform.position, transform.rotation);
+        player.transform.SetParent(transform);
+
+        Bummie cBummie = GetComponentInChildren<Bummie>();
+
+        if (cBummie != null)
+        {
+            Animator = cBummie.Animator;
+            Catapult = cBummie.Catapult;
+        }
+        else
+        {
+            Debug.LogError("Bummie component was not found");
+        }
+
+        foreach (SphereCollider sphere in cBummie.SphereColliders)
+        {
+            if (sphere.isTrigger)
+            {
+                Collider = sphere;
+            }
+        }
+
+        HasBomb = false;
     }
 
     private void IncreaseDashCounter(Player _player)
@@ -113,7 +130,7 @@ public class Player : MonoBehaviour
 
     public void PodiumAnimation(int _podiumState)
     {
-        m_Animator.SetInteger("PodiumState", _podiumState);
+        Animator.SetInteger("PodiumState", _podiumState);
         switch (_podiumState)
         {
             case 0:
@@ -133,29 +150,29 @@ public class Player : MonoBehaviour
         HasBomb = false;
         throwing = false;
         StopAllCoroutines();
-        m_Animator.runtimeAnimatorController = animatorWNoBomb;
+        Animator.runtimeAnimatorController = animatorWNoBomb;
     }
 
     public void SetOverrideAnimator(bool _hasBomb)
     {
         if (!_hasBomb)
         {
-            m_Animator.runtimeAnimatorController = animatorWNoBomb;
+            Animator.runtimeAnimatorController = animatorWNoBomb;
         }
         else
         {
-            if (m_Animator.runtimeAnimatorController != animatorWBomb)
+            if (Animator.runtimeAnimatorController != animatorWBomb)
             {
-                m_Animator.runtimeAnimatorController = animatorWBomb;
+                Animator.runtimeAnimatorController = animatorWBomb;
             }
         }
     }
 
-    private void LetMove(PlayableDirector _obj) => canMove = true;
+    private void LetMove(PlayableDirector _obj) => CanMove = true;
 
     void Update()
     {
-        if (canMove)
+        if (CanMove)
         {
             inputDirection.Normalize();
 
@@ -172,62 +189,33 @@ public class Player : MonoBehaviour
         }
     }
 
-
     private void FixedUpdate()
     {
-        if (canMove)
+        if (CanMove)
         {
             Rigidbody.MovePosition(transform.position + transform.forward * currentSpeed * Time.deltaTime);
         }
     }
 
-    public void Initialize()
-    {
-        player = Instantiate(avatar, transform.position, transform.rotation);
-        player.transform.SetParent(transform);
-
-        Bummie cBummie = GetComponentInChildren<Bummie>();
-
-        if (cBummie != null)
-        {
-            Animator = cBummie.Animator;
-            Catapult = cBummie.Catapult;
-        }
-        else
-        {
-            Debug.LogError("Bummie component was not found");
-        }
-
-        foreach (SphereCollider sphere in cBummie.SphereColliders)
-        {
-            if (sphere.isTrigger)
-            {
-                collider = sphere;
-            }
-        }
-
-        HasBomb = false;
-    }
-
     public void Throw()
     {
-        m_Bomb = Catapult.GetComponentInChildren<Bomb>();
+        Bomb = Catapult.GetComponentInChildren<Bomb>();
 
         if (HasBomb && CanMove && !throwing)
         {
             SetOverrideAnimator(false);
             StopCoroutine("SyncThrowAnim");
-            if (m_Bomb != null) StartCoroutine(SyncThrowAnim());
+            if (Bomb != null) StartCoroutine(SyncThrowAnim());
         }
     }
 
     private void Dash()
     {
-        if (dashCount == 0) return;
+        if (DashCount == 0) return;
 
         if (CanMove)
         {
-            switch (dashCount)
+            switch (DashCount)
             {
                 case 1:
                     Rigidbody.AddForce(transform.forward * dashForce * 0.6f, ForceMode.Impulse);
@@ -241,7 +229,7 @@ public class Player : MonoBehaviour
                 default:
                     break;
             }
-            dashCount = 0;
+            DashCount = 0;
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dash, 1f);
             OnDashExecuted?.Invoke(this);
         }
@@ -249,6 +237,7 @@ public class Player : MonoBehaviour
 
     IEnumerator SyncThrowAnim()
     {
+        Bomb.Thrower = this;
         Animator.SetTrigger("Throw");
         throwing = true;
         
@@ -273,16 +262,16 @@ public class Player : MonoBehaviour
         yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"));
         yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.35f);
 
-        if (m_Bomb == null) StopCoroutine("SyncThrowAnim");
+        if (Bomb == null) StopCoroutine("SyncThrowAnim");
 
         if (InputAiming != Vector2.zero)
         {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
             if (Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"))
             {
-                m_Bomb.RigidBody.isKinematic = false;
-                m_Bomb.transform.SetParent(null); 
-                m_Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse); 
+                Bomb.RigidBody.isKinematic = false;
+                Bomb.transform.SetParent(null); 
+                Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse); 
             }
         }
         else
@@ -290,17 +279,17 @@ public class Player : MonoBehaviour
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * transform.forward;
             if (Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"))
             {
-                m_Bomb.RigidBody.isKinematic = false;
-                m_Bomb.transform.SetParent(null);
-                m_Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
+                Bomb.RigidBody.isKinematic = false;
+                Bomb.transform.SetParent(null);
+                Bomb.RigidBody.AddForce(direction * throwForce, ForceMode.Impulse);
             }
         }
 
-        m_Bomb.Collider.enabled = true;
+        Bomb.Collider.enabled = true;
 
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombThrow, 0.7f);
 
-        float prob = Random.Range(0f, 1f);
+        float prob = UnityEngine.Random.Range(0f, 1f);
         if (prob < 0.33f) AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cThrow, 0.7f);
 
         HasBomb = false;
@@ -310,47 +299,68 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         PowerUp powerUpCollisioned = collision.gameObject.GetComponent<PowerUp>();
-        Player otherPlayer = collision.gameObject.GetComponentInParent<Player>();
 
-        if (otherPlayer == null)
+        if (powerUpCollisioned != null)
         {
-            if (powerUpCollisioned != null && GetComponent<PowerUp>() == null)
+            if (powerUpCollisioned.transform.GetComponent<Player>() != null) return;
+
+            if (!HasBomb)
             {
-                if (!HasBomb)
-                {
-                    IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
-                    powerUp.PickPowerUp(this);
-                }
-                else
-                {
-                    gameObject.AddComponent<Velocity>();
-                }
-                collision.gameObject.SetActive(false);
-            } 
-        }
-    }
+                IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
+                powerUp.PickPowerUp(this);
+            }
+            else
+            {
+                gameObject.AddComponent<Velocity>();
+            }
+            collision.gameObject.SetActive(false);
+        } 
+    }    
 
     private void OnTriggerEnter(Collider other)
     {
-        Bomb collisionedBomb = other.GetComponent<Bomb>();
-        Player collisionedPlayer = other.GetComponentInParent<Player>();
+        Bomb bomb = other.GetComponent<Bomb>();
+        Player player = other.GetComponentInParent<Player>();
 
-        if (collisionedBomb != null)
+        if (player != null)
         {
-            GameManager.Manager.PassBomb(this, collisionedBomb);
-            Animator.SetTrigger("Reception");
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombReception, 0.6f);
-            SetOverrideAnimator(true);
-        }
-        else if (collisionedPlayer != null)
-        {
-            if (collisionedPlayer.HasBomb && collisionedPlayer.CanMove)
+            if (player.HasBomb && player.CanMove)
             {
-                GameManager.Manager.PassBomb(this, collisionedPlayer, collisionedPlayer.Catapult.GetComponentInChildren<Bomb>());
-                Animator.SetTrigger("Reception");
-                collisionedPlayer.SetOverrideAnimator(false);
-                SetOverrideAnimator(true);
+                player.HasBomb = false;
+                CatchBomb(player.Bomb);
+                StartCoroutine(Stun(false, penaltyOnPassBomb));
             }
+        }
+
+        if (bomb != null)
+        {
+            CatchBomb(bomb);
+        }
+    }
+
+    public void CatchBomb(Bomb _bomb)
+    {
+        OnCatchBomb?.Invoke(this, _bomb);
+        HasBomb = true;
+        Collider.enabled = false;
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombReception, 0.6f);
+        Animator.SetTrigger("Reception");
+        SetOverrideAnimator(true);
+
+        Bomb = _bomb;
+        _bomb.RigidBody.velocity = Vector3.zero;
+        _bomb.RigidBody.isKinematic = true;
+        _bomb.Collider.enabled = false;
+        _bomb.transform.position = Catapult.position;
+        _bomb.transform.SetParent(Catapult);
+        
+        StartCoroutine(Rumble(0.2f, 0.2f, 0.2f));
+
+        float probTosound = UnityEngine.Random.Range(0f, 1f);
+
+        if (probTosound < 0.2f)
+        {
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
         }
     }
 
@@ -363,7 +373,7 @@ public class Player : MonoBehaviour
         }
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, 0.6f, _stun);
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 1f);
-        canMove = !_stun;
+        CanMove = !_stun;
     }
 
 
@@ -378,7 +388,7 @@ public class Player : MonoBehaviour
         StartCoroutine(Rumble(0.4f, 0.4f, 0.2f));
         Animator.SetBool("CanMove", false);
         inputDirection = Vector2.zero;
-        canMove = false;
+        CanMove = false;
 
         if (_animStun)
         {
@@ -391,7 +401,7 @@ public class Player : MonoBehaviour
         Animator.SetBool("CanMove", true);
 
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, 0.6f, false); 
-        canMove = true;
+        CanMove = true;
     }
 
     public IEnumerator Rumble(float _leftSpeed, float _rightSpeed, float _duration)

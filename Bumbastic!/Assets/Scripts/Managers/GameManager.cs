@@ -149,9 +149,7 @@ public abstract class GameManager : MonoBehaviour
         gameMode.GetNextGameMode();
     }
 
-    public abstract void PassBomb(Player _receiver, Bomb _Bomb);
-
-    public abstract void PassBomb(Player _receiver, Player _transmitter, Bomb _Bomb);
+    protected abstract void ReturnBomb(Bomb _bomb);
 
     protected virtual void OnDisable()
     {

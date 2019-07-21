@@ -33,7 +33,7 @@ public class Magnet : PowerUp
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        HotPotatoManager.HotPotato.PassBomb(player, HotPotatoManager.HotPotato.Bomb);
+        player.CatchBomb(HotPotatoManager.HotPotato.Bomb);
         player.Stun(false);
         Destroy(magnetManager);
         Destroy(this);
