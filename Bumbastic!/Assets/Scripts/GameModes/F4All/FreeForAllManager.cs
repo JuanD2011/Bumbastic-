@@ -6,6 +6,8 @@ public class FreeForAllManager : HotPotatoManager
 
     readonly byte maxLifePoints = 3;
 
+    bool canGiveConfetti = true;
+
     public byte[] LifePoints { get; private set; }
 
     public event System.Action<byte> OnPlayerKilled;
@@ -74,9 +76,21 @@ public class FreeForAllManager : HotPotatoManager
 
     protected override void GiveBombs()
     {
+        bummies = RandomizeBummieList();
+
+        if (canGiveConfetti)
+        {
+            for (int i = 0; i < bummies.Count; i++)
+            {
+                Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
+                bummies.RemoveAt(i);
+            }
+            canGiveConfetti = false;
+        }
+
         Bomb.gameObject.SetActive(true);
         Bomb.Collider.enabled = true;
-        Bomb.transform.position = Players[Random.Range(0, Players.Count)].transform.position + new Vector3(0, 2.5f, 0);
+        Bomb.transform.position = bummies[Random.Range(0, Players.Count)].transform.position + new Vector3(0, 2.5f, 0);
         Bomb.Timer = Random.Range(minTime, maxTime);
         Bomb.Exploded = false;
         Bomb.RigidBody.velocity = Vector3.zero;
