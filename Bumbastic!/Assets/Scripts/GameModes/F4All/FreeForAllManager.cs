@@ -90,7 +90,7 @@ public class FreeForAllManager : HotPotatoManager
 
         Bomb.gameObject.SetActive(true);
         Bomb.Collider.enabled = true;
-        Bomb.transform.position = bummies[Random.Range(0, Players.Count)].transform.position + new Vector3(0, 2.5f, 0);
+        Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 2.5f, 0);
         Bomb.Timer = Random.Range(minTime, maxTime);
         Bomb.Exploded = false;
         Bomb.RigidBody.velocity = Vector3.zero;
