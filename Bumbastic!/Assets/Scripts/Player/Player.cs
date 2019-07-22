@@ -294,6 +294,7 @@ public class Player : MonoBehaviour
 
         HasBomb = false;
         throwing = false;
+        Bomb = null;
     }
 
     private void OnCollisionEnter(Collision collision)
