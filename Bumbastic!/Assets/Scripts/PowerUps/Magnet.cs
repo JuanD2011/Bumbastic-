@@ -7,19 +7,23 @@ public class Magnet : PowerUp
 
     [SerializeField] float lerpDuration = 2f;
 
-    protected override void Start()
+    private void Awake()
     {
-        base.Start();
+        GetPlayer();
+    }
 
-        magnetManager = Instantiate(HotPotatoManager.HotPotato.MagnetParticleSystem, transform.position, Quaternion.identity, player.transform);
+    private void Start()
+    {
+        magnetManager = Instantiate(HotPotatoManager.HotPotato.MagnetParticleSystem, transform.position, Quaternion.identity, m_player.transform);
 
         StartCoroutine(LerpBomb());
+        m_player.Collider.enabled = true;
     }
 
     IEnumerator LerpBomb()
     {
         HotPotatoManager.HotPotato.Bomb.transform.SetParent(null);
-        player.Stun(true);
+        m_player.Stun(true);
         float elapsedTime = 0f;
 
         Vector3 initBombPos = HotPotatoManager.HotPotato.Bomb.transform.position;
@@ -28,13 +32,13 @@ public class Magnet : PowerUp
 
         while (normalizedTime < 0.9)
         {
-            HotPotatoManager.HotPotato.Bomb.transform.position = Vector3.Lerp(initBombPos, player.transform.position, normalizedTime);
+            HotPotatoManager.HotPotato.Bomb.transform.position = Vector3.Lerp(initBombPos, m_player.transform.position, normalizedTime);
             normalizedTime = elapsedTime / lerpDuration;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        player.CatchBomb(HotPotatoManager.HotPotato.Bomb);
-        player.Stun(false);
+        m_player.CatchBomb(HotPotatoManager.HotPotato.Bomb);
+        m_player.Stun(false);
         Destroy(magnetManager);
         Destroy(this);
     }

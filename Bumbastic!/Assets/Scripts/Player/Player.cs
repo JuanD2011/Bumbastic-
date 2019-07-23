@@ -199,8 +199,6 @@ public class Player : MonoBehaviour
 
     public void Throw()
     {
-        Bomb = Catapult.GetComponentInChildren<Bomb>();
-
         if (HasBomb && CanMove && !throwing)
         {
             SetOverrideAnimator(false);
@@ -310,11 +308,7 @@ public class Player : MonoBehaviour
                 IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
                 powerUp.PickPowerUp(this);
             }
-            else
-            {
-                gameObject.AddComponent<Velocity>();
-            }
-            collision.gameObject.SetActive(false);
+            else gameObject.AddComponent<Velocity>();
         } 
     }    
 

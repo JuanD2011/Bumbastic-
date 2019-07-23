@@ -3,10 +3,9 @@
 public class PowerUp : MonoBehaviour, IPowerUp
 {
     private float duration = 0f;
-    protected Player player;
+    protected Player m_player = null;
 
-    Collider m_Collider;
-    public Collider Collider { get => m_Collider; set => m_Collider = value; }
+    public Collider Collider { get; set; }
     public float Duration { get => duration; protected set => duration = value; }
 
     private void Awake()
@@ -14,12 +13,12 @@ public class PowerUp : MonoBehaviour, IPowerUp
         Collider = GetComponent<Collider>();
     }
 
-    protected virtual void Start()
+    protected void GetPlayer()
     {
-        player = GetComponent<Player>();
+        m_player = GetComponent<Player>();
     }
 
-    public void PickPowerUp(Player _player)
+    public virtual void PickPowerUp(Player _player)
     {
         int randomPU = Random.Range(0, 3);
 
@@ -30,20 +29,15 @@ public class PowerUp : MonoBehaviour, IPowerUp
                 break;
             case 1:
                 _player.gameObject.AddComponent<Magnet>();
-                _player.Collider.enabled = true;
-                //_player.gameObject.AddComponent<Velocity>();
                 break;
             case 2:
-                //_player.gameObject.AddComponent<Shield>();
                 _player.gameObject.AddComponent<Magnet>();
-                _player.Collider.enabled = true;
-                //_player.gameObject.AddComponent<Velocity>();
                 break;
             case 3:
-                //GameManager.instance.bombHolder.gameObject.AddComponent<Velocity>();
                 break;
             default:
                 break;
         }
+        gameObject.SetActive(false);
     }
 }

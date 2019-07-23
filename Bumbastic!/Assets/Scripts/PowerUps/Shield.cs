@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class Shield : PowerUp
 {
-    protected override void Start()
+    private void Awake()
     {
-        base.Start();
+        GetPlayer();
+    }
+
+    private void Start()
+    {
         Duration = 5f;
         StartCoroutine(Execute());
     }
