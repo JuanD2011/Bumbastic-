@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        Canvas.OnLoadScene += LoadAsynchronously;
+        CanvasBase.OnLoadScene += LoadAsynchronously;
         GameModeManager.onLoadScene += LoadAsynchronously;
     }
 

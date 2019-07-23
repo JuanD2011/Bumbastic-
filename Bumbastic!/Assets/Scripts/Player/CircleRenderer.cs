@@ -11,11 +11,14 @@ public class CircleRenderer : MonoBehaviour
     private LineRenderer mLineRenderer = null;
     private Player player;
 
-    private void Start()
+    private void Awake()
     {
         mLineRenderer = GetComponent<LineRenderer>();
         player = GetComponentInParent<Player>();
+    }
 
+    private void Start()
+    {
         mLineRenderer.material.color = settings.playersColor[0];
 
         switch (player.Id)

@@ -12,11 +12,14 @@ public class BombSpawner : MonoBehaviour
 
     BombPool m_bombPool = null;
 
-    private void Start()
+    private void Awake()
     {
         spawner = GetComponent<Collider>();
         m_bombPool = GetComponent<BombPool>();
+    }
 
+    private void Start()
+    {
         InvokeRepeating("SpawnBomb", timeToSpawnBomb, timeToSpawnBomb);
     }
 

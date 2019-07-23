@@ -9,14 +9,15 @@ public class SpeedUpParticle : ParticleModication
 
     public Action OnComplete;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        p_Velocity = GetComponentInParent<Velocity>();
+    }
+
     protected override void Start()
     {
-        p_Velocity = GetComponentInParent<Velocity>();
-
-        if (p_Velocity != null)
-        {
-            duration = p_Velocity.Duration;
-        }
+        if (p_Velocity != null) duration = p_Velocity.Duration;
 
         base.Start();
         Execute();

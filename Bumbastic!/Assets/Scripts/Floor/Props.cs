@@ -5,21 +5,24 @@ public class Props : MonoBehaviour
     float distance = 10;
     Transform[] modules;
 
-    GameObject padre;
+    GameObject parent;
+
+    private void Awake()
+    {
+        modules = GameManager.Manager.floor.GetComponentsInChildren<Transform>();
+    }
 
     void Start()
     {
-        modules = GameManager.Manager.floor.GetComponentsInChildren<Transform>();
-
         for (int i = 1; i < modules.Length; i++)
         {
             if (Vector3.Distance(transform.position, modules[i].transform.position) < distance && modules[i].gameObject.tag=="Floor")
             {
                 distance = (Vector3.Distance(transform.position, modules[i].transform.position));
-                padre = modules[i].gameObject;
+                parent = modules[i].gameObject;
             }
         }
 
-        transform.parent = padre.transform;
+        transform.parent = parent.transform;
     }
 }

@@ -16,16 +16,19 @@ public class MagnetManager : ParticleModication
 
     float t = 0f;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        player = GetComponentInParent<Player>();
+        wave = GetComponentInChildren<LineRenderer>();
+        pathParticles = new ParticleSystem.Particle[MainModules[0].maxParticles];
+        bomb = HotPotatoManager.HotPotato.Bomb.gameObject;
+    }
+
     protected override void Start()
     {
         base.Start();
         t = 0;
-
-        player = GetComponentInParent<Player>();
-        wave = GetComponentInChildren<LineRenderer>();
-
-        pathParticles = new ParticleSystem.Particle[MainModules[0].maxParticles];
-        bomb = HotPotatoManager.HotPotato.Bomb.gameObject;
         Execute();
     }
 

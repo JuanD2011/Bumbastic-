@@ -6,6 +6,11 @@ public class ExplosionParticle : ParticleModication
     AudioSource m_audioSource;
     [SerializeField] bool modifyAudio = false;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     protected override void Start()
     {
         base.Start();

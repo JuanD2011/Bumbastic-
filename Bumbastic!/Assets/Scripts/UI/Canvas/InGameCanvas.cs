@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine.UI;
 
-public class InGameCanvas : Canvas
+public class InGameCanvas : CanvasBase
 {
     [SerializeField] TextMeshProUGUI textWinner = null;
     [SerializeField] Image playerSprite = null;
@@ -16,10 +16,8 @@ public class InGameCanvas : Canvas
         base.Awake();
     }
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
-
         GameManager.Manager.OnGameOver += () => _scene = "Podium";
 
         GameManager.Manager.OnGameModeOver += Winner;

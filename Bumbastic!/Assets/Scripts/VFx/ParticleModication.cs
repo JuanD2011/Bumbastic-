@@ -27,12 +27,16 @@ public abstract class ParticleModication : MonoBehaviour
     protected float RealTime { get => realTime; private set => realTime = value; }
     protected Light Light { get => light; set => light = value; }
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         ParticleSystems = GetComponentsInChildren<ParticleSystem>();
         MainModules = new ParticleSystem.MainModule[ParticleSystems.Length];
         ShapeModules = new ParticleSystem.ShapeModule[ParticleSystems.Length];
+        Light = GetComponentInChildren<Light>(true);
+    }
 
+    protected virtual void Start()
+    {
         for (int i = 0; i < ParticleSystems.Length; i++)
         {
             MainModules[i] = ParticleSystems[i].main;
@@ -48,10 +52,8 @@ public abstract class ParticleModication : MonoBehaviour
                 } 
             }
         }
-
         startLifetime = MainModules[0].startLifetime.Evaluate(1);
 
-        Light = GetComponentInChildren<Light>(true);
         RealTime = MainModules[0].duration + startLifetime;
 	}
 

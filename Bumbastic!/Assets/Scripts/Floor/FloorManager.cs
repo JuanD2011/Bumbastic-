@@ -33,12 +33,14 @@ public class FloorManager : MonoBehaviour
 
 	bool anticipation = false;
 
+    private void Awake()
+    {
+        modules = GetComponentsInChildren<Rigidbody>();
+    }
+
     void Start()
     {
         SetEnviroment();
-
-        modules = GetComponentsInChildren<Rigidbody>();
-
         while (modules.Length >= (Mathf.Pow((c + 2), 2)))
         {
             c += 2;

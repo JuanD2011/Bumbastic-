@@ -53,18 +53,18 @@ public class Player : MonoBehaviour
 
     public static event Action<Player, Bomb> OnCatchBomb;
 
+    private void Awake()
+    {
+        Rigidbody = GetComponent<Rigidbody>();
+        gamepad = (Gamepad)GetComponent<PlayerInput>().devices[0];
+    }
+
     private void Start()
     {
-        if (animatorWNoBomb == null)
-        {
-            animatorWNoBomb = new AnimatorOverrideController(Animator.runtimeAnimatorController);
-        }
-
-        Rigidbody = GetComponent<Rigidbody>();
+        if (animatorWNoBomb == null) animatorWNoBomb = new AnimatorOverrideController(Animator.runtimeAnimatorController);
         GameManager.Manager.Director.stopped += LetMove;
         GameManager.Manager.OnCorrectPassBomb += IncreaseDashCounter;
         Bomb.OnExplode += ResetPlayer;
-        gamepad = (Gamepad)GetComponent<PlayerInput>().devices[0];
     }
 
     public void Initialize()

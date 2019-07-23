@@ -7,16 +7,18 @@ public class Scroll : MonoBehaviour
     Scrollbar m_Scrollbar;
     [SerializeField] float velocity = 0.7f;
 
-    private void Start()
+    private void Awake()
     {
         m_Scrollbar = GetComponent<Scrollbar>();
+    }
 
-        PlayerMenu.onScrolling += ScrollMovement;
+    private void Start()
+    {
+        PlayerMenu.OnScrollingAxis += ScrollMovement;
     }
 
     private void ScrollMovement(float _context)
     {
-        print(_context);
         if (_context < -0.2f || _context > 0.2f)
         {
             m_Scrollbar.value += velocity * Time.deltaTime * _context; 

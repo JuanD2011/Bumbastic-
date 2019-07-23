@@ -6,10 +6,13 @@ public class TargetGroup : MonoBehaviour
 {
     CinemachineTargetGroup cinemachineTargetGroup;
 
-    private void Start()
+    private void Awake()
     {
         cinemachineTargetGroup = GetComponent<CinemachineTargetGroup>();
+    }
 
+    private void Start()
+    {
         if (GameManager.Manager.Players.Count != 0)
         {
             cinemachineTargetGroup.m_Targets = new CinemachineTargetGroup.Target[GameManager.Manager.Players.Count];

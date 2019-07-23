@@ -6,10 +6,14 @@ public class Confetti : MonoBehaviour
 
     Vector3 initpos;
 
+    private void Awake()
+    {
+        m_ParticleSystem = GetComponent<ParticleSystem>();
+    }
+
     void Start()
     {
         initpos = transform.position;
-        m_ParticleSystem = GetComponent<ParticleSystem>();
         InvokeRepeating("Explode", Random.Range(0.3f, 2f), Random.Range(2f, 5f));
     }
 

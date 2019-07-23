@@ -8,7 +8,6 @@ public class SelectOnInput : MonoBehaviour
 
     private Button selectedButton;
 
-
     private void Awake()
     {
         selectedButton = selectedObject.GetComponent<Button>(); 

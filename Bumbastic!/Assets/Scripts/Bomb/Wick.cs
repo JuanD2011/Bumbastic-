@@ -10,13 +10,15 @@ public class Wick : MonoBehaviour
 
     private Renderer m_Renderer;
 
-    private void Start()
+    private void Awake()
     {
         bomb = GetComponentInParent<Bomb>();
         m_Renderer = GetComponent<Renderer>();
+    }
 
+    private void Start()
+    {
         ResetWick();
-
         Bomb.OnExplode += ResetWick;
     }
 

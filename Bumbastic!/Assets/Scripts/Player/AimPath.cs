@@ -9,11 +9,14 @@ public class AimPath : MonoBehaviour
 
     Vector2 aimNormalized;
 
-    void Start()
+    private void Awake()
     {
         m_Player = GetComponentInParent<Player>();
         m_LineRenderer = GetComponent<LineRenderer>();
+    }
 
+    void Start()
+    {
         SetPositionKeys();
     }
 

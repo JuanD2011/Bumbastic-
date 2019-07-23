@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class MenuCanvas : Canvas
+public class MenuCanvas : CanvasBase
 {
     [SerializeField] Settings settings;
 
@@ -16,9 +16,8 @@ public class MenuCanvas : Canvas
         base.Awake();
     }
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         PlayerMenu.OnBackButton += BackButton;
         MenuManager.menu.OnStartGame += LoadingScreen;
         MenuManager.menu.OnCountdown += Countdown;

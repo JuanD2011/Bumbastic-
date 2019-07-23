@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 
-public class CanvasPodium : Canvas
+public class CanvasPodium : CanvasBase
 {
     protected override void Awake()
     {
         base.Awake();
     }
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         PlayerMenu.OnStartButton += StartButton;
     }
 

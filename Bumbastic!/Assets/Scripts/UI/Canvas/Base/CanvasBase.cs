@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public abstract class Canvas : MonoBehaviour
+public abstract class CanvasBase : MonoBehaviour
 {
     public delegate IEnumerator DelLoadString(string _scene);
     public static DelLoadString OnLoadScene;
@@ -13,10 +13,6 @@ public abstract class Canvas : MonoBehaviour
     protected virtual void Awake()
     {
         OnLoadScene = null;
-    }
-
-    protected virtual void Start()
-    {
         m_Animator = GetComponent<Animator>();
     }
 }

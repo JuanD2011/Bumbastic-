@@ -28,7 +28,7 @@ public class PlayerMenu : MonoBehaviour
     public static ButtonsDelegate OnLeftBumper;
     public static ButtonsDelegate OnRightBumper;
 
-    public static System.Action<float> onScrolling;
+    public static System.Action<float> OnScrollingAxis;
 
     [SerializeField]
     private GameObject avatar;
@@ -52,14 +52,14 @@ public class PlayerMenu : MonoBehaviour
 
     public static void ResetDel()
     {
-        if (OnBackButton != null) { OnBackButton = null; }
-        if (OnStartButton != null) { OnStartButton = null; }
-        if (OnAcceptButton != null) { OnAcceptButton = null; }
-        if (OnLeftBumper != null) { OnLeftBumper = null; }
-        if (OnRightBumper != null) { OnRightBumper = null; }
-        if (OnReady != null) { OnReady = null; }
-        if (OnNotReady != null) { OnNotReady = null; }
-        if (onScrolling != null) { onScrolling = null; }
+        OnBackButton = null;
+        OnStartButton = null;
+        OnAcceptButton = null;
+        OnLeftBumper = null; 
+        OnRightBumper = null;
+        OnReady = null;
+        OnNotReady = null; 
+        OnScrollingAxis = null;
     }
 
     public void OnSubmit()
@@ -77,7 +77,7 @@ public class PlayerMenu : MonoBehaviour
 
     public void OnScrolling(InputValue context)
     {
-        onScrolling?.Invoke(context.Get<Vector2>().normalized.y);
+        OnScrollingAxis?.Invoke(context.Get<Vector2>().normalized.y);
     }
 
     public void OnStart()

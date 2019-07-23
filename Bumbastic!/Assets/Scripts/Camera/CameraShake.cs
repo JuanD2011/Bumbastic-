@@ -6,14 +6,6 @@ using System;
 public class CameraShake : MonoBehaviour
 {
     public static CameraShake instance;
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else {
-            Destroy(this);
-        }
-    }
 
     CinemachineVirtualCamera virtualCamera;
     CinemachineBasicMultiChannelPerlin virtualCameraNoise;
@@ -24,13 +16,17 @@ public class CameraShake : MonoBehaviour
     public Action<float, float> OnStartShake;
     public Action OnStopShake;
 
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+        else Destroy(this);
+
+        virtualCamera = GetComponent<CinemachineVirtualCamera>();
+        if (virtualCamera != null) virtualCameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    }
+
     void Start()
     {
-        virtualCamera = GetComponent<CinemachineVirtualCamera>();
-
-        if (virtualCamera != null)
-            virtualCameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
         OnShakeDuration += ShakeOnce;
         OnStartShake += StartShaking;
         OnStopShake += StopShaking;
