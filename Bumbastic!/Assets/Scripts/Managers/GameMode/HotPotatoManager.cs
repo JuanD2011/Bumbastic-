@@ -123,6 +123,10 @@ public class HotPotatoManager : GameManager
             BombHolder.Collider.enabled = true;
         }
 
+        float probTosound = Random.Range(0f, 1f);
+
+        if (probTosound < 0.2f) AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
+
         BombHolder = _player;
         OnBombHolderChanged?.Invoke(BombHolder);
     }

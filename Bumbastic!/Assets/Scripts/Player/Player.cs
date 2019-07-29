@@ -150,7 +150,6 @@ public class Player : MonoBehaviour
     {
         HasBomb = false;
         throwing = false;
-        StopAllCoroutines();
         Animator.runtimeAnimatorController = animatorWNoBomb;
     }
 
@@ -236,7 +235,6 @@ public class Player : MonoBehaviour
 
     IEnumerator SyncThrowAnim()
     {
-        Bomb.Thrower = this;
         Animator.SetTrigger("Throw");
         throwing = true;
         
@@ -349,13 +347,6 @@ public class Player : MonoBehaviour
         _bomb.transform.SetParent(Catapult);
         
         StartCoroutine(Rumble(0.2f, 0.2f, 0.2f));
-
-        float probTosound = UnityEngine.Random.Range(0f, 1f);
-
-        if (probTosound < 0.2f)
-        {
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cTransmitter, 1f);
-        }
     }
 
     public void Stun(bool _stun)
@@ -368,6 +359,7 @@ public class Player : MonoBehaviour
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 1f);
 
         CanMove = !_stun;
+        Debug.Log(!_stun);
     }
 
 

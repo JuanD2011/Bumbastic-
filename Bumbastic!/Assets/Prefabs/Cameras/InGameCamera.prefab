@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   postProcessing: {fileID: 11400000, guid: 60264046f5ac190438d486c64afc9897, type: 2}
   exploding: {r: 1, g: 0.514151, b: 0.514151, a: 1}
-  maxVelocity: 11
+  maxVelocity: 6
 --- !u!114 &6116713307920573896
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,7 +19,6 @@ public class Bomb : MonoBehaviour
     public bool Exploded { get; set; }
     public bool CanCount { get; protected set; }
     public Collider Collider { get; private set; }
-    public Player Thrower { get; set; }
 
     public static Action OnExplode;
     public static Action<float> OnArmed;
