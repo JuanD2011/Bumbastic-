@@ -22,6 +22,13 @@ public class PowerUp : MonoBehaviour, IPowerUp
     {
         int randomPU = Random.Range(0, 3);
 
+        if (_player.HasBomb)
+        {
+            _player.gameObject.AddComponent<Velocity>();
+            gameObject.SetActive(false);
+            return;
+        }
+
         switch (randomPU)
         {
             case 0:

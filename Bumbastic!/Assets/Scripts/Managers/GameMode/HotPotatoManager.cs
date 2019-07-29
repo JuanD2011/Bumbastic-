@@ -129,15 +129,7 @@ public class HotPotatoManager : GameManager
 
     protected override void ReturnBomb(Bomb _bomb)
     {
-        BombHolder.HasBomb = true;
-        BombHolder.Collider.enabled = false;
-        BombHolder.SetOverrideAnimator(true);
-        _bomb.RigidBody.velocity = Vector3.zero;
-        _bomb.RigidBody.isKinematic = true;
-        _bomb.Collider.enabled = false;
-        _bomb.transform.position = BombHolder.Catapult.position;
-        _bomb.transform.SetParent(BombHolder.Catapult);
-        StartCoroutine(BombHolder.Rumble(0.2f, 0.2f, 0.2f));
+        BombHolder.CatchBomb(_bomb);
     }
 
     protected override void OnDisable()

@@ -14,7 +14,7 @@ public class Magnet : PowerUp
 
     private void Start()
     {
-        magnetManager = Instantiate(HotPotatoManager.HotPotato.MagnetParticleSystem, transform.position, Quaternion.identity, m_player.transform);
+        magnetManager = Instantiate(HotPotatoManager.HotPotato.MagnetParticleSystem, transform.position + new Vector3(0f, 0.8f, 0f), Quaternion.identity, m_player.transform);
 
         StartCoroutine(LerpBomb());
         m_player.Collider.enabled = true;

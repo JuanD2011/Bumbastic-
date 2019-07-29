@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] float dashForce = 7f;
     public event Action<Player> OnDashExecuted = null;
+    public event Action<bool> OnStuned = null;
 
     [SerializeField]
     private float throwForce = 0f;
@@ -298,24 +299,16 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         PowerUp powerUpCollisioned = collision.gameObject.GetComponent<PowerUp>();
+        Player player = collision.gameObject.GetComponentInParent<Player>();
 
         if (powerUpCollisioned != null)
         {
-            if (powerUpCollisioned.transform.GetComponent<Player>() != null) return;
-
-            if (!HasBomb)
+            if (powerUpCollisioned.transform.GetComponent<Player>() == null)
             {
                 IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
                 powerUp.PickPowerUp(this);
             }
-            else gameObject.AddComponent<Velocity>();
-        } 
-    }    
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Bomb bomb = other.GetComponent<Bomb>();
-        Player player = other.GetComponentInParent<Player>();
+        }
 
         if (player != null)
         {
@@ -327,6 +320,11 @@ public class Player : MonoBehaviour
                 StartCoroutine(Stun(false, penaltyOnPassBomb));
             }
         }
+    }    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Bomb bomb = other.GetComponent<Bomb>();
 
         if (bomb != null)
         {
@@ -362,13 +360,13 @@ public class Player : MonoBehaviour
 
     public void Stun(bool _stun)
     {
+        if (_stun) Animator.SetTrigger("Stun");
+
         Animator.SetBool("CanMove", !_stun);
-        if (_stun)
-        {
-            Animator.SetTrigger("Stun");
-        }
+
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, 0.6f, _stun);
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 1f);
+
         CanMove = !_stun;
     }
 
@@ -388,16 +386,19 @@ public class Player : MonoBehaviour
 
         if (_animStun)
         {
-            Animator.SetTrigger("Stun"); 
+            Animator.SetTrigger("Stun");
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, 0.6f, true);
             AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 1f);
+            OnStuned?.Invoke(true);
         }
 
         yield return new WaitForSeconds(_duration);
-        Animator.SetBool("CanMove", true);
 
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, 0.6f, false); 
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, 0.6f, false);
+
+        Animator.SetBool("CanMove", true);
         CanMove = true;
+        OnStuned?.Invoke(false);
     }
 
     public IEnumerator Rumble(float _leftSpeed, float _rightSpeed, float _duration)
