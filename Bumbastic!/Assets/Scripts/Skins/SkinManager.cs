@@ -95,11 +95,9 @@ public class SkinManager : MonoBehaviour
 
                 MenuManager.menu.Players[i].PrefabName = skinsData.skins[skinSelectors[i].Position].name;
                 MenuManager.menu.Players[i].SkinSprite = skinsData.skins[skinSelectors[i].Position].skinSprite;
-                Instantiate(MenuManager.menu.Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation, MenuManager.menu.Players[i].transform);
-            }
-            else
-            {
-                Destroy(MenuManager.menu.Players[i].transform.GetChild(0).gameObject);
+
+                if (MenuManager.menu.Players[i].transform.childCount <= 0)
+                    Instantiate(MenuManager.menu.Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation, MenuManager.menu.Players[i].transform); 
             }
             skinNames[i].enabled = _canActive;
         }
