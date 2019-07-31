@@ -359,7 +359,6 @@ public class Player : MonoBehaviour
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cStun, 1f);
 
         CanMove = !_stun;
-        Debug.Log(!_stun);
     }
 
 

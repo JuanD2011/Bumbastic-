@@ -10,6 +10,8 @@ public class Wagon : MonoBehaviour
     [SerializeField] float timeToLerpPosition = 0.3f;
     [SerializeField] float maxVelocity = 10f;
 
+    [SerializeField] ParticleSystem crashParticleSystem = null;
+
     bool clampVelocity = false;
     float sqrMaxVelocity = 0f;
 
@@ -68,6 +70,9 @@ public class Wagon : MonoBehaviour
                 AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit, 1f);
                 StartCoroutine(playerCollisioned.Stun(true, 2.2f));
                 playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * -Vector3.forward * pushForce, ForceMode.Impulse);
+                ContactPoint contactPoint = collision.GetContact(0);
+                crashParticleSystem.transform.position = contactPoint.point;
+                crashParticleSystem.Play();
             }
         }
     }
@@ -85,6 +90,9 @@ public class Wagon : MonoBehaviour
                 AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit, 1f);
                 StartCoroutine(playerCollisioned.Stun(true, 2.2f));
                 playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * -Vector3.forward * pushForce, ForceMode.Impulse);
+                ContactPoint contactPoint = collision.GetContact(0);
+                crashParticleSystem.transform.position = contactPoint.point;
+                crashParticleSystem.Play();
             }
         }
     }
