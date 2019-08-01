@@ -404,4 +404,9 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_duration);
         gamepad.SetMotorSpeeds(0f, 0f);
     }
+
+    private void OnDisable()
+    {
+        Bomb.OnAboutToExplode -= BombIsAboutToExplode;
+    }
 }
