@@ -65,14 +65,14 @@ public class Bomb : MonoBehaviour
             {
                 if (CanCount)
                 {
-                    CanCount = false; 
+                    CanCount = false;
                 }
             }
         }
 
         if (!Exploded && !aboutToExplode)
         {
-            if (elapsedTime < 5f)
+            if (elapsedTime > Timer - 5f)
             {
                 aboutToExplode = true;
                 StartCoroutine(AboutToExplode());
@@ -111,12 +111,14 @@ public class Bomb : MonoBehaviour
     private IEnumerator AboutToExplode()
     {
         byte counter = 0;
-        while (!Exploded || counter < 8)
+        while (!Exploded || counter < 7)
         {
             if (counter < 2) yield return new WaitForSeconds(1f);
-            else yield return new WaitForSeconds(0.5f);
+            else if (counter < 4) yield return new WaitForSeconds(0.5f);
+            else yield return new WaitForSeconds(0.25f);
             OnAboutToExplode?.Invoke(this);
             counter++;
         }
+        aboutToExplode = false;
     }
 }
