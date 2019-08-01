@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
         GameManager.Manager.Director.stopped += LetMove;
         GameManager.Manager.OnCorrectPassBomb += IncreaseDashCounter;
         Bomb.OnExplode += ResetPlayer;
+        Bomb.OnAboutToExplode += BombIsAboutToExplode;
     }
 
     public void Initialize()
@@ -390,6 +391,11 @@ public class Player : MonoBehaviour
         Animator.SetBool("CanMove", true);
         CanMove = true;
         OnStuned?.Invoke(false);
+    }
+
+    private void BombIsAboutToExplode(Bomb _bomb)
+    {
+        if (HasBomb && _bomb == Bomb) StartCoroutine(Rumble(0.2f, 0.2f, 0.2f));
     }
 
     public IEnumerator Rumble(float _leftSpeed, float _rightSpeed, float _duration)

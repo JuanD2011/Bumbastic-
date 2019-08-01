@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -11,6 +12,7 @@ public class Bomb : MonoBehaviour
 
     private float gravity = 16f;
     protected float elapsedTime = 0f;
+    private bool aboutToExplode = false;
 
     protected ParticleModication cParticleModification = null;
 
@@ -23,6 +25,7 @@ public class Bomb : MonoBehaviour
     public static Action OnExplode;
     public static Action<float> OnArmed;
     public static event Action<Bomb> OnFloorCollision;
+    public static event Action<Bomb> OnAboutToExplode;
 
     protected virtual void Awake()
     {
@@ -67,6 +70,15 @@ public class Bomb : MonoBehaviour
             }
         }
 
+        if (!Exploded && !aboutToExplode)
+        {
+            if (elapsedTime < 5f)
+            {
+                aboutToExplode = true;
+                StartCoroutine(AboutToExplode());
+            }
+        }
+
         if (elapsedTime > Timer && !Exploded)
         {
             Explode();
@@ -93,6 +105,18 @@ public class Bomb : MonoBehaviour
         if (collision.transform.CompareTag("Floor") && !Exploded && transform.parent == null)
         {
             OnFloorCollision?.Invoke(this);
+        }
+    }
+
+    private IEnumerator AboutToExplode()
+    {
+        byte counter = 0;
+        while (!Exploded || counter < 8)
+        {
+            if (counter < 2) yield return new WaitForSeconds(1f);
+            else yield return new WaitForSeconds(0.5f);
+            OnAboutToExplode?.Invoke(this);
+            counter++;
         }
     }
 }
