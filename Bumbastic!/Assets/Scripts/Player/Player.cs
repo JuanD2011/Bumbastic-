@@ -395,7 +395,7 @@ public class Player : MonoBehaviour
 
     private void BombIsAboutToExplode(Bomb _bomb)
     {
-        if (HasBomb && _bomb == Bomb) StartCoroutine(Rumble(0.2f, 0.2f, 0.2f));
+        if (HasBomb && _bomb == Bomb) StartCoroutine(Rumble(0.3f, 0.3f, 0.2f));
     }
 
     public IEnumerator Rumble(float _leftSpeed, float _rightSpeed, float _duration)
@@ -403,5 +403,10 @@ public class Player : MonoBehaviour
         gamepad.SetMotorSpeeds(_leftSpeed, _rightSpeed);
         yield return new WaitForSeconds(_duration);
         gamepad.SetMotorSpeeds(0f, 0f);
+    }
+
+    private void OnDisable()
+    {
+        Bomb.OnAboutToExplode -= BombIsAboutToExplode;
     }
 }
