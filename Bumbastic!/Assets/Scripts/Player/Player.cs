@@ -97,9 +97,9 @@ public class Player : MonoBehaviour
         HasBomb = false;
     }
 
-    private void IncreaseDashCounter(Player _BombHolder)
+    private void IncreaseDashCounter(Player _Transmitter)
     {
-        if (_BombHolder == this)
+        if (_Transmitter == this)
         {
             DashCount = (DashCount <= GameManager.maximunDashLevel) ? DashCount += 1 : DashCount = GameManager.maximunDashLevel; 
         }
