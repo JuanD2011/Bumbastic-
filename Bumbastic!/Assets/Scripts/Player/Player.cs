@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         if (animatorWNoBomb == null) animatorWNoBomb = new AnimatorOverrideController(Animator.runtimeAnimatorController);
-        GameManager.Manager.Director.stopped += LetMove;
+        GameManager.Manager.Director.stopped += (PlayableDirector _playableDirector) => CanMove = true;
         GameManager.Manager.OnCorrectPassBomb += IncreaseDashCounter;
         Bomb.OnExplode += ResetPlayer;
         Bomb.OnAboutToExplode += BombIsAboutToExplode;
@@ -97,11 +97,12 @@ public class Player : MonoBehaviour
         HasBomb = false;
     }
 
-    private void IncreaseDashCounter(Player _player)
+    private void IncreaseDashCounter(Player _BombHolder)
     {
-        if (_player != this || _player == null) return;
-
-        DashCount = (DashCount <= GameManager.maximunDashLevel) ? DashCount += 1 : DashCount = GameManager.maximunDashLevel;
+        if (_BombHolder == this)
+        {
+            DashCount = (DashCount <= GameManager.maximunDashLevel) ? DashCount += 1 : DashCount = GameManager.maximunDashLevel; 
+        }
     }
 
     public void OnMove(InputValue context)
@@ -168,8 +169,6 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    private void LetMove(PlayableDirector _obj) => CanMove = true;
 
     void Update()
     {
@@ -260,8 +259,6 @@ public class Player : MonoBehaviour
         yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).IsName("Armature|BombLaunch"));
         yield return new WaitUntil(() => Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.35f);
 
-        if (Bomb == null) StopCoroutine("SyncThrowAnim");
-
         if (InputAiming != Vector2.zero)
         {
             Vector3 direction = Quaternion.AngleAxis(10, transform.right) * aiming;
@@ -325,10 +322,7 @@ public class Player : MonoBehaviour
     {
         Bomb bomb = other.GetComponent<Bomb>();
 
-        if (bomb != null)
-        {
-            CatchBomb(bomb);
-        }
+        if (bomb != null) CatchBomb(bomb);
     }
 
     public void CatchBomb(Bomb _bomb)

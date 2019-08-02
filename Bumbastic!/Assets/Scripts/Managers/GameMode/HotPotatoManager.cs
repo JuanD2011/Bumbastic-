@@ -47,9 +47,11 @@ public class HotPotatoManager : GameManager
     protected override void Start()
     {
         base.Start();
+
         Bomb.OnExplode += OnBombExplode;
-        Player.OnCatchBomb += BombHolderChange;
         Bomb.OnFloorCollision += ReturnBomb;
+
+        Player.OnCatchBomb += BombHolderChange;
     }
 
     protected virtual void Update()
@@ -102,6 +104,7 @@ public class HotPotatoManager : GameManager
             Instantiate(confettiBomb, bummies[i].transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
             bummies.RemoveAt(i);
         }
+
         Bomb.gameObject.SetActive(true);
         Bomb.Collider.enabled = true;
         Bomb.transform.position = bummies[0].transform.position + new Vector3(0, 2.5f, 0);
@@ -110,12 +113,17 @@ public class HotPotatoManager : GameManager
         Bomb.RigidBody.velocity = Vector3.zero;
         Bomb.transform.rotation = Quaternion.identity;
         Bomb.SetAnimationKeys();
+
         Director.Play();
     }
 
     protected virtual void BombHolderChange(Player _player, Bomb _bomb)
     {
-        OnCorrectPassBomb?.Invoke(BombHolder);
+        if (BombHolder != null)
+        {
+            if (_player != BombHolder) OnCorrectPassBomb?.Invoke(BombHolder);
+            //Debug.Log(string.Format("Bombholder {0}, receptor {1}", BombHolder.Avatar.name, _player.Avatar.name)); 
+        }
 
         if (BombHolder != null)
         {
