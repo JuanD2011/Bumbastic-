@@ -21,6 +21,8 @@ public abstract class ParticleModication : MonoBehaviour
     [SerializeField] protected int particlesToSetColor = 2;
     protected float startLifetime;
 
+    public System.Action OnComplete;
+
     protected ParticleSystem[] ParticleSystems { get => particleSystems; set => particleSystems = value; }
     protected ParticleSystem.ShapeModule[] ShapeModules { get => shapeModules; set => shapeModules = value; }
     protected ParticleSystem.MainModule[] MainModules { get => mainModules; set => mainModules = value; }

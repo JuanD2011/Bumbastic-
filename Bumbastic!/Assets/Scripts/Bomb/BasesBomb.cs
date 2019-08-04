@@ -5,6 +5,8 @@ public class BasesBomb : Bomb
 {
     [SerializeField] float minTime = 10f, maxTime = 18f;
 
+    public static event System.Action<Player> OnBasesBombExplode;
+
     protected override void Awake()
     {
         base.Awake();
@@ -12,8 +14,15 @@ public class BasesBomb : Bomb
         Timer = Random.Range(minTime, maxTime);
     }
 
+    private void OnEnable()
+    {
+        Collider.enabled = true;
+        Exploded = false;
+    }
+
     private void Start()
     {
+        cParticleModification.OnComplete += () => gameObject.SetActive(false);
         SetAnimationKeys();
     }
 
@@ -30,6 +39,12 @@ public class BasesBomb : Bomb
         {
             Explode();
         }
+    }
+
+    protected override void Explode()
+    {
+        OnBasesBombExplode?.Invoke(GetComponentInParent<Player>());
+        base.Explode();
     }
 
     protected override void FixedUpdate()

@@ -139,7 +139,7 @@ public class HotPotatoManager : GameManager
         OnBombHolderChanged?.Invoke(BombHolder);
     }
 
-    protected override void ReturnBomb(Bomb _bomb)
+    protected virtual void ReturnBomb(Bomb _bomb)
     {
         BombHolder.CatchBomb(_bomb);
     }

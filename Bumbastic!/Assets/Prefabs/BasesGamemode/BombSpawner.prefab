@@ -1257,9 +1257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b56d8194efbde40af29866578c74c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 10
-  timeToSpawnBomb: 10
-  xRandom: 0.3
+  force: 11
+  timeToSpawnBomb: 5
+  xRandom: 0.2
   zRandom: 0.3
 --- !u!1 &4704712723779546311
 GameObject:

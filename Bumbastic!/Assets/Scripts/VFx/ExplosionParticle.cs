@@ -83,6 +83,7 @@ public class ExplosionParticle : ParticleModication
         m_audioSource.volume = volume;
 
         Light.enabled = false;
+        OnComplete?.Invoke();
     }
 
     IEnumerator ExplosionParticlesNoAudioModify()
@@ -121,5 +122,6 @@ public class ExplosionParticle : ParticleModication
         }
 
         Light.enabled = false;
+        OnComplete?.Invoke();
     }
 }

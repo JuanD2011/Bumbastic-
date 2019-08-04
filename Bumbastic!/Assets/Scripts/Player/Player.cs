@@ -150,6 +150,7 @@ public class Player : MonoBehaviour
 
     private void ResetPlayer()
     {
+        Collider.enabled = true;
         HasBomb = false;
         throwing = false;
         Animator.runtimeAnimatorController = animatorWNoBomb;
@@ -290,6 +291,7 @@ public class Player : MonoBehaviour
         HasBomb = false;
         throwing = false;
         Bomb = null;
+        Collider.enabled = true;
     }
 
     private void OnCollisionEnter(Collision collision)

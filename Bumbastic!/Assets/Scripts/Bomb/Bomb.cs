@@ -85,7 +85,7 @@ public class Bomb : MonoBehaviour
         }
     }
 
-    protected void Explode()
+    protected virtual void Explode()
     {
         transform.SetParent(null);
         elapsedTime = 0;

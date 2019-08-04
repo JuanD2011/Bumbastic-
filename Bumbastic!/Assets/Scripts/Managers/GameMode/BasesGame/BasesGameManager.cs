@@ -14,6 +14,19 @@
         SetBasesColor();
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        BasesBomb.OnBasesBombExplode += OnBombExplode;
+    }
+
+    private void OnBombExplode(Player _PlayerExploded)
+    {
+        if (_PlayerExploded == null) return;
+
+        _PlayerExploded.transform.position = _PlayerExploded.SpawnPoint;
+    }
+
     protected override void SpawnPlayers()
     {
         for (int i = 0; i < InGame.playerSettings.Count; i++)
@@ -32,10 +45,5 @@
     private void SetBasesColor()
     {
         //TODO implement color to the "Hair" of the base.
-    }
-
-    protected override void ReturnBomb(Bomb _bomb)
-    {
-        //TODO Return bomb to launcher
     }
 }

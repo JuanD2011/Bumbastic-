@@ -149,8 +149,6 @@ public abstract class GameManager : MonoBehaviour
         gameMode.GetNextGameMode();
     }
 
-    protected abstract void ReturnBomb(Bomb _bomb);
-
     protected virtual void OnDisable()
     {
         PlayerMenu.ResetDel();
