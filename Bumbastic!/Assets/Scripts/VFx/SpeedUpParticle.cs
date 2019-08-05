@@ -7,8 +7,6 @@ public class SpeedUpParticle : ParticleModication
     Velocity p_Velocity;
     [SerializeField] private float angularVel = 5f;
 
-    public Action OnComplete;
-
     protected override void Awake()
     {
         base.Awake();

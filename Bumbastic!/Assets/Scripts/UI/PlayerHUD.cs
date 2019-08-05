@@ -8,19 +8,25 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] Image m_image = null;
     [SerializeField] TextMeshProUGUI m_ReadyText = null;
     [SerializeField] TextMeshProUGUI m_SkinName = null;
-    [SerializeField] SkinSelector m_skinSelector = null;
 
     [SerializeField] Settings settings = null;
 
     private void Start()
     {
         MenuManager.menu.OnPlayerReadyOrNot += SetReadyText;
+        SkinManager.OnSkinChanged += UpdateMyInfo;
 
         MenuManager.menu.Players[iD].Color = settings.playersColor[iD];
         m_image.color = settings.playersColor[iD];
 
-        m_SkinName.SetText(MenuManager.menu.Players[iD].Avatar.name);
         SetReadyText(iD);
+        UpdateMyInfo(iD);
+    }
+
+    private void UpdateMyInfo(int _playerID)
+    {
+        if (_playerID != iD) return;
+        m_SkinName.SetText(MenuManager.menu.Players[iD].PrefabName);
     }
 
     private void SetReadyText(byte _id)

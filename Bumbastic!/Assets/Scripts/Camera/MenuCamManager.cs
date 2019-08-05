@@ -16,9 +16,9 @@ public class MenuCamManager : MonoBehaviour
         MenuCanvas.OnMatchmaking += SetMatchmakingCamera;
     }
 
-    private void SetMatchmakingCamera(bool _bool)
+    private void SetMatchmakingCamera(bool _isMatchmaking)
     {
-        matchmakingCamera.SetActive(_bool);
+        matchmakingCamera.SetActive(_isMatchmaking);
     }
 
     private void Update()

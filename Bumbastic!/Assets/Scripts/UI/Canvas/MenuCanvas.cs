@@ -9,7 +9,7 @@ public class MenuCanvas : CanvasBase
 
     public static bool isMatchmaking = false;
 
-    public static Action<bool> OnMatchmaking;
+    public static event Action<bool> OnMatchmaking;
 
     protected override void Awake()
     {
@@ -67,6 +67,7 @@ public class MenuCanvas : CanvasBase
     {
         isMatchmaking = _bool;
         m_Animator.SetBool("Play",_bool);
+
         OnMatchmaking?.Invoke(_bool);
     }
 
