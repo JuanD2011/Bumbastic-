@@ -7,30 +7,16 @@ public class SkinSelector : MonoBehaviour
     [SerializeField] int player = 0;
     int position = 0;
 
-    Button[] buttons;
-    Image[] images;
-
     public delegate void DelSkinSelector(int _player, int _position);
-    public DelSkinSelector OnChangeSkin;
+    public static DelSkinSelector OnChangeSkin;
 
-    public Button[] Buttons { get => buttons; set => buttons = value; }
-    public Image[] Images { get => images; set => images = value; }
     public int Position { get => position; protected set => position = value; }
 
     private void Start()
     {
         PlayerMenu.OnLeftBumper += PreviousSkin;
         PlayerMenu.OnRightBumper += NextSkin;  
-    }
-
-    public void InitSkinSelector()
-    {
         Position = player - 1;
-        Buttons = GetComponentsInChildren<Button>(true);
-        Images = GetComponentsInChildren<Image>(true);
-
-        Buttons[0].onClick.AddListener(() => PreviousSkin());
-        Buttons[1].onClick.AddListener(() => NextSkin());
     }
 
     #region With Triggers

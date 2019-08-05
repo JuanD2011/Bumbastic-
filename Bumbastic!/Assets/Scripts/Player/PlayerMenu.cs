@@ -35,7 +35,7 @@ public class PlayerMenu : MonoBehaviour
 
     private void Start()
     {
-        MenuCanvas.onMatchmaking += OnResetStatus;
+        MenuCanvas.OnMatchmaking += OnResetStatus;
     }
 
     private void OnResetStatus(bool _canActive)

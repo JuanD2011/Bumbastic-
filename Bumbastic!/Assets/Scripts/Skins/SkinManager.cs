@@ -1,50 +1,50 @@
 ﻿using UnityEngine;
-using TMPro;
 
 public class SkinManager : MonoBehaviour
 {
-    [SerializeField] SkinsDatabase skinsData = null;
-
-    [SerializeField] SkinSelector[] skinSelectors = new SkinSelector[0];
-
-    [SerializeField] TextMeshProUGUI[] skinNames = new TextMeshProUGUI[0];
+    public static SkinsDatabase skinsData = null;
 
     [SerializeField]
     private GameObject[] spawnPoints = new GameObject[0];
 
-    public delegate void DelSkinManager(bool _CanActive);
-    public static DelSkinManager OnSkinsSet;
+    public static event System.Action OnSkinsSet;
+
+    public static event System.Action OnUpdateHUD;
 
     private void Awake()
     {
+        OnUpdateHUD = null;
         OnSkinsSet = null;
+
+        skinsData = Resources.Load<SkinsDatabase>("ScriptableObjects/Skins data");
     }
 
     private void Start()
     {
-        MenuCanvas.onMatchmaking += SetSkins;
-        MenuCanvas.onMatchmaking += InitSkinSelectors;
+        MenuCanvas.OnMatchmaking += SetSkins;
 
-        foreach (SkinSelector skinSelector in skinSelectors)
-        {
-            skinSelector.OnChangeSkin += ChangeSkin;
-            skinSelector.InitSkinSelector();
-        }
+        MenuManager.menu.OnNewPlayerAdded += OnSetNewPlayerSkin;
+
+        SkinSelector.OnChangeSkin += ChangeSkin;
     }
 
-    private void InitSkinSelectors(bool _canActive)
+    private void OnSetNewPlayerSkin(byte _playerId)
     {
-        if (MenuManager.menu.Players.Count != 0)
+        for (int i = 0; i < skinsData.skins.Count; i++)
         {
-            for (int i = 0; i < MenuManager.menu.Players.Count; i++)
+            if (!skinsData.skins[i].choosed)
             {
-                for (int j = 0; j < skinSelectors[i].Buttons.Length; j++)
-                {
-                    skinSelectors[i].Buttons[j].enabled = _canActive;
-                    skinSelectors[i].Images[j].enabled = _canActive;
-                }
+                MenuManager.menu.Players[_playerId].Avatar = skinsData.skins[_playerId].prefab;
+                MenuManager.menu.Players[_playerId].PrefabName = skinsData.skins[_playerId].name;
+                MenuManager.menu.Players[_playerId].SkinSprite = skinsData.skins[_playerId].skinSprite;
+
+                skinsData.skins[i].choosed = true;
+
+                if (MenuManager.menu.Players[_playerId].transform.childCount <= 0)
+                    Instantiate(MenuManager.menu.Players[_playerId].Avatar, spawnPoints[_playerId].transform.localPosition, spawnPoints[_playerId].transform.rotation, MenuManager.menu.Players[_playerId].transform);
+                break;
             }
-        } 
+        }
     }
 
     private void ChangeSkin(int _player, int _skinPosition)
@@ -55,16 +55,12 @@ public class SkinManager : MonoBehaviour
         {
             if (MenuManager.menu.Players[_player].Avatar != skinsData.skins[_skinPosition].prefab)
             {
+                if (MenuManager.menu.Players[_player].transform.GetChild(0) != null) Destroy(MenuManager.menu.Players[_player].transform.GetChild(0).gameObject);
+
+                MenuManager.menu.Players[_player].Avatar = skinsData.skins[_skinPosition].prefab;
                 MenuManager.menu.Players[_player].PrefabName = skinsData.skins[_skinPosition].name;
                 MenuManager.menu.Players[_player].SkinSprite = skinsData.skins[_skinPosition].skinSprite;
-                skinNames[_player].text = skinsData.skins[_skinPosition].name;
 
-                if (MenuManager.menu.Players[_player].transform.GetChild(0) != null)
-                {
-                    Destroy(MenuManager.menu.Players[_player].transform.GetChild(0).gameObject);
-                }
-                
-                MenuManager.menu.Players[_player].Avatar = skinsData.skins[_skinPosition].prefab;
                 Instantiate(MenuManager.menu.Players[_player].Avatar, spawnPoints[_player].transform.localPosition, spawnPoints[_player].transform.rotation, MenuManager.menu.Players[_player].transform); 
             }
         }
@@ -81,26 +77,23 @@ public class SkinManager : MonoBehaviour
         {
             if (_canActive)
             {
-                if (i > skinsData.skins.Count)
-                {
-                    MenuManager.menu.Players[i].Avatar = skinsData.skins[0].prefab;
-                }
-                else
-                {
-                    MenuManager.menu.Players[i].Avatar = skinsData.skins[skinSelectors[i].Position].prefab;
-                }
+                if (i > skinsData.skins.Count) MenuManager.menu.Players[i].Avatar = skinsData.skins[0].prefab;
+                else MenuManager.menu.Players[i].Avatar = skinsData.skins[i].prefab;
 
-                skinNames[i].text = skinsData.skins[skinSelectors[i].Position].name;  
-                skinsData.skins[skinSelectors[i].Position].choosed = _canActive;
+                skinsData.skins[i].choosed = _canActive;
 
-                MenuManager.menu.Players[i].PrefabName = skinsData.skins[skinSelectors[i].Position].name;
-                MenuManager.menu.Players[i].SkinSprite = skinsData.skins[skinSelectors[i].Position].skinSprite;
+                MenuManager.menu.Players[i].PrefabName = skinsData.skins[i].name;
+                MenuManager.menu.Players[i].SkinSprite = skinsData.skins[i].skinSprite;
 
                 if (MenuManager.menu.Players[i].transform.childCount <= 0)
                     Instantiate(MenuManager.menu.Players[i].Avatar, spawnPoints[i].transform.localPosition, spawnPoints[i].transform.rotation, MenuManager.menu.Players[i].transform); 
             }
-            skinNames[i].enabled = _canActive;
         }
-        OnSkinsSet?.Invoke(_canActive);//MenuManager
+        OnSkinsSet?.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        SkinSelector.OnChangeSkin = null;
     }
 }

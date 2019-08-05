@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class MenuCanvas : CanvasBase
 {
-    [SerializeField] Settings settings;
-
     [SerializeField] string levelToLoad;
 
-    public static Action<bool> onMatchmaking;
+    [SerializeField] PlayerHUD[] playerHUDs = new PlayerHUD[4];
 
     public static bool isMatchmaking = false;
+
+    public static Action<bool> OnMatchmaking;
 
     protected override void Awake()
     {
@@ -19,8 +19,25 @@ public class MenuCanvas : CanvasBase
     private void Start()
     {
         PlayerMenu.OnBackButton += BackButton;
+
         MenuManager.menu.OnStartGame += LoadingScreen;
         MenuManager.menu.OnCountdown += Countdown;
+        MenuManager.menu.OnNewPlayerAdded += UpdateHUD;
+
+        SkinManager.OnSkinsSet += InitializeHUD;
+    }
+
+    private void UpdateHUD(byte _newPlayerID)
+    {
+        playerHUDs[_newPlayerID].gameObject.SetActive(true);
+    }
+
+    private void InitializeHUD()
+    {
+        for (int i = 0; i < MenuManager.menu.Players.Count; i++)
+        {
+            if (!playerHUDs[i].gameObject.activeInHierarchy) playerHUDs[i].gameObject.SetActive(true);
+        }
     }
 
     #region AnimationEvents
@@ -33,7 +50,7 @@ public class MenuCanvas : CanvasBase
     #region AnimatorStates
     private void Countdown(bool _bool)
     {
-        m_Animator.SetBool("Countdown",_bool);
+        m_Animator.SetBool("Countdown", _bool);
     }
 
     /// <summary>
@@ -50,7 +67,7 @@ public class MenuCanvas : CanvasBase
     {
         isMatchmaking = _bool;
         m_Animator.SetBool("Play",_bool);
-        onMatchmaking?.Invoke(_bool);//MenuCamManager, SkinManager, SkinSelector
+        OnMatchmaking?.Invoke(_bool);
     }
 
     public void ConfigurationPanel(bool _bool)
@@ -86,9 +103,7 @@ public class MenuCanvas : CanvasBase
         }
         else if (stateInfo.IsName(animatorStateNames[2]) || stateInfo.IsName(animatorStateNames[6]))//Matchmaking
         {
-
             MatchmakingPanel(false);
-            onMatchmaking?.Invoke(false);//MenuCamManager hears it.
         }
         else if (stateInfo.IsName(animatorStateNames[3]))//Credits
         {
@@ -107,6 +122,6 @@ public class MenuCanvas : CanvasBase
     private void OnDisable()
     {
         isMatchmaking = false;
-        onMatchmaking = null;
+        OnMatchmaking = null;
     }
 }

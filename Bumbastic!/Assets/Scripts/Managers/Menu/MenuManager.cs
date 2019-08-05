@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -19,15 +18,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private float startTimer = 5f;
     private float timer;
-
-    [SerializeField]
-    private TextMeshProUGUI[] texts = new TextMeshProUGUI[0];
-
-    [SerializeField]
-    private TextMeshProUGUI[] playersIDs = new TextMeshProUGUI[0];
-
-    [SerializeField]
-    private Image[] playerColors = new Image[0];
 
     [SerializeField]
     private TextMeshProUGUI countdownText = null;
@@ -53,6 +43,9 @@ public class MenuManager : MonoBehaviour
 
     public MenuCanvas menuCanvas;
 
+    public event System.Action<byte> OnNewPlayerAdded = null;
+    public event System.Action<byte> OnPlayerReadyOrNot = null;
+
     private void Awake()
     {
         if (menu == null) menu = this;
@@ -70,18 +63,14 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        AudioManager.instance.PlayMusic(AudioManager.instance.audioClips.inGameMusic, 0.6f, 0.6f, 0.6f);
         timer = startTimer;
+
+        AudioManager.instance.PlayMusic(AudioManager.instance.audioClips.inGameMusic, 0.6f, 0.6f, 0.6f);
 
         PlayerMenu.OnReady += PlayersReady;
         PlayerMenu.OnNotReady += PlayerNotReady;
-        SkinManager.OnSkinsSet += SetUpMatchMaking;
         InputManager.inputManager.OnDeviceAdded += AddNewPlayer;
-        InputManager.inputManager.OnDeviceAdded += SetPlayersColor;
-
-        SetPlayersColor();
     }
-
 
     void Update()
     {
@@ -93,7 +82,6 @@ public class MenuManager : MonoBehaviour
             {
                 if (!go)
                 {
-                    //AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.go, 1f);
                     switch (Translation.GetCurrentLanguage())
                     {
                         case Languages.en:
@@ -132,25 +120,8 @@ public class MenuManager : MonoBehaviour
         player.Id = (byte)Players.Count;
         Players.Add(player);
         maxPlayers = Players.Count;
-    }
-
-    private void SetPlayersColor()
-    {
-        for (int i = 0; i < Players.Count; i++)
-        {
-            Players[i].Color = settings.playersColor[i];
-            playerColors[i].color = Players[i].Color;
-        }
-    }
-
-    private void SetUpMatchMaking(bool _canActive)
-    {
-        for (int i = 0; i < Players.Count; i++)
-        {
-            playerColors[i].enabled = _canActive;
-            playersIDs[i].enabled = _canActive;
-            texts[i].enabled = _canActive;
-        }
+        
+        OnNewPlayerAdded?.Invoke(player.Id);
     }
 
     private void StartGame()
@@ -161,7 +132,7 @@ public class MenuManager : MonoBehaviour
             InGame.playerSettings.Add(new PlayerSettings(Players[i].PrefabName, Players[i].Avatar, Players[i].SkinSprite, Players[i].Color));
         }
         gameMode.GetNextGameMode();
-        OnStartGame?.Invoke("GameMode");//MenuUI hears it.
+        OnStartGame?.Invoke("GameMode");
     }
 
     public void InitializeFirstPlayers(int _gamepadCount)
@@ -173,55 +144,28 @@ public class MenuManager : MonoBehaviour
             Players.Add(player);
         }
         maxPlayers = _gamepadCount;
-        //InputManager.inputManager.AssignController(_joysticks);
     }
 
     public void PlayersReady(byte _id)
     {
+        OnPlayerReadyOrNot?.Invoke(_id);
+
         playersReady++;
 
-        switch (Translation.GetCurrentLanguage())
-        {
-            case Languages.en:
-                texts[_id].text = "Ready!"; 
-                break;
-            case Languages.es:
-                texts[_id].text = "¡Listo!"; 
-                break;
-            case Languages.unknown:
-                texts[_id].text = "Ready!"; 
-                break;
-            default:
-                break;
-        }
-
-        if (playersReady == maxPlayers && maxPlayers >= 2)
+        if (playersReady == maxPlayers && maxPlayers > 1)
         {
             countdown = true;
-            OnCountdown?.Invoke(true);//MenuUI hears it.
+            OnCountdown?.Invoke(true);
         }
     }
 
     public void PlayerNotReady(byte _id)
     {
+        OnPlayerReadyOrNot?.Invoke(_id);
         playersReady--;
-        switch (Translation.GetCurrentLanguage())
-        {
-            case Languages.en:
-                texts[_id].text = "Press Start";
-                break;
-            case Languages.es:
-                texts[_id].text = "Presiona Start";
-                break;
-            case Languages.unknown:
-                texts[_id].text = "Press Start";
-                break;
-            default:
-                break;
-        }
         countdown = false;
         timer = startTimer;
-        OnCountdown?.Invoke(false);//MenuUI hears it.
+        OnCountdown?.Invoke(false);
     }
 
     public void SaveData(int _id)

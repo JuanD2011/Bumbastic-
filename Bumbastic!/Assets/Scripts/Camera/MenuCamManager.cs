@@ -13,7 +13,7 @@ public class MenuCamManager : MonoBehaviour
 
     private void Start()
     {
-        MenuCanvas.onMatchmaking += SetMatchmakingCamera;
+        MenuCanvas.OnMatchmaking += SetMatchmakingCamera;
     }
 
     private void SetMatchmakingCamera(bool _bool)
