@@ -2762,7 +2762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLine: {fileID: 1971478358}
-  initialRotiation: {x: 0, y: 180, z: 0, w: 1}
+  initialRotiation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!1001 &433386985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5043,20 +5043,20 @@ MonoBehaviour:
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.Plugins.PlayerInput.PlayerInputManager+PlayerJoinedEvent,
-      Unity.InputSystem, Version=0.2.10.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.InputSystem.PlayerInput.PlayerInputManager+PlayerJoinedEvent,
+      Unity.InputSystem, Version=0.9.0.0, Culture=neutral, PublicKeyToken=null
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.Plugins.PlayerInput.PlayerInputManager+PlayerLeftEvent,
-      Unity.InputSystem, Version=0.2.10.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.InputSystem.PlayerInput.PlayerInputManager+PlayerLeftEvent,
+      Unity.InputSystem, Version=0.9.0.0, Culture=neutral, PublicKeyToken=null
   m_JoinAction:
     m_UseReference: 1
     m_Action:
       m_Name: Action
-      m_ExpectedControlLayout: 
+      m_Type: 0
+      m_ExpectedControlType: 
       m_Id: 5f5fffd0-22a5-4f05-a20f-0730dc86a531
-      m_Flags: 0
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -5647,10 +5647,10 @@ MonoBehaviour:
   - Menu_Matchmaking_Countdown_Cancel
   levelToLoad: GameMode
   playerHUDs:
-  - {fileID: 1844882225}
-  - {fileID: 2018999933}
-  - {fileID: 1503067056}
-  - {fileID: 1034422367}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &961455191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 50bf92d60d7289047bd426cbc934e8f3,
