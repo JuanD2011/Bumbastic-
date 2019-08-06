@@ -2762,7 +2762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLine: {fileID: 1971478358}
-  initialRotiation: {x: 0, y: 0, z: 0, w: 1}
+  initialRotiation: {x: 0, y: 180, z: 0, w: 1}
 --- !u!1001 &433386985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5647,10 +5647,10 @@ MonoBehaviour:
   - Menu_Matchmaking_Countdown_Cancel
   levelToLoad: GameMode
   playerHUDs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1844882225}
+  - {fileID: 2018999933}
+  - {fileID: 1503067056}
+  - {fileID: 1034422367}
 --- !u!4 &961455191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 50bf92d60d7289047bd426cbc934e8f3,
