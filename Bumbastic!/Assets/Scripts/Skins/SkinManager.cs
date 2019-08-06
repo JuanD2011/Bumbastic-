@@ -33,7 +33,7 @@ public class SkinManager : MonoBehaviour
 
     private void InitSkinsWNewPlayers(bool _isMatchmaking)
     {
-        if (!_isMatchmaking || newPlayersJoined.Count <= 0) return;
+        if (!_isMatchmaking && newPlayersJoined.Count <= 0) return;
 
         spawnLine.InitDistanceBetweenPlayers();
 
