@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Plugins.PlayerInput;
+using UnityEngine.InputSystem.PlayerInput;
 
 public class Player : MonoBehaviour
 {

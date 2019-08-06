@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Plugins.PlayerInput;
+using UnityEngine.InputSystem.PlayerInput;
 
 public class PlayerMenu : MonoBehaviour
 {
