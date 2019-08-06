@@ -11,15 +11,11 @@ public class SpawnLine : MonoBehaviour
 
     private void Start()
     {
-        MenuManager.menu.OnNewPlayerAdded += (byte _playerID) => distanceBetweenPlayers = lineVector.magnitude / (MenuManager.menu.Players.Count + 1);
-
         lineVector = spawnLine[0].position - spawnLine[1].position;
         midPoint = Mathf.Abs((spawnLine[0].position.x - spawnLine[1].position.x)) / 2;
-
-        InitDistanceBetweenPlayers();
     }
 
-    private void InitDistanceBetweenPlayers()
+    public void InitDistanceBetweenPlayers()
     {
         distanceBetweenPlayers = lineVector.magnitude / (MenuManager.menu.Players.Count + 1);
     }
