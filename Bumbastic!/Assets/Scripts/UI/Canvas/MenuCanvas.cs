@@ -124,6 +124,5 @@ public class MenuCanvas : CanvasBase
     {
         isMatchmaking = false;
         OnMatchmaking = null;
-        MenuManager.menu.OnNewPlayerAdded -= UpdateHUD;
     }
 }
