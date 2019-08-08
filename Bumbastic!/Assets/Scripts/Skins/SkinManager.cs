@@ -28,7 +28,7 @@ public class SkinManager : MonoBehaviour
 
         MenuManager.menu.OnNewPlayerAdded += OnQueuePlayer;
 
-        PlayerInputHandler.OnPlayerDeviceLost += UpdateSkinDeviceChanged;
+        //PlayerInputHandler.OnPlayerDeviceLost += UpdateSkinDeviceChanged;
 
         SkinSelector.OnChangeSkin += ChangeSkin;
     }
@@ -45,7 +45,7 @@ public class SkinManager : MonoBehaviour
                 {
                     skinsData.skins[i].choosed = false;
                     playerMenuDeviceModified.Avatar = null;
-                    Destroy(playerMenuDeviceModified.transform.GetChild(0));
+                    Destroy(playerMenuDeviceModified.transform.GetChild(0).gameObject);
                     UpdateSkinsPosition();
                     break;
                 } 

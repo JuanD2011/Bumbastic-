@@ -24,12 +24,15 @@ public class MenuCanvas : CanvasBase
         MenuManager.menu.OnCountdown += Countdown;
         MenuManager.menu.OnNewPlayerAdded += UpdateHUD;
 
+        PlayerInputHandler.OnPlayerDeviceLost += UpdateHUD;
+
         SkinManager.OnSkinsSet += InitializeHUD;
     }
 
-    private void UpdateHUD(byte _newPlayerID)
+    private void UpdateHUD(byte _playerID)
     {
-        playerHUDs[_newPlayerID].gameObject.SetActive(true);
+        if (!playerHUDs[_playerID].gameObject.activeInHierarchy) playerHUDs[_playerID].gameObject.SetActive(true);
+        else playerHUDs[_playerID].gameObject.SetActive(false);
     }
 
     private void InitializeHUD()
