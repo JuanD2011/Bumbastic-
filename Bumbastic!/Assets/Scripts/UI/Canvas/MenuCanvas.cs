@@ -127,5 +127,6 @@ public class MenuCanvas : CanvasBase
     {
         isMatchmaking = false;
         OnMatchmaking = null;
+        PlayerInputHandler.OnPlayerDeviceLost -= UpdateHUD;
     }
 }
