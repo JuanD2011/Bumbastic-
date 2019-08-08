@@ -28,14 +28,48 @@ public class SkinManager : MonoBehaviour
 
         MenuManager.menu.OnNewPlayerAdded += OnQueuePlayer;
 
+        PlayerInputHandler.OnPlayerDeviceLost += UpdateSkinDeviceChanged;
+
         SkinSelector.OnChangeSkin += ChangeSkin;
+    }
+
+    private void UpdateSkinDeviceChanged(byte _playerID)
+    {
+        PlayerMenu playerMenuDeviceModified = MenuManager.menu.Players[_playerID];
+
+        if (playerMenuDeviceModified.transform.GetChild(0) != null)
+        {
+            for (int i = 0; i < skinsData.skins.Count; i++)
+            {
+                if (skinsData.skins[i].prefab == playerMenuDeviceModified.Avatar)
+                {
+                    skinsData.skins[i].choosed = false;
+                    playerMenuDeviceModified.Avatar = null;
+                    Destroy(playerMenuDeviceModified.transform.GetChild(0));
+                    UpdateSkinsPosition();
+                    break;
+                } 
+            }
+        }
+        else
+        {
+            for (int i = 0; i < skinsData.skins.Count; i++)
+            {
+                if (skinsData.skins[i].choosed == false)
+                {
+                    skinsData.skins[i].choosed = true;
+                    playerMenuDeviceModified.Avatar = skinsData.skins[i].prefab;
+                    Instantiate(playerMenuDeviceModified.Avatar, spawnLine.GetSpawnPoint(playerMenuDeviceModified.Id + 1), initialRotiation, playerMenuDeviceModified.transform);
+                    UpdateSkinsPosition();
+                    break;
+                }
+            }
+        }
     }
 
     private void InitSkinsWNewPlayers(bool _isMatchmaking)
     {
         if (!_isMatchmaking && newPlayersJoined.Count <= 0) return;
-
-        spawnLine.InitDistanceBetweenPlayers();
 
         PlayerMenu playerMenu = null;
 
@@ -57,6 +91,13 @@ public class SkinManager : MonoBehaviour
                 }
             }
         }
+
+        UpdateSkinsPosition();
+    }
+
+    private void UpdateSkinsPosition()
+    {
+        spawnLine.InitDistanceBetweenPlayers();
 
         foreach (PlayerMenu _playerMenu in MenuManager.menu.Players)
         {
@@ -117,5 +158,6 @@ public class SkinManager : MonoBehaviour
     private void OnDisable()
     {
         SkinSelector.OnChangeSkin = null;
+        PlayerInputHandler.OnPlayerDeviceLost -= UpdateSkinDeviceChanged;
     }
 }
