@@ -70,6 +70,7 @@ public class MenuManager : MonoBehaviour
         PlayerMenu.OnReady += PlayersReady;
         PlayerMenu.OnNotReady += PlayerNotReady;
         InputManager.inputManager.OnDeviceAdded += AddNewPlayer;
+        PlayerInputHandler.OnPlayerDeviceLost += RemovePlayer;
     }
 
     void Update()
@@ -171,5 +172,21 @@ public class MenuManager : MonoBehaviour
     public void SaveData(int _id)
     {
         Memento.SaveData(_id);
+    }
+
+    private void RemovePlayer(byte _id)
+    {
+        foreach (PlayerMenu player in Players)
+        {
+            if (player.Id == _id)
+            {
+                Destroy(player.gameObject);
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        PlayerInputHandler.OnPlayerDeviceLost -= RemovePlayer;
     }
 }
