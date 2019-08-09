@@ -14,9 +14,23 @@ public class Translation
     public static Dictionary<int, string> idToLanguage = new Dictionary<int, string>{ { 0, "en" }, { 1, "es" } };
     public static byte currentLanguageId = 0;
 
-    public static Action OnLoadedLanguage;
+    public static event Action OnLoadedLanguage;
 
     public static Dictionary<String, String> Fields { get; private set; }
+
+    public static Languages LanguageFirstLoaded { get; private set; } = Languages.unknown;
+
+    public static bool HasLanguageChanged
+    {
+        get
+        {
+            if (LanguageFirstLoaded != GetCurrentLanguage())
+            {
+                return true;
+            }
+            return false;
+        }
+    }
 
     public static Languages GetCurrentLanguage()
     {
@@ -31,7 +45,7 @@ public class Translation
                 currentLanguage = Languages.es;
                 break;
             default:
-                currentLanguage = Languages.en;
+                currentLanguage = Languages.unknown;
                 break;
         }
         return currentLanguage;
@@ -53,10 +67,10 @@ public class Translation
 
         Fields.Clear();
         string lang = _Language;
-        var textAsset = Resources.Load(@"Languages/" + lang); //no .txt needed
+        var textAsset = Resources.Load(@"Languages/" + lang);
         string allTexts = "";
         if (textAsset == null)
-            textAsset = Resources.Load(@"Languages/en") as TextAsset; //no .txt needed
+            textAsset = Resources.Load(@"Languages/en") as TextAsset;
         if (textAsset == null)
             Debug.LogError("File not found for I18n: Assets/Resources/Languages/" + lang + ".txt");
         allTexts = (textAsset as TextAsset).text;
@@ -71,6 +85,25 @@ public class Translation
                 Fields.Add(key, value);
             }
         }
+
+        if (LanguageFirstLoaded == Languages.unknown) SetFirstLanguageLoaded(lang);
+
         OnLoadedLanguage?.Invoke();
+    }
+
+    private static void SetFirstLanguageLoaded(string _lang)
+    {
+        switch (_lang)
+        {
+            case "en":
+                LanguageFirstLoaded = Languages.en;
+                break;
+            case "es":
+                LanguageFirstLoaded = Languages.es;
+                break;
+            default:
+                LanguageFirstLoaded = Languages.unknown;
+                break;
+        }
     }
 }

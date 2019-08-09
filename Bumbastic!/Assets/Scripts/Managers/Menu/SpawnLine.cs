@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class SpawnLine : MonoBehaviour
 {
     [SerializeField] Transform[] spawnLine = new Transform[2];
+    [SerializeField] Quaternion initialRotiation = Quaternion.identity;
 
     [Tooltip("Only works when the limit of player haven't been reached.")]
     [SerializeField] float spacing = 0f;
@@ -13,17 +16,65 @@ public class SpawnLine : MonoBehaviour
     Vector3 lineVector = Vector3.zero;
     private float distanceBetweenPlayers = 0f;
 
+    List<PlayerMenu> activePlayers = new List<PlayerMenu>();
+
+    public static event System.Action<List<PlayerMenu>> OnActivePlayersSorted;
+
+    private void Awake()
+    {
+        OnActivePlayersSorted = null;
+    }
+
     private void Start()
     {
         lineVector = spawnLine[0].position - spawnLine[1].position;
         midPoint = Mathf.Abs(spawnLine[0].position.x - spawnLine[1].position.x) / 2;
     }
 
-    public void InitDistanceBetweenPlayers()
+    private void InitDistanceBetweenPlayers()
     {
         distanceBetweenPlayers = lineVector.magnitude / (GetNumberOfActivePlayers() + 1);
         if (GetNumberOfActivePlayers() >= 4) useSpacing = false;
         else useSpacing = true;
+    }
+
+    public void InitPlayersPosition()
+    {
+        activePlayers.Clear();
+        InitDistanceBetweenPlayers();
+
+        foreach (PlayerMenu playerMenu in MenuManager.menu.Players)
+        {
+            if (playerMenu.Avatar != null)
+            {
+                activePlayers.Add(playerMenu);
+            }
+        }
+
+        if (activePlayers.Count <= 0) return;
+
+        activePlayers = activePlayers.OrderBy(w => w.Id).ToList();
+
+        for (int i = 0; i < activePlayers.Count; i++)
+        {
+            activePlayers[i].transform.GetChild(0).position = GetSpawnPoint(i + 1);
+            activePlayers[i].transform.GetChild(0).rotation = initialRotiation;
+        }
+
+        OnActivePlayersSorted?.Invoke(activePlayers);
+    }
+
+    public void SetPlayerPosition(int _playerID)
+    {
+        for (int i = 0; i < activePlayers.Count; i++)
+        {
+            if (activePlayers[i].Id == _playerID)
+            {
+                activePlayers[i].transform.GetChild(1).position = GetSpawnPoint(i + 1);
+                activePlayers[i].transform.GetChild(1).rotation = initialRotiation;
+                break;
+            }
+        }
     }
 
     private int GetNumberOfActivePlayers()
@@ -32,13 +83,16 @@ public class SpawnLine : MonoBehaviour
 
         foreach (PlayerMenu playerMenu in MenuManager.menu.Players)
         {
-            if (playerMenu.Avatar != null) result++;
+            if (playerMenu.Avatar != null)
+            {
+                result++;
+            } 
         }
 
         return result;
     }
 
-    public Vector3 GetSpawnPoint(int _index)
+    private Vector3 GetSpawnPoint(int _index)
     {
         Vector3 result = Vector3.zero;
 

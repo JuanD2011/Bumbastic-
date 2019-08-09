@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PlayerHUD : MonoBehaviour
 {
@@ -8,26 +9,35 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] Image m_image = null;
     [SerializeField] TextMeshProUGUI m_ReadyText = null;
     [SerializeField] TextMeshProUGUI m_SkinName = null;
+    [SerializeField] TextMeshProUGUI m_PlayerNumber = null;
 
     [SerializeField] Settings settings = null;
 
-    private void Awake()
-    {
-        PlayerInputHandler.OnPlayerDeviceRegained -= UpdateMyInfo;
-    }
-
     private void Start()
     {
-        MenuManager.menu.OnPlayerReadyOrNot += SetReadyText;
         SkinManager.OnSkinChanged += UpdateMyInfo;
 
         PlayerInputHandler.OnPlayerDeviceRegained += UpdateMyInfo;
 
+        PlayerMenu.OnReady += SetReadyText;
+        PlayerMenu.OnNotReady += SetReadyText;
+
         MenuManager.menu.Players[iD].Color = settings.playersColor[iD];
         m_image.color = settings.playersColor[iD];
 
+        MenuCanvas.OnMatchmaking += MenuCanvas_OnMatchmaking;
+
+        SpawnLine.OnActivePlayersSorted += UpdateMyNumberOfPlayer;
+
         SetReadyText(iD);
         UpdateMyInfo(iD);
+    }
+
+    private void MenuCanvas_OnMatchmaking(bool _isMatchmaking)
+    {
+        if (!_isMatchmaking) return;
+
+        SetReadyText(iD);
     }
 
     private void UpdateMyInfo(int _playerID)
@@ -42,23 +52,21 @@ public class PlayerHUD : MonoBehaviour
         m_SkinName.SetText(MenuManager.menu.Players[iD].PrefabName);
     }
 
+    private void UpdateMyNumberOfPlayer(List<PlayerMenu> _activePlayers)
+    {
+        for (int i = 0; i < _activePlayers.Count; i++)
+        {
+            if (_activePlayers[i].Id == iD)
+            {
+                m_PlayerNumber.text = Translation.Fields[string.Format("P{0}", i + 1)];
+            }
+        }
+    }
+
     private void SetReadyText(byte _id)
     {
         if (_id != iD) return;
 
-        switch (Translation.GetCurrentLanguage())
-        {
-            case Languages.en:
-                m_ReadyText.text = (MenuManager.menu.Players[_id].Ready) ? "Ready!" : "Press Start";
-                break;
-            case Languages.es:
-                m_ReadyText.text = (MenuManager.menu.Players[_id].Ready) ? "¡Listo!" : "Presiona Start";
-                break;
-            case Languages.unknown:
-                m_ReadyText.text = (MenuManager.menu.Players[_id].Ready) ? "Ready!" : "Press Start";
-                break;
-            default:
-                break;
-        }
+        m_ReadyText.text = (MenuManager.menu.Players[_id].Ready) ? Translation.Fields["Ready"] : Translation.Fields["Start"];
     }
 }

@@ -21,7 +21,7 @@ public class SkinSelector : MonoBehaviour
         PlayerMenu.OnLeftBumper += PreviousSkin;
         PlayerMenu.OnRightBumper += NextSkin;
 
-        SkinManager.OnUpdatePosition += SetPosition;
+        SkinManager.OnUpdateSkinSelectorsPosition += SetPosition;
         position = iD;
     }
 

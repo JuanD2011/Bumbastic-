@@ -25,20 +25,7 @@ public class CanvasBillboard : MonoBehaviour
 
     private void Start()
     {
-        switch (Translation.GetCurrentLanguage())
-        {
-            case Languages.en:
-                playersText[0].text = string.Format("P{0}", player.Id + 1);
-                break;
-            case Languages.es:
-                playersText[0].text = string.Format("J{0}", player.Id + 1);
-                break;
-            case Languages.unknown:
-                playersText[0].text = string.Format("P{0}", player.Id + 1);
-                break;
-            default:
-                break;
-        }
+        playersText[0].text = Translation.Fields[string.Format("P{0}", player.Id + 1)];
         playerColor.color = settings.playersColor[player.Id];
         playersText[1].text = string.Format("{0}", player.PrefabName);
 

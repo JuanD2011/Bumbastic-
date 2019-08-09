@@ -28,7 +28,7 @@ public class MenuManager : MonoBehaviour
     private bool countdown = false;
     bool go = false;
 
-    private byte playersReady = 0;
+    private int playersReady = 0;
     private int maxPlayers = 0;
 
     List<PlayerMenu> players = new List<PlayerMenu>();
@@ -44,7 +44,6 @@ public class MenuManager : MonoBehaviour
     public MenuCanvas menuCanvas;
 
     public event System.Action<byte> OnNewPlayerAdded = null;
-    public event System.Action<byte> OnPlayerReadyOrNot = null;
 
     private void Awake()
     {
@@ -82,20 +81,7 @@ public class MenuManager : MonoBehaviour
             {
                 if (!go)
                 {
-                    switch (Translation.GetCurrentLanguage())
-                    {
-                        case Languages.en:
-                            countdownText.text = "Go!";
-                            break;
-                        case Languages.es:
-                            countdownText.text = "¡Vamos!";
-                            break;
-                        case Languages.unknown:
-                            countdownText.text = "Go!";
-                            break;
-                        default:
-                            break;
-                    }
+                    countdownText.text = Translation.Fields["Go"];
                     go = true;
                 }
             }
@@ -153,9 +139,7 @@ public class MenuManager : MonoBehaviour
 
     public void PlayersReady(byte _id)
     {
-        OnPlayerReadyOrNot?.Invoke(_id);
-
-        playersReady++;
+        playersReady = (playersReady > maxPlayers) ? playersReady = maxPlayers : playersReady += 1;
 
         if (playersReady == maxPlayers && maxPlayers > 1)
         {
@@ -166,10 +150,11 @@ public class MenuManager : MonoBehaviour
 
     public void PlayerNotReady(byte _id)
     {
-        OnPlayerReadyOrNot?.Invoke(_id);
-        playersReady--;
+        playersReady = (playersReady > 0) ? playersReady -= 1 : playersReady = 0;
+
         countdown = false;
         timer = startTimer;
+
         OnCountdown?.Invoke(false);
     }
 

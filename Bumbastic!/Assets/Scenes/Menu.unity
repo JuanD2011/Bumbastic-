@@ -2748,7 +2748,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLine: {fileID: 1971478358}
-  initialRotiation: {x: 0, y: 180, z: 0, w: 1}
 --- !u!1001 &433386985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6260,6 +6259,7 @@ MonoBehaviour:
   m_image: {fileID: 2095008754}
   m_ReadyText: {fileID: 135899083}
   m_SkinName: {fileID: 318992830}
+  m_PlayerNumber: {fileID: 1652605478}
   settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
 --- !u!1001 &1055024701
 PrefabInstance:
@@ -8292,6 +8292,7 @@ MonoBehaviour:
   m_image: {fileID: 130717593}
   m_ReadyText: {fileID: 1981430499}
   m_SkinName: {fileID: 1796041207}
+  m_PlayerNumber: {fileID: 1075956917}
   settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
 --- !u!4 &1509140775 stripped
 Transform:
@@ -11248,6 +11249,7 @@ MonoBehaviour:
   m_image: {fileID: 128653489}
   m_ReadyText: {fileID: 1184597499}
   m_SkinName: {fileID: 548230776}
+  m_PlayerNumber: {fileID: 233318212}
   settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
 --- !u!1 &1871031546
 GameObject:
@@ -11930,6 +11932,7 @@ MonoBehaviour:
   spawnLine:
   - {fileID: 434030136}
   - {fileID: 2007695983}
+  initialRotiation: {x: 0, y: 180, z: 0, w: 1}
   spacing: 1.2
 --- !u!4 &1971478359
 Transform:
@@ -12495,6 +12498,7 @@ MonoBehaviour:
   m_image: {fileID: 1751687089}
   m_ReadyText: {fileID: 1159906182}
   m_SkinName: {fileID: 1655584806}
+  m_PlayerNumber: {fileID: 2103003502}
   settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
 --- !u!4 &2024196430 stripped
 Transform:

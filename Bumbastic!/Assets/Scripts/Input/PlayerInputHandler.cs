@@ -25,4 +25,10 @@ public class PlayerInputHandler : MonoBehaviour
         Debug.Log("Device regained");
         if (playerMenu != null) OnPlayerDeviceRegained?.Invoke(playerMenu.Id);
     }
+
+    private void OnDisable()
+    {
+        OnPlayerDeviceLost = null;
+        OnPlayerDeviceRegained = null;
+    }
 }

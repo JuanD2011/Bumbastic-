@@ -357,25 +357,25 @@
                 },
                 {
                     "name": "Submit",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "bd8af8d1-ae3a-43e0-a62d-b223577930f0",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
                 },
                 {
                     "name": "Back",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "d03f3e76-c25b-42bb-9ee7-b5a212ab6d38",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
                 },
                 {
                     "name": "Start",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "fd9efb46-8286-47c3-a7ae-ece3b6f326b9",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
                 },
@@ -525,7 +525,7 @@
                     "name": "",
                     "id": "9e23b6df-7ca3-429b-bc42-93e09f609adc",
                     "path": "<DualShockGamepad>/buttonSouth",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "PS4",
                     "action": "Submit",

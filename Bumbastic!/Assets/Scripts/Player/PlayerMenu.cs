@@ -4,33 +4,18 @@ using UnityEngine.InputSystem.PlayerInput;
 
 public class PlayerMenu : MonoBehaviour
 {
-    private byte id;
-    string prefabName;
-    private bool ready = false;
-    Sprite skinSprite;
-    Color color;
+    public bool Ready { get; private set; } = false;
+    public GameObject Avatar { get; set; } = null;
+    public byte Id { get; set; } = 0;
+    public string PrefabName { get; set; } = "";
+    public Sprite SkinSprite { get; set; } = null;
+    public Color Color { get; set; } = Color.white;
+    public PlayerInput PlayerInput { get; private set; } = null;
 
-    public bool Ready { get => ready; }
-    public GameObject Avatar { get => avatar; set => avatar = value; }
-    public byte Id { get => id; set => id = value; }
-    public string PrefabName { get => prefabName; set => prefabName = value; }
-    public Sprite SkinSprite { get => skinSprite; set => skinSprite = value; }
-    public Color Color { get => color; set => color = value; }
+    public static event System.Action<byte> OnReady, OnNotReady;
 
-    public PlayerInput PlayerInput { get; private set; }
-
-    public delegate void ReadyDelegate(byte id);
-    public static ReadyDelegate OnReady;
-    public static ReadyDelegate OnNotReady;
-
-    public delegate void ButtonsDelegate(byte id);
-    public static ButtonsDelegate OnBackButton;
-    public static ButtonsDelegate OnAcceptButton;
-    public static ButtonsDelegate OnStartButton;
-    public static ButtonsDelegate OnLeftBumper;
-    public static ButtonsDelegate OnRightBumper;
-
-    public static System.Action<float> OnScrollingAxis;
+    public static System.Action<byte> OnBackButton, OnAcceptButton, OnStartButton, OnLeftBumper, OnRightBumper;
+    public static event System.Action<float> OnScrollingAxis;
 
     [SerializeField]
     private GameObject avatar;
@@ -49,7 +34,7 @@ public class PlayerMenu : MonoBehaviour
     {
         if (!_isMatchmaking)
         {
-            ready = false;
+            Ready = false;
             OnNotReady?.Invoke(Id);
         }
     }
@@ -70,9 +55,9 @@ public class PlayerMenu : MonoBehaviour
     {
         if (MenuCanvas.isMatchmaking)
         {
-            if (!ready)
+            if (!Ready)
             {
-                ready = true;
+                Ready = true;
                 OnReady?.Invoke(Id);
             }
         }
@@ -88,9 +73,9 @@ public class PlayerMenu : MonoBehaviour
     {
         if (MenuCanvas.isMatchmaking)
         {
-            if (!ready)
+            if (!Ready)
             {
-                ready = true;
+                Ready = true;
                 OnReady?.Invoke(Id);
             }
         }
@@ -99,16 +84,16 @@ public class PlayerMenu : MonoBehaviour
 
     public void OnBack()
     {
-        if (!ready)
+        if (!Ready)
         {
             OnBackButton?.Invoke(Id);
         }
         if (MenuCanvas.isMatchmaking)
         {
-            if (ready)
+            if (Ready)
             {
-                ready = false;
-                OnNotReady?.Invoke(id);
+                Ready = false;
+                OnNotReady?.Invoke(Id);
             }
         }
     }
