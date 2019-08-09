@@ -21,10 +21,21 @@ public class SpawnLine : MonoBehaviour
 
     public void InitDistanceBetweenPlayers()
     {
-        distanceBetweenPlayers = lineVector.magnitude / (MenuManager.menu.Players.Count + 1);
-
-        if (MenuManager.menu.Players.Count >= 4) useSpacing = false;
+        distanceBetweenPlayers = lineVector.magnitude / (GetNumberOfActivePlayers() + 1);
+        if (GetNumberOfActivePlayers() >= 4) useSpacing = false;
         else useSpacing = true;
+    }
+
+    private int GetNumberOfActivePlayers()
+    {
+        int result = 0;
+
+        foreach (PlayerMenu playerMenu in MenuManager.menu.Players)
+        {
+            if (playerMenu.Avatar != null) result++;
+        }
+
+        return result;
     }
 
     public Vector3 GetSpawnPoint(int _index)

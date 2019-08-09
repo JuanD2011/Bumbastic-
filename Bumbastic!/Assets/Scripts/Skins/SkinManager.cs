@@ -13,10 +13,13 @@ public class SkinManager : MonoBehaviour
     public static event System.Action OnSkinsSet;
     public static event System.Action<int> OnSkinChanged;
 
+    public static event System.Action<int, byte> OnUpdatePosition;
+
     private void Awake()
     {
         OnSkinsSet = null;
         OnSkinChanged = null;
+        OnUpdatePosition = null;
 
         skinsData = Resources.Load<SkinsDatabase>("ScriptableObjects/Skins data");
     }
@@ -24,27 +27,46 @@ public class SkinManager : MonoBehaviour
     private void Start()
     {
         MenuCanvas.OnMatchmaking += InitSkinsWCurrentPlayers;
-        MenuCanvas.OnMatchmaking += InitSkinsWNewPlayers;
 
         MenuManager.menu.OnNewPlayerAdded += OnQueuePlayer;
         SkinSelector.OnChangeSkin += ChangeSkin;
+
+        PlayerInputHandler.OnPlayerDeviceLost += UpdateSkinDeviceChanged;
+        PlayerInputHandler.OnPlayerDeviceRegained += UpdateSkinDeviceChanged;
     }
 
-    public static void UpdateSkinDeviceChanged(PlayerMenu _player)
+    private void UpdateSkinDeviceChanged(byte _playerID)
     {
+        PlayerMenu playerMenuToBeUpdated = MenuManager.menu.Players[_playerID];
+
         for (int i = 0; i < skinsData.skins.Count; i++)
         {
-            if (skinsData.skins[i].prefab == _player.Avatar)
+            if (skinsData.skins[i].prefab == playerMenuToBeUpdated.Avatar && playerMenuToBeUpdated.transform.childCount > 0)
             {
                 skinsData.skins[i].choosed = false;
+                playerMenuToBeUpdated.Avatar = null;
+                Destroy(playerMenuToBeUpdated.transform.GetChild(0).gameObject);
+                break;
+            }
+            else if (playerMenuToBeUpdated.transform.childCount <= 0 && skinsData.skins[i].choosed == false)
+            {
+                skinsData.skins[i].choosed = true;
+
+                OnUpdatePosition?.Invoke(i, playerMenuToBeUpdated.Id);
+
+                UpdatePlayersSkinInfo(playerMenuToBeUpdated, skinsData.skins[i]);
+
+                Instantiate(playerMenuToBeUpdated.Avatar, spawnLine.GetSpawnPoint(playerMenuToBeUpdated.Id + 1), initialRotiation, playerMenuToBeUpdated.transform);
                 break;
             }
         }
+
+        UpdateSkinsPosition();
     }
 
     private void InitSkinsWNewPlayers(bool _isMatchmaking)
     {
-        if (!_isMatchmaking && newPlayersJoined.Count <= 0) return;
+        if (!_isMatchmaking || newPlayersJoined.Count <= 0) return;
 
         PlayerMenu playerMenu = null;
 
@@ -56,9 +78,8 @@ public class SkinManager : MonoBehaviour
                 {
                     skinsData.skins[i].choosed = true;
                     playerMenu = newPlayersJoined.Dequeue();
-                    playerMenu.Avatar = skinsData.skins[i].prefab;
-                    playerMenu.PrefabName = skinsData.skins[i].name;
-                    playerMenu.SkinSprite = skinsData.skins[i].skinSprite;
+
+                    UpdatePlayersSkinInfo(playerMenu, skinsData.skins[i]);
 
                     if (playerMenu.transform.childCount == 0)
                         Instantiate(playerMenu.Avatar, spawnLine.GetSpawnPoint(playerMenu.Id + 1), initialRotiation, playerMenu.transform);
@@ -74,9 +95,9 @@ public class SkinManager : MonoBehaviour
     {
         spawnLine.InitDistanceBetweenPlayers();
 
-        foreach (PlayerMenu _playerMenu in MenuManager.menu.Players)
+        foreach (PlayerMenu playerMenu in MenuManager.menu.Players)
         {
-            _playerMenu.transform.GetChild(0).position = spawnLine.GetSpawnPoint(_playerMenu.Id + 1);
+            if (playerMenu.transform.childCount > 0) playerMenu.transform.GetChild(0).position = spawnLine.GetSpawnPoint(playerMenu.Id + 1);
         }
     }
 
@@ -101,9 +122,7 @@ public class SkinManager : MonoBehaviour
         {
             skinsData.skins[i].choosed = true;
 
-            MenuManager.menu.Players[i].Avatar = skinsData.skins[i].prefab;
-            MenuManager.menu.Players[i].PrefabName = skinsData.skins[i].name;
-            MenuManager.menu.Players[i].SkinSprite = skinsData.skins[i].skinSprite;
+            UpdatePlayersSkinInfo(MenuManager.menu.Players[i], skinsData.skins[i]);
 
             if (MenuManager.menu.Players[i].transform.childCount <= 0)
                 Instantiate(MenuManager.menu.Players[i].Avatar, spawnLine.GetSpawnPoint(i + 1), initialRotiation, MenuManager.menu.Players[i].transform);
@@ -111,6 +130,7 @@ public class SkinManager : MonoBehaviour
 
         OnSkinsSet?.Invoke();
         MenuCanvas.OnMatchmaking -= InitSkinsWCurrentPlayers;
+        MenuCanvas.OnMatchmaking += InitSkinsWNewPlayers;
     }
 
     private void ChangeSkin(int _playerID, int _skinPosition)
@@ -119,9 +139,7 @@ public class SkinManager : MonoBehaviour
 
         Destroy(MenuManager.menu.Players[_playerID].transform.GetChild(0).gameObject);
 
-        MenuManager.menu.Players[_playerID].Avatar = skinsData.skins[_skinPosition].prefab;
-        MenuManager.menu.Players[_playerID].PrefabName = skinsData.skins[_skinPosition].name;
-        MenuManager.menu.Players[_playerID].SkinSprite = skinsData.skins[_skinPosition].skinSprite;
+        UpdatePlayersSkinInfo(MenuManager.menu.Players[_playerID], skinsData.skins[_skinPosition]);
 
         Instantiate(MenuManager.menu.Players[_playerID].Avatar, spawnLine.GetSpawnPoint(_playerID + 1), initialRotiation, MenuManager.menu.Players[_playerID].transform);
 
@@ -130,8 +148,17 @@ public class SkinManager : MonoBehaviour
         OnSkinChanged?.Invoke(_playerID);
     }
 
+    private void UpdatePlayersSkinInfo(PlayerMenu _playerMenu, Skin _skinSource)
+    {
+        _playerMenu.Avatar = _skinSource.prefab;
+        _playerMenu.PrefabName = _skinSource.name;
+        _playerMenu.SkinSprite = _skinSource.skinSprite;
+    }
+
     private void OnDisable()
     {
         SkinSelector.OnChangeSkin = null;
+        PlayerInputHandler.OnPlayerDeviceLost -= UpdateSkinDeviceChanged;
+        PlayerInputHandler.OnPlayerDeviceRegained -= UpdateSkinDeviceChanged;
     }
 }

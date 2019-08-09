@@ -73,7 +73,7 @@ public class PlayerMenu : MonoBehaviour
             if (!ready)
             {
                 ready = true;
-                OnReady?.Invoke(Id);//MenuManager hears it
+                OnReady?.Invoke(Id);
             }
         }
         OnAcceptButton?.Invoke(Id);
@@ -91,7 +91,7 @@ public class PlayerMenu : MonoBehaviour
             if (!ready)
             {
                 ready = true;
-                OnReady?.Invoke(Id);//MenuManager hears it
+                OnReady?.Invoke(Id);
             }
         }
         OnStartButton?.Invoke(Id);
@@ -101,14 +101,14 @@ public class PlayerMenu : MonoBehaviour
     {
         if (!ready)
         {
-            OnBackButton?.Invoke(Id);//MenuUI hears it 
+            OnBackButton?.Invoke(Id);
         }
         if (MenuCanvas.isMatchmaking)
         {
             if (ready)
             {
                 ready = false;
-                OnNotReady?.Invoke(id);//MenuManager hears it
+                OnNotReady?.Invoke(id);
             }
         }
     }
@@ -117,7 +117,7 @@ public class PlayerMenu : MonoBehaviour
     {
         if (!Gamepad.current.rightShoulder.wasPressedThisFrame)
         {
-            OnLeftBumper?.Invoke(Id);//SkinSelector hears it.  
+            OnLeftBumper?.Invoke(Id);
         }
     }
 
@@ -125,7 +125,7 @@ public class PlayerMenu : MonoBehaviour
     {
         if (!Gamepad.current.leftShoulder.wasPressedThisFrame)
         {
-            OnRightBumper?.Invoke(Id);//SkinSelector hears it.  
+            OnRightBumper?.Invoke(Id);
         }
     }
 }

@@ -6,73 +6,61 @@ public class SkinSelector : MonoBehaviour
     [SerializeField] int player = 0;
     int position = 0;
 
+    private int iD = 0;
+
     public delegate void DelSkinSelector(int _player, int _position);
     public static DelSkinSelector OnChangeSkin;
 
-    public int Position { get => position; protected set => position = value; }
+    private void Awake()
+    {
+        iD = player - 1;
+    }
 
     private void Start()
     {
         PlayerMenu.OnLeftBumper += PreviousSkin;
-        PlayerMenu.OnRightBumper += NextSkin;  
-        Position = player - 1;
+        PlayerMenu.OnRightBumper += NextSkin;
+
+        SkinManager.OnUpdatePosition += SetPosition;
+        position = iD;
     }
 
-    #region With Triggers
+    public void SetPosition(int _skinPosition, byte _playerID)
+    {
+        if (iD != _playerID) return;
+
+        position = _skinPosition;
+    }
+
     public void PreviousSkin(byte _playerId)
     {
-        if (MenuCanvas.isMatchmaking)
+        if (!MenuCanvas.isMatchmaking || iD != _playerId) return;
+
+        if (!MenuManager.menu.Players[_playerId].Ready)
         {
-            if (!MenuManager.menu.Players[_playerId].Ready)
-            {
-                if (player - 1 == _playerId)
-                {
-                    skinsData.skins[Position].choosed = false;
-                    int currentSkin = GetAvailableSkin(false);
-                    OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager
-                } 
-            } 
-        }
+            skinsData.skins[position].choosed = false;
+            int currentSkin = GetAvailableSkin(false);
+            OnChangeSkin?.Invoke(_playerId, currentSkin);
+        } 
     }
 
     public void NextSkin(byte _playerId)
     {
-        if (MenuCanvas.isMatchmaking)
+        if (!MenuCanvas.isMatchmaking || iD != _playerId) return;
+
+        if (!MenuManager.menu.Players[_playerId].Ready)
         {
-            if (!MenuManager.menu.Players[_playerId].Ready)
-            {
-                if (player - 1 == _playerId)
-                {
-                    skinsData.skins[Position].choosed = false;
-                    int currentSkin = GetAvailableSkin(true);
-                    OnChangeSkin?.Invoke(_playerId, currentSkin);//Skin manager 
-                }  
-            }
+            skinsData.skins[position].choosed = false;
+            int currentSkin = GetAvailableSkin(true);
+            OnChangeSkin?.Invoke(_playerId, currentSkin);
         }
     }
-    #endregion
-
-    #region With Buttons
-    public void NextSkin()
-    {
-        skinsData.skins[Position].choosed = false;
-        int currentSkin = GetAvailableSkin(true);
-        OnChangeSkin?.Invoke(player - 1, currentSkin);//Skin manager
-    }
-
-    public void PreviousSkin()
-    {
-        skinsData.skins[Position].choosed = false; 
-        int currentSkin = GetAvailableSkin(false);
-        OnChangeSkin?.Invoke(player - 1, currentSkin);//Skin manager
-    }
-    #endregion
 
     private int GetAvailableSkin(bool _Forward)
     {
         if (_Forward)
         {
-            for (int i = Position + 1; i <= skinsData.skins.Count; i++)
+            for (int i = position + 1; i <= skinsData.skins.Count; i++)
             {
                 if (i == skinsData.skins.Count)
                 {
@@ -80,13 +68,13 @@ public class SkinSelector : MonoBehaviour
                 }
                 if (!skinsData.skins[i].choosed)
                 {
-                    return Position = i;
+                    return position = i;
                 }
             }
         }
         else
         {
-            for (int i = Position - 1; i >= -1; i--)
+            for (int i = position - 1; i >= -1; i--)
             {
                 if (i <= -1)
                 {
@@ -94,10 +82,10 @@ public class SkinSelector : MonoBehaviour
                 }
                 if (!skinsData.skins[i].choosed)
                 {
-                    return Position = i;
+                    return position = i;
                 }
             }
         }
-        return Position;
+        return position;
     }
 }

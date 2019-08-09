@@ -11,10 +11,17 @@ public class PlayerHUD : MonoBehaviour
 
     [SerializeField] Settings settings = null;
 
+    private void Awake()
+    {
+        PlayerInputHandler.OnPlayerDeviceRegained -= UpdateMyInfo;
+    }
+
     private void Start()
     {
         MenuManager.menu.OnPlayerReadyOrNot += SetReadyText;
         SkinManager.OnSkinChanged += UpdateMyInfo;
+
+        PlayerInputHandler.OnPlayerDeviceRegained += UpdateMyInfo;
 
         MenuManager.menu.Players[iD].Color = settings.playersColor[iD];
         m_image.color = settings.playersColor[iD];
@@ -24,6 +31,12 @@ public class PlayerHUD : MonoBehaviour
     }
 
     private void UpdateMyInfo(int _playerID)
+    {
+        if (_playerID != iD) return;
+        m_SkinName.SetText(MenuManager.menu.Players[iD].PrefabName);
+    }
+
+    private void UpdateMyInfo(byte _playerID)
     {
         if (_playerID != iD) return;
         m_SkinName.SetText(MenuManager.menu.Players[iD].PrefabName);

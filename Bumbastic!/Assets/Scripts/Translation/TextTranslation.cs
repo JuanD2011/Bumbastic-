@@ -8,9 +8,13 @@ public class TextTranslation : MonoBehaviour
 
     public string TextID { get => textID; set => textID = value; }
 
-    void Start()
+    private void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
+    }
+
+    void Start()
+    {
         if (text != null)
             text.text = Translation.Fields[TextID];
         Translation.OnLoadedLanguage += UpdateText;

@@ -70,7 +70,6 @@ public class MenuManager : MonoBehaviour
         PlayerMenu.OnReady += PlayersReady;
         PlayerMenu.OnNotReady += PlayerNotReady;
         InputManager.inputManager.OnDeviceAdded += AddNewPlayer;
-        PlayerInputHandler.OnPlayerDeviceLost += RemovePlayer;
     }
 
     void Update()
@@ -119,11 +118,7 @@ public class MenuManager : MonoBehaviour
     {
         foreach (PlayerMenu playerMenu in Players)
         {
-            if (playerMenu.PlayerInput.devices[0].name == _deviceName)
-            {
-                Debug.Log("Holi");
-                return;
-            }
+            if (playerMenu.PlayerInput.devices[0].name == _deviceName) return;
         }
 
         PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
@@ -181,23 +176,5 @@ public class MenuManager : MonoBehaviour
     public void SaveData(int _id)
     {
         Memento.SaveData(_id);
-    }
-
-    private void RemovePlayer(byte _id)
-    {
-        for (int i = 0; i < Players.Count; i++)
-        {
-            if (Players[i].Id == _id)
-            {
-                PlayerMenu playerRemoved = Players[i];
-                SkinManager.UpdateSkinDeviceChanged(playerRemoved);
-                break;
-            } 
-        }
-    }
-
-    private void OnDisable()
-    {
-        PlayerInputHandler.OnPlayerDeviceLost -= RemovePlayer;
     }
 }

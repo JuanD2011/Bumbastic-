@@ -71,6 +71,6 @@ public class Translation
                 Fields.Add(key, value);
             }
         }
-        OnLoadedLanguage?.Invoke();//TextTranslation hears it.
+        OnLoadedLanguage?.Invoke();
     }
 }
