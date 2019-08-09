@@ -115,8 +115,17 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void AddNewPlayer()
+    private void AddNewPlayer(string _deviceName)
     {
+        foreach (PlayerMenu playerMenu in Players)
+        {
+            if (playerMenu.PlayerInput.devices[0].name == _deviceName)
+            {
+                Debug.Log("Holi");
+                return;
+            }
+        }
+
         PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
         player.Id = (byte)Players.Count;
         Players.Add(player);
@@ -176,12 +185,14 @@ public class MenuManager : MonoBehaviour
 
     private void RemovePlayer(byte _id)
     {
-        foreach (PlayerMenu player in Players)
+        for (int i = 0; i < Players.Count; i++)
         {
-            if (player.Id == _id)
+            if (Players[i].Id == _id)
             {
-                Destroy(player.gameObject);
-            }
+                PlayerMenu playerRemoved = Players[i];
+                SkinManager.UpdateSkinDeviceChanged(playerRemoved);
+                break;
+            } 
         }
     }
 

@@ -7,58 +7,43 @@
             "actions": [
                 {
                     "name": "Move",
+                    "type": "Value",
                     "id": "43e17e44-23bb-40e2-9fcf-b3816130cbf8",
-                    "expectedControlLayout": "",
-                    "continuous": true,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": ""
                 },
                 {
                     "name": "Aim",
+                    "type": "Value",
                     "id": "d1e57093-b1a8-41e3-9ba0-79fe01f268c7",
-                    "expectedControlLayout": "",
-                    "continuous": true,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": ""
                 },
                 {
                     "name": "Throw",
+                    "type": "Value",
                     "id": "a9978a69-e5a6-4b48-8041-1dad9251ed91",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": ""
                 },
                 {
                     "name": "Start",
+                    "type": "Value",
                     "id": "f04e5d61-224e-4d88-95ad-f43e125573fb",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": ""
                 },
                 {
                     "name": "Dash",
+                    "type": "Value",
                     "id": "392ae0e4-87b9-4222-812e-dff28ddb3bda",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -71,8 +56,7 @@
                     "groups": "Xbox",
                     "action": "Move",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -83,8 +67,7 @@
                     "groups": "PS4",
                     "action": "Move",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -95,8 +78,7 @@
                     "groups": "New control scheme;Generic1",
                     "action": "Move",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "2D Vector",
@@ -107,8 +89,7 @@
                     "groups": "",
                     "action": "Move",
                     "isComposite": true,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "up",
@@ -119,8 +100,7 @@
                     "groups": "MK",
                     "action": "Move",
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "down",
@@ -131,8 +111,7 @@
                     "groups": "MK",
                     "action": "Move",
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "left",
@@ -143,8 +122,7 @@
                     "groups": "MK",
                     "action": "Move",
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "right",
@@ -155,8 +133,7 @@
                     "groups": "MK",
                     "action": "Move",
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -167,8 +144,7 @@
                     "groups": "Xbox",
                     "action": "Aim",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -179,8 +155,7 @@
                     "groups": "PS4",
                     "action": "Aim",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "2D Vector",
@@ -191,8 +166,7 @@
                     "groups": "",
                     "action": "Aim",
                     "isComposite": true,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "Up",
@@ -203,8 +177,7 @@
                     "groups": "Generic1",
                     "action": "Aim",
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "Down",
@@ -215,8 +188,7 @@
                     "groups": "Generic1",
                     "action": "Aim",
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "Left",
@@ -227,8 +199,7 @@
                     "groups": ";Generic1",
                     "action": "Aim",
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "Right",
@@ -239,8 +210,7 @@
                     "groups": ";Generic1",
                     "action": "Aim",
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -251,8 +221,7 @@
                     "groups": "Xbox",
                     "action": "Throw",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -263,8 +232,7 @@
                     "groups": "PS4",
                     "action": "Throw",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -275,8 +243,7 @@
                     "groups": "New control scheme;Generic1",
                     "action": "Throw",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -287,8 +254,7 @@
                     "groups": "MK",
                     "action": "Throw",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -299,8 +265,7 @@
                     "groups": "Xbox",
                     "action": "Start",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -311,8 +276,7 @@
                     "groups": "PS4",
                     "action": "Start",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -323,8 +287,7 @@
                     "groups": "Generic1",
                     "action": "Start",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -335,8 +298,7 @@
                     "groups": "MK",
                     "action": "Start",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -347,8 +309,7 @@
                     "groups": "MK",
                     "action": "Start",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -359,8 +320,7 @@
                     "groups": "PS4",
                     "action": "Dash",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -371,8 +331,7 @@
                     "groups": "Xbox",
                     "action": "Dash",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -382,69 +341,51 @@
             "actions": [
                 {
                     "name": "LeftSkin",
+                    "type": "Value",
                     "id": "0c96a2f9-68b2-47cd-aaa3-6ae8d89fd6f8",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": "Press"
                 },
                 {
                     "name": "RightSkin",
+                    "type": "Value",
                     "id": "a7b2bfce-b224-443a-a229-6e44477a2b07",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": "Press"
                 },
                 {
                     "name": "Submit",
+                    "type": "Value",
                     "id": "bd8af8d1-ae3a-43e0-a62d-b223577930f0",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": "Press"
                 },
                 {
                     "name": "Back",
+                    "type": "Value",
                     "id": "d03f3e76-c25b-42bb-9ee7-b5a212ab6d38",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": "Press"
                 },
                 {
                     "name": "Start",
+                    "type": "Value",
                     "id": "fd9efb46-8286-47c3-a7ae-ece3b6f326b9",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": "Press"
                 },
                 {
                     "name": "Scrolling",
+                    "type": "Value",
                     "id": "bbcc7bc3-788a-4bec-923d-c3dbbf5466df",
-                    "expectedControlLayout": "",
-                    "continuous": true,
-                    "passThrough": false,
-                    "initialStateCheck": false,
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "bindings": []
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -457,8 +398,7 @@
                     "groups": "PS4",
                     "action": "LeftSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -469,8 +409,7 @@
                     "groups": "Xbox",
                     "action": "LeftSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -481,8 +420,7 @@
                     "groups": "New control scheme;Generic1",
                     "action": "LeftSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -493,8 +431,7 @@
                     "groups": "PS4",
                     "action": "LeftSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -505,8 +442,7 @@
                     "groups": "Xbox",
                     "action": "LeftSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -517,8 +453,7 @@
                     "groups": "MK",
                     "action": "LeftSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -529,8 +464,7 @@
                     "groups": "PS4",
                     "action": "RightSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -541,8 +475,7 @@
                     "groups": "Xbox",
                     "action": "RightSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -553,8 +486,7 @@
                     "groups": "New control scheme;Generic1",
                     "action": "RightSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -565,8 +497,7 @@
                     "groups": "PS4",
                     "action": "RightSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -577,8 +508,7 @@
                     "groups": "Xbox",
                     "action": "RightSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -589,8 +519,7 @@
                     "groups": "MK",
                     "action": "RightSkin",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -601,8 +530,7 @@
                     "groups": "PS4",
                     "action": "Submit",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -613,8 +541,7 @@
                     "groups": "Xbox",
                     "action": "Submit",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -625,8 +552,7 @@
                     "groups": "New control scheme;Generic1",
                     "action": "Submit",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -637,8 +563,7 @@
                     "groups": "MK",
                     "action": "Submit",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -649,8 +574,7 @@
                     "groups": "MK",
                     "action": "Submit",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -661,8 +585,7 @@
                     "groups": "PS4",
                     "action": "Back",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -673,8 +596,7 @@
                     "groups": "Xbox",
                     "action": "Back",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -685,8 +607,7 @@
                     "groups": "New control scheme;Generic1",
                     "action": "Back",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -697,8 +618,7 @@
                     "groups": "MK",
                     "action": "Back",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -709,8 +629,7 @@
                     "groups": ";PS4",
                     "action": "Start",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -721,8 +640,7 @@
                     "groups": "Xbox",
                     "action": "Start",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -733,8 +651,7 @@
                     "groups": "New control scheme;Generic1",
                     "action": "Start",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -745,8 +662,7 @@
                     "groups": "MK",
                     "action": "Start",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -757,8 +673,7 @@
                     "groups": "MK",
                     "action": "Start",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -769,8 +684,7 @@
                     "groups": "PS4",
                     "action": "Scrolling",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -781,8 +695,7 @@
                     "groups": "Xbox",
                     "action": "Scrolling",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -793,8 +706,7 @@
                     "groups": "MK",
                     "action": "Scrolling",
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 }
             ]
         }

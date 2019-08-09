@@ -17,6 +17,8 @@ public class PlayerMenu : MonoBehaviour
     public Sprite SkinSprite { get => skinSprite; set => skinSprite = value; }
     public Color Color { get => color; set => color = value; }
 
+    public PlayerInput PlayerInput { get; private set; }
+
     public delegate void ReadyDelegate(byte id);
     public static ReadyDelegate OnReady;
     public static ReadyDelegate OnNotReady;
@@ -32,6 +34,11 @@ public class PlayerMenu : MonoBehaviour
 
     [SerializeField]
     private GameObject avatar;
+
+    private void Awake()
+    {
+        PlayerInput = GetComponent<PlayerInput>();
+    }
 
     private void Start()
     {

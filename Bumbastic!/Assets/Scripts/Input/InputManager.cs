@@ -5,7 +5,8 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager inputManager;
 
-    public event System.Action OnDeviceDisconnected, OnDeviceReconnected, OnDeviceAdded;
+    public event System.Action OnDeviceDisconnected, OnDeviceReconnected;
+    public event System.Action<string> OnDeviceAdded;
 
     private void Awake()
     {
@@ -26,18 +27,18 @@ public class InputManager : MonoBehaviour
             switch (_change)
             {
                 case InputDeviceChange.Added:
-                    OnDeviceAdded?.Invoke();
-                    Debug.Log("Device added with id: " + (_device.id - 10));
+                    OnDeviceAdded?.Invoke(_device.name);
+                    Debug.Log("Device added with id: " + (_device.id));
                     break;
                 case InputDeviceChange.Removed:
                     //Device completely removed
                     break;
                 case InputDeviceChange.Disconnected:
-                    Debug.Log("Device disconnected with id: " + (_device.id - 10));
+                    Debug.Log("Device disconnected with id: " + (_device.id));
                     OnDeviceDisconnected?.Invoke();
                     break;
                 case InputDeviceChange.Reconnected:
-                    Debug.Log("Device reconnected with id: " + (_device.id - 10));
+                    Debug.Log("Device reconnected with id: " + (_device.id));
                     OnDeviceReconnected?.Invoke();
                     break;
                 default:

@@ -27,19 +27,14 @@ public class SkinManager : MonoBehaviour
         MenuCanvas.OnMatchmaking += InitSkinsWNewPlayers;
 
         MenuManager.menu.OnNewPlayerAdded += OnQueuePlayer;
-
-        PlayerInputHandler.OnPlayerDeviceLost += UpdateSkinDeviceChanged;
-
         SkinSelector.OnChangeSkin += ChangeSkin;
     }
 
-    private void UpdateSkinDeviceChanged(byte _playerID)
+    public static void UpdateSkinDeviceChanged(PlayerMenu _player)
     {
-        PlayerMenu playerMenuDeviceModified = MenuManager.menu.Players[_playerID];
-
         for (int i = 0; i < skinsData.skins.Count; i++)
         {
-            if (skinsData.skins[i].prefab == playerMenuDeviceModified.Avatar)
+            if (skinsData.skins[i].prefab == _player.Avatar)
             {
                 skinsData.skins[i].choosed = false;
                 break;
@@ -138,6 +133,5 @@ public class SkinManager : MonoBehaviour
     private void OnDisable()
     {
         SkinSelector.OnChangeSkin = null;
-        PlayerInputHandler.OnPlayerDeviceLost -= UpdateSkinDeviceChanged;
     }
 }
