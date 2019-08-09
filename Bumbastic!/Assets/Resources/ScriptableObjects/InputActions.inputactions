@@ -707,6 +707,17 @@
                     "action": "Scrolling",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fc0c36b-b1ba-4968-98cf-cd22e0f1ac50",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scrolling",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
