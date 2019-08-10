@@ -91,7 +91,14 @@ public class SkinManager : MonoBehaviour
 
     private void OnQueuePlayer(byte _playerID)
     {
-        newPlayersJoined.Enqueue(MenuManager.menu.Players[_playerID]);
+        foreach (PlayerMenu playerMenu in MenuManager.menu.Players)
+        {
+            if (playerMenu.Id == _playerID)
+            {
+                newPlayersJoined.Enqueue(playerMenu);
+                break;
+            }
+        }
         if (MenuCanvas.isMatchmaking) InitSkinsWNewPlayers(true);
     }
 

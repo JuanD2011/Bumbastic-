@@ -109,9 +109,9 @@ public class MenuManager : MonoBehaviour
         //TODO Check this method
         foreach (PlayerMenu playerMenu in Players)
         {
-            if (playerMenu.PlayerInput.devices[0].name == _deviceName)
+            if (playerMenu.PlayerInput.devices.Count > 0)
             {
-                return;
+                if (playerMenu.PlayerInput.devices[0].name == _deviceName) return;
             }
         }
 

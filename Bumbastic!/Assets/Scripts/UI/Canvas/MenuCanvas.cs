@@ -24,7 +24,7 @@ public class MenuCanvas : CanvasBase
 
         MenuManager.menu.OnStartGame += LoadingScreen;
         MenuManager.menu.OnCountdown += Countdown;
-        MenuManager.menu.OnNewPlayerAdded += UpdateHUD;
+        //MenuManager.menu.OnNewPlayerAdded += UpdateHUD;
 
         PlayerInputHandler.OnPlayerDeviceLost += UpdateHUD;
         PlayerInputHandler.OnPlayerDeviceRegained += UpdateHUD;
@@ -34,8 +34,15 @@ public class MenuCanvas : CanvasBase
 
     private void UpdateHUD(byte _playerID)
     {
-        if (!playerHUDs[_playerID].gameObject.activeInHierarchy) playerHUDs[_playerID].gameObject.SetActive(true);
-        else playerHUDs[_playerID].gameObject.SetActive(false);
+        for (int i = 0; i < playerHUDs.Length; i++)
+        {
+            if (playerHUDs[i].ID == _playerID)
+            {
+                if (!playerHUDs[i].gameObject.activeInHierarchy) playerHUDs[i].gameObject.SetActive(true);
+                else playerHUDs[i].gameObject.SetActive(false);
+                break;
+            }
+        }
     }
 
     private void InitializeHUD()

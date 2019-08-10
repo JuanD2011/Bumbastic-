@@ -13,6 +13,8 @@ public class PlayerHUD : MonoBehaviour
 
     [SerializeField] Settings settings = null;
 
+    public byte ID { get => iD; private set => iD = value; }
+
     private void Start()
     {
         SkinManager.OnSkinChanged += UpdateMyInfo;
@@ -22,41 +24,41 @@ public class PlayerHUD : MonoBehaviour
         PlayerMenu.OnReady += SetReadyText;
         PlayerMenu.OnNotReady += SetReadyText;
 
-        MenuManager.menu.Players[iD].Color = settings.playersColor[iD];
-        m_image.color = settings.playersColor[iD];
+        MenuManager.menu.Players[ID].Color = settings.playersColor[ID];
+        m_image.color = settings.playersColor[ID];
 
         MenuCanvas.OnMatchmaking += MenuCanvas_OnMatchmaking;
 
         SpawnLine.OnActivePlayersSorted += UpdateMyNumberOfPlayer;
 
-        SetReadyText(iD);
-        UpdateMyInfo(iD);
+        SetReadyText(ID);
+        UpdateMyInfo(ID);
     }
 
     private void MenuCanvas_OnMatchmaking(bool _isMatchmaking)
     {
         if (!_isMatchmaking) return;
 
-        SetReadyText(iD);
+        SetReadyText(ID);
     }
 
     private void UpdateMyInfo(int _playerID)
     {
-        if (_playerID != iD) return;
-        m_SkinName.SetText(MenuManager.menu.Players[iD].PrefabName);
+        if (_playerID != ID) return;
+        m_SkinName.SetText(MenuManager.menu.Players[ID].PrefabName);
     }
 
     private void UpdateMyInfo(byte _playerID)
     {
-        if (_playerID != iD) return;
-        m_SkinName.SetText(MenuManager.menu.Players[iD].PrefabName);
+        if (_playerID != ID) return;
+        m_SkinName.SetText(MenuManager.menu.Players[ID].PrefabName);
     }
 
     private void UpdateMyNumberOfPlayer(List<PlayerMenu> _activePlayers)
     {
         for (int i = 0; i < _activePlayers.Count; i++)
         {
-            if (_activePlayers[i].Id == iD)
+            if (_activePlayers[i].Id == ID)
             {
                 m_PlayerNumber.text = Translation.Fields[string.Format("P{0}", i + 1)];
             }
@@ -65,7 +67,7 @@ public class PlayerHUD : MonoBehaviour
 
     private void SetReadyText(byte _id)
     {
-        if (_id != iD) return;
+        if (_id != ID) return;
 
         m_ReadyText.text = (MenuManager.menu.Players[_id].Ready) ? Translation.Fields["Ready"] : Translation.Fields["Start"];
     }
