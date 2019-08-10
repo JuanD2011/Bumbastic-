@@ -6,7 +6,7 @@ public class GameModeManager : MonoBehaviour
     [SerializeField] float timeToLoad = 10f;
 
     public delegate IEnumerator DelCanvasGameMode(string _sceneToLoad);
-    public static DelCanvasGameMode onLoadScene;
+    public static DelCanvasGameMode OnLoadScene;
 
     private void Start()
     {
@@ -24,12 +24,12 @@ public class GameModeManager : MonoBehaviour
 
     private void SceneToLoad()
     {
-        StartCoroutine(onLoadScene?.Invoke(GameModeDataBase.currentGameMode.GameModeType.ToString()));
+        StartCoroutine(OnLoadScene?.Invoke(GameModeDataBase.currentGameMode.GameModeType.ToString()));
     }
 
     private void OnDisable()
     {
-        onLoadScene = null;
+        OnLoadScene = null;
         PlayerMenu.ResetDel();
     }
 }

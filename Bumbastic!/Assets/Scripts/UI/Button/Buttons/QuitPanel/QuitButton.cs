@@ -7,6 +7,11 @@ public class QuitButton : UIButtonBase
         base.Awake();
     }
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     protected override void OnButtonClicked(byte _id)
     {
         base.OnButtonClicked(_id);

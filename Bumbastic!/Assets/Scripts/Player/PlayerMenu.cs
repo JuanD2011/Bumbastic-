@@ -44,10 +44,10 @@ public class PlayerMenu : MonoBehaviour
         OnBackButton = null;
         OnStartButton = null;
         OnAcceptButton = null;
-        OnLeftBumper = null; 
+        OnLeftBumper = null;
         OnRightBumper = null;
         OnReady = null;
-        OnNotReady = null; 
+        OnNotReady = null;
         OnScrollingAxis = null;
     }
 

@@ -10,13 +10,15 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        if (inputManager == null)
-            inputManager = this;
-        else
-            Destroy(this);
+        if (inputManager == null) inputManager = this;
+        else Destroy(this);
 
+        InputSystem.onDeviceChange -= UpdateGamepadState;
         GetGamepads();
+    }
 
+    private void Start()
+    {
         InputSystem.onDeviceChange += UpdateGamepadState;
     }
 

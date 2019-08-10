@@ -19,6 +19,7 @@ public class SkinManager : MonoBehaviour
         OnSkinsSet = null;
         OnSkinChanged = null;
         OnUpdateSkinSelectorsPosition = null;
+        SkinSelector.OnChangeSkin = null;
 
         skinsData = Resources.Load<SkinsDatabase>("ScriptableObjects/Skins data");
     }
@@ -47,7 +48,7 @@ public class SkinManager : MonoBehaviour
                 Destroy(playerMenuToBeUpdated.transform.GetChild(0).gameObject);
                 break;
             }
-            else if (playerMenuToBeUpdated.transform.childCount <= 0 && skinsData.skins[i].choosed == false)
+            else if (playerMenuToBeUpdated.transform.childCount <= 0 && skinsData.skins[i].choosed == false && MenuCanvas.isMatchmaking)
             {
                 skinsData.skins[i].choosed = true;
 
@@ -140,10 +141,5 @@ public class SkinManager : MonoBehaviour
         _playerMenu.Avatar = _skinSource.prefab;
         _playerMenu.PrefabName = _skinSource.name;
         _playerMenu.SkinSprite = _skinSource.skinSprite;
-    }
-
-    private void OnDisable()
-    {
-        SkinSelector.OnChangeSkin = null;
     }
 }

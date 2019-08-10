@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -33,17 +34,13 @@ public class MenuManager : MonoBehaviour
 
     List<PlayerMenu> players = new List<PlayerMenu>();
 
-    public delegate void DelMenuManager(string _sceneName);
-    public DelMenuManager OnStartGame;
-
-    public delegate void SetCountdown(bool _bool);
-    public SetCountdown OnCountdown;
+    public event System.Action<string> OnStartGame;
+    public event System.Action<bool> OnCountdown;
+    public event System.Action<byte> OnNewPlayerAdded = null;
 
     public List<PlayerMenu> Players { get => players; private set => players = value; }
 
     public MenuCanvas menuCanvas;
-
-    public event System.Action<byte> OnNewPlayerAdded = null;
 
     private void Awake()
     {
@@ -51,6 +48,8 @@ public class MenuManager : MonoBehaviour
         else Destroy(this);
 
         Memento.LoadData();
+        PlayerMenu.ResetDel();
+
         SetLanguage();
     }
 
@@ -73,6 +72,11 @@ public class MenuManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(0);
+        }
+
         if (countdown)
         {
             timer -= Time.deltaTime;
@@ -102,16 +106,20 @@ public class MenuManager : MonoBehaviour
 
     private void AddNewPlayer(string _deviceName)
     {
+        //TODO Check this method
         foreach (PlayerMenu playerMenu in Players)
         {
-            if (playerMenu.PlayerInput.devices[0].name == _deviceName) return;
+            if (playerMenu.PlayerInput.devices[0].name == _deviceName)
+            {
+                return;
+            }
         }
 
         PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
         player.Id = (byte)Players.Count;
         Players.Add(player);
         maxPlayers = Players.Count;
-        
+
         OnNewPlayerAdded?.Invoke(player.Id);
     }
 

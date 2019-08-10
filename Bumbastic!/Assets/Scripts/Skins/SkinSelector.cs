@@ -8,8 +8,7 @@ public class SkinSelector : MonoBehaviour
 
     private int iD = 0;
 
-    public delegate void DelSkinSelector(int _player, int _position);
-    public static DelSkinSelector OnChangeSkin;
+    public static System.Action<int, int> OnChangeSkin;
 
     private void Awake()
     {

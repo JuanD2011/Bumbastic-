@@ -14,6 +14,8 @@ public class MenuCanvas : CanvasBase
     protected override void Awake()
     {
         base.Awake();
+        OnMatchmaking = null;
+        isMatchmaking = false;
     }
 
     private void Start()
@@ -127,6 +129,5 @@ public class MenuCanvas : CanvasBase
     private void OnDisable()
     {
         isMatchmaking = false;
-        OnMatchmaking = null;
     }
 }

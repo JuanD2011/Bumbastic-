@@ -35,6 +35,10 @@ public class GameModeCanvas : MonoBehaviour
         SetBackgrounds();
         SetGamemodeInformation();
 
+    }
+
+    private void Start()
+    {
         PlayerMenu.OnStartButton += SetGamepad;
     }
 

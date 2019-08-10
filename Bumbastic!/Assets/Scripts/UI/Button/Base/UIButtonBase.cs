@@ -13,6 +13,10 @@ public abstract class UIButtonBase : MonoBehaviour
     protected virtual void Awake()
     {
         Button = GetComponent<Button>();
+    }
+
+    protected virtual void Start()
+    {
         PlayerMenu.OnAcceptButton += OnButtonClicked; 
     }
 

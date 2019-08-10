@@ -16,8 +16,9 @@ public class LanguageButton : UIButtonBase
         languageText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         SetFeatures();
     }
 
