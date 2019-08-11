@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
@@ -6,7 +7,7 @@ public class InputManager : MonoBehaviour
     public static InputManager inputManager;
 
     public event System.Action OnDeviceDisconnected, OnDeviceReconnected;
-    public event System.Action<string> OnDeviceAdded;
+    public event System.Action OnDeviceAdded;
 
     private void Awake()
     {
@@ -24,12 +25,19 @@ public class InputManager : MonoBehaviour
 
     private void UpdateGamepadState(InputDevice _device, InputDeviceChange _change)
     {
+        List<InputDevice> inputList = new List<InputDevice>();
+
+        foreach (PlayerMenu item in MenuManager.menu.Players)
+        {
+            inputList.Add(item.InputDevice);
+        }
+
         if (Application.isPlaying)
         {
             switch (_change)
             {
                 case InputDeviceChange.Added:
-                    OnDeviceAdded?.Invoke(_device.name);
+                    if (!inputList.Contains(_device)) OnDeviceAdded?.Invoke();
                     Debug.Log("Device added with id: " + (_device.id));
                     break;
                 case InputDeviceChange.Removed:

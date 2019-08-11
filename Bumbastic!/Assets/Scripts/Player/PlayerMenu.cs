@@ -10,7 +10,7 @@ public class PlayerMenu : MonoBehaviour
     public string PrefabName { get; set; } = "";
     public Sprite SkinSprite { get; set; } = null;
     public Color Color { get; set; } = Color.white;
-    public PlayerInput PlayerInput { get; private set; } = null;
+    public InputDevice InputDevice { get; private set; } = null;
 
     public static event System.Action<byte> OnReady, OnNotReady;
 
@@ -22,7 +22,7 @@ public class PlayerMenu : MonoBehaviour
 
     private void Awake()
     {
-        PlayerInput = GetComponent<PlayerInput>();
+        InputDevice = GetComponent<PlayerInput>().devices[0];
     }
 
     private void Start()

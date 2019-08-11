@@ -104,17 +104,8 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void AddNewPlayer(string _deviceName)
+    private void AddNewPlayer()
     {
-        //TODO Check this method
-        foreach (PlayerMenu playerMenu in Players)
-        {
-            if (playerMenu.PlayerInput.devices.Count > 0)
-            {
-                if (playerMenu.PlayerInput.devices[0].name == _deviceName) return;
-            }
-        }
-
         PlayerMenu player = Instantiate(playerMenuPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMenu>();
         player.Id = (byte)Players.Count;
         Players.Add(player);
