@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
         if (inputManager == null) inputManager = this;
         else Destroy(this);
 
+        PlayerInputHandler.ResetMyEvents();
         InputSystem.onDeviceChange -= UpdateGamepadState;
         GetGamepads();
     }

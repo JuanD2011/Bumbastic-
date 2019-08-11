@@ -13,6 +13,7 @@ public class PodiumManager : MonoBehaviour
 
     private void Awake()
     {
+        PlayerInputHandler.ResetMyEvents();
         InGame.playerSettings = InGame.playerSettings.OrderBy(w => w.score).ToList();
         InGame.playerSettings.Reverse();
     }

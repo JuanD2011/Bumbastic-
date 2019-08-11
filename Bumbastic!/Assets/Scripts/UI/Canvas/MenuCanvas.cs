@@ -24,7 +24,7 @@ public class MenuCanvas : CanvasBase
 
         MenuManager.menu.OnStartGame += LoadingScreen;
         MenuManager.menu.OnCountdown += Countdown;
-        //MenuManager.menu.OnNewPlayerAdded += UpdateHUD;
+        MenuManager.menu.OnNewPlayerAdded += UpdateHUD;
 
         PlayerInputHandler.OnPlayerDeviceLost += UpdateHUD;
         PlayerInputHandler.OnPlayerDeviceRegained += UpdateHUD;

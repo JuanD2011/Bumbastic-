@@ -39,6 +39,8 @@ public abstract class GameManager : MonoBehaviour
         if (Manager == null) Manager = this;
         else Destroy(this);
 
+        PlayerInputHandler.ResetMyEvents();
+
         Enviroment = GetRandomEnviroment();
         Director = GetComponent<PlayableDirector>();
         Director.Play();

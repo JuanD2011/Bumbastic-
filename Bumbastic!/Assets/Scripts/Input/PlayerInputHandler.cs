@@ -10,9 +10,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
-        OnPlayerDeviceLost = null;
-        OnPlayerDeviceRegained = null;
-
         playerMenu = GetComponent<PlayerMenu>();
         player = GetComponent<Player>();
     }
@@ -27,5 +24,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         Debug.Log("Device regained");
         if (playerMenu != null) OnPlayerDeviceRegained?.Invoke(playerMenu.Id);
+    }
+
+    public static void ResetMyEvents()
+    {
+        OnPlayerDeviceLost = null;
+        OnPlayerDeviceRegained = null;
     }
 }
