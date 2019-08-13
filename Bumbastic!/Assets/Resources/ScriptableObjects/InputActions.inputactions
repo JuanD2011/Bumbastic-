@@ -31,9 +31,9 @@
                 },
                 {
                     "name": "Start",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "f04e5d61-224e-4d88-95ad-f43e125573fb",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },

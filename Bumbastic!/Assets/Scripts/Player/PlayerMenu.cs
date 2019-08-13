@@ -22,7 +22,7 @@ public class PlayerMenu : MonoBehaviour
 
     private void Awake()
     {
-        InputDevice = GetComponent<PlayerInput>().devices[0];
+        if (GetComponent<PlayerInput>().devices.Count > 0) InputDevice = GetComponent<PlayerInput>().devices[0];
     }
 
     private void Start()
