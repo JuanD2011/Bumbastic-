@@ -8,6 +8,7 @@ public class InGame : ScriptableObject
     public Transform posDropPU;
 
     public static List<PlayerSettings> playerSettings = new List<PlayerSettings>();
+    public static PlayerSettings lastWinner = null;
 
     Vector3 crowPos;
 

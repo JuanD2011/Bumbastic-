@@ -1,12 +1,11 @@
-﻿using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
+﻿using System.Collections;
+using UnityEngine;
 
 public class InGameCanvas : CanvasBase
 {
-    [SerializeField] TextMeshProUGUI textWinner = null;
-    [SerializeField] Image playerSprite = null;
     [SerializeField] PlayerScore[] playerScores = new PlayerScore[0];
+    [SerializeField] StarObtained starObtained = null;
+    [SerializeField] Continue @continue = null;
 
     bool isEndPanelActive = false;
     private string _scene = "GameMode";
@@ -19,34 +18,21 @@ public class InGameCanvas : CanvasBase
     private void Start()
     {
         GameManager.Manager.OnGameOver += () => _scene = "Podium";
+        GameManager.Manager.OnGameModeOver += () =>
+        {
+            m_Animator.SetTrigger("isGameOver");
+            starObtained.gameObject.SetActive(true);
+        };
 
-        GameManager.Manager.OnGameModeOver += Winner;
-        GameManager.Manager.OnGameModeOver += UpdateScore;
         PlayerMenu.OnStartButton += StartButton;
 
-        SetPlayersScore();
+        starObtained.OnAnimationEnded += () => StartCoroutine(LerpStarToPlayer());
+        @continue.OnAnimationEnded += () => isEndPanelActive = true;
+
+        InitPlayersScore();
     }
 
-    /// <summary>
-    /// This is executed throught timeline animation
-    /// </summary>
-    public void PlayBumbaSound()
-    {
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bumba, 1f);
-    }
-
-    private void UpdateScore()
-    {
-        for (int i = 0; i < InGame.playerSettings.Count; i++)
-        {
-            for (int j = 0; j < InGame.playerSettings[i].score; j++)
-            {
-                playerScores[i].Stars[j].color = Color.white;
-            }
-        }
-    }
-
-    private void SetPlayersScore()
+    private void InitPlayersScore()
     {
         for (int i = 0; i < InGame.playerSettings.Count; i++)
         {
@@ -54,9 +40,15 @@ public class InGameCanvas : CanvasBase
             {
                 playerScores[i].transform.parent.gameObject.SetActive(true); 
             }
+
             playerScores[i].InitComponents();
             playerScores[i].PlayerSkinSprite.enabled = true;
             playerScores[i].PlayerSkinSprite.sprite = InGame.playerSettings[i].skinSprite;
+
+            for (int j = 0; j < InGame.playerSettings[i].score; j++)
+            {
+                playerScores[i].Stars[j].color = Color.white;
+            }
         }
     }
 
@@ -68,35 +60,37 @@ public class InGameCanvas : CanvasBase
 
             if (animatorStateInfo.IsName(animatorStateNames[0]))
             {
-                m_Animator.SetTrigger("showScore");
-            }
-            else if (animatorStateInfo.IsName(animatorStateNames[1]))
-            {
                 m_Animator.SetTrigger("loadingScreen");
+                @continue.Hide();
             }
         }
     }
 
-    #region Animation events
-    public void OnLoadScreenComplete()
+    IEnumerator LerpStarToPlayer()
     {
-        StartCoroutine(OnLoadScene?.Invoke(_scene));//Lvl Manager hears it.
-    }
-    #endregion
+        Vector3 initStarPos = starObtained.transform.position;
+        Vector3 endStarPosition = playerScores[InGame.lastWinner.id].Stars[InGame.lastWinner.score - 1].transform.position;
 
-    private void Winner()
-    {
-        isEndPanelActive = true;
-        m_Animator.SetTrigger("isGameOver");
-
-        if (GameModeDataBase.IsCurrentHotPotato() || GameModeDataBase.IsCurrentFreeForAll())
+        float elapsedTime = 0f;
+        float lerpTime = 0.3f;
+        
+        while (elapsedTime <= lerpTime)
         {
-            textWinner.text = string.Format("{0}", GameManager.Manager.Players[0].PrefabName);
-            playerSprite.sprite = InGame.playerSettings[GameManager.Manager.Players[0].Id].skinSprite;
+            starObtained.transform.position = Vector3.Lerp(initStarPos, endStarPosition, elapsedTime / lerpTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
-        else if (GameModeDataBase.IsCurrentBasesGame())
-        {
-            //TODO show the information of the winner in bases gamemode.
-        }
+        playerScores[InGame.lastWinner.id].Stars[InGame.lastWinner.score - 1].color = Color.white;
+        starObtained.gameObject.SetActive(false);
+        @continue.gameObject.SetActive(true);
     }
+
+    /// <summary>
+    /// Method executed by animation.
+    /// </summary>
+    public void OnLoadScreenComplete() { StartCoroutine(OnLoadScene?.Invoke(_scene)); }
+    /// <summary>
+    /// This is executed throught timeline animation
+    /// </summary>
+    public void PlayBumbaSound() { AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bumba, 1f); }
 }

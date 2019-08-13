@@ -8,6 +8,8 @@ public class GameModeCanvas : MonoBehaviour
     [SerializeField] GameObject bgImageContainer = null;
     [SerializeField] GameObject bgTemplate = null;
 
+    [SerializeField] Continue @continue = null;
+
     [SerializeField] float timeToChangebg = 1f, alphaImage = 0.6f, alphaImageOut = 0.1f, fadeOut = 1f, fadeIn = 1f;
 
     [SerializeField] TextTranslation[] gamemodeInfo = new TextTranslation[2];
@@ -57,6 +59,7 @@ public class GameModeCanvas : MonoBehaviour
             m_Animator.SetBool("ShowInstructions", false);
             showedIntstructions = true;
             gameModeManager.LoadScene();
+            @continue.Hide();
         }
     }
 

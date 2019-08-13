@@ -12,6 +12,8 @@
         base.Awake();
 
         SetBasesColor();
+
+        //TODO Set the winner
     }
 
     protected override void Start()

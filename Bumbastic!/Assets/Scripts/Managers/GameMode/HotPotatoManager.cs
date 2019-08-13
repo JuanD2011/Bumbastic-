@@ -88,6 +88,7 @@ public class HotPotatoManager : GameManager
         if (Players.Count == 1)
         {
             InGame.playerSettings[Players[0].Id].score += 1;
+            InGame.lastWinner = InGame.playerSettings[Players[0].Id];
             GameOver();
             return;
         }
