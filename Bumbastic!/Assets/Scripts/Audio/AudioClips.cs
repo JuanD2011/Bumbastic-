@@ -27,6 +27,7 @@ public class AudioClips : ScriptableObject
     public AudioClip powerUpBoxDropped;
     public AudioClip dropModule;
     public AudioClip anticipation;
+    public AudioClip dropingWorld;
     public AudioClip stun;
     public AudioClip wagonHit;
     public AudioClip rollingWagon;

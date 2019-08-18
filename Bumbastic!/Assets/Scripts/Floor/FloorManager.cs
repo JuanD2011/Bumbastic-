@@ -169,7 +169,8 @@ public class FloorManager : MonoBehaviour
 
     IEnumerator Drop(int ring)
     {
-        CameraShake.instance.OnStartShake?.Invoke(1f, 0.5f);//Starts Camera shake.
+        CameraShake.instance.OnStartShake?.Invoke(1f, 0.5f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dropingWorld, 0.5f, true);
 
         for (int i = rings[ring].module.Length -1 ; i >= 0 ; i--)
         {
@@ -183,17 +184,17 @@ public class FloorManager : MonoBehaviour
             }
 
             rings[ring].module[i].constraints = RigidbodyConstraints.None;
-            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dropModule, 0.6f);
+            AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dropModule, 0.7f);
 
             StartCoroutine(Desactivate(rings[ring].module[i]));
+
             yield return new WaitForSeconds(dropInterval);
-            if (i==0)
-            {
-                anticipation = false;
-            }
+
+            if (i == 0) anticipation = false;
         }
 
-        CameraShake.instance.OnStopShake?.Invoke();//Stops Camera shake
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dropingWorld, 0.5f, false);
+        CameraShake.instance.OnStopShake?.Invoke();
     }
 
     IEnumerator Desactivate (Rigidbody module)
