@@ -170,7 +170,7 @@ public class FloorManager : MonoBehaviour
     IEnumerator Drop(int ring)
     {
         CameraShake.instance.OnStartShake?.Invoke(1f, 0.5f);
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dropingWorld, 0.5f, true);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dropingWorld, 0.7f, true);
 
         for (int i = rings[ring].module.Length -1 ; i >= 0 ; i--)
         {

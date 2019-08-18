@@ -3,13 +3,13 @@ using System.Collections;
 
 public class StarObtained : BaseAnimationUI
 {
-    ParticleSystem cParticleSystem = null;
+    UIParticleSystem cParticleSystem = null;
     [SerializeField] private float rotVel = 10f;
 
     protected override void Awake()
     {
         base.Awake();
-        cParticleSystem = GetComponentInChildren<ParticleSystem>();
+        cParticleSystem = GetComponentInChildren<UIParticleSystem>();
     }
 
     private void Start()
@@ -24,8 +24,9 @@ public class StarObtained : BaseAnimationUI
 
     IEnumerator SyncSFXAndVFX()
     {
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.starObtained, 1f);
         AnimatorStateInfo currentStateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
-
-        yield return new WaitUntil(() => currentStateInfo.normalizedTime >= 0.9);
+        yield return new WaitUntil(() => currentStateInfo.normalizedTime >= 0.24f);
+        //TODO activate particles
     }
 }

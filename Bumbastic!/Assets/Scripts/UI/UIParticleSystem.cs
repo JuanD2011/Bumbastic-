@@ -266,26 +266,26 @@ public class UIParticleSystem : MaskableGraphic
         }
     }
 
-    void Update()
-    {
-        if (Application.isPlaying)
-        {
-            // unscaled animation within UI
-            _particleSystem.Simulate(Time.unscaledDeltaTime, false, false);
+//    void Update()
+//    {
+//        if (Application.isPlaying)
+//        {
+//            // unscaled animation within UI
+//            //_particleSystem.Simulate(Time.unscaledDeltaTime, false, false);
 
-            SetAllDirty();
-        }
-    }
+//            SetAllDirty();
+//        }
+//    }
 
-#if UNITY_EDITOR
-    void LateUpdate()
-    {
-        if (!Application.isPlaying)
-        {
-            SetAllDirty();
-        }
-    }
-#endif
+//#if UNITY_EDITOR
+//    void LateUpdate()
+//    {
+//        if (!Application.isPlaying)
+//        {
+//            SetAllDirty();
+//        }
+//    }
+//#endif
 
 }
 

@@ -23,6 +23,7 @@ public class AudioClips : ScriptableObject
     public AudioClip buttonDefault;
     public AudioClip buttonBack;
     public AudioClip buttonSelection;
+    public AudioClip starObtained;
     public AudioClip crow;
     public AudioClip powerUpBoxDropped;
     public AudioClip dropModule;
