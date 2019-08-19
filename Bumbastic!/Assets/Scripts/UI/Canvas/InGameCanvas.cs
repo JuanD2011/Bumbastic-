@@ -73,7 +73,8 @@ public class InGameCanvas : CanvasBase
 
         float elapsedTime = 0f;
         float lerpTime = 0.3f;
-        
+
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dash, 0.2f);
         while (elapsedTime <= lerpTime)
         {
             starObtained.transform.position = Vector3.Lerp(initStarPos, endStarPosition, elapsedTime / lerpTime);

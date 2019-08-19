@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efbf3632d41aa04ea7569ad90d417d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotVel: 10
+  rotVel: 15
 --- !u!1 &1552871372162003517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2412,10 +2412,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 210567855717298311, guid: 3852ff2d0b14530458d71d5c12a91d5b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 4601023593870484596, guid: 3852ff2d0b14530458d71d5c12a91d5b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601023593870484596, guid: 3852ff2d0b14530458d71d5c12a91d5b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013862974917797744, guid: 3852ff2d0b14530458d71d5c12a91d5b,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3852ff2d0b14530458d71d5c12a91d5b, type: 3}

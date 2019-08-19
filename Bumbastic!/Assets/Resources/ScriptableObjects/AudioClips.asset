@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inGameMusic: {fileID: 8300000, guid: d570d6c97858dd64b92cc16b234705e0, type: 3}
   transitionMusic: {fileID: 8300000, guid: f394a85c02d05404f9009b3d67361b33, type: 3}
-  desertAmbient: {fileID: 8300000, guid: bb88e939a5fc58b439b1234d56427dac, type: 3}
+  desertAmbient: {fileID: 8300000, guid: 7409a267bd5f5d440a028d765f386222, type: 3}
   winterAmbient: {fileID: 8300000, guid: 814822281ea5e454eb506c2e7b6099ce, type: 3}
   bumba: {fileID: 8300000, guid: 849088292b151f84cb2bd0e7aeaecacd, type: 3}
   go: {fileID: 8300000, guid: 3f5c46ee34d8f624ebfb39d0e1a206ce, type: 3}

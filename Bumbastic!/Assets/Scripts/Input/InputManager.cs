@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     public static InputManager inputManager;
-    byte counter = 0;
 
     public event System.Action OnDeviceDisconnected, OnDeviceReconnected;
     public event System.Action OnDeviceAdded;

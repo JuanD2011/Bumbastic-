@@ -59,13 +59,13 @@ public abstract class GameManager : MonoBehaviour
         switch (Enviroment)
         {
             case EnumEnviroment.Desert:
-                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.desertAmbient, 0.3f, 0.6f, 1f);
+                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.desertAmbient, 0.55f, 0.6f, 1f);
                 break;
             case EnumEnviroment.Winter:
-                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.winterAmbient, 0.3f, 0.6f, 1f);
+                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.winterAmbient, 0.55f, 0.6f, 1f);
                 break;
             default:
-                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.desertAmbient, 0.3f, 0.6f, 1f);
+                AudioManager.instance.PlayAmbient(AudioManager.instance.audioClips.desertAmbient, 0.55f, 0.6f, 1f);
                 break;
         }
     }
@@ -130,7 +130,7 @@ public abstract class GameManager : MonoBehaviour
 
     protected void GameOver()
     {
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer, 0.6f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.crowdCheer, 0.3f);
 
         foreach (Player player in Players)
         {

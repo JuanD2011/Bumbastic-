@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class StarObtained : BaseAnimationUI
 {
@@ -9,24 +8,16 @@ public class StarObtained : BaseAnimationUI
     protected override void Awake()
     {
         base.Awake();
-        cParticleSystem = GetComponentInChildren<UIParticleSystem>();
+        cParticleSystem = GetComponentInChildren<UIParticleSystem>(true);
     }
 
     private void Start()
     {
-        StartCoroutine(SyncSFXAndVFX());
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.starObtained, 1f);
     }
 
     private void Update()
     {
         cParticleSystem.transform.eulerAngles += Vector3.forward * Time.deltaTime * rotVel;
-    }
-
-    IEnumerator SyncSFXAndVFX()
-    {
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.starObtained, 1f);
-        AnimatorStateInfo currentStateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
-        yield return new WaitUntil(() => currentStateInfo.normalizedTime >= 0.24f);
-        //TODO activate particles
     }
 }

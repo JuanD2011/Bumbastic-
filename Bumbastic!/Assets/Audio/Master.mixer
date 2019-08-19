@@ -43,6 +43,7 @@ AudioMixerGroupController:
   - {fileID: 243675334203603918}
   m_Volume: b8e8bc021d6fe824fbe3cdcf483196eb
   m_Pitch: b243d74e787cdf248adc93ac86703cce
+  m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 24400004}
   m_UserColorIndex: 0
@@ -72,7 +73,8 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 9153684adb8bb5245b182764f11534ee
-  m_FloatValues: {}
+  m_FloatValues:
+    3af717a8eeda8174fa5b8466cb33dd9c: 0
   m_TransitionOverrides: {}
 --- !u!243 &243117565626518086
 AudioMixerGroupController:
@@ -83,10 +85,10 @@ AudioMixerGroupController:
   m_Name: Music
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 204f7ee307d62084491fff2af200495a
-  m_Children:
-  - {fileID: 243834665841583932}
+  m_Children: []
   m_Volume: 05ffdb44fbace7843a1df92d8b829cfb
   m_Pitch: 075173a59c46c384ca453ab384f67332
+  m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 244227518527250394}
   m_UserColorIndex: 0
@@ -102,9 +104,11 @@ AudioMixerGroupController:
   m_Name: SFx
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 030a38c7869a3854d80cf802fd6be1af
-  m_Children: []
+  m_Children:
+  - {fileID: 243834665841583932}
   m_Volume: 21952446b3d62834dadb24dfbddf42cc
   m_Pitch: a29275a9d07492547bf5e9e78f6b9211
+  m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 244299260898875516}
   m_UserColorIndex: 0
@@ -123,6 +127,7 @@ AudioMixerGroupController:
   m_Children: []
   m_Volume: 3af717a8eeda8174fa5b8466cb33dd9c
   m_Pitch: a4d11d179d95f5c4291627dbe3c11acc
+  m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 244482957293482920}
   m_UserColorIndex: 0
