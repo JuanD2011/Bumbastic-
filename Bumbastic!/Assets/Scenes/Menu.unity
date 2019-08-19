@@ -13055,6 +13055,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sand
       objectReference: {fileID: 0}
+    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
+        type: 3}
+      propertyPath: spawnInVolume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 131245726081912454, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13108,11 +13113,6 @@ PrefabInstance:
     - target: {fileID: 131245726081912454, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
-        type: 3}
-      propertyPath: spawnInVolume
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8050037667475876401, guid: 896adf71198b5bf45b0427c11eb05b66,
