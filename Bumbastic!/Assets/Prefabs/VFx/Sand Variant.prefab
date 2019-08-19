@@ -4777,6 +4777,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sand Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 131245726081912459, guid: 896adf71198b5bf45b0427c11eb05b66,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 131245726081912454, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
       propertyPath: m_LocalPosition.x
