@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emissionRate:
   - 2
-  - 10
+  - 7
   timeToStop: 10
   timeToStartSand: 10
   spawnInVolume: 1

@@ -69,6 +69,7 @@ public class Sand : MonoBehaviour
         for (int i = 0; i < emissionModules.Length; i++)
         {
             emissionModules[i].rateOverTime = Random.Range(emissionRate[0], emissionRate[1]);
+            yield return null;
         }
 
         if (spawnInVolume) SetParticlesPosition();
@@ -78,6 +79,7 @@ public class Sand : MonoBehaviour
         for (int i = 0; i < emissionModules.Length; i++)
         {
             emissionModules[i].rateOverTime = 0f;
+            yield return null;
         }
 
         yield return new WaitForSeconds(timeToStartSand * Random.Range(0.1f, 1f));
