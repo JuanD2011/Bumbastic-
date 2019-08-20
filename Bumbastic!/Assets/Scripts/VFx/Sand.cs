@@ -82,7 +82,7 @@ public class Sand : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(timeToStartSand * Random.Range(0.1f, 1f));
+        yield return new WaitForSeconds(timeToStartSand * Random.Range(0.4f, 1f));
 
         StartCoroutine(ChangeState());
     }

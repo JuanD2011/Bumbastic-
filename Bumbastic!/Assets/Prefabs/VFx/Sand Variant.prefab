@@ -346,7 +346,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4782,6 +4782,41 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
+        type: 3}
+      propertyPath: changeColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
+        type: 3}
+      propertyPath: changeParticlesColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
+        type: 3}
+      propertyPath: desertColor.r
+      value: 0.6117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
+        type: 3}
+      propertyPath: desertColor.g
+      value: 0.4117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
+        type: 3}
+      propertyPath: desertColor.b
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
+        type: 3}
+      propertyPath: winterColor.r
+      value: 0.8745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
+        type: 3}
+      propertyPath: winterColor.b
+      value: 0.99215686
+      objectReference: {fileID: 0}
     - target: {fileID: 131245726081912454, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4790,7 +4825,7 @@ PrefabInstance:
     - target: {fileID: 131245726081912454, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 131245726081912454, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
@@ -4837,50 +4872,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
+    - target: {fileID: 8050037667475876401, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
-      propertyPath: changeColor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
-        type: 3}
-      propertyPath: changeParticlesColor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
-        type: 3}
-      propertyPath: desertColor.r
-      value: 0.6117647
-      objectReference: {fileID: 0}
-    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
-        type: 3}
-      propertyPath: desertColor.g
-      value: 0.4117647
-      objectReference: {fileID: 0}
-    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
-        type: 3}
-      propertyPath: desertColor.b
-      value: 0.1254902
-      objectReference: {fileID: 0}
-    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
-        type: 3}
-      propertyPath: winterColor.r
-      value: 0.8745098
-      objectReference: {fileID: 0}
-    - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
-        type: 3}
-      propertyPath: winterColor.b
-      value: 0.99215686
+      propertyPath: m_Name
+      value: Sand Particles
       objectReference: {fileID: 0}
     - target: {fileID: 9044581207736754498, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8050037667475876401, guid: 896adf71198b5bf45b0427c11eb05b66,
-        type: 3}
-      propertyPath: m_Name
-      value: Sand Particles
       objectReference: {fileID: 0}
     - target: {fileID: 5630463479014977837, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
@@ -4910,7 +4910,7 @@ PrefabInstance:
     - target: {fileID: 5630463479014977837, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5630463479014977837, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
