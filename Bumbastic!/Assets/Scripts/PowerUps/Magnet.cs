@@ -29,6 +29,7 @@ public class Magnet : PowerUp
         Vector3 initBombPos = HotPotatoManager.HotPotato.Bomb.transform.position;
 
         float normalizedTime = 0f;
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpMagnet, 0.7f, true);
 
         while (normalizedTime < 0.9)
         {
@@ -37,6 +38,8 @@ public class Magnet : PowerUp
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpMagnet, 0.7f, false);
+
         m_player.CatchBomb(HotPotatoManager.HotPotato.Bomb);
         m_player.Stun(false);
         Destroy(magnetManager);

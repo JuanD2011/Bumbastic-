@@ -22,7 +22,7 @@ public class Velocity : PowerUp
     {
         speedUpParticle = Instantiate(HotPotatoManager.HotPotato.SpeedUpParticleSystem, transform.position, Quaternion.identity, m_player.transform);
         m_player.speedPU = true;
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.speedUP, 0.7f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpSpeedUP, 0.7f);
         yield return new WaitForSeconds(Duration);
         m_player.speedPU = false;
     }

@@ -26,14 +26,14 @@ public class AudioClips : ScriptableObject
     public AudioClip starObtained;
     public AudioClip crow;
     public AudioClip powerUpBoxDropped;
+    public AudioClip PowerUpBoxOpened;
     public AudioClip dropModule;
     public AudioClip anticipation;
     public AudioClip dropingWorld;
     public AudioClip stun;
     public AudioClip wagonHit;
     public AudioClip rollingWagon;
-    public AudioClip speedUP;
-    public AudioClip dash;
+    public AudioClip powerUpSpeedUP, powerUpMagnet, dash;
 
     [Header("Support")]
     public AudioClip crowdCheer;

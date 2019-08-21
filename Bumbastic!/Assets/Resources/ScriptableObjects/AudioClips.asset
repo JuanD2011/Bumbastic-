@@ -35,12 +35,14 @@ MonoBehaviour:
   starObtained: {fileID: 8300000, guid: e8f282a167c6d9c41a025b257e9f2b10, type: 3}
   crow: {fileID: 8300000, guid: 6ae37caf4ecc134499da1d60d9d92111, type: 3}
   powerUpBoxDropped: {fileID: 8300000, guid: 3b3e03b87525a28449953f103fb0b0fd, type: 3}
+  PowerUpBoxOpened: {fileID: 8300000, guid: a047a08905250f44d91ef72e47266d55, type: 3}
   dropModule: {fileID: 8300000, guid: e29d1374fc239474f9dd7ce28da63900, type: 3}
-  anticipation: {fileID: 8300000, guid: 27023d9926128e44f9a9f26cb7e5c93e, type: 3}
+  anticipation: {fileID: 8300000, guid: 1ad20a9bc4f1c5041a084f27cf35128f, type: 3}
   dropingWorld: {fileID: 8300000, guid: 812d7447e47d1444d97321823ea260f5, type: 3}
   stun: {fileID: 8300000, guid: 43650f94020820541a4701e9a2aa5c5e, type: 3}
   wagonHit: {fileID: 8300000, guid: c842e5a90375cc64893a19406337971c, type: 3}
   rollingWagon: {fileID: 8300000, guid: 1fe14afa923203942aa3412413b08d5c, type: 3}
-  speedUP: {fileID: 8300000, guid: 8a2d0eb387c50ec4ab26092c4b6e8b92, type: 3}
+  powerUpSpeedUP: {fileID: 8300000, guid: 8a2d0eb387c50ec4ab26092c4b6e8b92, type: 3}
+  powerUpMagnet: {fileID: 8300000, guid: 957fac03a388e2d4791750a67bf8ff3a, type: 3}
   dash: {fileID: 8300000, guid: fbbb8fd23e71a7c429048e1b70b30d6e, type: 3}
   crowdCheer: {fileID: 8300000, guid: bc7ec1150bac68d4da6fae14b5536132, type: 3}
