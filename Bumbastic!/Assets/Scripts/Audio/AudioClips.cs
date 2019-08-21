@@ -25,8 +25,7 @@ public class AudioClips : ScriptableObject
     public AudioClip buttonSelection;
     public AudioClip starObtained;
     public AudioClip crow;
-    public AudioClip powerUpBoxDropped;
-    public AudioClip PowerUpBoxOpened;
+    public AudioClip powerUpBoxDropped, powerUpBoxOpened, powerUpBubble;
     public AudioClip dropModule;
     public AudioClip anticipation;
     public AudioClip dropingWorld;

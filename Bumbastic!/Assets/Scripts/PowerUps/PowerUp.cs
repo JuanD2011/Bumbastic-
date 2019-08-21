@@ -34,8 +34,9 @@ public class PowerUp : MonoBehaviour, IPowerUp
         yield return new WaitUntil(() => p_Animator.GetCurrentAnimatorStateInfo(0).IsName("Opened"));
         AnimatorStateInfo animatorStateInfo = p_Animator.GetCurrentAnimatorStateInfo(0);
 
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.PowerUpBoxOpened, 1f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBoxOpened, 1f);
         yield return new WaitUntil(() => animatorStateInfo.normalizedTime >= 0.9f);
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBubble, 1f);
         P_Collider.enabled = false;
     }
 
