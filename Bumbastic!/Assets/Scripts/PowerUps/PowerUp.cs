@@ -6,7 +6,9 @@ public class PowerUp : MonoBehaviour, IPowerUp
     private float duration = 0f;
     protected Player m_player = null;
     private Animator p_Animator = null;
+    [SerializeField] float angularVelocity = 20f;
 
+    ParticleSystem openBoxParticleSystem = null;
 
     public float Duration { get => duration; protected set => duration = value; }
     public Collider P_Collider { get; set; }
@@ -16,7 +18,14 @@ public class PowerUp : MonoBehaviour, IPowerUp
     {
         P_Collider = GetComponentInParent<Collider>();
         p_Animator = GetComponentInParent<Animator>();
+        openBoxParticleSystem = GetComponentInChildren<ParticleSystem>();
+
         Box = transform.parent;
+    }
+
+    private void Update()
+    {
+        transform.eulerAngles += Vector3.up * Time.deltaTime * angularVelocity;
     }
 
     public void Dropped()
@@ -34,7 +43,9 @@ public class PowerUp : MonoBehaviour, IPowerUp
         yield return new WaitUntil(() => p_Animator.GetCurrentAnimatorStateInfo(0).IsName("Opened"));
         AnimatorStateInfo animatorStateInfo = p_Animator.GetCurrentAnimatorStateInfo(0);
 
+        openBoxParticleSystem.Play();
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBoxOpened, 1f);
+
         yield return new WaitUntil(() => animatorStateInfo.normalizedTime >= 0.9f);
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBubble, 1f);
         P_Collider.enabled = false;
