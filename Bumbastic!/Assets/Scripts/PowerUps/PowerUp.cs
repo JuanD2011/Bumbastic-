@@ -9,7 +9,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     [SerializeField] GameObject speedUp = null, magnet = null, shield = null;
 
-    ParticleSystem openBoxParticleSystem = null;
+    [SerializeField] ParticleSystem openBoxParticleSystem = null;
 
     public float Duration { get => duration; protected set => duration = value; }
     public BoxCollider P_Collider { get; set; }
@@ -18,8 +18,6 @@ public class PowerUp : MonoBehaviour, IPowerUp
     private void Awake()
     {
         P_Collider = GetComponentInParent<BoxCollider>();
-        openBoxParticleSystem = GetComponentInChildren<ParticleSystem>();
-
         m_Animator = GetComponent<Animator>();
 
         Box = transform.parent;
