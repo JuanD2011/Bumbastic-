@@ -196,7 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5ec0d7f778d8e448af80d868bf85d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularVelocity: 20
   speedUp: {fileID: 8796840583410393779, guid: 3790bf2101831a549a5a6ce69300ae1d, type: 3}
   magnet: {fileID: 3558565048510451098, guid: e097d61389aca8243a0d8a9b6a95f1c6, type: 3}
   shield: {fileID: 6538572462843336858, guid: 9c8180ada67b2ae408f02e3c3c8dd997, type: 3}
@@ -320,6 +319,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1210939913327013161}
     m_Modifications:
+    - target: {fileID: 5428478231815449337, guid: 7a35500cf83c17340a386f7e83da976b,
+        type: 3}
+      propertyPath: m_Name
+      value: Open PowerUpBox
+      objectReference: {fileID: 0}
     - target: {fileID: 5428478231815449338, guid: 7a35500cf83c17340a386f7e83da976b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -389,11 +393,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.598799
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428478231815449337, guid: 7a35500cf83c17340a386f7e83da976b,
-        type: 3}
-      propertyPath: m_Name
-      value: Open PowerUpBox
       objectReference: {fileID: 0}
     - target: {fileID: 5428478231815449339, guid: 7a35500cf83c17340a386f7e83da976b,
         type: 3}

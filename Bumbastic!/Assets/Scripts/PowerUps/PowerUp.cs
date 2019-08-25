@@ -66,14 +66,13 @@ public class PowerUp : MonoBehaviour, IPowerUp
         switch (randomPU)
         {
             case 0:
-                Instantiate(magnet, _player.transform.position, Quaternion.identity, _player.transform);
+                Instantiate(speedUp, _player.transform.position, Quaternion.identity, _player.transform);
                 break;
             case 1:
                 Instantiate(magnet, _player.transform.position, Quaternion.identity, _player.transform);
                 break;
             case 2:
-                Instantiate(magnet, _player.transform.position, Quaternion.identity, _player.transform);
-                //Instantiate(shield, _player.transform.position + new Vector3(0f, 1.51f, 0f), Quaternion.identity, _player.transform);
+                Instantiate(shield, _player.transform.position + new Vector3(0f, 1.51f, 0f), Quaternion.identity, _player.transform);
                 break;
             default:
                 break;
