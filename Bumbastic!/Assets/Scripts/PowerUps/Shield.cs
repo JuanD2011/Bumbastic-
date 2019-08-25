@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Shield : PowerUp, IBounce
 {
-    float bounceForce = 12f;
-    float timeToLerpBomb = 0.7f;
+    [SerializeField] float bounceForce = 12f;
+    [SerializeField] float timeToLerpBomb = 0.7f;
 
     private void Awake()
     {

@@ -8,12 +8,8 @@ public class SandEditor : Editor
     SerializedProperty desertColor;
     SerializedProperty winterColor;
 
-    Sand m_Sand;
-
     private void OnEnable()
     {
-        m_Sand = (Sand)target;
-
         changeParticlesColor = serializedObject.FindProperty("changeParticlesColor");
 
         desertColor = serializedObject.FindProperty("desertColor");
@@ -26,13 +22,13 @@ public class SandEditor : Editor
 
         serializedObject.Update();
 
-        changeParticlesColor.boolValue = EditorGUILayout.Toggle("Change particles color", m_Sand.ChangeParticlesColor);
+        changeParticlesColor.boolValue = EditorGUILayout.Toggle("Change particles color", changeParticlesColor.boolValue);
 
         if (changeParticlesColor.boolValue)
         {
             EditorGUI.indentLevel = 1;
-            desertColor.colorValue = EditorGUILayout.ColorField("Desert Color", m_Sand.DesertColor);
-            winterColor.colorValue = EditorGUILayout.ColorField("Winter Color", m_Sand.WinterColor);
+            desertColor.colorValue = EditorGUILayout.ColorField("Desert Color", desertColor.colorValue);
+            winterColor.colorValue = EditorGUILayout.ColorField("Winter Color", winterColor.colorValue);
             EditorGUI.indentLevel = 0;
         }
 

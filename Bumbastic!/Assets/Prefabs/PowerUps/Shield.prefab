@@ -95,6 +95,8 @@ MonoBehaviour:
   speedUp: {fileID: 0}
   magnet: {fileID: 0}
   shield: {fileID: 0}
+  bounceForce: 12
+  timeToLerpBomb: 0.7
 --- !u!135 &6538572462843336933
 SphereCollider:
   m_ObjectHideFlags: 0

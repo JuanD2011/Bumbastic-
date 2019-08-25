@@ -18,10 +18,6 @@ public class Sand : MonoBehaviour
     [SerializeField, HideInInspector] private Color desertColor = Color.white;
     [SerializeField, HideInInspector] private Color winterColor = Color.white;
 
-    public bool ChangeParticlesColor { get => changeParticlesColor; set => changeParticlesColor = value; }
-    public Color DesertColor { get => desertColor; set => desertColor = value; }
-    public Color WinterColor { get => winterColor; set => winterColor = value; }
-
     private void Awake()
     {
         m_BoxCollider = GetComponent<BoxCollider>();
@@ -42,20 +38,20 @@ public class Sand : MonoBehaviour
     {
         StartCoroutine(ChangeState());
 
-        if (ChangeParticlesColor && GameManager.Manager != null)
+        if (changeParticlesColor && GameManager.Manager != null)
         {
             switch (GameManager.Manager.Enviroment)
             {
                 case EnumEnviroment.Desert:
                     for (int i = 0; i < mainModules.Length; i++)
                     {
-                        mainModules[i].startColor = DesertColor;
+                        mainModules[i].startColor = desertColor;
                     }
                     break;
                 case EnumEnviroment.Winter:
                     for (int i = 0; i < mainModules.Length; i++)
                     {
-                        mainModules[i].startColor = WinterColor;
+                        mainModules[i].startColor = winterColor;
                     }
                     break;
                 default:

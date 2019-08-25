@@ -13073,12 +13073,12 @@ PrefabInstance:
     - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
       propertyPath: desertColor.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}
       propertyPath: desertColor.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 131245726081912455, guid: 896adf71198b5bf45b0427c11eb05b66,
         type: 3}

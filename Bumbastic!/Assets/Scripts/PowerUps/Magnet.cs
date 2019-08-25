@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class Magnet : PowerUp
 {
-    [SerializeField, HideInInspector] float lerpDuration = 2f;
-
-    public float LerpDuration { get => lerpDuration; set => lerpDuration = value; }
+    [SerializeField] float lerpDuration = 2f;
 
     private void Awake()
     {
@@ -33,7 +31,7 @@ public class Magnet : PowerUp
         while (normalizedTime < 0.9)
         {
             HotPotatoManager.HotPotato.Bomb.transform.position = Vector3.Lerp(initBombPos, m_player.transform.position, normalizedTime);
-            normalizedTime = elapsedTime / LerpDuration;
+            normalizedTime = elapsedTime / lerpDuration;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
