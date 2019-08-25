@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Wagon : MonoBehaviour
+public class Wagon : MonoBehaviour, IBounce
 {
     [SerializeField] float pushForce = 2f;
     [SerializeField] float velocity = 15f;
@@ -41,7 +41,6 @@ public class Wagon : MonoBehaviour
         sqrMaxVelocity = SqrMaxVelocity();
     }
 
-
     private void FixedUpdate()
     {
         if (clampVelocity)
@@ -56,46 +55,6 @@ public class Wagon : MonoBehaviour
     }
 
     private float SqrMaxVelocity() { return maxVelocity * maxVelocity; }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (!GameModeDataBase.IsCurrentFreeForAll()) return;
-
-        Player playerCollisioned = collision.gameObject.GetComponentInParent<Player>();
-
-        if (playerCollisioned != null && playerCollisioned.CanMove)
-        {
-            if (canStun)
-            {
-                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit, 1f);
-                StartCoroutine(playerCollisioned.Stun(true, 2.2f));
-                playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * -Vector3.forward * pushForce, ForceMode.Impulse);
-                ContactPoint contactPoint = collision.GetContact(0);
-                crashParticleSystem.transform.position = contactPoint.point;
-                crashParticleSystem.Play();
-            }
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (!GameModeDataBase.IsCurrentFreeForAll()) return;
-
-        Player playerCollisioned = collision.gameObject.GetComponentInParent<Player>();
-
-        if (playerCollisioned != null && playerCollisioned.CanMove)
-        {
-            if (canStun)
-            {
-                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit, 1f);
-                StartCoroutine(playerCollisioned.Stun(true, 2.2f));
-                playerCollisioned.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * -Vector3.forward * pushForce, ForceMode.Impulse);
-                ContactPoint contactPoint = collision.GetContact(0);
-                crashParticleSystem.transform.position = contactPoint.point;
-                crashParticleSystem.Play();
-            }
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -140,6 +99,26 @@ public class Wagon : MonoBehaviour
             m_Rigidbody.AddForce(transform.forward * velocity, ForceMode.Impulse);
             clampVelocity = true;
             canStun = true;
+        }
+    }
+
+    public void Bounce(GameObject _bounceable, Collision _collision)
+    {
+        if (!GameModeDataBase.IsCurrentFreeForAll() || _collision == null) return;
+
+        Player player = _bounceable.GetComponentInParent<Player>();
+
+        if (player != null && player.CanMove)
+        {
+            if (canStun)
+            {
+                AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.wagonHit, 1f);
+                StartCoroutine(player.Stun(true, 2.2f));
+                player.Rigidbody.AddForce(Quaternion.AngleAxis(60, Vector3.right) * -Vector3.forward * pushForce, ForceMode.Impulse);
+                ContactPoint contactPoint = _collision.GetContact(0);
+                crashParticleSystem.transform.position = contactPoint.point;
+                crashParticleSystem.Play();
+            }
         }
     }
 }

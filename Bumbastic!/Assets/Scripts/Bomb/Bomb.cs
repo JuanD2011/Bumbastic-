@@ -108,6 +108,13 @@ public class Bomb : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        IBounce iBounce = other.gameObject.GetComponent<IBounce>();
+
+        if (iBounce != null) iBounce.Bounce(gameObject, null);
+    }
+
     private IEnumerator AboutToExplode()
     {
         byte counter = 0;

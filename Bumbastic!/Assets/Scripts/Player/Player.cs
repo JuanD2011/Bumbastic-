@@ -299,6 +299,10 @@ public class Player : MonoBehaviour
         PowerUp powerUpCollisioned = collision.gameObject.GetComponent<PowerUp>();
         Player player = collision.gameObject.GetComponentInParent<Player>();
 
+        IBounce iBounce = collision.gameObject.GetComponent<IBounce>();
+
+        if (iBounce != null) iBounce.Bounce(gameObject, collision);
+
         if (powerUpCollisioned != null)
         {
             if (powerUpCollisioned.transform.GetComponent<Player>() == null)
@@ -323,7 +327,9 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Bomb bomb = other.GetComponent<Bomb>();
+        IBounce iBounce = other.gameObject.GetComponent<IBounce>();
 
+        if (iBounce != null) iBounce.Bounce(gameObject, null);
         if (bomb != null) CatchBomb(bomb);
     }
 

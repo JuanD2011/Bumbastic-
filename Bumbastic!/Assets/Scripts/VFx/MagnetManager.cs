@@ -21,7 +21,7 @@ public class MagnetManager : ParticleModication
         base.Awake();
         player = GetComponentInParent<Player>();
         wave = GetComponentInChildren<LineRenderer>();
-        pathParticles = new ParticleSystem.Particle[MainModules[0].maxParticles];
+        pathParticles = new ParticleSystem.Particle[30];
         bomb = HotPotatoManager.HotPotato.Bomb.gameObject;
     }
 

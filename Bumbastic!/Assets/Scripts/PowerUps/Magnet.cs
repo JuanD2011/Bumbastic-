@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Magnet : PowerUp
 {
-    GameObject magnetManager;
-
     [SerializeField] float lerpDuration = 2f;
 
     private void Awake()
@@ -14,10 +12,9 @@ public class Magnet : PowerUp
 
     private void Start()
     {
-        magnetManager = Instantiate(HotPotatoManager.HotPotato.MagnetParticleSystem, transform.position + new Vector3(0f, 0.8f, 0f), Quaternion.identity, m_player.transform);
-
         StartCoroutine(LerpBomb());
         m_player.Collider.enabled = true;
+        transform.GetChild(0).position = transform.position + new Vector3(0f, 0.8f, 0f);
     }
 
     IEnumerator LerpBomb()
@@ -42,7 +39,6 @@ public class Magnet : PowerUp
 
         m_player.CatchBomb(HotPotatoManager.HotPotato.Bomb);
         m_player.Stun(false);
-        Destroy(magnetManager);
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

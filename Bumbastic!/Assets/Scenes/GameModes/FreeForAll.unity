@@ -428,10 +428,6 @@ MonoBehaviour:
   minTime: 10
   maxTime: 15
   powerUp: {fileID: 1340632418}
-  magnetParticleSystem: {fileID: 6569818202052991651, guid: 0e8e4defdde8c224fa7a7ccd7abe821c,
-    type: 3}
-  speedUpParticleSystem: {fileID: 7379601420566035011, guid: c91d992a0904ade42aa34b1a01e0815f,
-    type: 3}
 --- !u!4 &490962512
 Transform:
   m_ObjectHideFlags: 0

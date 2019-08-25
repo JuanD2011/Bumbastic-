@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Velocity : PowerUp
 {
-    GameObject speedUpParticle;
+    SpeedUpParticle speedUpParticle;
 
     private void Awake()
     {
         GetPlayer();
+        speedUpParticle = GetComponentInChildren<SpeedUpParticle>();
     }
 
     private void Start()
@@ -15,12 +16,11 @@ public class Velocity : PowerUp
         Duration = 5f;
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.cSpeedUP, 1f);
         StartCoroutine(InitSpeedUP());
-        speedUpParticle.GetComponent<SpeedUpParticle>().OnComplete += OnComplete;
+        speedUpParticle.OnComplete += OnComplete;
     }
 
     IEnumerator InitSpeedUP()
     {
-        speedUpParticle = Instantiate(HotPotatoManager.HotPotato.SpeedUpParticleSystem, transform.position, Quaternion.identity, m_player.transform);
         m_player.speedPU = true;
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpSpeedUP, 0.7f);
         yield return new WaitForSeconds(Duration);
@@ -29,7 +29,6 @@ public class Velocity : PowerUp
 
     private void OnComplete()
     {
-        Destroy(speedUpParticle.gameObject);
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

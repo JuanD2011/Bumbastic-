@@ -20,9 +20,6 @@ public class HotPotatoManager : GameManager
     [SerializeField] 
     PowerUp powerUp = null;
 
-    [SerializeField] GameObject magnetParticleSystem;
-    [SerializeField] GameObject speedUpParticleSystem;
-
     protected bool cooldown = true;
     protected float time = 0f;
 
@@ -33,8 +30,6 @@ public class HotPotatoManager : GameManager
     public Player BombHolder { get => bombHolder; protected set => bombHolder = value; }
     public Bomb Bomb { get => bomb; private set => bomb = value; }
     public PowerUp PowerUp { get => powerUp; set => powerUp = value; }
-    public GameObject MagnetParticleSystem { get => magnetParticleSystem; set => magnetParticleSystem = value; }
-    public GameObject SpeedUpParticleSystem { get => speedUpParticleSystem; set => speedUpParticleSystem = value; }
 
     protected override void Awake()
     {

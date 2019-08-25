@@ -197,6 +197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angularVelocity: 20
+  speedUp: {fileID: 8796840583410393779, guid: 3790bf2101831a549a5a6ce69300ae1d, type: 3}
+  magnet: {fileID: 3558565048510451098, guid: e097d61389aca8243a0d8a9b6a95f1c6, type: 3}
+  shield: {fileID: 6538572462843336858, guid: 9c8180ada67b2ae408f02e3c3c8dd997, type: 3}
 --- !u!1 &2077235624929507413
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +290,7 @@ BoxCollider:
   m_GameObject: {fileID: 2077235624929507413}
   m_Material: {fileID: 13400000, guid: 5457e1e9b4c931c4d958be3bc2f1a4a8, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.0027819, y: 2.0027819, z: 2.0027819}
   m_Center: {x: 0, y: 0, z: 0}
@@ -317,11 +320,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1210939913327013161}
     m_Modifications:
-    - target: {fileID: 5428478231815449337, guid: 7a35500cf83c17340a386f7e83da976b,
-        type: 3}
-      propertyPath: m_Name
-      value: Open PowerUpBox
-      objectReference: {fileID: 0}
     - target: {fileID: 5428478231815449338, guid: 7a35500cf83c17340a386f7e83da976b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -391,6 +389,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.598799
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428478231815449337, guid: 7a35500cf83c17340a386f7e83da976b,
+        type: 3}
+      propertyPath: m_Name
+      value: Open PowerUpBox
       objectReference: {fileID: 0}
     - target: {fileID: 5428478231815449339, guid: 7a35500cf83c17340a386f7e83da976b,
         type: 3}

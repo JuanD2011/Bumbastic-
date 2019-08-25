@@ -6,7 +6,8 @@ public class PowerUp : MonoBehaviour, IPowerUp
     private float duration = 0f;
     protected Player m_player = null;
     private Animator p_Animator = null;
-    [SerializeField] float angularVelocity = 20f;
+
+    [SerializeField] GameObject speedUp, magnet, shield;
 
     ParticleSystem openBoxParticleSystem = null;
 
@@ -21,11 +22,6 @@ public class PowerUp : MonoBehaviour, IPowerUp
         openBoxParticleSystem = GetComponentInChildren<ParticleSystem>();
 
         Box = transform.parent;
-    }
-
-    private void Update()
-    {
-        transform.eulerAngles += Vector3.up * Time.deltaTime * angularVelocity;
     }
 
     public void Dropped()
@@ -53,7 +49,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     protected void GetPlayer()
     {
-        m_player = GetComponent<Player>();
+        m_player = GetComponentInParent<Player>();
     }
 
     public virtual void PickPowerUp(Player _player)
@@ -62,7 +58,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
         if (_player.HasBomb)
         {
-            _player.gameObject.AddComponent<Velocity>();
+            Instantiate(speedUp, _player.transform.position, Quaternion.identity, _player.transform);
             Box.gameObject.SetActive(false);
             return;
         }
@@ -70,15 +66,14 @@ public class PowerUp : MonoBehaviour, IPowerUp
         switch (randomPU)
         {
             case 0:
-                _player.gameObject.AddComponent<Velocity>();
+                Instantiate(magnet, _player.transform.position, Quaternion.identity, _player.transform);
                 break;
             case 1:
-                _player.gameObject.AddComponent<Magnet>();
+                Instantiate(magnet, _player.transform.position, Quaternion.identity, _player.transform);
                 break;
             case 2:
-                _player.gameObject.AddComponent<Magnet>();
-                break;
-            case 3:
+                Instantiate(magnet, _player.transform.position, Quaternion.identity, _player.transform);
+                //Instantiate(shield, _player.transform.position + new Vector3(0f, 1.51f, 0f), Quaternion.identity, _player.transform);
                 break;
             default:
                 break;
