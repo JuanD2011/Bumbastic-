@@ -1,27 +1,33 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PowerUp : MonoBehaviour, IPowerUp
 {
     private float duration = 0f;
     protected Player m_player = null;
-    private Animator p_Animator = null;
+    [SerializeField] Animator p_Animator = null;
+    private Animator m_Animator = null;
 
-    [SerializeField] GameObject speedUp, magnet, shield;
+    [SerializeField] GameObject speedUp = null, magnet = null, shield = null;
 
     ParticleSystem openBoxParticleSystem = null;
 
     public float Duration { get => duration; protected set => duration = value; }
-    public Collider P_Collider { get; set; }
+    public BoxCollider P_Collider { get; set; }
     public Transform Box { get; set; } = null;
 
     private void Awake()
     {
-        P_Collider = GetComponentInParent<Collider>();
-        p_Animator = GetComponentInParent<Animator>();
+        P_Collider = GetComponentInParent<BoxCollider>();
         openBoxParticleSystem = GetComponentInChildren<ParticleSystem>();
 
+        m_Animator = GetComponent<Animator>();
+
         Box = transform.parent;
+    }
+
+    private void Start()
+    {
+        Invoke("Dropped", 2f);
     }
 
     public void Dropped()
@@ -31,20 +37,16 @@ public class PowerUp : MonoBehaviour, IPowerUp
         Box.SetParent(null);
 
         p_Animator.SetTrigger("Open");
-        StartCoroutine(SyncOpenBox());
+        openBoxParticleSystem.Play();
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBoxOpened, 0.5f);
+        Invoke("AfterBoxOpens", 0.5f);
     }
 
-    IEnumerator SyncOpenBox()
+    public void AfterBoxOpens()
     {
-        yield return new WaitUntil(() => p_Animator.GetCurrentAnimatorStateInfo(0).IsName("Opened"));
-        AnimatorStateInfo animatorStateInfo = p_Animator.GetCurrentAnimatorStateInfo(0);
-
-        openBoxParticleSystem.Play();
-        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBoxOpened, 1f);
-
-        yield return new WaitUntil(() => animatorStateInfo.normalizedTime >= 0.9f);
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBubble, 1f);
         P_Collider.enabled = false;
+        m_Animator.SetTrigger("GetBigger");
     }
 
     protected void GetPlayer()

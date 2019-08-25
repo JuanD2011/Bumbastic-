@@ -32,7 +32,7 @@ public class CrowIdle : StateMachineBehaviour
         animator.transform.parent.eulerAngles = new Vector3(0, t * flyingVel, 0);
         dir = (animator.transform.parent.position - animator.transform.position).normalized;
 
-        if (HotPotatoManager.HotPotato.PowerUp.transform.parent == animator.transform)
+        if (HotPotatoManager.HotPotato.PowerUp.transform.parent.parent == animator.transform)
         {
             if (animator.runtimeAnimatorController != animatorOverrideController)
             {
