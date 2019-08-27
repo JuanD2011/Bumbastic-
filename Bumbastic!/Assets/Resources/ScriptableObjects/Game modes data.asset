@@ -30,7 +30,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 37e72ddc606985e49bb1e4ad8cda9416, type: 3}
     videoClip: {fileID: 32900000, guid: d050717b6d7a26040a67d214f1c2f89c, type: 3}
   - name: Explosive Rain
-    description: Use the bomb to explode your enemies, reach 3 points to win
+    description: Bombs are raining! every man for himself.
     gameModeType: 3
     gameModeBackgrounds:
     - {fileID: 21300000, guid: c1b177e8c8918cb489df0492de6d5075, type: 3}

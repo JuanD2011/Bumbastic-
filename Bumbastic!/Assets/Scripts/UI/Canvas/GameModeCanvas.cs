@@ -13,7 +13,6 @@ public class GameModeCanvas : MonoBehaviour
     [SerializeField] float timeToChangebg = 1f, alphaImage = 0.6f, alphaImageOut = 0.1f, fadeOut = 1f, fadeIn = 1f;
 
     [SerializeField] TextTranslation[] gamemodeInfo = new TextTranslation[2];
-    string[] keysForTranslation = { "HotPotato", "HotPotatoDes", "FreeForAll", "FreeForAllDes", "Bases", "BasesDes" };
 
     Image[] backgroundImages = new Image[0];
 
@@ -90,20 +89,26 @@ public class GameModeCanvas : MonoBehaviour
     {
         if (GameModeDataBase.currentGameMode != null)
         {
-            if (GameModeDataBase.IsCurrentHotPotato())
+            switch (GameModeDataBase.currentGameMode.GameModeType)
             {
-                gamemodeInfo[0].TextID = keysForTranslation[0];
-                gamemodeInfo[1].TextID = keysForTranslation[1];
-            }
-            else if (GameModeDataBase.IsCurrentFreeForAll())
-            {
-                gamemodeInfo[0].TextID = keysForTranslation[2];
-                gamemodeInfo[1].TextID = keysForTranslation[3];
-            }
-            else if (GameModeDataBase.IsCurrentBasesGame())
-            {
-                gamemodeInfo[0].TextID = keysForTranslation[4];
-                gamemodeInfo[1].TextID = keysForTranslation[5];
+                case GameModeType.HotPotato:
+                    gamemodeInfo[0].TextID = GameModeType.HotPotato.ToString();
+                    gamemodeInfo[1].TextID = string.Format("{0}Des", GameModeType.HotPotato.ToString());
+                    break;
+                case GameModeType.FreeForAll:
+                    gamemodeInfo[0].TextID = GameModeType.FreeForAll.ToString();
+                    gamemodeInfo[1].TextID = string.Format("{0}Des", GameModeType.FreeForAll.ToString());
+                    break;
+                case GameModeType.BasesGame:
+                    gamemodeInfo[0].TextID = GameModeType.BasesGame.ToString();
+                    gamemodeInfo[1].TextID = string.Format("{0}Des", GameModeType.BasesGame.ToString());
+                    break;
+                case GameModeType.ExplosiveRain:
+                    gamemodeInfo[0].TextID = GameModeType.ExplosiveRain.ToString();
+                    gamemodeInfo[1].TextID = string.Format("{0}Des", GameModeType.ExplosiveRain.ToString());
+                    break;
+                default:
+                    break;
             }
         }
     }
