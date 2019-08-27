@@ -2,9 +2,12 @@
 
 public class PowerUp : MonoBehaviour, IPowerUp
 {
+    [SerializeField] Animator p_Animator = null;
+    [SerializeField] Explosion p_Explosion = null;
+
     private float duration = 0f;
     protected ThrowerPlayer m_player = null;
-    [SerializeField] Animator p_Animator = null;
+
     private Animator m_Animator = null;
 
     [SerializeField] GameObject speedUp = null, magnet = null, shield = null;
@@ -12,12 +15,11 @@ public class PowerUp : MonoBehaviour, IPowerUp
     [SerializeField] ParticleSystem openBoxParticleSystem = null;
 
     public float Duration { get => duration; protected set => duration = value; }
-    public BoxCollider P_Collider { get; set; }
     public Transform Box { get; set; } = null;
 
     private void Awake()
     {
-        P_Collider = GetComponentInParent<BoxCollider>();
+        p_Explosion = GetComponentInParent<Explosion>();
         m_Animator = GetComponent<Animator>();
 
         Box = transform.parent;
@@ -25,7 +27,13 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     private void Start()
     {
-        Invoke("Dropped", 2f);
+        Invoke("InitFirstTime", 2f);
+        p_Explosion.OnBoxExplode += OnBoxExplode;
+    }
+
+    private void InitFirstTime()
+    {
+        p_Animator.SetTrigger("Open");
     }
 
     public void Dropped()
@@ -33,8 +41,11 @@ public class PowerUp : MonoBehaviour, IPowerUp
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBoxDropped, 0.6f);
         Box.eulerAngles = Vector3.zero;
         Box.SetParent(null);
+        p_Explosion.Explode();
+    }
 
-        p_Animator.SetTrigger("Open");
+    private void OnBoxExplode()
+    {
         openBoxParticleSystem.Play();
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBoxOpened, 0.5f);
         Invoke("AfterBoxOpens", 0.5f);
@@ -43,7 +54,6 @@ public class PowerUp : MonoBehaviour, IPowerUp
     public void AfterBoxOpens()
     {
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBubble, 1f);
-        P_Collider.enabled = false;
         m_Animator.SetTrigger("GetBigger");
     }
 

@@ -48,7 +48,6 @@ public class CrowIdle : StateMachineBehaviour
         }
         else if (Mathf.Round(dir.x) == 0 && Mathf.Round(dir.z) == 1 && !HotPotatoManager.HotPotato.PowerUp.gameObject.activeInHierarchy)
         {
-            HotPotatoManager.HotPotato.PowerUp.P_Collider.enabled = true;
             HotPotatoManager.HotPotato.PowerUp.Box.SetParent(animator.transform);
             HotPotatoManager.HotPotato.PowerUp.Box.position = animator.transform.position + reference;
             HotPotatoManager.HotPotato.PowerUp.Box.gameObject.SetActive(true);

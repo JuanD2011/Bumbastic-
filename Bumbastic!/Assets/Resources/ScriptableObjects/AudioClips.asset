@@ -37,6 +37,7 @@ MonoBehaviour:
   powerUpBoxDropped: {fileID: 8300000, guid: 3b3e03b87525a28449953f103fb0b0fd, type: 3}
   powerUpBoxOpened: {fileID: 8300000, guid: e8f282a167c6d9c41a025b257e9f2b10, type: 3}
   powerUpBubble: {fileID: 8300000, guid: 777ae0ae952d1a440af18d08de1e21fd, type: 3}
+  powerUpBoxExplosion: {fileID: 8300000, guid: 9d62445ca19ac314d840958b307a2a1e, type: 3}
   dropModule: {fileID: 8300000, guid: e29d1374fc239474f9dd7ce28da63900, type: 3}
   anticipation: {fileID: 8300000, guid: 1ad20a9bc4f1c5041a084f27cf35128f, type: 3}
   dropingWorld: {fileID: 8300000, guid: 812d7447e47d1444d97321823ea260f5, type: 3}
