@@ -24,7 +24,7 @@ public class Base : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Player player = other.GetComponentInParent<Player>();
+        ThrowerPlayer player = other.GetComponentInParent<ThrowerPlayer>();
 
         if (player != null)
         {

@@ -7,7 +7,7 @@ public class CanvasBillboard : MonoBehaviour
 {
     [SerializeField] Settings settings = null;
 
-    Player player;
+    ThrowerPlayer player;
 
     TextMeshProUGUI[] playersText;
     Image playerColor = null;
@@ -17,7 +17,7 @@ public class CanvasBillboard : MonoBehaviour
 
     private void Awake()
     {
-        player = GetComponentInParent<Player>();
+        player = GetComponentInParent<ThrowerPlayer>();
         playersText = GetComponentsInChildren<TextMeshProUGUI>();
         playerColor = GetComponentInChildren<Image>();
         dashCountSlider = GetComponentInChildren<Slider>();

@@ -5,8 +5,8 @@ public class HotPotatoManager : GameManager
 {
     public static HotPotatoManager HotPotato;
 
-    protected Player bombHolder;
-    protected Player transmitter;
+    protected ThrowerPlayer bombHolder;
+    protected ThrowerPlayer transmitter;
 
     [SerializeField]
     private Bomb bomb;
@@ -27,7 +27,7 @@ public class HotPotatoManager : GameManager
 
     public event System.Action<Player> OnBombHolderChanged = null;
 
-    public Player BombHolder { get => bombHolder; protected set => bombHolder = value; }
+    public ThrowerPlayer BombHolder { get => bombHolder; protected set => bombHolder = value; }
     public Bomb Bomb { get => bomb; private set => bomb = value; }
     public PowerUp PowerUp { get => powerUp; set => powerUp = value; }
 
@@ -46,7 +46,7 @@ public class HotPotatoManager : GameManager
         Bomb.OnExplode += OnBombExplode;
         Bomb.OnFloorCollision += ReturnBomb;
 
-        Player.OnCatchBomb += BombHolderChange;
+        ThrowerPlayer.OnCatchBomb += BombHolderChange;
     }
 
     protected virtual void Update()
@@ -113,7 +113,7 @@ public class HotPotatoManager : GameManager
         Director.Play();
     }
 
-    protected virtual void BombHolderChange(Player _player, Bomb _bomb)
+    protected virtual void BombHolderChange(ThrowerPlayer _player, Bomb _bomb)
     {
         if (BombHolder != null)
         {
@@ -143,7 +143,7 @@ public class HotPotatoManager : GameManager
     protected override void OnDisable()
     {
         base.OnDisable();
-        Player.OnCatchBomb -= BombHolderChange;
+        ThrowerPlayer.OnCatchBomb -= BombHolderChange;
         Bomb.OnFloorCollision -= ReturnBomb;
     }
 }

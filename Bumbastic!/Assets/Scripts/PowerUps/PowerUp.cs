@@ -3,7 +3,7 @@
 public class PowerUp : MonoBehaviour, IPowerUp
 {
     private float duration = 0f;
-    protected Player m_player = null;
+    protected ThrowerPlayer m_player = null;
     [SerializeField] Animator p_Animator = null;
     private Animator m_Animator = null;
 
@@ -49,10 +49,10 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     protected void GetPlayer()
     {
-        m_player = GetComponentInParent<Player>();
+        m_player = GetComponentInParent<ThrowerPlayer>();
     }
 
-    public virtual void PickPowerUp(Player _player)
+    public virtual void PickPowerUp(ThrowerPlayer _player)
     {
         int randomPU = Random.Range(0, 3);
 

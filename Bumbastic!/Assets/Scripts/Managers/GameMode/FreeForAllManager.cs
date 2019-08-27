@@ -99,7 +99,7 @@ public class FreeForAllManager : HotPotatoManager
         Bomb.SetAnimationKeys();
     }
 
-    protected override void BombHolderChange(Player _player, Bomb _bomb)
+    protected override void BombHolderChange(ThrowerPlayer _player, Bomb _bomb)
     {
         base.BombHolderChange(_player, _bomb);
     }

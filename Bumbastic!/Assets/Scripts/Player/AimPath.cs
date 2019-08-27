@@ -2,7 +2,7 @@
 
 public class AimPath : MonoBehaviour
 {
-    Player m_Player;
+    ThrowerPlayer m_Player;
     LineRenderer m_LineRenderer;
     private float targetRotation;
     private float turnSmoothVel;
@@ -11,7 +11,7 @@ public class AimPath : MonoBehaviour
 
     private void Awake()
     {
-        m_Player = GetComponentInParent<Player>();
+        m_Player = GetComponentInParent<ThrowerPlayer>();
         m_LineRenderer = GetComponent<LineRenderer>();
     }
 

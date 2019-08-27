@@ -30,5 +30,6 @@ public enum GameModeType
 {
     HotPotato,
     FreeForAll,
-    BasesGame
+    BasesGame,
+    ExplosiveRain
 };

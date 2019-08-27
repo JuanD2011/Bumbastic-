@@ -2,14 +2,14 @@
 
 public class Dash : MonoBehaviour
 {
-    Player p_Player = null;
+    ThrowerPlayer p_Player = null;
 
     ParticleSystem m_ParticleSystem = null;
     ParticleSystem.ShapeModule shapeModule;
 
     private void Awake()
     {
-        p_Player = GetComponentInParent<Player>();
+        p_Player = GetComponentInParent<ThrowerPlayer>();
         m_ParticleSystem = GetComponent<ParticleSystem>();
         shapeModule = m_ParticleSystem.shape;
     }

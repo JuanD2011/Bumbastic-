@@ -12,14 +12,14 @@ public class MagnetManager : ParticleModication
     ParticleSystem.Particle[] pathParticles;
 
     GameObject bomb;
-    Player player;
+    ThrowerPlayer player;
 
     float t = 0f;
 
     protected override void Awake()
     {
         base.Awake();
-        player = GetComponentInParent<Player>();
+        player = GetComponentInParent<ThrowerPlayer>();
         wave = GetComponentInChildren<LineRenderer>();
         pathParticles = new ParticleSystem.Particle[30];
         bomb = HotPotatoManager.HotPotato.Bomb.gameObject;
