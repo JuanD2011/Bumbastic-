@@ -13,11 +13,18 @@ public class ExplosiveRainBomb : Bomb
         base.Awake();
     }
 
+    private void Start()
+    {
+        cParticleModification.OnComplete += () => gameObject.SetActive(false);
+    }
+
     private void OnEnable()
     {
+        Exploded = false;
+        CanCount = true;
+
         Timer = Random.Range(minExplosionTime, maxExplosionTime);
         SetAnimationKeys();
-        CanCount = true;
         elapsedTime = 0f;
     }
 
@@ -30,7 +37,7 @@ public class ExplosiveRainBomb : Bomb
             elapsedTime += Time.deltaTime;
         }
 
-        if (elapsedTime >= Timer)
+        if (elapsedTime >= Timer && !Exploded)
         {
             CanCount = false;
             Explode();
@@ -39,11 +46,11 @@ public class ExplosiveRainBomb : Bomb
 
     private new void Explode()
     {
+        Exploded = true;
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bomb, 0.7f);
         CameraShake.instance.OnShakeDuration?.Invoke(0.4f, 6f, 1.2f);
         cParticleModification.Execute();
         KillNearbyPlayers();
-        gameObject.SetActive(false);
     }
 
     private void KillNearbyPlayers()
