@@ -6,7 +6,7 @@ public class BombPool : MonoBehaviour
     [SerializeField] GameObject bombTemplate = null;
 
     [Header("Bombs to instantiate")]
-    [Range(2, 10)]
+    [Range(2, 100)]
     [SerializeField] int bombsInScene = 10;
 
     List<Bomb> bombsInGame = new List<Bomb>();
@@ -38,6 +38,12 @@ public class BombPool : MonoBehaviour
                 return result = bombsInGame[i];
             }
         }
+
+        GameObject bombClone = Instantiate(bombTemplate, Vector3.zero, Quaternion.identity);
+        bombClone.name = string.Format("{0} bomb", bombsInGame.Count);
+        bombClone.SetActive(false);
+        bombsInGame.Add(bombClone.GetComponent<Bomb>());
+        result = bombClone.GetComponent<Bomb>();
 
         return result;
     }

@@ -21,6 +21,9 @@ public abstract class GameManager : MonoBehaviour
     [SerializeField]
     GameObject playerPrefab;
 
+    [SerializeField]
+    private PowerUp powerUp = null;
+
     protected PlayableDirector director;
 
     public GameObject floor;
@@ -33,6 +36,7 @@ public abstract class GameManager : MonoBehaviour
     protected List<Transform> SpawnPoints { get => spawnPoints; private set => spawnPoints = value; }
     protected GameObject PlayerPrefab { get => playerPrefab; private set => playerPrefab = value; }
     public EnumEnviroment Enviroment { get => enviroment; private set => enviroment = value; }
+    public PowerUp PowerUp { get => powerUp; set => powerUp = value; }
 
     protected virtual void Awake()
     {

@@ -17,9 +17,6 @@ public class HotPotatoManager : GameManager
     [SerializeField]
     protected float minTime, maxTime;
 
-    [SerializeField] 
-    PowerUp powerUp = null;
-
     protected bool cooldown = true;
     protected float time = 0f;
 
@@ -29,7 +26,6 @@ public class HotPotatoManager : GameManager
 
     public ThrowerPlayer BombHolder { get => bombHolder; protected set => bombHolder = value; }
     public Bomb Bomb { get => bomb; private set => bomb = value; }
-    public PowerUp PowerUp { get => powerUp; set => powerUp = value; }
 
     protected override void Awake()
     {

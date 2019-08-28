@@ -19,7 +19,7 @@ public class Dash : MonoBehaviour
         p_Player.OnDashExecuted += ActiveParticles;
     }
 
-    private void ActiveParticles(Player _player)
+    private void ActiveParticles(ThrowerPlayer _player)
     {
         if (_player != p_Player) return;
 

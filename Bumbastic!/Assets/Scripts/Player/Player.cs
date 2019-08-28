@@ -13,8 +13,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     protected float moveSpeed = 0f, turnSmooth = 0.15f, powerUpSpeed = 0f;
     protected float turnSmoothVel, currentSpeed, speedSmoothVel, targetSpeed;
-
-    protected Vector2 inputDirection;
     #endregion
 
     public bool speedPU;
@@ -32,6 +30,7 @@ public class Player : MonoBehaviour
     public bool CanMove { get; set; } = false;
     public Vector3 SpawnPoint { get; set; }
     public Vector2 InputAiming { get; private set; }
+    public Vector2 InputDirection { get; set; }
     public GameObject Avatar { get; set; }
     public byte Id { get; set; }
     public Animator Animator { get; set; }
@@ -79,7 +78,7 @@ public class Player : MonoBehaviour
 
     public void OnMove(InputValue context)
     {
-        inputDirection = context.Get<Vector2>();
+        InputDirection = context.Get<Vector2>();
     }
 
     public void OnAim(InputValue context)
@@ -131,17 +130,17 @@ public class Player : MonoBehaviour
     {
         if (CanMove)
         {
-            inputDirection.Normalize();
+            InputDirection.Normalize();
 
-            if (inputDirection != Vector2.zero)
+            if (InputDirection != Vector2.zero)
             {
-                targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
+                targetRotation = Mathf.Atan2(InputDirection.x, InputDirection.y) * Mathf.Rad2Deg;
                 transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
             }
 
-            targetSpeed = ((speedPU) ? powerUpSpeed : moveSpeed) * inputDirection.magnitude;
+            targetSpeed = ((speedPU) ? powerUpSpeed : moveSpeed) * InputDirection.magnitude;
             currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVel, speedSmooothTime);
-            animationSpeedPercent = ((speedPU) ? 1 : 0.5f) * inputDirection.magnitude;
+            animationSpeedPercent = ((speedPU) ? 1 : 0.5f) * InputDirection.magnitude;
             Animator.SetFloat("speed", animationSpeedPercent, speedSmooothTime, Time.deltaTime);
         }
     }
@@ -202,7 +201,7 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(Rumble(0.4f, 0.4f, 0.2f));
         Animator.SetBool("CanMove", false);
-        inputDirection = Vector2.zero;
+        InputDirection = Vector2.zero;
         CanMove = false;
 
         if (_animStun)

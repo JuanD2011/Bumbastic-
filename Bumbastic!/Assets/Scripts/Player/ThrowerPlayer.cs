@@ -7,7 +7,7 @@ public class ThrowerPlayer : Player
     [SerializeField]
     private float throwForce = 30f, dashForce = 15f, penaltyOnPassBomb = 1f;
 
-    public event Action<Player> OnDashExecuted = null;
+    public event Action<ThrowerPlayer> OnDashExecuted = null;
     public static event Action<ThrowerPlayer, Bomb> OnCatchBomb;
 
     private bool throwing;
@@ -36,9 +36,9 @@ public class ThrowerPlayer : Player
 
         if (CanMove)
         {
-            if (inputDirection != Vector2.zero && !throwing)
+            if (InputDirection != Vector2.zero && !throwing)
             {
-                targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg;
+                targetRotation = Mathf.Atan2(InputDirection.x, InputDirection.y) * Mathf.Rad2Deg;
                 transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
             }
         }
