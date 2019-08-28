@@ -15,7 +15,7 @@ MonoBehaviour:
   gameModes:
   - name: Hot Potato
     description: Avoid the bomb. If it explodes, you're out!
-    gameModeType: 3
+    gameModeType: 0
     gameModeBackgrounds:
     - {fileID: 21300000, guid: 4f58868d7783d2a43b7b3e2ccc4f8211, type: 3}
     - {fileID: 21300000, guid: 7c75182672a1d9740af1b3c2402bf5ec, type: 3}
@@ -23,7 +23,7 @@ MonoBehaviour:
     videoClip: {fileID: 32900000, guid: ecfcbd920d6eebf45b4fa7ca7440ea01, type: 3}
   - name: Free For All
     description: Use the bomb to explode your enemies, reach 3 points to win
-    gameModeType: 3
+    gameModeType: 1
     gameModeBackgrounds:
     - {fileID: 21300000, guid: c1b177e8c8918cb489df0492de6d5075, type: 3}
     - {fileID: 21300000, guid: 09a4bed90a46e9246bf5802134edc8ae, type: 3}

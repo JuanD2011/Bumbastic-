@@ -27,7 +27,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     private void Start()
     {
-        Invoke("InitFirstTime", 2f);
+        Invoke("InitFirstTime", 4f);
         p_Explosion.OnBoxExplode += OnBoxExplode;
     }
 
@@ -55,6 +55,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
     {
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBubble, 1f);
         m_Animator.SetTrigger("GetBigger");
+        p_Animator.SetTrigger("Dissipate");
     }
 
     protected void GetPlayer()

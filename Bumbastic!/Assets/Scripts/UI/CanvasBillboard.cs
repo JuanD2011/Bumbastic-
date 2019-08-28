@@ -19,6 +19,7 @@ public class CanvasBillboard : MonoBehaviour
     private void Awake()
     {
         player = GetComponentInParent<Player>();
+        throwerPlayer = GetComponentInParent<ThrowerPlayer>();
         playersText = GetComponentsInChildren<TextMeshProUGUI>();
         playerColor = GetComponentInChildren<Image>();
         dashCountSlider = GetComponentInChildren<Slider>();
