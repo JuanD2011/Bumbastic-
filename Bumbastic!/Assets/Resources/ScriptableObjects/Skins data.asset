@@ -77,4 +77,4 @@ MonoBehaviour:
     prefab: {fileID: 9185090888582503999, guid: 446d4572ab375404fb52def470b3caa5,
       type: 3}
     choosed: 0
-    skinSprite: {fileID: 21300000, guid: f114898b26ca688408ba4505b8185531, type: 3}
+    skinSprite: {fileID: 21300000, guid: 529094482e3875e4f863a0de2690075e, type: 3}
