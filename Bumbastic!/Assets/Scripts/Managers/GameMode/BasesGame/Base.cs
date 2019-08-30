@@ -1,14 +1,21 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Base : MonoBehaviour
 {
+    [SerializeField] Color teamColor = new Color();
+    [SerializeField] Transform[] m_spawnPoints = new Transform[2];
     [SerializeField] byte lifePoints = 3;
     [SerializeField] byte id = 0;
-    Renderer m_Renderer;
+
+    List<Player> members = new List<Player>();
 
     public byte LifePoints { get => lifePoints; private set => lifePoints = value; }
-    public Renderer Renderer { get => m_Renderer; set => m_Renderer = value; }
+    public List<Player> Members { get => members; set => members = value; }
+    public Transform[] SpawnPoints { get => m_spawnPoints; private set => m_spawnPoints = value; }
+    public Color TeamColor { get => teamColor; private set => teamColor = value; }
+    public byte Id { get => id; private set => id = value; }
 
     public delegate void DelBase(byte _baseID, byte _lifePoints);
     public static event DelBase OnBaseDamage;
@@ -19,7 +26,8 @@ public class Base : MonoBehaviour
     {
         OnBaseDestoryed = null;
         OnBaseDamage = null;
-        Renderer = GetComponent<Renderer>();
+
+        GetComponent<Renderer>().materials[1].color = teamColor;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,7 +41,7 @@ public class Base : MonoBehaviour
                 if (LifePoints > 0)
                 {
                     LifePoints--;
-                    OnBaseDamage?.Invoke(id, LifePoints);//HUDBaseGame hears it.
+                    OnBaseDamage?.Invoke(Id, LifePoints);
                 }
                 else
                 {

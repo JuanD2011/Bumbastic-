@@ -20,26 +20,34 @@ public class CircleRenderer : MonoBehaviour
     private void Start()
     {
         mLineRenderer.material.color = settings.playersColor[0];
+        SetColor();
+        SetCircle();
+    }
+
+    private void SetColor()
+    {
+        if (GameModeDataBase.IsCurrentBasesGame())
+        {
+            foreach (Player _player in BasesGameManager.basesGame.Teams[0].Members)
+            {
+                if (_player == player)
+                {
+                    mLineRenderer.material.color = BasesGameManager.basesGame.Teams[0].TeamColor;
+                    return;
+                } 
+            }
+            mLineRenderer.material.color = BasesGameManager.basesGame.Teams[1].TeamColor;
+            return;
+        }
 
         switch (player.Id)
         {
-            case 0:
-                mLineRenderer.material.color = settings.playersColor[0];
-                break;
-            case 1:
-                mLineRenderer.material.color = settings.playersColor[1];
-                break;
-            case 2:
-                mLineRenderer.material.color = settings.playersColor[2];
-                break;
-            case 3:
-                mLineRenderer.material.color = settings.playersColor[3];
-                break;
-            default:
-                mLineRenderer.material.color = settings.playersColor[0];
-                break;
+            case 0: mLineRenderer.material.color = settings.playersColor[0]; break;
+            case 1: mLineRenderer.material.color = settings.playersColor[1]; break;
+            case 2: mLineRenderer.material.color = settings.playersColor[2]; break;
+            case 3: mLineRenderer.material.color = settings.playersColor[3]; break;
+            default: mLineRenderer.material.color = settings.playersColor[0]; break;
         }
-        SetCircle();
     }
 
     private void SetCircle()
@@ -60,23 +68,4 @@ public class CircleRenderer : MonoBehaviour
             theta += deltaTheta;
         }
     }
-
-    #if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        float deltaTheta = (2f * Mathf.PI) / vertexCount;
-        float theta = 0f;
-
-        Vector3 oldpos = Vector3.zero;
-        for (int i = 0; i < vertexCount + 1; i++)
-        {
-            Vector3 pos = new Vector3(radius * Mathf.Cos(theta), radius * Mathf.Sin(theta), 0);
-            Gizmos.DrawLine(oldpos, transform.position + pos);
-            oldpos = transform.position + pos;
-
-            theta += deltaTheta;
-        }
-    }
-    #endif
 }
-

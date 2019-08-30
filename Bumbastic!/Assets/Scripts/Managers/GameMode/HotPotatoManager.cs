@@ -33,6 +33,7 @@ public class HotPotatoManager : GameManager
         else Destroy(this);
 
         base.Awake();
+        SpawnPlayers();
     }
 
     protected override void Start()

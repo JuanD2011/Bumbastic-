@@ -3,6 +3,7 @@
     protected override void Awake()
     {
         base.Awake();
+        SpawnPlayers();
     }
 
     protected override void Start()

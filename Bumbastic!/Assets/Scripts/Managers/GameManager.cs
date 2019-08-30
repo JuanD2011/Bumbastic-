@@ -48,8 +48,6 @@ public abstract class GameManager : MonoBehaviour
         Enviroment = GetRandomEnviroment();
         Director = GetComponent<PlayableDirector>();
         Director.Play();
-
-        SpawnPlayers();
     }
 
     protected virtual void Start()
