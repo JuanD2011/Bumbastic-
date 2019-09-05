@@ -1248,42 +1248,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5500006474521089834, guid: d35ad8b261cba514e944f0b19592eff2,
+    - target: {fileID: 7185508736637962215, guid: d35ad8b261cba514e944f0b19592eff2,
         type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
-    - target: {fileID: 174148758324572415, guid: d35ad8b261cba514e944f0b19592eff2,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 40.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 174148758324572415, guid: d35ad8b261cba514e944f0b19592eff2,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 174148758324572415, guid: d35ad8b261cba514e944f0b19592eff2,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 174148758324572415, guid: d35ad8b261cba514e944f0b19592eff2,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 174148758324572415, guid: d35ad8b261cba514e944f0b19592eff2,
-        type: 3}
-      propertyPath: m_Center.y
-      value: -1.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7253370970861348602, guid: d35ad8b261cba514e944f0b19592eff2,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185508736637962215, guid: d35ad8b261cba514e944f0b19592eff2,
+    - target: {fileID: 5500006474521089834, guid: d35ad8b261cba514e944f0b19592eff2,
         type: 3}
       propertyPath: m_TagString
       value: Floor
@@ -1354,6 +1324,36 @@ PrefabInstance:
       value: -1.12
       objectReference: {fileID: 0}
     - target: {fileID: 5529339619630275894, guid: d35ad8b261cba514e944f0b19592eff2,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174148758324572415, guid: d35ad8b261cba514e944f0b19592eff2,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 40.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 174148758324572415, guid: d35ad8b261cba514e944f0b19592eff2,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174148758324572415, guid: d35ad8b261cba514e944f0b19592eff2,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 174148758324572415, guid: d35ad8b261cba514e944f0b19592eff2,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 174148758324572415, guid: d35ad8b261cba514e944f0b19592eff2,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -1.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253370970861348602, guid: d35ad8b261cba514e944f0b19592eff2,
         type: 3}
       propertyPath: m_CollisionDetection
       value: 1
@@ -2430,6 +2430,7 @@ GameObject:
   - component: {fileID: 2047532009}
   - component: {fileID: 2047532011}
   - component: {fileID: 2047532012}
+  - component: {fileID: 2047532013}
   m_Layer: 0
   m_Name: ExplosiveCloud
   m_TagString: Untagged
@@ -2476,8 +2477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b6a63f7ec99c64cb57ff5c7832118a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnRate: 0.2
-  maxSpawnRate: 1.5
+  minSpawnRate: 1
+  maxSpawnRate: 2.5
 --- !u!114 &2047532012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,4 +2493,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombTemplate: {fileID: 6708685767058008684, guid: f86c4582f47247e4f8f65674aee2e955,
     type: 3}
-  bombsInScene: 25
+  bombsInScene: 20
+--- !u!114 &2047532013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047532008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a781a754782e43447ba16a7127d47dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

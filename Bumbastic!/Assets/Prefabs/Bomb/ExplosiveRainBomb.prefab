@@ -148,7 +148,7 @@ MonoBehaviour:
   minExplosionTime: 6
   maxExplosionTime: 12
   explosionRadius: 2.5
-  explosionForce: 750
+  explosionForce: 100
 --- !u!1001 &405351544929132965
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -150,7 +150,7 @@ public abstract class GameManager : MonoBehaviour
             }
         }
 
-        gameMode.GetNextGameMode();
+        //gameMode.GetNextGameMode();
     }
 
     protected virtual void OnDisable()

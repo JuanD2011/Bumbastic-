@@ -30,6 +30,14 @@ public class GameModeDataBase : ScriptableObject
         }
         return false;
     }
+    public static bool IsCurrentExplosiveRain()
+    {
+        if (currentGameMode.GameModeType == GameModeType.ExplosiveRain)
+        {
+            return true;
+        }
+        return false;
+    }
 
     public void GetNextGameMode()
     {

@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.PlayerInput;
 
 public class Player : MonoBehaviour
 {
@@ -50,6 +49,7 @@ public class Player : MonoBehaviour
         if (animatorWNoBomb == null) animatorWNoBomb = new AnimatorOverrideController(Animator.runtimeAnimatorController);
         GameManager.Manager.Director.stopped += (PlayableDirector _playableDirector) => CanMove = true;
     }
+
 
     public virtual void Initialize()
     {
