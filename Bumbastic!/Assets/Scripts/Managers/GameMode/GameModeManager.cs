@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameModeManager : MonoBehaviour
 {
     [SerializeField] float timeToLoad = 10f;
+    [SerializeField] GameModeDataBase gameModeData = null;
 
     public delegate IEnumerator DelCanvasGameMode(string _sceneToLoad);
     public static DelCanvasGameMode OnLoadScene;
@@ -11,6 +12,7 @@ public class GameModeManager : MonoBehaviour
     private void Awake()
     {
         PlayerInputHandler.ResetMyEvents();
+        gameModeData.GetNextGameMode();
     }
 
     private void Start()

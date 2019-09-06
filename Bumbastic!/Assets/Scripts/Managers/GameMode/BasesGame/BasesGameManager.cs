@@ -10,6 +10,7 @@ public class BasesGameManager : GameManager
     [SerializeField] Base[] teams = new Base[2];
 
     public Base[] Teams { get => teams; private set => teams = value; }
+    public Base Winners { get; set; } = null;
 
     protected override void Awake()
     {
@@ -26,6 +27,26 @@ public class BasesGameManager : GameManager
     {
         base.Start();
         BasesBomb.OnBasesBombExplode += OnBombExplode;
+        Base.OnBaseDestroyed += CheckWinCondition;
+    }
+
+    private void CheckWinCondition(byte _baseID, byte _lifePoints)
+    {
+        for (int i = 0; i < teams.Length; i++)
+        {
+            if (_baseID != teams[i].Id)
+            {
+                InGame.lastWinners.Clear();
+                Winners = teams[i];
+                for (int j = 0; j < Winners.Members.Count; j++)
+                {
+                    InGame.playerSettings[Winners.Members[j].Id].score += 1;
+                    InGame.lastWinners.Enqueue(InGame.playerSettings[Winners.Members[j].Id]);
+                }
+                GameOver();
+                return;
+            }
+        }
     }
 
     private void OnBombExplode(Player _PlayerExploded)
@@ -59,8 +80,16 @@ public class BasesGameManager : GameManager
                 {
                     Teams[i].Members.Add(Players[i]);
 
-                    Teams[i].Members[0].SpawnPoint = Teams[i].SpawnPoints[0].transform.position;
-                    Teams[i].Members[0].transform.position = Teams[i].Members[0].SpawnPoint;
+                    if (i == 0)
+                    {
+                        Teams[i].Members[0].SpawnPoint = Teams[i].SpawnPoints[1].transform.position;
+                        Teams[i].Members[0].transform.position = Teams[i].Members[0].SpawnPoint;
+                    }
+                    else
+                    {
+                        Teams[i].Members[0].SpawnPoint = Teams[i].SpawnPoints[0].transform.position;
+                        Teams[i].Members[0].transform.position = Teams[i].Members[0].SpawnPoint;
+                    }
                 }
                 break;
             case 3:

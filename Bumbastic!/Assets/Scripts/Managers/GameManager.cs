@@ -13,9 +13,6 @@ public abstract class GameManager : MonoBehaviour
 
     public const byte maximunDashLevel = 3;
 
-    [SerializeField]
-    GameModeDataBase gameMode = null;
-
     private EnumEnviroment enviroment = EnumEnviroment.Desert;
 
     [SerializeField]
@@ -149,8 +146,6 @@ public abstract class GameManager : MonoBehaviour
                 return;
             }
         }
-
-        //gameMode.GetNextGameMode();
     }
 
     protected virtual void OnDisable()

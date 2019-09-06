@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class Base : MonoBehaviour
@@ -18,36 +17,33 @@ public class Base : MonoBehaviour
     public byte Id { get => id; private set => id = value; }
 
     public delegate void DelBase(byte _baseID, byte _lifePoints);
-    public static event DelBase OnBaseDamage;
-
-    public static Action OnBaseDestoryed;
+    public static event DelBase OnBaseDamage, OnBaseDestroyed;
 
     private void Awake()
     {
-        OnBaseDestoryed = null;
-        OnBaseDamage = null;
+        OnBaseDamage = null; OnBaseDestroyed = null;
 
         GetComponent<Renderer>().materials[1].color = teamColor;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        ThrowerPlayer player = other.GetComponentInParent<ThrowerPlayer>();
+        BasesBomb bomb = other.GetComponent<BasesBomb>();
 
-        if (player != null)
+        if (bomb != null)
         {
-            if (player.HasBomb)
+            if (LifePoints > 1)
             {
-                if (LifePoints > 0)
-                {
-                    LifePoints--;
-                    OnBaseDamage?.Invoke(Id, LifePoints);
-                }
-                else
-                {
-                    OnBaseDestoryed?.Invoke();
-                    Debug.Log("Base Destroyed");
-                }
+                LifePoints--;
+                bomb.Explode();
+                OnBaseDamage?.Invoke(Id, LifePoints);
+            }
+            else
+            {
+                LifePoints = 0;
+                bomb.Explode();
+                OnBaseDestroyed?.Invoke(Id, lifePoints);
+                Debug.Log("Base Destroyed");
             }
         }
     }

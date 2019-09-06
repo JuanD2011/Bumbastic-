@@ -21,6 +21,7 @@ public class UIBaseTeam : MonoBehaviour
         }
 
         Base.OnBaseDamage += UpdateScore;
+        Base.OnBaseDestroyed += UpdateScore;
     }
 
     private void UpdateScore(byte _baseID, byte _lifePoints)

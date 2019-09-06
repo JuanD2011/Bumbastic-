@@ -7,6 +7,8 @@ public class BasesBomb : Bomb
 
     public static event System.Action<Player> OnBasesBombExplode;
 
+    public Player Thrower { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();
@@ -41,7 +43,7 @@ public class BasesBomb : Bomb
         }
     }
 
-    protected override void Explode()
+    public override void Explode()
     {
         OnBasesBombExplode?.Invoke(GetComponentInParent<Player>());
         base.Explode();

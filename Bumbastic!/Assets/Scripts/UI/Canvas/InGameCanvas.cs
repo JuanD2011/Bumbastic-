@@ -26,7 +26,18 @@ public class InGameCanvas : CanvasBase
 
         PlayerMenu.OnStartButton += StartButton;
 
-        starObtained.OnAnimationEnded += () => StartCoroutine(LerpStarToPlayer());
+        starObtained.OnAnimationEnded += () =>
+        {
+            if (!GameModeDataBase.IsCurrentBasesGame())
+            {
+                StartCoroutine(LerpStarToPlayer());
+            }
+            else
+            {
+                StartCoroutine(LerpStarToPlayers());
+            }
+        };
+
         @continue.OnAnimationEnded += () => isEndPanelActive = true;
 
         InitPlayersScore();
@@ -83,6 +94,39 @@ public class InGameCanvas : CanvasBase
         }
         playerScores[InGame.lastWinner.id].Stars[InGame.lastWinner.score - 1].color = Color.white;
         starObtained.gameObject.SetActive(false);
+        @continue.gameObject.SetActive(true);
+    }
+
+    IEnumerator LerpStarToPlayers()
+    {
+        Vector3 initStarPos = starObtained.transform.position;
+        Vector3 endStarPosition = Vector3.zero;
+
+        float elapsedTime = 0f;
+        float lerpTime = 0.3f;
+
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.dash, 0.2f);
+
+        PlayerSettings winner = null;
+
+        do
+        {
+            starObtained.gameObject.SetActive(true);
+            winner = InGame.lastWinners.Dequeue();
+            endStarPosition = playerScores[winner.id].Stars[winner.score - 1].transform.position;
+
+            while (elapsedTime <= lerpTime)
+            {
+                starObtained.transform.position = Vector3.Lerp(initStarPos, endStarPosition, elapsedTime / lerpTime);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            playerScores[winner.id].Stars[winner.score - 1].color = Color.white;
+            starObtained.gameObject.SetActive(false);
+            yield return null;
+        }
+        while (InGame.lastWinners.Count > 0);
+        
         @continue.gameObject.SetActive(true);
     }
 

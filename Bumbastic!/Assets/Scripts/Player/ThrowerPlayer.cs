@@ -191,6 +191,7 @@ public class ThrowerPlayer : Player
     public void CatchBomb(Bomb _bomb)
     {
         OnCatchBomb?.Invoke(this, _bomb);
+        
         HasBomb = true;
         Collider.enabled = false;
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombReception, 0.6f);

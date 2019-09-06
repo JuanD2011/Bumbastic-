@@ -11,9 +11,6 @@ public class MenuManager : MonoBehaviour
     private InGame inGame;
 
     [SerializeField]
-    private GameModeDataBase gameMode = null;
-
-    [SerializeField]
     Settings settings = null;
 
     [SerializeField]
@@ -121,7 +118,6 @@ public class MenuManager : MonoBehaviour
         {
             InGame.playerSettings.Add(new PlayerSettings(i, Players[i].PrefabName, Players[i].Avatar, Players[i].SkinSprite, Players[i].Color));
         }
-        gameMode.GetNextGameMode();
         OnStartGame?.Invoke("GameMode");
     }
 
