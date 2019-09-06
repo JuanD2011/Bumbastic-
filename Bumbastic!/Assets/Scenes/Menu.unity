@@ -2708,7 +2708,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inGame: {fileID: 11400000, guid: 3bc68cae35300d841b678d14df40174c, type: 2}
-  gameMode: {fileID: 11400000, guid: 2c753694f5b545d4b97c4adb9986a284, type: 2}
   settings: {fileID: 11400000, guid: 8a0c05b1b5b0635459ef9bbfa843b0c2, type: 2}
   startTimer: 5
   countdownText: {fileID: 1066795180}
@@ -5023,18 +5022,17 @@ MonoBehaviour:
   m_NotificationBehavior: 2
   m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinPlayersWithMissingDevices: 0
   m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput.PlayerInputManager+PlayerJoinedEvent,
-      Unity.InputSystem, Version=0.9.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.InputSystem.PlayerInputManager+PlayerJoinedEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput.PlayerInputManager+PlayerLeftEvent,
-      Unity.InputSystem, Version=0.9.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.InputSystem.PlayerInputManager+PlayerLeftEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
   m_JoinAction:
     m_UseReference: 1
     m_Action:
@@ -5052,7 +5050,6 @@ MonoBehaviour:
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
-  m_SplitScreenBorderWidth: 0
   m_SplitScreenRect:
     serializedVersion: 2
     x: 0

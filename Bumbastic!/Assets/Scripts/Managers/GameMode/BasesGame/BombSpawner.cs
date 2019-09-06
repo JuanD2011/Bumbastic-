@@ -24,7 +24,8 @@ public class BombSpawner : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Manager.Director.stopped += (UnityEngine.Playables.PlayableDirector _Director) => StartCoroutine(SpawnBomb());
+        //GameManager.Manager.Director.stopped += (UnityEngine.Playables.PlayableDirector _Director) => StartCoroutine(SpawnBomb());
+        StartCoroutine(SpawnBomb());
     }
 
     private IEnumerator SpawnBomb()
@@ -34,7 +35,7 @@ public class BombSpawner : MonoBehaviour
         if (bombToSpawn != null)
         {
             bombToSpawn.gameObject.SetActive(true);
-            bombToSpawn.transform.position = spawner.GetPointInVolumeWZ0();
+            bombToSpawn.transform.position = spawner.GetPointInVolumeWYMax();
             bombToSpawn.RigidBody.velocity = Vector3.zero;
             bombToSpawn.RigidBody.AddForce(GetRandomVector() * force, ForceMode.Impulse);   
         }
@@ -54,11 +55,10 @@ public class BombSpawner : MonoBehaviour
 
 public static class SpawnerExtensions
 {
-    public static Vector3 GetPointInVolumeWZ0(this Collider collider)
+    public static Vector3 GetPointInVolumeWYMax(this Collider collider)
     {
         Vector3 result = Vector3.zero;
-        result = new Vector3(Random.Range(collider.bounds.min.x, collider.bounds.max.x), collider.bounds.max.y, 0f);
-
+        result = new Vector3(Random.Range(collider.bounds.min.x, collider.bounds.max.x), collider.bounds.max.y, Random.Range(collider.bounds.min.z, collider.bounds.max.z));
         return result;
     }
 
