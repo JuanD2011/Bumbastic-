@@ -13,8 +13,6 @@ public abstract class GameManager : MonoBehaviour
 
     public const byte maximunDashLevel = 3;
 
-    private EnumEnviroment enviroment = EnumEnviroment.Desert;
-
     [SerializeField]
     GameObject playerPrefab;
 
@@ -32,7 +30,7 @@ public abstract class GameManager : MonoBehaviour
     public List<Player> Players { get => players; protected set => players = value; }
     protected List<Transform> SpawnPoints { get => spawnPoints; private set => spawnPoints = value; }
     protected GameObject PlayerPrefab { get => playerPrefab; private set => playerPrefab = value; }
-    public EnumEnviroment Enviroment { get => enviroment; private set => enviroment = value; }
+    public EnumEnviroment Enviroment { get; private set; } = EnumEnviroment.Desert;
     public PowerUp PowerUp { get => powerUp; set => powerUp = value; }
 
     protected virtual void Awake()
@@ -72,7 +70,7 @@ public abstract class GameManager : MonoBehaviour
     private EnumEnviroment GetRandomEnviroment()
     {
         EnumEnviroment result = EnumEnviroment.Desert;
-        int rand = Random.Range(0, 2);
+        int rand = Random.Range(0, 3);
 
         switch (rand)
         {
@@ -81,6 +79,9 @@ public abstract class GameManager : MonoBehaviour
                 break;
             case 1:
                 result = EnumEnviroment.Winter;
+                break;
+            case 2:
+                result = EnumEnviroment.Beach;
                 break;
             default:
                 result = EnumEnviroment.Desert;

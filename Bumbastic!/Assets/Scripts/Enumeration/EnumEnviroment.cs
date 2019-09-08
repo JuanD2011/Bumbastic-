@@ -2,4 +2,5 @@
 {
     Desert,
     Winter,
+    Beach
 };

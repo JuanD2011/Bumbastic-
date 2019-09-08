@@ -153,6 +153,10 @@ MonoBehaviour:
   - {fileID: 5248455873920448594, guid: 6f995a296237bda4396f6bdc52e754ee, type: 3}
   - {fileID: 9050841040588373035, guid: bc3a9e847617cc842a626864e9501449, type: 3}
   - {fileID: 6273977997727067049, guid: 2bc38efa71a953d449696f10c35412ac, type: 3}
+  propsBeach:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   colliders:
   - {fileID: 0}
   - {fileID: 0}

@@ -6,8 +6,9 @@ public class FloorManager : MonoBehaviour
     [SerializeField]
     Material plane = null;
 
-    [SerializeField] GameObject[] propsModule = null, propsModuleWinter = null;
-    
+    [SerializeField]
+    WorldProps worldProps = null;
+
     [SerializeField]
 	Transform[] colliders = new Transform[0];
 
@@ -66,15 +67,20 @@ public class FloorManager : MonoBehaviour
         {
             case EnumEnviroment.Desert:
                 plane.SetFloat("_SnowThr", 0f);
-                Instantiate(propsModule[Random.Range(0, propsModule.Length)], propsPos, Quaternion.identity);
+                Instantiate(worldProps.PropsDesert[Random.Range(0, worldProps.PropsDesert.Length)], propsPos, Quaternion.identity);
                 break;
             case EnumEnviroment.Winter:
                 plane.SetFloat("_SnowThr", 0.04f);
-                Instantiate(propsModuleWinter[Random.Range(0, propsModuleWinter.Length)], propsPos, Quaternion.identity);
+                Instantiate(worldProps.PropsModuleWinter[Random.Range(0, worldProps.PropsModuleWinter.Length)], propsPos, Quaternion.identity);
+                break;
+            case EnumEnviroment.Beach:
+                plane.color = Color.white;
+                plane.SetFloat("_SnowThr", 0f);
+                Instantiate(worldProps.PropsBeach[Random.Range(0, worldProps.PropsBeach.Length)], propsPos, Quaternion.identity);
                 break;
             default:
                 plane.SetFloat("_SnowThr", 0f);
-                Instantiate(propsModule[Random.Range(0, propsModule.Length)], propsPos, Quaternion.identity);
+                Instantiate(worldProps.PropsDesert[Random.Range(0, worldProps.PropsDesert.Length)], propsPos, Quaternion.identity);
                 break;
         }
     }
