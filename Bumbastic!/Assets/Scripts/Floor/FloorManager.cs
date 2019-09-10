@@ -63,6 +63,13 @@ public class FloorManager : MonoBehaviour
 
     private void SetEnviroment()
     {
+        if (GameModeDataBase.IsCurrentBasesGame())
+        {
+            plane.SetFloat("_SnowThr", 0f);
+            Instantiate(worldProps.BasesProps[Random.Range(0, worldProps.BasesProps.Length)], propsPos, Quaternion.identity);
+            return;
+        }
+
         switch (GameManager.Manager.Enviroment) 
         {
             case EnumEnviroment.Desert:
