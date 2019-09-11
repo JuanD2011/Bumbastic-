@@ -10,7 +10,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     private Animator m_Animator = null;
 
-    [SerializeField] GameObject speedUp = null, magnet = null, shield = null;
+    [SerializeField] GameObject speedUp = null, magnet = null, shield = null, tangle = null;
 
     [SerializeField] ParticleSystem openBoxParticleSystem = null;
 
@@ -65,29 +65,47 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     public virtual void PickPowerUp(ThrowerPlayer _player)
     {
-        int randomPU = Random.Range(0, 3);
+        int randomPU = Random.Range(0, 4);
 
         if (_player.HasBomb)
         {
-            Instantiate(speedUp, _player.transform.position, Quaternion.identity, _player.transform);
-            Box.gameObject.SetActive(false);
-            return;
+            TanglePlayers(_player as Player);
+            //Instantiate(speedUp, _player.transform.position, Quaternion.identity, _player.transform);
+            //Box.gameObject.SetActive(false);
+            //return;
         }
 
         switch (randomPU)
         {
             case 0:
-                Instantiate(speedUp, _player.transform.position, Quaternion.identity, _player.transform);
-                break;
             case 1:
-                Instantiate(magnet, _player.transform.position, Quaternion.identity, _player.transform);
-                break;
             case 2:
-                Instantiate(shield, _player.transform.position + new Vector3(0f, 1.51f, 0f), Quaternion.identity, _player.transform);
+            //case 0:
+            //    Instantiate(speedUp, _player.transform.position, Quaternion.identity, _player.transform);
+            //    break;
+            //case 1:
+            //    Instantiate(magnet, _player.transform.position, Quaternion.identity, _player.transform);
+            //    break;
+            //case 2:
+            //    Instantiate(shield, _player.transform.position + new Vector3(0f, 1.51f, 0f), Quaternion.identity, _player.transform);
+            //    break;
+            case 3:
+                TanglePlayers(_player as Player);
                 break;
             default:
                 break;
         }
         Box.gameObject.SetActive(false);
+    }
+
+    private void TanglePlayers(Player _player)
+    {
+        foreach (Player player in GameManager.Manager.Players)
+        {
+            if (player != _player)
+            {
+                Instantiate(tangle, _player.transform.position, Quaternion.identity, player.transform);
+            }
+        }
     }
 }

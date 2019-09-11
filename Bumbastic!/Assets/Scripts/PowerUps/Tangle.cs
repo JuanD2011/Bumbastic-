@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Tangle : PowerUp
 {
@@ -11,13 +10,14 @@ public class Tangle : PowerUp
     private void Start()
     {
         Duration = 10f;
-        StartCoroutine(Tangled());
+        m_player.tangled = true;
+        Invoke("UnTangle", Duration);
+        Debug.Log("Tangled", gameObject);
     }
 
-    private IEnumerator Tangled()
+    private void UnTangle()
     {
-        m_player.InputDirection *= -1;
-        yield return new WaitForSeconds(Duration);
-        m_player.InputDirection *= -1;
+        m_player.tangled = false;
+        Destroy(gameObject);
     }
 }

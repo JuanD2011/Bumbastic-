@@ -38,8 +38,8 @@ public class ThrowerPlayer : Player
         {
             if (InputDirection != Vector2.zero && !throwing)
             {
-                targetRotation = Mathf.Atan2(InputDirection.x, InputDirection.y) * Mathf.Rad2Deg;
-                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
+                TargetRotation = Mathf.Atan2(InputDirection.x, InputDirection.y) * Mathf.Rad2Deg;
+                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetRotation, ref turnSmoothVel, TurnSmooth);
             }
         }
     }

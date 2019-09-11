@@ -7,14 +7,13 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     #region Movement
-    protected float targetRotation;
     protected float speedSmooothTime = 0.075f, animationSpeedPercent;
     [SerializeField]
     protected float moveSpeed = 0f, turnSmooth = 0.15f, powerUpSpeed = 0f;
     protected float turnSmoothVel, currentSpeed, speedSmoothVel, targetSpeed;
     #endregion
 
-    public bool speedPU;
+    public bool speedPU, tangled;
 
     public event Action<bool> OnStuned = null;
 
@@ -30,6 +29,7 @@ public class Player : MonoBehaviour
     public Vector3 SpawnPoint { get; set; }
     public Vector2 InputAiming { get; private set; }
     public Vector2 InputDirection { get; set; }
+    public float TargetRotation { get; set; }
     public GameObject Avatar { get; set; }
     public byte Id { get; set; }
     public Animator Animator { get; set; }
@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
     public void OnMove(InputValue context)
     {
         InputDirection = context.Get<Vector2>();
+        if (tangled) InputDirection *= -1;
     }
 
     public void OnAim(InputValue context)
@@ -134,8 +135,8 @@ public class Player : MonoBehaviour
 
             if (InputDirection != Vector2.zero)
             {
-                targetRotation = Mathf.Atan2(InputDirection.x, InputDirection.y) * Mathf.Rad2Deg;
-                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, TurnSmooth);
+                TargetRotation = Mathf.Atan2(InputDirection.x, InputDirection.y) * Mathf.Rad2Deg;
+                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetRotation, ref turnSmoothVel, TurnSmooth);
             }
 
             targetSpeed = ((speedPU) ? powerUpSpeed : moveSpeed) * InputDirection.magnitude;

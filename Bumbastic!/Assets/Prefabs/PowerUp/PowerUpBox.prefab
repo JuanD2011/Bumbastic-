@@ -431,6 +431,7 @@ MonoBehaviour:
   speedUp: {fileID: 8796840583410393779, guid: 3790bf2101831a549a5a6ce69300ae1d, type: 3}
   magnet: {fileID: 3558565048510451098, guid: e097d61389aca8243a0d8a9b6a95f1c6, type: 3}
   shield: {fileID: 6538572462843336858, guid: 9c8180ada67b2ae408f02e3c3c8dd997, type: 3}
+  tangle: {fileID: 4391452618780751892, guid: 3390454666b0a0b46a5b4e732f12228c, type: 3}
   openBoxParticleSystem: {fileID: 2798128461240518641}
 --- !u!95 &147683417983022032
 Animator:

@@ -55,3 +55,14 @@ public class MagnetEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+
+[CustomEditor(typeof(Tangle))]
+public class TangleEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        GUI.enabled = false;
+        EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((Tangle)target), typeof(Tangle), false);
+        GUI.enabled = true;
+    }
+}
