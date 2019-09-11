@@ -6,7 +6,7 @@ public class BasesGameManager : GameManager
     public static BasesGameManager basesGame;
 
     PlayerSettings[] playerSettings;
-
+    [SerializeField] Quaternion initSpawnRotation = Quaternion.identity;
     [SerializeField] Base[] teams = new Base[2];
 
     public Base[] Teams { get => teams; private set => teams = value; }
@@ -84,11 +84,13 @@ public class BasesGameManager : GameManager
                     {
                         Teams[i].Members[0].SpawnPoint = Teams[i].SpawnPoints[1].transform.position;
                         Teams[i].Members[0].transform.position = Teams[i].Members[0].SpawnPoint;
+                        Teams[i].Members[0].transform.rotation = initSpawnRotation;
                     }
                     else
                     {
                         Teams[i].Members[0].SpawnPoint = Teams[i].SpawnPoints[0].transform.position;
                         Teams[i].Members[0].transform.position = Teams[i].Members[0].SpawnPoint;
+                        Teams[i].Members[0].transform.rotation = initSpawnRotation;
                     }
                 }
                 break;
@@ -101,12 +103,14 @@ public class BasesGameManager : GameManager
                         Teams[i].Members.Add(Players[playerSettings[i].id]);
                         Teams[i].Members[i].SpawnPoint = Teams[i].SpawnPoints[i].transform.position;
                         Teams[i].Members[i].transform.position = Teams[i].Members[i].SpawnPoint;
+                        Teams[i].Members[i].transform.rotation = initSpawnRotation;
                     }
                     else
                     {
                         Teams[1].Members.Add(Players[playerSettings[i].id]);
                         Teams[1].Members[i - 1].SpawnPoint = Teams[1].SpawnPoints[i - 1].transform.position;
                         Teams[1].Members[i - 1].transform.position = Teams[1].Members[i - 1].SpawnPoint;
+                        Teams[1].Members[i - 1].transform.rotation = initSpawnRotation;
                     } 
                 }
                 break;
@@ -120,18 +124,21 @@ public class BasesGameManager : GameManager
                         Teams[i].Members.Add(Players[playerSettings[i].id]);
                         Teams[i].Members[i].SpawnPoint = Teams[i].SpawnPoints[i].transform.position;
                         Teams[i].Members[i].transform.position = Teams[i].Members[i].SpawnPoint;
+                        Teams[i].Members[i].transform.rotation = initSpawnRotation;
                     }
                     else if (i == playerSettings.Length - 1)
                     {
                         Teams[0].Members.Add(Players[playerSettings[i].id]);
                         Teams[0].Members[1].SpawnPoint = Teams[0].SpawnPoints[1].transform.position;
                         Teams[0].Members[1].transform.position = Teams[0].Members[1].SpawnPoint;
+                        Teams[0].Members[1].transform.rotation = initSpawnRotation;
                     }
                     else
                     {
                         Teams[1].Members.Add(Players[playerSettings[i].id]);
                         Teams[1].Members[i - 1].SpawnPoint = Teams[1].SpawnPoints[i - 1].transform.position;
                         Teams[1].Members[i - 1].transform.position = Teams[1].Members[i - 1].SpawnPoint;
+                        Teams[1].Members[i - 1].transform.rotation = initSpawnRotation;
                     } 
                 }
                 break;
