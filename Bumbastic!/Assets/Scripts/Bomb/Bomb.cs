@@ -98,7 +98,7 @@ public class Bomb : MonoBehaviour
         OnExplode?.Invoke();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         if (GameModeDataBase.IsCurrentBasesGame()) return;
 

@@ -5,9 +5,9 @@ public class BasesBomb : Bomb
 {
     [SerializeField] float minTime = 10f, maxTime = 18f;
 
-    public static event System.Action<Player> OnBasesBombExplode;
+    public ThrowerPlayer ThrowerPlayer { get; private set; }
 
-    public Player Thrower { get; private set; }
+    public static System.Action<ThrowerPlayer> OnBasesBombExplode = null;
 
     protected override void Awake()
     {
@@ -20,12 +20,30 @@ public class BasesBomb : Bomb
     {
         Collider.enabled = true;
         Exploded = false;
+        ThrowerPlayer.OnCatchBomb += AssignPlayer;
+        ThrowerPlayer.OnBombThrew += SetThrowerNull;
     }
 
     private void Start()
     {
         cParticleModification.OnComplete += () => gameObject.SetActive(false);
         SetAnimationKeys();
+    }
+
+    private void SetThrowerNull(Bomb _bomb)
+    {
+        if (_bomb as BasesBomb == this)
+        {
+            ThrowerPlayer = null;
+        }
+    }
+
+    private void AssignPlayer(ThrowerPlayer _throwerPlayer, Bomb _bomb)
+    {
+        if (_bomb == this)
+        {
+            ThrowerPlayer = _throwerPlayer;
+        }
     }
 
     private void Update()
@@ -45,12 +63,33 @@ public class BasesBomb : Bomb
 
     public override void Explode()
     {
-        OnBasesBombExplode?.Invoke(GetComponentInParent<Player>());
-        base.Explode();
+        transform.SetParent(null);
+        elapsedTime = 0;
+        Exploded = true;
+        AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bomb, 0.7f);
+        CameraShake.instance.OnShakeDuration?.Invoke(0.4f, 6f, 1.2f);
+        RigidBody.isKinematic = false;
+        Collider.enabled = false;
+        cParticleModification.Execute();
+        OnBasesBombExplode?.Invoke(ThrowerPlayer);
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    protected override void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Floor") && !Exploded && ThrowerPlayer != null)
+        {
+            ThrowerPlayer = null;
+        }
+    }
+
+    private void OnDisable()
+    {
+        ThrowerPlayer.OnCatchBomb -= AssignPlayer;
+        ThrowerPlayer.OnBombThrew -= SetThrowerNull;
     }
 }

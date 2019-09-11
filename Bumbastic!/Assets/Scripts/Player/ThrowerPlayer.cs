@@ -9,6 +9,7 @@ public class ThrowerPlayer : Player
 
     public event Action<ThrowerPlayer> OnDashExecuted = null;
     public static event Action<ThrowerPlayer, Bomb> OnCatchBomb;
+    public static event Action<Bomb> OnBombThrew = null;
 
     private bool throwing;
     public bool HasBomb { get; set; }
@@ -28,6 +29,7 @@ public class ThrowerPlayer : Player
         GameManager.Manager.OnCorrectPassBomb += IncreaseDashCounter;
         Bomb.OnExplode += ResetPlayer;
         Bomb.OnAboutToExplode += BombIsAboutToExplode;
+        BasesBomb.OnBasesBombExplode += ResetPlayer;
     }
 
     protected override void Update()
@@ -51,11 +53,22 @@ public class ThrowerPlayer : Player
             DashCount = (DashCount <= GameManager.maximunDashLevel) ? DashCount += 1 : DashCount = GameManager.maximunDashLevel;
         }
     }
+
     private void ResetPlayer()
     {
         Collider.enabled = true;
         HasBomb = false;
         throwing = false;
+        Animator.runtimeAnimatorController = animatorWNoBomb;
+    }
+
+    private void ResetPlayer(ThrowerPlayer _throwerPlayer)
+    {
+        if (_throwerPlayer != this) return;
+
+        HasBomb = false;
+        throwing = false;
+        Collider.enabled = true;
         Animator.runtimeAnimatorController = animatorWNoBomb;
     }
 
@@ -139,7 +152,6 @@ public class ThrowerPlayer : Player
 
         Vector3 aiming = new Vector3(InputAiming.x, 0, InputAiming.y);
 
-
         while (elapsedTime < 0.15f)
         {
             if (InputAiming != Vector2.zero)
@@ -186,12 +198,13 @@ public class ThrowerPlayer : Player
         throwing = false;
         Bomb = null;
         Collider.enabled = true;
+        OnBombThrew?.Invoke(Bomb);
     }
 
     public void CatchBomb(Bomb _bomb)
     {
         OnCatchBomb?.Invoke(this, _bomb);
-        
+
         HasBomb = true;
         Collider.enabled = false;
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.bombReception, 0.6f);

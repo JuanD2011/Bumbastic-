@@ -49,7 +49,7 @@ public class BasesGameManager : GameManager
         }
     }
 
-    private void OnBombExplode(Player _PlayerExploded)
+    private void OnBombExplode(ThrowerPlayer _PlayerExploded)
     {
         if (_PlayerExploded == null) return;
 
@@ -145,6 +145,10 @@ public class BasesGameManager : GameManager
             default:
                 break;
         }
+    }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
     }
 }

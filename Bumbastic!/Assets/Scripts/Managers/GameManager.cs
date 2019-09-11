@@ -153,5 +153,6 @@ public abstract class GameManager : MonoBehaviour
     {
         PlayerMenu.ResetDel();
         Bomb.OnExplode = null;
+        BasesBomb.OnBasesBombExplode = null;
     }
 }
