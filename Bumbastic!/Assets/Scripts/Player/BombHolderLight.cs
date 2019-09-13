@@ -44,9 +44,4 @@ public class BombHolderLight : MonoBehaviour
         m_Light.intensity = 7.5f * Mathf.Sin((elapsedTime / bombTime)  * maxVelocity * elapsedTime) + 12.5f;
         elapsedTime += Time.deltaTime;
     }
-
-    private void OnDisable()
-    {
-        Bomb.OnArmed -= Initialize;
-    }
 }

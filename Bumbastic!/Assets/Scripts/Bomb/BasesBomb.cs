@@ -7,7 +7,7 @@ public class BasesBomb : Bomb
 
     public ThrowerPlayer ThrowerPlayer { get; private set; }
 
-    public static System.Action<ThrowerPlayer> OnBasesBombExplode = null;
+    public static event System.Action<ThrowerPlayer> OnBasesBombExplode = null;
 
     protected override void Awake()
     {
@@ -20,14 +20,15 @@ public class BasesBomb : Bomb
     {
         Collider.enabled = true;
         Exploded = false;
-        ThrowerPlayer.OnCatchBomb += AssignPlayer;
-        ThrowerPlayer.OnBombThrew += SetThrowerNull;
     }
 
     private void Start()
     {
         cParticleModification.OnComplete += () => gameObject.SetActive(false);
         SetAnimationKeys();
+
+        ThrowerPlayer.OnCatchBomb += AssignPlayer;
+        ThrowerPlayer.OnBombThrew += SetThrowerNull;
     }
 
     private void SetThrowerNull(Bomb _bomb)
@@ -40,7 +41,7 @@ public class BasesBomb : Bomb
 
     private void AssignPlayer(ThrowerPlayer _throwerPlayer, Bomb _bomb)
     {
-        if (_bomb == this)
+        if (_bomb as BasesBomb == this)
         {
             ThrowerPlayer = _throwerPlayer;
         }
@@ -87,9 +88,8 @@ public class BasesBomb : Bomb
         }
     }
 
-    private void OnDisable()
+    public new static void ResetEvents()
     {
-        ThrowerPlayer.OnCatchBomb -= AssignPlayer;
-        ThrowerPlayer.OnBombThrew -= SetThrowerNull;
+        OnBasesBombExplode = null;
     }
 }

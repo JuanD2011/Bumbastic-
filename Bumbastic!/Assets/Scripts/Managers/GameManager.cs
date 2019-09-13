@@ -152,7 +152,8 @@ public abstract class GameManager : MonoBehaviour
     protected virtual void OnDisable()
     {
         PlayerMenu.ResetDel();
-        Bomb.OnExplode = null;
-        BasesBomb.OnBasesBombExplode = null;
+        ThrowerPlayer.ResetEvents();
+        Bomb.ResetEvents();
+        BasesBomb.ResetEvents();
     }
 }

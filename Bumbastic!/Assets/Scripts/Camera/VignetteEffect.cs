@@ -49,6 +49,5 @@ public class VignetteEffect : MonoBehaviour
     {
         vignette.intensity.value = 0.3f;
         vignette.color.value = Color.black;
-        Bomb.OnArmed -= Initialize;
     }
 }

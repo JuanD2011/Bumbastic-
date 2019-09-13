@@ -83,14 +83,7 @@ public class ThrowerPlayer : Player
 
         Bummie cBummie = GetComponentInChildren<Bummie>();
 
-        if (cBummie != null)
-        {
-            Catapult = cBummie.Catapult;
-        }
-        else
-        {
-            Debug.LogError("Bummie component was not found");
-        }
+        if (cBummie != null) Catapult = cBummie.Catapult;
 
         HasBomb = false;
     }
@@ -221,11 +214,6 @@ public class ThrowerPlayer : Player
         StartCoroutine(Rumble(0.2f, 0.2f, 0.2f));
     }
 
-    private void OnDisable()
-    {
-        Bomb.OnAboutToExplode -= BombIsAboutToExplode;
-    }
-
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
@@ -250,5 +238,11 @@ public class ThrowerPlayer : Player
                 StartCoroutine(Stun(false, penaltyOnPassBomb));
             }
         }
+    }
+
+    public static void ResetEvents()
+    {
+        OnBombThrew = null;
+        OnCatchBomb = null;
     }
 }

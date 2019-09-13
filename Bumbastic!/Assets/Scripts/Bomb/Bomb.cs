@@ -22,10 +22,9 @@ public class Bomb : MonoBehaviour
     public bool CanCount { get; protected set; }
     public Collider Collider { get; private set; }
 
-    public static Action OnExplode;
-    public static Action<float> OnArmed;
-    public static event Action<Bomb> OnFloorCollision;
-    public static event Action<Bomb> OnAboutToExplode;
+    public static event Action OnExplode = null;
+    public static event Action<float> OnArmed = null;
+    public static event Action<Bomb> OnFloorCollision = null, OnAboutToExplode = null;
 
     protected virtual void Awake()
     {
@@ -127,5 +126,13 @@ public class Bomb : MonoBehaviour
             counter++;
         }
         aboutToExplode = false;
+    }
+
+    public static void ResetEvents()
+    {
+        OnArmed = null;
+        OnExplode = null;
+        OnFloorCollision = null;
+        OnAboutToExplode = null;
     }
 }

@@ -140,7 +140,5 @@ public class HotPotatoManager : GameManager
     protected override void OnDisable()
     {
         base.OnDisable();
-        ThrowerPlayer.OnCatchBomb -= BombHolderChange;
-        Bomb.OnFloorCollision -= ReturnBomb;
     }
 }
