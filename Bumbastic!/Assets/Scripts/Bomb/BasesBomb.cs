@@ -28,15 +28,24 @@ public class BasesBomb : Bomb
         SetAnimationKeys();
 
         ThrowerPlayer.OnCatchBomb += AssignPlayer;
-        ThrowerPlayer.OnBombThrew += SetThrowerNull;
+        ThrowerPlayer.OnBombThrew += CheckIfIThrewBomb;
     }
 
-    private void SetThrowerNull(Bomb _bomb)
+    private void CheckIfIThrewBomb(Bomb _bomb)
     {
         if (_bomb as BasesBomb == this)
         {
             ThrowerPlayer = null;
         }
+    }
+
+    public void SetThrowerPlayer(ThrowerPlayer _ThrowerPlayer)
+    {
+        if (_ThrowerPlayer != null)
+        {
+            ThrowerPlayer = _ThrowerPlayer;
+        }
+        else ThrowerPlayer = null;
     }
 
     private void AssignPlayer(ThrowerPlayer _throwerPlayer, Bomb _bomb)
@@ -84,7 +93,7 @@ public class BasesBomb : Bomb
     {
         if (collision.transform.CompareTag("Floor") && !Exploded && ThrowerPlayer != null)
         {
-            ThrowerPlayer = null;
+            SetThrowerPlayer(null);
         }
     }
 
@@ -92,4 +101,6 @@ public class BasesBomb : Bomb
     {
         OnBasesBombExplode = null;
     }
+
+    
 }

@@ -34,15 +34,18 @@ public class Base : MonoBehaviour
             {
                 if (Members[i] as ThrowerPlayer == bomb.ThrowerPlayer) return;
             }
+
             if (LifePoints > 1)
             {
                 LifePoints--;
+                bomb.SetThrowerPlayer(null);
                 bomb.Explode();
                 OnBaseDamage?.Invoke(Id, LifePoints);
             }
             else
             {
                 LifePoints = 0;
+                bomb.SetThrowerPlayer(null);
                 bomb.Explode();
                 OnBaseDestroyed?.Invoke(Id, lifePoints);
                 Debug.Log("Base Destroyed");
