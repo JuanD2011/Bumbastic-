@@ -101,6 +101,7 @@ public abstract class GameManager : MonoBehaviour
             player.Id = (byte)i;
             player.SpawnPoint = GetSpawnPoint();
             player.transform.position = player.SpawnPoint;
+            player.transform.rotation = new Quaternion(0f, 180f, 0f, 1f);
             player.Initialize();
         }
     }

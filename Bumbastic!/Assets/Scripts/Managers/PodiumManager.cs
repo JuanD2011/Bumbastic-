@@ -60,5 +60,8 @@ public class PodiumManager : MonoBehaviour
     private void OnDisable()
     {
         PlayerMenu.ResetDel();
+        ThrowerPlayer.ResetEvents();
+        Bomb.ResetEvents();
+        BasesBomb.ResetEvents();
     }
 }
