@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Props : MonoBehaviour
+public class Prop : MonoBehaviour
 {
     float distance = 10;
     Transform[] modules;
@@ -16,7 +16,7 @@ public class Props : MonoBehaviour
     {
         for (int i = 1; i < modules.Length; i++)
         {
-            if (Vector3.Distance(transform.position, modules[i].transform.position) < distance && modules[i].gameObject.tag=="Floor")
+            if (Vector3.Distance(transform.position, modules[i].transform.position) < distance && modules[i].gameObject.tag == "Floor")
             {
                 distance = (Vector3.Distance(transform.position, modules[i].transform.position));
                 parent = modules[i].gameObject;

@@ -17,7 +17,6 @@
     {
         Tags 
 		{
-			"Queue" = "Transparent"
 			"IgnoreProyector" = "True"
 			"RenderType" = "TransparentCutout"
 		}

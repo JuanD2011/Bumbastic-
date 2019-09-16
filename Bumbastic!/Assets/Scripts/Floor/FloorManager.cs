@@ -63,31 +63,51 @@ public class FloorManager : MonoBehaviour
 
     private void SetEnviroment()
     {
+        int random = 0;
+
         if (GameModeDataBase.IsCurrentBasesGame())
         {
-            plane.SetFloat("_SnowThr", 0f);
-            Instantiate(worldProps.BasesProps[Random.Range(0, worldProps.BasesProps.Length)], propsPos, Quaternion.identity);
+            do
+            {
+                random = Random.Range(0, worldProps.BasesProps.Length);
+                worldProps.CurrentProps = worldProps.BasesProps[random];
+            }
+            while (GameManager.Manager.Enviroment != worldProps.CurrentProps.Type);
+
+            Instantiate(worldProps.CurrentProps.PropsGO, propsPos, Quaternion.identity);
+
+            SetFloorMaterial();
+
             return;
         }
 
-        switch (GameManager.Manager.Enviroment) 
+        do
+        {
+            random = Random.Range(0, worldProps.Props.Length);
+            worldProps.CurrentProps = worldProps.Props[random];
+        }
+        while (GameManager.Manager.Enviroment != worldProps.CurrentProps.Type);
+
+        Instantiate(worldProps.CurrentProps.PropsGO, propsPos, Quaternion.identity);
+        SetFloorMaterial();
+    }
+
+    private void SetFloorMaterial()
+    {
+        switch (GameManager.Manager.Enviroment)
         {
             case EnumEnviroment.Desert:
                 plane.SetFloat("_SnowThr", 0f);
-                Instantiate(worldProps.PropsDesert[Random.Range(0, worldProps.PropsDesert.Length)], propsPos, Quaternion.identity);
                 break;
             case EnumEnviroment.Winter:
                 plane.SetFloat("_SnowThr", 0.04f);
-                Instantiate(worldProps.PropsModuleWinter[Random.Range(0, worldProps.PropsModuleWinter.Length)], propsPos, Quaternion.identity);
                 break;
             case EnumEnviroment.Beach:
                 plane.color = Color.white;
                 plane.SetFloat("_SnowThr", 0f);
-                Instantiate(worldProps.PropsBeach[Random.Range(0, worldProps.PropsBeach.Length)], propsPos, Quaternion.identity);
                 break;
             default:
                 plane.SetFloat("_SnowThr", 0f);
-                Instantiate(worldProps.PropsDesert[Random.Range(0, worldProps.PropsDesert.Length)], propsPos, Quaternion.identity);
                 break;
         }
     }
