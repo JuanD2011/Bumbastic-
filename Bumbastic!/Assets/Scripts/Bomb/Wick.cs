@@ -16,9 +16,13 @@ public class Wick : MonoBehaviour
         m_Renderer = GetComponent<Renderer>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         ResetWick();
+    }
+
+    private void Start()
+    {
         Bomb.OnExplode += ResetWick;
     }
 
