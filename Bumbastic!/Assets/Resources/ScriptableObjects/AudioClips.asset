@@ -47,4 +47,8 @@ MonoBehaviour:
   powerUpSpeedUP: {fileID: 8300000, guid: 8a2d0eb387c50ec4ab26092c4b6e8b92, type: 3}
   powerUpMagnet: {fileID: 8300000, guid: 957fac03a388e2d4791750a67bf8ff3a, type: 3}
   dash: {fileID: 8300000, guid: fbbb8fd23e71a7c429048e1b70b30d6e, type: 3}
+  tangleExplosion: {fileID: 8300000, guid: 0675324a47520e540805d42388651581, type: 3}
   crowdCheer: {fileID: 8300000, guid: bc7ec1150bac68d4da6fae14b5536132, type: 3}
+  normalSnapshot: {fileID: 24500006, guid: 1d2552f71ff182f43bf6a2aaab3cd88b, type: 2}
+  tangledSnapshot: {fileID: 5818322657491706184, guid: 1d2552f71ff182f43bf6a2aaab3cd88b,
+    type: 2}

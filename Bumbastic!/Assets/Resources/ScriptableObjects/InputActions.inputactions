@@ -582,7 +582,6 @@
     "controlSchemes": [
         {
             "name": "Xbox",
-            "basedOn": "",
             "bindingGroup": "Xbox",
             "devices": [
                 {
@@ -594,7 +593,6 @@
         },
         {
             "name": "PS4",
-            "basedOn": "",
             "bindingGroup": "PS4",
             "devices": [
                 {
@@ -606,7 +604,6 @@
         },
         {
             "name": "MK",
-            "basedOn": "",
             "bindingGroup": "MK",
             "devices": [
                 {

@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
             foreach (AudioMute item in audioMutes)
             {
                 item.Init();
-            } 
+            }
         }
     }
 
@@ -140,7 +140,7 @@ public class AudioManager : MonoBehaviour
                     currentAudioSource.volume = _volume;
                     currentAudioSource.loop = true;
                     currentAudioSource.Play();
-                } 
+                }
             }
         }
     }
@@ -182,7 +182,7 @@ public class AudioManager : MonoBehaviour
             if (!currentAudioSource.isPlaying)
             {
                 currentAudioSource.clip = _clipToPlay;
-                StartCoroutine(MusicTrack(currentAudioSource, _volume , _timeToFadeIn));
+                StartCoroutine(MusicTrack(currentAudioSource, _volume, _timeToFadeIn));
             }
             else
             {
@@ -311,7 +311,7 @@ public class AudioManager : MonoBehaviour
     {
         for (int i = 0; i < audioSources.Count; i++)
         {
-            switch (_audioType) 
+            switch (_audioType)
             {
                 case AudioType.Music:
                 case AudioType.Ambient:
@@ -360,7 +360,7 @@ public class AudioManager : MonoBehaviour
                         if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
                         {
                             return audioSources[i];
-                        } 
+                        }
                     }
                     break;
                 case AudioType.SFx:
@@ -371,7 +371,7 @@ public class AudioManager : MonoBehaviour
                             if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
                             {
                                 return audioSources[i];
-                            } 
+                            }
                         }
                     }
                     break;
@@ -402,7 +402,7 @@ public class AudioManager : MonoBehaviour
                 if (audioSources[i].outputAudioMixerGroup == audioMixer.FindMatchingGroups(_audioType.ToString())[0])
                 {
                     return audioSources[i];
-                } 
+                }
             }
         }
         return null;
@@ -422,5 +422,10 @@ public class AudioManager : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void ChangeSnapshot(AudioMixerSnapshot _snapshot)
+    {
+        _snapshot.TransitionTo(1f);
     }
 }

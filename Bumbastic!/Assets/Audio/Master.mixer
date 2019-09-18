@@ -11,6 +11,7 @@ AudioMixerController:
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}
+  - {fileID: 5818322657491706184}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -27,8 +28,14 @@ AudioMixerController:
     - 030a38c7869a3854d80cf802fd6be1af
     - 7ccb9438af1ec2c4884cae30107229e9
     name: View
-  m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  - guids:
+    - 7a1b9490a5f431c4cb6e9fca85f76b82
+    - 204f7ee307d62084491fff2af200495a
+    - 030a38c7869a3854d80cf802fd6be1af
+    - 7ccb9438af1ec2c4884cae30107229e9
+    name: View - Copy
+  m_CurrentViewIndex: 1
+  m_TargetSnapshot: {fileID: 5818322657491706184}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -46,6 +53,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 24400004}
+  - {fileID: 1499743681588750313}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -70,11 +78,12 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snapshot
+  m_Name: Normal
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 9153684adb8bb5245b182764f11534ee
   m_FloatValues:
     3af717a8eeda8174fa5b8466cb33dd9c: 0
+    e8913d1c07d0ae142bca8d87e945c0aa: 0
   m_TransitionOverrides: {}
 --- !u!243 &243117565626518086
 AudioMixerGroupController:
@@ -176,3 +185,35 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &1499743681588750313
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: eaeef10b360ac8f4baea61f29adf7893
+  m_EffectName: Distortion
+  m_MixLevel: 852b513be839ad14c8c4cc65cac36ec4
+  m_Parameters:
+  - m_ParameterName: Level
+    m_GUID: e8913d1c07d0ae142bca8d87e945c0aa
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &5818322657491706184
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tangled
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: bab3068c147252a428e8b4b29d5a290a
+  m_FloatValues:
+    b8e8bc021d6fe824fbe3cdcf483196eb: -7.6
+    3af717a8eeda8174fa5b8466cb33dd9c: 0
+    e8913d1c07d0ae142bca8d87e945c0aa: 0.75
+    77cbe24d42c038c4a9d730059aa2b359: 0.8
+    b243d74e787cdf248adc93ac86703cce: 0.95
+  m_TransitionOverrides: {}

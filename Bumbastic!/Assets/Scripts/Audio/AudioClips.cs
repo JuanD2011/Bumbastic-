@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 [CreateAssetMenu(fileName = "AudioClips",menuName = "AudioClips")]
 public class AudioClips : ScriptableObject
@@ -32,8 +33,11 @@ public class AudioClips : ScriptableObject
     public AudioClip stun;
     public AudioClip wagonHit;
     public AudioClip rollingWagon;
-    public AudioClip powerUpSpeedUP, powerUpMagnet, dash;
+    public AudioClip powerUpSpeedUP, powerUpMagnet, dash, tangleExplosion;
 
     [Header("Support")]
     public AudioClip crowdCheer;
+
+    [Header("Audio Mixer Snapshots")]
+    public AudioMixerSnapshot normalSnapshot = null, tangledSnapshot = null;
 }

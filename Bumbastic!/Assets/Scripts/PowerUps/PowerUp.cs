@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PowerUp : MonoBehaviour, IPowerUp
 {
@@ -10,7 +11,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     private Animator m_Animator = null;
 
-    [SerializeField] GameObject speedUp = null, magnet = null, shield = null, tangle = null;
+    [SerializeField] GameObject speedUp = null, magnet = null, shield = null, tangle = null, tangleVFX = null;
 
     [SerializeField] ParticleSystem openBoxParticleSystem = null;
 
@@ -100,6 +101,10 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     private void TanglePlayers(Player _player)
     {
+        TangleExplosionVFX vfx = Instantiate(tangleVFX, transform.position, Quaternion.identity).GetComponent<TangleExplosionVFX>();
+
+        vfx.Explosion(10f);
+
         foreach (Player player in GameManager.Manager.Players)
         {
             if (player != _player)
@@ -107,5 +112,6 @@ public class PowerUp : MonoBehaviour, IPowerUp
                 Instantiate(tangle, _player.transform.position, Quaternion.identity, player.transform);
             }
         }
+
     }
 }

@@ -14,9 +14,20 @@ public class Confusion : MonoBehaviour
     void Start()
     {
         player.OnStuned += ShowUpParticles;
+        Tangle.OnTangle += ShowUpParticles;
     }
 
-    private void ShowUpParticles(bool _canShowParticles)
+    public void ShowUpParticles(bool _canShowParticles, Player _player)
+    {
+        if (_player == player)
+        {
+            m_ParticleSystem.Stop();
+
+            if (_canShowParticles) m_ParticleSystem.Play(); 
+        }
+    }
+
+    public void ShowUpParticles(bool _canShowParticles)
     {
         m_ParticleSystem.Stop();
 
