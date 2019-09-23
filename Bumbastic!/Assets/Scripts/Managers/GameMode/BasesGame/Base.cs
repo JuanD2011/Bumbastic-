@@ -8,6 +8,8 @@ public class Base : MonoBehaviour
     [SerializeField] byte lifePoints = 3;
     [SerializeField] byte id = 0;
 
+    Light m_Light = null;
+
     public byte LifePoints { get => lifePoints; private set => lifePoints = value; }
     public List<Player> Members { get; set; } = new List<Player>();
     public Transform[] SpawnPoints { get => m_spawnPoints; private set => m_spawnPoints = value; }
@@ -22,6 +24,9 @@ public class Base : MonoBehaviour
         OnBaseDamage = null; OnBaseDestroyed = null;
 
         GetComponent<Renderer>().materials[1].color = teamColor;
+        m_Light = GetComponentInChildren<Light>();
+
+        m_Light.color = teamColor;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +35,8 @@ public class Base : MonoBehaviour
 
         if (bomb != null)
         {
+            if (bomb.ThrowerPlayer == null) return;
+
             for (int i = 0; i < Members.Count; i++)
             {
                 if (Members[i] as ThrowerPlayer == bomb.ThrowerPlayer) return;

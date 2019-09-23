@@ -45,7 +45,10 @@ public class BasesBomb : Bomb
         {
             ThrowerPlayer = _ThrowerPlayer;
         }
-        else ThrowerPlayer = null;
+        else
+        {
+            ThrowerPlayer = null;
+        }
     }
 
     private void AssignPlayer(ThrowerPlayer _throwerPlayer, Bomb _bomb)
