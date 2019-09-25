@@ -48,9 +48,9 @@ public class CrowIdle : StateMachineBehaviour
         }
         else if (Mathf.Round(dir.x) == 0 && Mathf.Round(dir.z) == 1 && !GameManager.Manager.PowerUp.gameObject.activeInHierarchy)
         {
-            HotPotatoManager.HotPotato.PowerUp.Box.SetParent(animator.transform);
-            HotPotatoManager.HotPotato.PowerUp.Box.position = animator.transform.position + reference;
-            HotPotatoManager.HotPotato.PowerUp.Box.gameObject.SetActive(true);
+            GameManager.Manager.PowerUp.Box.SetParent(animator.transform);
+            GameManager.Manager.PowerUp.Box.position = animator.transform.position + reference;
+            GameManager.Manager.PowerUp.Box.gameObject.SetActive(true);
         }
     }
 

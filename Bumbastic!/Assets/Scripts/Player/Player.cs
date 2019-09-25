@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
             if (powerUpCollisioned.transform.GetComponent<Player>() == null)
             {
                 IPowerUp powerUp = collision.gameObject.GetComponent<IPowerUp>();
-                powerUp.PickPowerUp(GetComponentInChildren<ThrowerPlayer>());
+                powerUp.PickPowerUp(GetComponentInChildren<Player>());
             }
         }
     }    

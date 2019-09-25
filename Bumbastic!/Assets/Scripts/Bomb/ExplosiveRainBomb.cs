@@ -61,8 +61,8 @@ public class ExplosiveRainBomb : Bomb
             {
                 if (item.GetComponentInParent<Player>() != null)
                 {
-                    item.GetComponentInParent<Rigidbody>().AddExplosionForce(explosionForce * 1.5f, transform.position, explosionRadius);
-                    item.GetComponentInParent<Rigidbody>().AddForce(Vector3.up * explosionForce * 0.1f, ForceMode.Impulse);
+                    item.GetComponentInParent<Rigidbody>().AddExplosionForce(explosionForce * 2f, transform.position, explosionRadius);
+                    item.GetComponentInParent<Rigidbody>().AddForce(Vector3.up * explosionForce, ForceMode.Impulse);
                     StartCoroutine(item.GetComponentInParent<Player>().Rumble(0.8f, 0.8f, 0.8f));
                 }
                 if (item.GetComponentInParent<Bomb>() != null)

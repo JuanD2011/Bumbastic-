@@ -16,12 +16,11 @@ public class TangleExplosionVFX : MonoBehaviour
 
     public void Explosion(float _duration)
     {
-        Debug.Log(_duration);
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.tangleExplosion, 1f);
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.stun, 1f);
         AudioManager.instance.ChangeSnapshot(AudioManager.instance.audioClips.tangledSnapshot);
         distortionAnimator.SetTrigger("Explosion");
-        Invoke("Implosion", 10f);
+        Invoke("Implosion", _duration);
     }
 
     private void Implosion()

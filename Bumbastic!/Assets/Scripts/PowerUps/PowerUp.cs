@@ -7,7 +7,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
     [SerializeField] Explosion p_Explosion = null;
 
     private float duration = 0f;
-    protected ThrowerPlayer m_player = null;
+    protected Player m_player = null;
 
     private Animator m_Animator = null;
 
@@ -61,40 +61,57 @@ public class PowerUp : MonoBehaviour, IPowerUp
 
     protected void GetPlayer()
     {
-        m_player = GetComponentInParent<ThrowerPlayer>();
+        m_player = GetComponentInParent<Player>();
     }
 
-    public virtual void PickPowerUp(ThrowerPlayer _player)
+    public virtual void PickPowerUp(Player _player)
     {
         int randomPU = Random.Range(0, 4);
 
-        if (_player.HasBomb)
+        if (!GameModeDataBase.IsCurrentExplosiveRain())
         {
-            TanglePlayers(_player as Player);
-            //Instantiate(speedUp, _player.transform.position, Quaternion.identity, _player.transform);
-            //Box.gameObject.SetActive(false);
-            //return;
-        }
+            ThrowerPlayer player = _player as ThrowerPlayer;
 
-        switch (randomPU)
+            if (player.HasBomb)
+            {
+                Instantiate(speedUp, player.transform.position, Quaternion.identity, player.transform);
+                Box.gameObject.SetActive(false);
+                return;
+            }
+
+            switch (randomPU)
+            {
+                case 0:
+                    Instantiate(speedUp, player.transform.position, Quaternion.identity, player.transform);
+                    break;
+                case 1:
+                    Instantiate(magnet, player.transform.position, Quaternion.identity, player.transform);
+                    break;
+                case 2:
+                    Instantiate(shield, player.transform.position + new Vector3(0f, 1.51f, 0f), Quaternion.identity, player.transform);
+                    break;
+                case 3:
+                    TanglePlayers(player as Player);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
         {
-            case 0:
-            case 1:
-            case 2:
-            //case 0:
-            //    Instantiate(speedUp, _player.transform.position, Quaternion.identity, _player.transform);
-            //    break;
-            //case 1:
-            //    Instantiate(magnet, _player.transform.position, Quaternion.identity, _player.transform);
-            //    break;
-            //case 2:
-            //    Instantiate(shield, _player.transform.position + new Vector3(0f, 1.51f, 0f), Quaternion.identity, _player.transform);
-            //    break;
-            case 3:
-                TanglePlayers(_player as Player);
-                break;
-            default:
-                break;
+            switch (randomPU)
+            {
+                case 0:
+                case 1:
+                    Instantiate(speedUp, _player.transform.position, Quaternion.identity, _player.transform);
+                    break;
+                case 2:
+                case 3:
+                    TanglePlayers(_player);
+                    break;
+                default:
+                    break;
+            }
         }
         Box.gameObject.SetActive(false);
     }
@@ -109,9 +126,8 @@ public class PowerUp : MonoBehaviour, IPowerUp
         {
             if (player != _player)
             {
-                Instantiate(tangle, _player.transform.position, Quaternion.identity, player.transform);
+                Instantiate(tangle, player.transform.position, Quaternion.identity, player.transform);
             }
         }
-
     }
 }

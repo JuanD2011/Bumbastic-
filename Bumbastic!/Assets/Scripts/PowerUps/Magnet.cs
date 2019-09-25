@@ -19,8 +19,9 @@ public class Magnet : PowerUp
 
     IEnumerator LerpBomb()
     {
+        ThrowerPlayer thrower = m_player as ThrowerPlayer;
         HotPotatoManager.HotPotato.Bomb.transform.SetParent(null);
-        m_player.Stun(true);
+        thrower.Stun(true);
         float elapsedTime = 0f;
 
         Vector3 initBombPos = HotPotatoManager.HotPotato.Bomb.transform.position;
@@ -30,15 +31,16 @@ public class Magnet : PowerUp
 
         while (normalizedTime < 0.9)
         {
-            HotPotatoManager.HotPotato.Bomb.transform.position = Vector3.Lerp(initBombPos, m_player.transform.position, normalizedTime);
+            HotPotatoManager.HotPotato.Bomb.transform.position = Vector3.Lerp(initBombPos, thrower.transform.position, normalizedTime);
             normalizedTime = elapsedTime / lerpDuration;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpMagnet, 0.7f, false);
 
-        m_player.CatchBomb(HotPotatoManager.HotPotato.Bomb);
-        m_player.Stun(false);
+        thrower.CatchBomb(HotPotatoManager.HotPotato.Bomb);
+        thrower.Stun(false);
         Destroy(gameObject);
     }
 }

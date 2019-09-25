@@ -17,6 +17,11 @@
     {
         Players.Remove(_killedPlayer);
         _killedPlayer.gameObject.SetActive(false);
-        if (Players.Count == 1) GameOver();
+        if (Players.Count == 1)
+        {
+            InGame.playerSettings[Players[0].Id].score += 1;
+            InGame.lastWinner = InGame.playerSettings[Players[0].Id];
+            Invoke("GameOver", 1f);
+        }
     }
 }
