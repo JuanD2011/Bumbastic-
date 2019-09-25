@@ -49,14 +49,13 @@ public class PowerUp : MonoBehaviour, IPowerUp
     {
         openBoxParticleSystem.Play();
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBoxOpened, 0.5f);
-        Invoke("AfterBoxOpens", 0.5f);
+        AfterBoxOpens();
     }
 
     public void AfterBoxOpens()
     {
         AudioManager.instance.PlaySFx(AudioManager.instance.audioClips.powerUpBubble, 1f);
         m_Animator.SetTrigger("GetBigger");
-        p_Animator.SetTrigger("Dissipate");
     }
 
     protected void GetPlayer()
@@ -68,7 +67,7 @@ public class PowerUp : MonoBehaviour, IPowerUp
     {
         int randomPU = Random.Range(0, 4);
 
-        if (!GameModeDataBase.IsCurrentExplosiveRain())
+        if (GameModeDataBase.IsCurrentFreeForAll() || GameModeDataBase.IsCurrentHotPotato())
         {
             ThrowerPlayer player = _player as ThrowerPlayer;
 
