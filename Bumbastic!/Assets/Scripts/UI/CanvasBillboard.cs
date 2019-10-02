@@ -16,6 +16,9 @@ public class CanvasBillboard : MonoBehaviour
 
     float valueToIncrease = 0f;
 
+    Transform camTransform = null;
+    Quaternion originalRotation = Quaternion.identity;
+
     private void Awake()
     {
         player = GetComponentInParent<Player>();
@@ -23,24 +26,28 @@ public class CanvasBillboard : MonoBehaviour
         playersText = GetComponentsInChildren<TextMeshProUGUI>();
         playerColor = GetComponentInChildren<Image>();
         dashCountSlider = GetComponentInChildren<Slider>();
+
+        camTransform = Camera.main.transform;
     }
 
     private void Start()
     {
+        originalRotation = transform.localRotation;
+
         playersText[0].text = Translation.Fields[string.Format("P{0}", player.Id + 1)];
         playerColor.color = settings.playersColor[player.Id];
         playersText[1].text = string.Format("{0}", player.PrefabName);
 
-        if (dashCountSlider != null)
-        {
-            valueToIncrease = dashCountSlider.maxValue / GameManager.maximunDashLevel; 
-        }
+        if (dashCountSlider != null) valueToIncrease = dashCountSlider.maxValue / GameManager.maximunDashLevel;
 
         GameManager.Manager.OnCorrectPassBomb += UpdateDashCounter;
-        if (throwerPlayer != null)
-        {
-            throwerPlayer.OnDashExecuted += UpdateDashCounter; 
-        }
+
+        if (throwerPlayer != null) throwerPlayer.OnDashExecuted += UpdateDashCounter;
+    }
+
+    private void Update()
+    {
+        transform.rotation = camTransform.rotation * originalRotation;
     }
 
     private void UpdateDashCounter(Player _player)
@@ -66,13 +73,5 @@ public class CanvasBillboard : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-    }
-
-    private void Update()
-    {
-        if (Camera.main != null)
-            transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward,
-                                                       Camera.main.transform.rotation * Vector3.up);
-        else Debug.LogWarning("Set to the camera the MainCamera tag");
     }
 }
