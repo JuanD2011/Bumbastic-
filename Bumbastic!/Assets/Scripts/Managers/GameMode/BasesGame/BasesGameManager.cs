@@ -96,6 +96,7 @@ public class BasesGameManager : GameManager
                 break;
             case 3:
                 playerSettings = playerSettings.OrderBy(w => w.score).ToArray();
+                playerSettings.Reverse();
                 for (int i = 0; i < playerSettings.Length; i++)
                 {
                     if (i == 0)
@@ -116,7 +117,7 @@ public class BasesGameManager : GameManager
                 break;
             case 4:
                 playerSettings = playerSettings.OrderBy(w => w.score).ToArray();
-
+                playerSettings.Reverse();
                 for (int i = 0; i < playerSettings.Length; i++)
                 {
                     if (i == 0)
