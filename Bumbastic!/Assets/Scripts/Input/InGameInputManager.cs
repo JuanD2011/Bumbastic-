@@ -14,16 +14,16 @@ public class InGameInputManager : MonoBehaviour
             switch (_change)
             {
                 case InputDeviceChange.Added:
-                    Debug.Log("Device added with id: " + (_device.id - 10));
+                    Debug.Log("Device added with id: " + (_device.deviceId));
                     break;
                 case InputDeviceChange.Removed:
                     //Device completely removed
                     break;
                 case InputDeviceChange.Disconnected:
-                    Debug.Log("Device disconnected with id: " + (_device.id - 10));
+                    Debug.Log("Device disconnected with id: " + (_device.deviceId));
                     break;
                 case InputDeviceChange.Reconnected:
-                    Debug.Log("Device reconnected with id: " + (_device.id - 10));
+                    Debug.Log("Device reconnected with id: " + (_device.deviceId));
                     break;
                 default:
                     break;

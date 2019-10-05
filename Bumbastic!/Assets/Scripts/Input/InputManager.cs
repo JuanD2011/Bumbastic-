@@ -41,18 +41,18 @@ public class InputManager : MonoBehaviour
                     if (!inputList.Contains(_device))
                     {
                         OnDeviceAdded?.Invoke();
-                        Debug.Log("Device added with id: " + (_device.id));
+                        Debug.Log("Device added with id: " + (_device.deviceId));
                     }
                     break;
                 case InputDeviceChange.Removed:
                     //Device completely removed
                     break;
                 case InputDeviceChange.Disconnected:
-                    Debug.Log("Device disconnected with id: " + (_device.id));
+                    Debug.Log("Device disconnected with id: " + (_device.deviceId));
                     OnDeviceDisconnected?.Invoke();
                     break;
                 case InputDeviceChange.Reconnected:
-                    Debug.Log("Device reconnected with id: " + (_device.id));
+                    Debug.Log("Device reconnected with id: " + (_device.deviceId));
                     OnDeviceReconnected?.Invoke();
                     break;
                 default:
