@@ -4,7 +4,12 @@ public class DeadZone : MonoBehaviour
 {
     private bool canKill = true;
     private Player playerKilled = null;
-    public static event System.Action<Player> OnPlayerKilled;
+    public static event System.Action<Player> OnPlayerKilled = null;
+
+    private void Awake()
+    {
+        OnPlayerKilled = null;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

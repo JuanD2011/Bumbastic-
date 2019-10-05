@@ -4,7 +4,6 @@
     {
         base.Awake();
         SpawnPlayers();
-        DeadZone.OnPlayerKilled -= PlayerKilled;
     }
 
     protected override void Start()
