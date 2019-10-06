@@ -114,6 +114,7 @@ public class InGameCanvas : CanvasBase
             starObtained.gameObject.SetActive(true);
             winner = InGame.lastWinners.Dequeue();
             endStarPosition = playerScores[winner.id].Stars[winner.score - 1].transform.position;
+            elapsedTime = 0f;
 
             while (elapsedTime <= lerpTime)
             {
@@ -121,6 +122,7 @@ public class InGameCanvas : CanvasBase
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
+
             playerScores[winner.id].Stars[winner.score - 1].color = Color.white;
             starObtained.gameObject.SetActive(false);
             yield return null;
