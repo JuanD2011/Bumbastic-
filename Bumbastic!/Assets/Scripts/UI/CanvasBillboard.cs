@@ -35,7 +35,25 @@ public class CanvasBillboard : MonoBehaviour
         originalRotation = transform.localRotation;
 
         playersText[0].text = Translation.Fields[string.Format("P{0}", player.Id + 1)];
-        playerColor.color = settings.playersColor[player.Id];
+        if (!GameModeDataBase.IsCurrentBasesGame())
+        {
+            playerColor.color = settings.playersColor[player.Id];
+        }
+        else
+        {
+            for (int i = 0; i < BasesGameManager.basesGame.Teams[0].Members.Count; i++)
+            {
+                if (player == BasesGameManager.basesGame.Teams[0].Members[i])
+                {
+                    playerColor.color = BasesGameManager.basesGame.Teams[0].TeamColor;
+                }
+                else if(player == BasesGameManager.basesGame.Teams[1].Members[i])
+                {
+                    playerColor.color = BasesGameManager.basesGame.Teams[1].TeamColor;
+                }
+            }
+        }
+
         playersText[1].text = string.Format("{0}", player.PrefabName);
 
         if (dashCountSlider != null) valueToIncrease = dashCountSlider.maxValue / GameManager.maximunDashLevel;

@@ -42,11 +42,11 @@ MonoBehaviour:
       type: 3}
   basesProps:
   - m_Type: 0
-    m_Props: {fileID: 5248455873920448594, guid: ca1113d4b3a1658419551ec74dd94077,
+    m_Props: {fileID: 1312807817668470074, guid: 2ed494cb30125c741a690689dc9cdd73,
       type: 3}
   - m_Type: 1
-    m_Props: {fileID: 6273977997727067049, guid: 3049415d3265ef848af411e966bf89c8,
+    m_Props: {fileID: 6426773417396875251, guid: 32c8efd27af3fde418f63da05adb4943,
       type: 3}
   - m_Type: 2
-    m_Props: {fileID: 9050841040588373035, guid: f73d579f3d3264741aa3362030f4a0fc,
+    m_Props: {fileID: 6426773417396875251, guid: 32c8efd27af3fde418f63da05adb4943,
       type: 3}
