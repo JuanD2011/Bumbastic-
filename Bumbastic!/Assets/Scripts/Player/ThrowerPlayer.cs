@@ -11,11 +11,15 @@ public class ThrowerPlayer : Player
     public static event Action<ThrowerPlayer, Bomb> OnCatchBomb;
     public static event Action<Bomb> OnBombThrew = null;
 
+    [SerializeField]
+    private byte maximunDashLevel = 3;
+
     private bool throwing;
     public bool HasBomb { get; set; }
     public Transform Catapult { get; private set; }
     public byte DashCount { get; private set; }
     public Bomb Bomb { get; set; } = null;
+    public byte MaximunDashLevel { get => maximunDashLevel; private set => maximunDashLevel = value; }
 
     protected override void Awake()
     {
@@ -50,7 +54,7 @@ public class ThrowerPlayer : Player
     {
         if (_Transmitter == this)
         {
-            DashCount = (DashCount <= GameManager.maximunDashLevel) ? DashCount += 1 : DashCount = GameManager.maximunDashLevel;
+            DashCount = (DashCount <= MaximunDashLevel) ? DashCount += 1 : DashCount = MaximunDashLevel;
         }
     }
 
@@ -189,9 +193,9 @@ public class ThrowerPlayer : Player
 
         HasBomb = false;
         throwing = false;
-        Bomb = null;
         Collider.enabled = true;
         OnBombThrew?.Invoke(Bomb);
+        Bomb = null;
     }
 
     public void CatchBomb(Bomb _bomb)

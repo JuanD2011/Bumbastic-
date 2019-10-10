@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InGame",menuName = "InGame")]
+[CreateAssetMenu(fileName = "InGame", menuName = "InGame")]
 public class InGame : ScriptableObject
 {
     public const byte maxScore = 3;

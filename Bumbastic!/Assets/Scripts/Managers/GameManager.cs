@@ -11,8 +11,6 @@ public abstract class GameManager : MonoBehaviour
     [SerializeField]
     private List<Transform> spawnPoints;
 
-    public const byte maximunDashLevel = 3;
-
     [SerializeField]
     GameObject playerPrefab;
 

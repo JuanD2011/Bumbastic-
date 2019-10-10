@@ -18,7 +18,7 @@ public class SpawnLine : MonoBehaviour
 
     List<PlayerMenu> activePlayers = new List<PlayerMenu>();
 
-    public static event System.Action<List<PlayerMenu>> OnActivePlayersSorted;
+    public static event System.Action<List<PlayerMenu>> OnActivePlayersSorted = null;
 
     private void Awake()
     {
@@ -34,8 +34,8 @@ public class SpawnLine : MonoBehaviour
     private void InitDistanceBetweenPlayers()
     {
         distanceBetweenPlayers = lineVector.magnitude / (GetNumberOfActivePlayers() + 1);
-        if (GetNumberOfActivePlayers() >= 4) useSpacing = false;
-        else useSpacing = true;
+        //if (GetNumberOfActivePlayers() >= 4) useSpacing = false;
+        //else useSpacing = true;
     }
 
     public void InitPlayersPosition()

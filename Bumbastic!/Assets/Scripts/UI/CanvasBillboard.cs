@@ -56,7 +56,7 @@ public class CanvasBillboard : MonoBehaviour
 
         playersText[1].text = string.Format("{0}", player.PrefabName);
 
-        if (dashCountSlider != null) valueToIncrease = dashCountSlider.maxValue / GameManager.maximunDashLevel;
+        if (dashCountSlider != null) valueToIncrease = dashCountSlider.maxValue / throwerPlayer.MaximunDashLevel;
 
         GameManager.Manager.OnCorrectPassBomb += UpdateDashCounter;
 
